@@ -37,6 +37,6 @@ cpSync(docsDir, distDir, { recursive: true, filter: isIncluded });
 // An empty .nojekyll file tells GitHub Pages to skip Jekyll entirely.
 writeFileSync(join(distDir, ".nojekyll"), "");
 
-execSync("npx tsc", { cwd: repoRoot, stdio: "inherit" });
+execSync("npx tsc --project configs/tsconfig.json", { cwd: repoRoot, stdio: "inherit" });
 
 console.log(`Site built into ${relative(repoRoot, distDir)}/`);

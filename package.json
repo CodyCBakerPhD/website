@@ -8,7 +8,7 @@
     "node": ">=22.18"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --project configs/tsconfig.json",
     "build": "node scripts/build.ts",
     "serve": "npx --yes serve dist"
   },
