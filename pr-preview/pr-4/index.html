@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <title>Cody C. Baker, Ph.D.</title>
+    <meta charset="utf-8" />
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem("theme");
+                var theme = stored === "light" || stored === "dark"
+                    ? stored
+                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.documentElement.setAttribute("data-theme", theme);
+            } catch (e) {}
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/kube.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/custom.min.css" />
+    <link rel="shortcut icon" href="img/como_favicon.ico" />
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<style>
+		.intro h1:before {
+			content: 'DATA';
+		}
+	</style>
+</head>
+
+
+
+<body>
+	<!-- Fixed top-right controls -->
+	<div class="nav-actions">
+		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+			<i class="fa fa-moon-o theme-toggle-icon theme-toggle-icon-dark" aria-hidden="true"></i>
+			<i class="fa fa-sun-o theme-toggle-icon theme-toggle-icon-light" aria-hidden="true"></i>
+		</button>
+		<a class="icon-btn" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+			<i class="fa fa-github" aria-hidden="true"></i>
+		</a>
+	</div>
+
+	<!-- Navigation -->
+	<div class="main-nav">
+		<div class="container">
+			<header class="group top-nav">
+				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+				    <span class="logo">Cody C. Baker</span>
+				</div>
+			    <nav id="navbar-1" class="navbar item-nav">
+				    <ul>
+						<li><a href="#" data-scroll-top>About</a></li>
+						<li><a href="#education">Education</a></li>
+						<li><a href="#skills">Skills</a></li>
+				        <li><a href="#experience">Experience</a></li>
+						<li><a href="#highlighted-projects">Projects</a></li>
+						<li><a href="#data-curation">Data Curation</a></li>
+						<li><a href="#publications">Publications</a></li>
+				    </ul>
+				</nav>
+			</header>
+        </div>
+	</div>
+
+	<!-- Introduction -->
+	<div class="hero-name">
+		<h1>Cody C. Baker, Ph.D.</h1>
+	</div>
+	<div class="intro section" id="about">
+		<div class="container">
+			<div class="units-row units-split wrap">
+				<div class="unit-20">
+					<img src="img/avatar.jpg" alt="Avatar">
+				</div>
+				<div class="unit-80">
+					<h1>expertise in<br><span id="typed"></span></h1>
+				</div>
+
+				<div class="contact-block">
+					<ul class="contact-list list-flat">
+						<li>
+							<i class="fa fa-envelope"></i>
+							<a href="mailto:cody.c.baker.phd@gmail.com">cody.c.baker.phd@gmail.com</a>
+						</li>
+						<li>
+							<i class="fa fa-linkedin-square"></i>
+							<a href="https://www.linkedin.com/in/cody-c-baker/">linkedin.com/in/cody-c-baker</a>
+						</li>
+						<li>
+							<i class="fa fa-github"></i>
+							<a href="https://github.com/CodyCBakerPhD/">github.com/CodyCBakerPhD</a>
+						</li>
+					</ul>
+					<button class="download-btn"
+							onclick="window.location.href='assets/resume/cody_c_baker_full_cv.pdf'">Download CV
+					</button>
+				</div>
+				<p>
+					Experienced data scientist and software engineer with 12 years spent designing, conducting, and
+					sharing results of complex research. Worked with faculty, staff, and students from dozens of top
+					universities to achieve excellence in the preparation and performance of research-related tasks,
+					including data management, hypothesis formulation, and both mathematical and statistical modeling.
+					<br>
+					<br>
+					Possesses a diverse set of software skills, including DevOps, full-stack app development,
+					performance benchmarking, ETL, and cloud deployments. Enjoys hosting workshops and hackathons to
+					train users in state-of-the-art technologies and best practices. Familiar with a large number of
+					data formats, with a strong concentration on updating local file standards to more cloud-performant
+					ones. Knowledgeable about various mathematical and statistical applications, including
+					high-dimensional time series analysis, nonlinear dynamics, and machine learning.
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Education -->
+	<div class="work section second" id="education">
+		<div class="container">
+			<h1>Education</h1>
+			<ul class="work-list">
+				<h4>
+					Ph.D. &nbsp; | &nbsp;
+					<a href="https://acms.nd.edu/"> Applied and Computational Mathematics and
+					Statistics (ACMS)</a>
+				</h4>
+				<li>University of Notre Dame &nbsp; | &nbsp; 2020</li>
+				<br>
+				<li>
+					Doctoral thesis: <a href="https://curate.nd.edu/articles/thesis/Second-Order_Moments_of_Activity_in_Large_Neural_Network_Models/24778350">
+					"Second-order moments of activity in large neural network models"</a>
+				</li>
+				<br>
+				<p>
+					Relevant coursework: machine learning, Bayesian statistics, network science, stochastic analysis,
+					time series analysis, partial differential equations, nonlinear dynamics
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h4>
+					B.S. &nbsp; | &nbsp;
+					<a href="https://www.evansville.edu/majors/mathematics/degrees-applied-mathematics.cfm">Applied Mathematics</a>
+					& <a href="https://www.evansville.edu/majors/cognitivescience/index.cfm">Cognitive Science</a>
+				</h4>
+				<li>Minors: Computer Science, Philosophy, Psychology, and Neuroscience</li>
+				<li>University of Evansville &nbsp; | &nbsp; 2015</li>
+				<br>
+				<li>Senior thesis: "Crime prediction models applied to the city of Evansville"</li>
+				<li>Honors thesis: "Goodness of fit metrics for joint probability distributions"</li>
+				<br>
+				<p>
+					Relevant coursework: calculus, linear algebra, probability, statistics, discrete & combinatorics,
+					numerical analysis, real analysis, mathematical physics, algorithms & data structures,
+					cryptography, machine learning, symbolic logic, cognitive psychology, neurophysiology,
+					advanced neuroscience, philosophy of mind, philosophy of science
+				</p>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<!-- Technical Skills -->
+	<div class="skills section second" id="skills">
+		<div class="container">
+			<h1>Technical Skills</h1>
+			<div class="skill-group">
+				<h5>Coding <span>(in order of experience)</span></h5>
+				<span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">LaTeX</span><span class="tag">R</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">CSS</span>
+			</div>
+			<div class="skill-group">
+				<h5>Mathematical / Statistical / Machine Learning Techniques</h5>
+				<span class="tag">multivariate regression</span><span class="tag">classification</span><span class="tag">cross-validation</span><span class="tag">clustering</span><span class="tag">mixture models</span><span class="tag">dimensionality reduction</span><span class="tag">ensemble methods</span><span class="tag">deep learning</span><span class="tag">reinforcement learning</span><span class="tag">time series analysis</span><span class="tag">anomaly detection</span><span class="tag">computer vision</span>
+			</div>
+			<div class="skill-group">
+				<h5>DevOps</h5>
+				<span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">Singularity</span><span class="tag">unit & integration testing</span><span class="tag">user & quality testing</span><span class="tag">Storybook</span><span class="tag">Chromatic</span><span class="tag">Puppeteer</span><span class="tag">Codecov</span>
+			</div>
+			<div class="skill-group">
+				<h5>Libraries and Tools</h5>
+				<span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">pandas</span><span class="tag">polars</span><span class="tag">sklearn</span><span class="tag">OpenCV</span><span class="tag">FFmpeg</span><span class="tag">timeit</span><span class="tag">airspeed velocity</span><span class="tag">Matplotlib</span><span class="tag">Plotly</span><span class="tag">Pydantic</span><span class="tag">Boto3</span><span class="tag">concurrents</span><span class="tag">joblib</span><span class="tag">tqdm</span><span class="tag">requests</span><span class="tag">pytest</span><span class="tag">Flask</span><span class="tag">PyInstaller</span>
+			</div>
+			<div class="skill-group">
+				<h5>Frameworks</h5>
+				<div class="skill-row">
+					<span class="skill-sub">Cloud & services</span><span class="skill-tags"><span class="tag">AWS (IAM, S3, EC2, Batch, ECR, Route 53)</span><span class="tag">Terraform</span><span class="tag">IPInfo</span><span class="tag">OpenCage</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Streaming</span><span class="skill-tags"><span class="tag">fsspec</span><span class="tag">HDF5 ROS3</span><span class="tag">remfile</span><span class="tag">h5wasm</span><span class="tag">obstore</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Databases</span><span class="skill-tags"><span class="tag">REDIS</span><span class="tag">DynamoDB</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">SQLite</span><span class="tag">NoSQL</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">UI</span><span class="skill-tags"><span class="tag">Electron</span><span class="tag">Tk</span><span class="tag">Qt</span><span class="tag">React</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Linting</span><span class="skill-tags"><span class="tag">pre-commit</span><span class="tag">Ruff</span><span class="tag">Black</span><span class="tag">flake8</span><span class="tag">pydocstyle</span><span class="tag">Mypy</span><span class="tag">Prettier</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Parallelization</span><span class="skill-tags"><span class="tag">multiprocessing</span><span class="tag">threading</span><span class="tag">high-performance computing (HPC)</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Packaging & distribution</span><span class="skill-tags"><span class="tag">Setuptools</span><span class="tag">Hatch</span><span class="tag">Twine</span><span class="tag">conda-forge</span><span class="tag">Vite</span><span class="tag">Node.js</span><span class="tag">Yarn</span></span>
+				</div>
+			</div>
+			<div class="skill-group">
+				<h5>Strong Familiarity with Data Formats</h5>
+				<span class="tag">HDF5</span><span class="tag">Zarr</span><span class="tag">JSON</span><span class="tag">YAML</span><span class="tag">XML</span><span class="tag">Markdown</span><span class="tag">RST</span><span class="tag">MP4</span><span class="tag">AVI</span><span class="tag">TIFF</span><span class="tag">Parquet</span><span class="tag">TSV</span><span class="tag">XLSX</span><span class="tag">SVG</span><span class="tag">PNG</span><span class="tag">JPEG</span><span class="tag">MP3</span><span class="tag">WAV</span><span class="tag">PKL</span><span class="tag">MAT</span>
+			</div>
+			<div class="skill-group">
+				<h5>Administration</h5>
+				<span class="tag">GitHub</span><span class="tag">AWS</span><span class="tag">PyPI</span><span class="tag">conda-forge</span><span class="tag">DockerHub</span><span class="tag">ReadTheDocs</span>
+			</div>
+			<div class="skill-group">
+				<h5>Business & Team Skills</h5>
+				<span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">research</span><span class="tag">mentoring</span><span class="tag">training</span><span class="tag">client consultations</span><span class="tag">drafting scopes of work</span><span class="tag">budgeting</span><span class="tag">grant writing</span>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Experience -->
+	<div class="work section second" id="experience">
+		<div class="container">
+			<h1>Experience</h1>
+			<ul class="work-list">
+				<h3>Research Software Engineer</h3>
+				<li><a href="https://centerforopenneuroscience.org/">Center for Open Neuroscience (CON)</a>
+					&nbsp; | &nbsp; 2025-Present
+					<br>
+					<a href="https://www.dartmouth.edu/ccn/"> Center for Cognitive Neurosciences (CCN)</a>
+					&nbsp; | &nbsp;	<a href="https://pbs.dartmouth.edu/"> Psychological and Brain Sciences (PBS)</a>
+					&nbsp; | &nbsp; Dartmouth College
+				</li>
+				<br>
+				<p>
+					Maintaining and enhancing several NIH data archives that store neuroscientific data by
+					standardizing dataset organization across multiple modalities and providing usage analytics,
+					including geolocation, through parsing terabytes of raw S3 log files.
+					<br><br>
+					Assisting with user support tickets and feature requests to ensure smooth operation of data submission
+					and retrieval processes.
+					<br><br>
+					Developing open source software for use in neurophysiology research with an emphasis on achieving
+					reproducibility of scientific findings.
+					<br><br>
+					Researching options for stable, cost-effective, long-term backup of petabyte-scale data
+					storage. Working with a range of institutions and services to provide
+					solutions and cost estimates to that effect.
+					<br><br>
+					Providing software, consultation, and computing support for the Brain Behavior Quantification and
+					Synchronization consortium (BBQS).
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>Research Software Engineer</h3>
+				<li><a href="https://catalystneuro.com/">CatalystNeuro</a> &nbsp; | &nbsp; 2020-2024</li>
+				<br>
+				<p>
+					Developed and maintained 5 repositories of open-source software by ensuring proper functionality of
+					automated testing suites, documentation, tutorials, and demos.
+					<br><br>
+					Created and maintained 12+ data processing pipelines for neuroscience
+					labs, allowing their data to flow from acquisition to sharing in a seamless fashion.
+					<br><br>
+					Curated a total of 256 TB of high-value datasets to NIH data archives on behalf of various
+					research groups.
+					<br><br>
+					Managed the company's cloud resources (Amazon Web Services; AWS), including storage,
+					compute resources, and identity access management (IAM).
+					<br><br>
+					Handled user interactions within the research community by offering technical support and
+					resolving issues or feature requests in a timely manner.
+					<br><br>
+					Facilitated user education across various platforms by running sessions at multiple conferences
+					and workshops, increasing user adoption and effective system utilization.
+					<br><br>
+					All software related in some way to the facilitation of terabyte-scale data management, analysis,
+					and visualization for the field of neurophysiology.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Research Assistant</h3>
+				<li>
+					<a href="https://www3.nd.edu/~rrosenb1/ndcnd.html" >Neural Dynamics and
+						Computing
+						Group	at
+						University
+						of Notre Dame</a> &nbsp; | &nbsp; 2016-2020
+				</li>
+				<br>
+				<p>
+					Reconciled the computational properties of biologically realistic neural networks with artificial
+					machine learning models (such as those used across computer vision) through complex mathematical
+					theory and stochastic biophysical simulations, with results communicated through 3 journal
+					publications and a presentation at the high-impact COSYNE conference
+					(top 4% of abstracts accepted).
+					<br><br>
+					Collaborated with several top experimentalists in neuroscience as a trainee in the NeuroNex
+					program, which focused on understanding how neural function emerges from underlying structure.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Teaching Assistant</h3>
+				<li>
+					<a href="https://acms.nd.edu/" > Applied and Computational Mathematics and Statistics (ACMS)
+					</a> &nbsp; | &nbsp; 2015-2017
+				</li>
+				<br>
+				<p>
+					Ran 4 tutorial sections for 112 students, aiding their study of course concepts to
+					achieve a 96% satisfaction rate.
+
+					Graded homework assignments and exams. Filled in main lectures for the professor as needed.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Data Analyst</h3>
+				<li>JRM Environmental Inc  &nbsp; | &nbsp; 2015</li>
+				<br>
+				<p>
+					Analyzed geological data from water samples in conjunction with the Indiana Department of
+					Environmental Management to issue compliance permits for Indianapolis regulation standards.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Technical Editor</h3>
+				<li><a href="https://www.penguinrandomhouse.com/books/361139/algebra-ii-by-carolyn-wheater/">Penguin Random House</a> &nbsp; | &nbsp; 2015</li>
+				<br>
+				<p>
+					Reviewed and corrected over 300 pages of "An Idiot's Guide to Algebra II".
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Research Intern</h3>
+				<li>BITLab  &nbsp; | &nbsp; Michigan State University  &nbsp; | &nbsp; 2014</li>
+				<br>
+				<p>
+					Explored statistical effects of algorithmic curation (the use of automated filtering mechanisms
+					in the delivery and display of information) by measuring properties of simulated models of social
+					networks, with results presented at the MIDSURE conference.
+
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Research Intern</h3>
+				<li>Bioinformatics   |   University of Kansas   |   2013</li>
+				<br>
+				<p>
+					Examined information diffusion through large-scale simulations of G-protein signaling mechanisms
+					using a high-performance super-computing cluster (HPC), then presented results at an undergraduate
+					symposium.
+				</p>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<!-- Projects -->
+	<div class="work section second" id="highlighted-projects">
+		<div class="container">
+			<h1>Highlighted Projects</h1>
+			<ul class="work-list">
+				<img
+					src="img/guide_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 50%;"
+				/>
+				<br>
+				<li><a href="https://github.com/NeurodataWithoutBorders/nwb-guide">NWB GUIDE</a> &nbsp; | &nbsp; Lead Developer</li>
+				<br>
+				<p>
+					Developed an intuitive user interface for file management using interactive validation and
+					real-time suggestions, streamlining the process for data submission to NIH archives.
+					<br><br>
+					Ensured a robust testing suite involving multiple levels of integration and user
+					interactions emulated using Puppeteer to enhance reliability and long-term maintainability.
+					<br><br>
+					Tracked and documented dozens of hands-on user tests to refine the user experience.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img
+					src="img/nwb2bids_logo.svg" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 50%;"
+				/>
+				<br>
+				<li><a href="https://github.com/con/nwb2bids"> nwb2bids </a> &nbsp; | &nbsp;Lead Developer</li>
+				<br>
+				<p>
+					Created a metadata extraction tool for organizing datasets of NeurodataWithoutBorders (NWB) files
+					following the Brain Imaging Data Structure (BIDS) structure. Encourages best practices in data
+					curation, such as self-describing entities, FAIR principles, and rich Hierarchical Event
+					Descriptor (HED) annotations.
+					<br><br>
+					Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode
+					neurophysiology data.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img
+					src="img/neuroconv_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 50%;"
+				/>
+				<br>
+				<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer</li>
+				<br>
+				<p>
+					Established an automated data conversion tool capable of reading more than 40 distinct
+					data formats used by neurophysiology acquisition devices in order to automatically write to the
+					NeurodataWithoutBorders (NWB) standard.
+					<br><br>
+					Designed universal APIs which transparently handled each layer of complexity to simplify the
+					tasks of tagging, grouping, metadata transcription, temporal alignment, asset linking, buffering,
+					chunking, and compression.
+					<br><br>
+					Implemented a distributed cloud deployment system to run large-scale, off-site, batched conversions
+					through Amazon Web Services (AWS).
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img
+					src="img/inspector_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 50%;"
+				/>
+				<br>
+				<li><a href="https://github.com/NeurodataWithoutBorders/nwbinspector">NWB Inspector</a> &nbsp; | &nbsp; Lead Developer</li>
+				<br>
+				<p>
+					Built a command line tool used by the NIH data archive to validate all data uploads, which
+					ensures all submissions are provided automated suggestions for metadata improvements that enhance
+					data findability and reuse.
+					<br><br>
+					Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img
+					src="img/neurosift_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 25%;"
+				/>
+				<br>
+				<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Consultant</li>
+				<br>
+				<p>
+					Aided in the design of a browser-based application for visualizing the contents of terabyte-scale
+					neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events,
+					and all associated metadata through an intuitive exploration interface. Utilizes a specialized
+					HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img
+					src="img/nwb_benchmarks_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 50%;"
+				/>
+				<br>
+				<li><a href="https://github.com/NeurodataWithoutBorders/nwb_benchmarks">NWB Benchmarks</a> &nbsp; | &nbsp; Core Developer</li>
+				<br>
+				<p>
+					Managed a collection of unit and integration tests whose performance metrics (time, memory, and web
+					packets) are sampled against a range of environmental run configurations, machine
+					specifications, and bandwidth limits with the results used to assess the performance of HDF5 and
+					Zarr file packaging parameterization against cloud streaming methods.
+					<br><br>
+					Run outputs are aggregated into a common public database and built-in visualization tools generate
+					reports of summary findings. A manuscript discussing interpretations and recommendations is in
+					preparation.
+					<br><br>
+					Built as an extension on top of the popular Airspeed Velocity (ASV) benchmarking framework.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<li><a href="https://github.com/con/duct">duct</a> &nbsp; | &nbsp; Developer</li>
+				<br>
+				<p>
+				Maintained a simple command line tool for monitoring and maintaining records of process-specific system
+				resource utilization of any other command line invocation.
+				<br><br>
+				Tracks wall clock time, CPU time, RAM consumption, and more!
+				</p>
+			</ul>
+			<ul class="work-list">
+				<li>
+					<a href="https://github.com/hdmf/hdmf-dev">Hierarchical Data Modeling Framework (HDMF)</a>
+					&nbsp;| &nbsp; Contributor
+				</li>
+				<br>
+				<p>
+				Enhanced a generic schema language for defining structured data standards intended to be written to
+				group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing
+				lazy data buffering for terabyte-scale datasets.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img
+					src="img/nwbwidgets_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
+					margin-right: auto; width: 25%;"
+				/>
+				<br>
+				<li><a href="https://github.com/NeurodataWithoutBorders/nwbwidgets">NWB Widgets (Legacy)</a> &nbsp; | &nbsp; Developer</li>
+				<br>
+				<p>
+					Drafted Jupyter widgets-based tools for visualizing the contents of terabyte-scale neurophysiology
+					datasets. Supports many custom plugins for specific neural data types. Has some remote streaming
+					capability, but is more intended for reading from local disks.
+					<br><br>
+					Largely replaced by the Neurosift browser-based application.
+				</p>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<!-- Data Curation Projects -->
+	<div class="work section second" id="data-curation">
+		<div class="container">
+			<h1>Data Curation</h1>
+			<p>
+				Over the years, I have participated directly (by acting as the primary point person) or indirectly (in a
+				supervisory capacity) in the management, curation, and publication of dozens of high-impact datasets across many research institutions.
+				<br><br>
+				Those described below are among the more notable.
+			</p>
+			<br>
+			<ul class="work-list">
+				<h3>Visual Coding (2-Photon Calcium Imaging)</h3>
+				<li>
+					Group: Neural Dynamics and Computing &nbsp; | &nbsp; Location: Allen Institute for Brain Science
+				</li>
+				<li>
+					Modality: Microscopy  &nbsp; | &nbsp; Role: Primary Engineer
+				</li>
+				<a href="https://dandiarchive.org/dandiset/000728/0.240827.1809"> Dataset</a> &nbsp; | &nbsp;
+				<a href="https://github.com/dandi/example-notebooks/blob/694e97043373e2d1138d58af89b7be8dd5a3786b/000728/AllenInstitute/visual_coding_ophys_tutorial.ipynb"> Jupyter Notebook</a> &nbsp; | &nbsp;
+				<a href="https://github.com/catalystneuro/visual-coding-to-nwb-v2"> Conversion Code</a>
+				<br>
+				<p>
+				Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.
+				<br><br>
+					Published a total of <strong>93.4 TB</strong> of visual cortex microscopy data on the
+					associated NIH data
+												  archive.
+				<br><br>
+				Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>Brain Wide Map</h3>
+				<li>
+					Group: International Brain Lab &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp;
+					Role: Primary Engineer
+				</li>
+				<a href="https://doi.org/10.1038/s41586-025-09235-0"> Manuscript</a> &nbsp; | &nbsp;
+				<a href="https://dandiarchive.org/dandiset/000409/draft"> Dataset</a> &nbsp; | &nbsp;
+				<a href="https://github.com/dandi/example-notebooks/tree/master/000409/IBL"> Jupyter Notebooks</a> &nbsp;
+				| &nbsp;
+				<a href="https://github.com/catalystneuro/IBL-to-nwb"> Conversion Code</a>
+				<br>
+				<p>
+				Wrote conversion code which interfaced with PostgreSQL metadata database to standardize the data structure of thousands of extracellular electrophysiology experiments with complex behavior.
+				<br><br>
+				Uploaded a total of <strong>66 TB</strong> of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>Neural signal propagation atlas of Caenorhabditis elegans</h3>
+				<li>
+					Group: Leifer Lab &nbsp; | &nbsp; Location: Princeton University &nbsp; | &nbsp;
+					Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer
+				</li>
+				<a href="https://doi.org/10.1038/s41586-023-06683-4"> Manuscript</a> &nbsp; | &nbsp;
+				<a href="https://dandiarchive.org/dandiset/001075/0.240930.1859"> Dataset</a> &nbsp; | &nbsp;
+				<a href="https://github.com/dandi/example-notebooks/tree/master/001075"> Jupyter Notebook</a> &nbsp; | &nbsp;
+				<a href="https://github.com/catalystneuro/leifer_lab_to_nwb"> Conversion Code</a>
+				<br>
+				<p>
+				Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.
+				<br><br>
+				Published a total of <strong>10 TB</strong> of C. elegans microscopy data on the associated NIH data archive.
+				<br><br>
+				Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior</h3>
+				<li>
+					Group: Ahrens Lab &nbsp; | &nbsp; Location: Janelia Research Campus (HHMI) &nbsp; | &nbsp;
+					Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer
+				</li>
+				<a href="https://doi.org/10.1016/j.cell.2019.05.050"> Manuscript</a> &nbsp; | &nbsp;
+				<a href="https://dandiarchive.org/dandiset/000350/0.240822.1759"> Dataset</a> &nbsp; | &nbsp;
+				<a href="https://github.com/catalystneuro/ahrens-lab-to-nwb"> Conversion Code</a>
+				<br>
+				<p>
+				Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality
+				environment and some limited electrophysiology responses from peripheral motor nerves.
+				<br><br>
+				Published a total of <strong>23</strong> TB of volumetric whole-brain zebrafish microscopy data on
+				the associated NIH data archive.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>MICrONS</h3>
+				<li>
+					Group: Tolias Lab &nbsp; | &nbsp; Location: Baylor College of Medicine &nbsp; | &nbsp;
+					Modality: Microscopy &nbsp; | &nbsp; Role: Supervisor
+				</li>
+				<a href="https://doi.org/10.1038/s41586-025-08790-w"> Manuscript</a> &nbsp; | &nbsp;
+				<a href="https://dandiarchive.org/dandiset/000402/0.230307.2132"> Dataset</a> &nbsp; | &nbsp;
+				<a href="https://github.com/dandi/example-notebooks/blob/master/000402/MICrONS/demo/000402_microns_demo.ipynb"> Jupyter Notebook</a> &nbsp; | &nbsp;
+				<a href="https://github.com/catalystneuro/MICrONS-to-nwb"> Conversion Code</a>
+				<br>
+				<p>
+				Supervised the conversion and publication of a high-value dataset which combined large-scale
+				two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.
+				<br><br>
+				Resulted in the publication of a total <strong>1.2 TB</strong> of functional imaging data on
+				the	NIH data archive, with region IDs coregistered with the associated electron microscopy datasets.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>Miscellaneous (Buzsaki Lab)</h3>
+				<li>
+					Group: Buzsaki Lab &nbsp; | &nbsp; Location: New York University &nbsp; | &nbsp;
+					Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer
+				</li>
+				<a href="https://github.com/catalystneuro/buzsaki-lab-to-nwb"> Conversion Code</a>
+				<br>
+				<p>
+				Wrote custom conversion code for a dozen previous datasets.
+				Unique aspects of these data collections include temperature-modulating probes, long-term
+				passive recordings of spontaneous behavior, and paired optogenetic stimulation with
+				extracellular electrophysiology.
+				<br><br>
+				Published a total of <strong>39 TB</strong> of mouse electrophysiology and behavioral data
+				on the associated NIH data archive.
+				</p>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<!-- Publications -->
+	<div class="work section second" id="publications">
+		<div class="container">
+			<h1>Publications</h1>
+			<h2>Journal Articles</h2>
+				<ul class="work-list">
+					<li>
+						C. J. Gillon, <strong>C. Baker</strong>, et al. (2025).
+						<em>Open data in neurophysiology: Advancements, solutions & challenges.</em>
+						eNeuro, vol. 12, no. 11.
+						<a href="https://doi.org/10.1523/ENEURO.0486-24.2025">DOI</a>
+					</li>
+					<br>
+					<p>
+						Review article summarizing the current state of open data sharing in the field of
+						neurophysiology as portrayed by the myriad of presentations and ensuing discussions from the inaugural
+						Open Data in Neuroscience (ODIN) conference at MIT in 2023.
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						K. Gunalan, R. Choudhury, et al. (2025).
+						<em>DANDI: Shaping the future of neurophysiology and neuroimage data publishing and
+						exploration through collaboration with the community, standards, and analytic platforms.</em>
+						In preparation.
+					</li>
+					<br>
+					<p>
+						An in-progress manuscript detailing the cloud architecture, core features, and future plans for the
+						DANDI archive for neurophysiology and neuroimaging data. Includes contributions from the entire
+						extended DANDI team (10+ authors).
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						R. Ly, <strong>C. Baker</strong>, et al. (2025).
+						<em>A practical evaluation of remote access methods for neurophysiology data in the cloud.</em>
+						In preparation.
+					</li>
+					<br>
+					<p>
+						An in-progress manuscript detailing a series of benchmarks which evaluate the performance of
+						various remote access methods for reading data stored in AWS S3 cloud storage across a range of
+						environmental and machine configurations.
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						H. Mayorquin, <strong>C. Baker</strong>, et al. (2025).
+						<em>NeuroConv: Streamlining neurophysiology data conversion to the NWB standard.</em>
+						Python in Science Conference, 2025.
+						<a href="https://doi.org/10.25080/cehj4257">DOI</a>
+					</li>
+					<br>
+					<p>
+						The seminal article presented at the SciPy conference which describes the
+						years-long effort of creating NeuroConv, the automated data conversion tool capable of
+						translating more than 40 distinct data formats used by neurophysiology acquisition devices to
+						the NWB standard.
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						M. Hawrylycz, M. E. Martone, et al. (2023).
+						<em>A guide to the BRAIN Initiative Cell Census Network data ecosystem.</em>
+						PLoS biology, vol. 21, no. 6, e3002133, 2023.
+					</li>
+					<br>
+					<p>
+						Consortium article (with dozens of authors) describing the data ecosystem developed by the
+						BRAIN Initiative Cell Census Network, of which the DANDI Archive is a core component for data
+						sharing and publication.
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, E. Froudarakis, et al. (2020).
+						<em>Inference of synaptic connectivity and external variability in neural microcircuits.</em>
+						Journal of Computational Neuroscience, vol. 48, pp. 123–147, 2020.
+					</li>
+					<br>
+					<p>
+						This paper made up the bulk of my doctoral thesis which explores the relationship between
+						anatomical synaptic connectivity and observed spike train correlations in biophysically
+						realistic systems of spiking neurons.
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, V. Zhu, et al. (2020).
+						<em>Nonlinear stimulus representations in neural circuits with approximate excitatory-inhibitory balance.</em>
+						PLoS computational biology, vol. 16, no. 9, e1008192, 2020.
+					</li>
+					<br>
+					<p>
+						This paper demonstrates how even simple biophysical plasticity rules can give rise to complex
+						nonlinear computations in networks of spiking neurons operating within a semi-balanced
+						regime. Trained a realistic spiking neural network in an unsupervised manner to perform image
+						classification on the MNIST dataset.
+					</p>
+				</ul>
+				<br><br>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, C. Ebsch, et al. (2019).
+						<em>Correlated states in balanced neuronal networks.</em>
+						Physical Review E, vol. 99, no. 5, p. 052 414, 2019.
+					</li>
+					<br>
+					<p>
+						My very first publication - mathematically derives the asymptotic scaling for spike count
+						correlations in balanced networks of spiking neurons.
+					</p>
+				</ul>
+			<h2></h2>
+			<br><br>
+			<h2>Conference Presentations</h2>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, G. Flynn, et al. (2024).
+						<em>NWB GUIDE: Simplifying the conversion of neurophysiology data to NWB format.</em>
+						Society for Neuroscience (SfN) 2024.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, S. Weigl, et al. (2023).
+						<em>NeuroConv: Automated conversion of neurophysiology data to NWB format.</em>
+						Society for Neuroscience (SfN) 2023.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, V. Zhu, et al. (2020).
+						<em>Nonlinear computations in semi-balanced networks.</em>
+						Computational and Systems Neuroscience (COSYNE) 2020. Contributed talk (top 4% of abstracts).
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong> and R. Rosenbaum (2018).
+						<em>Inferring connectivity and latent input covariance from spike train correlations.</em>
+						Computational and Systems Neuroscience (COSYNE) 2018. Poster (top 43% of abstracts).
+					</li>
+				</ul>
+			<h2></h2>
+			<br><br>
+			<h2>Workshops</h2>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, R. Ly, et al. (2024).
+						<em>Neurodata Without Borders and DANDI Archive Tutorial.</em>
+						NWB and DANDI Workshop, Baylor College of Medicine.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong> (2023).
+						<em>Neuroconv and NWB GUIDE tutorial</em>
+						NWB User Days, Janelia Research Campus.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong> and R. Ly (2023).
+						<em>Neurodata Without Borders and DANDI Archive Tutorial</em>
+						Pre-conference, COSYNE.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, O. Ruebel, et al. (2023).
+						<em>Neurodata Without Borders and DANDI Archive Hackathon</em>
+						NeuroDataShare, Sainsbury Wellcome Centre.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, O. Ruebel, et al. (2023).
+						<em>Artificial intelligence, machine learning, computing, and visualization in neuroinformatics</em>
+						Open Data in Neuroscience (ODIN), Massachusetts Institute of Technology.
+					</li>
+				</ul>
+				<ul class="work-list">
+					<li>
+						<strong>C. Baker</strong>, O. Ruebel, et al. (2023).
+						<em>NeuroConv tutorial</em>
+						NWB User Days, Janelia Research Campus.
+					</li>
+				</ul>
+			<h2></h2>
+		</div>
+	</div>
+
+
+
+	<!-- Quote -->
+	<div class="quote">
+		<div class="container text-centered">
+			<h1>never stop learning</h1>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<div class="units-row">
+			    <div class="unit-50">
+					<ul class="social list-flat right">
+						<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
+					</ul>
+			    </div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Javascript (main.js is compiled from src/main.ts) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/typed.min.js"></script>
+    <script src="js/kube.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+
+
+</html>
