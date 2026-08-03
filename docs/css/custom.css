@@ -11,6 +11,27 @@
     --card-border: #e5eaef;
     --card-shadow: 0 1px 3px rgba(16, 42, 67, 0.06), 0 1px 2px rgba(16, 42, 67, 0.04);
     --card-shadow-hover: 0 8px 24px rgba(16, 42, 67, 0.1);
+    --nav-bg: rgba(255, 255, 255, 0.88);
+    --watermark: #eef4f4;
+    --avatar-ring: #ffffff;
+}
+
+:root[data-theme="dark"] {
+    --ink: #eef2f6;
+    --body-text: #c4cdd6;
+    --muted: #8b96a3;
+    --accent: #2dd4c8;
+    --accent-dark: #5eead4;
+    --accent-soft: rgba(45, 212, 200, 0.12);
+    --accent-border: rgba(45, 212, 200, 0.28);
+    --page-bg: #10151b;
+    --card-bg: #171e26;
+    --card-border: #262f3a;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.35);
+    --card-shadow-hover: 0 10px 26px rgba(0, 0, 0, 0.55);
+    --nav-bg: rgba(16, 21, 27, 0.85);
+    --watermark: #1a232b;
+    --avatar-ring: var(--card-bg);
 }
 
 html {
@@ -20,6 +41,8 @@ html {
 
 body {
     background: var(--page-bg);
+    -webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
 }
 
 h1,
@@ -95,12 +118,21 @@ a:hover {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.88);
+    background: var(--nav-bg);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--card-border);
     box-shadow: 0 1px 2px rgba(16, 42, 67, 0.04);
     padding-top: 23px;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.navigation-toggle {
+    background-color: var(--card-bg);
+    color: var(--ink);
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .main-nav nav ul li a {
@@ -212,7 +244,7 @@ a:hover {
     width: 96px;
     height: 96px;
     border-radius: 99px;
-    border: 3px solid #fff;
+    border: 3px solid var(--avatar-ring);
     box-shadow: 0 0 0 3px var(--accent), 0 4px 14px rgba(16, 42, 67, 0.18);
 }
 
@@ -226,7 +258,9 @@ a:hover {
     top: -150px;
     font-size: 270px;
     z-index: -1;
-    color: #eef4f4;
+    color: var(--watermark);
+    -webkit-transition: color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .intro h1 span {
@@ -257,6 +291,8 @@ a:hover {
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     display: inline-block;
+    -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 .contact-list li {
@@ -322,8 +358,8 @@ a:hover {
     border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
-    -webkit-transition: box-shadow 0.2s ease, transform 0.2s ease;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    -webkit-transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 .work .work-list:hover {
@@ -383,6 +419,8 @@ a:hover {
     border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
+    -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 .skills .skill-group h5 {
@@ -521,4 +559,58 @@ footer .social li a:hover {
 .scroll-offset {
     position: relative;
     top: 80px;
+}
+
+/* ---------- Fixed nav actions (GitHub link, theme toggle) ---------- */
+
+.nav-actions {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none !important;
+    box-shadow: var(--card-shadow);
+    -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.icon-btn:hover {
+    color: var(--accent) !important;
+    border-color: var(--accent-border);
+}
+
+.icon-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-border);
+}
+
+.theme-toggle-icon-light {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon-dark {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle-icon-light {
+    display: inline-block;
 }

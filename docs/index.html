@@ -6,10 +6,22 @@
 <head>
     <title>Cody C. Baker, Ph.D.</title>
     <meta charset="utf-8" />
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem("theme");
+                var theme = stored === "light" || stored === "dark"
+                    ? stored
+                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.documentElement.setAttribute("data-theme", theme);
+            } catch (e) {}
+        })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="css/kube.min.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/custom.min.css" />
@@ -26,6 +38,17 @@
 
 
 <body>
+	<!-- Fixed top-right controls -->
+	<div class="nav-actions">
+		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+			<i class="fa fa-moon-o theme-toggle-icon theme-toggle-icon-dark" aria-hidden="true"></i>
+			<i class="fa fa-sun-o theme-toggle-icon theme-toggle-icon-light" aria-hidden="true"></i>
+		</button>
+		<a class="icon-btn" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+			<i class="fa fa-github" aria-hidden="true"></i>
+		</a>
+	</div>
+
 	<!-- Navigation -->
 	<div class="main-nav">
 		<div class="container">

@@ -1,8 +1,13 @@
-// Site behavior for index.html: the animated "typed" headline and smooth
-// scrolling for the fixed navigation bar. Compiled to dist/js/main.js.
+// Site behavior for index.html: the animated "typed" headline, smooth
+// scrolling for the fixed navigation bar, and the light/dark theme toggle.
+// Compiled to dist/js/main.js.
 
 /** Fallback when the nav bar has not rendered yet (matches its CSS height). */
 const DEFAULT_NAV_OFFSET_PX = 80;
+
+type Theme = "light" | "dark";
+
+const THEME_STORAGE_KEY = "theme";
 
 function initTypedHeadline(): void {
   $("#typed").typed({
@@ -63,8 +68,46 @@ function initSmoothNavigation(): void {
   });
 }
 
+function applyTheme(theme: Theme): void {
+  document.documentElement.setAttribute("data-theme", theme);
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // Storage may be unavailable (e.g. private browsing); the toggle still
+    // works for the current page load.
+  }
+}
+
+function updateThemeToggleLabel(toggle: HTMLElement, theme: Theme): void {
+  toggle.setAttribute(
+    "aria-label",
+    theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
+  );
+}
+
+function initThemeToggle(): void {
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) {
+    return;
+  }
+
+  const currentTheme =
+    document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  updateThemeToggleLabel(toggle, currentTheme);
+
+  toggle.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const nextTheme: Theme = isDark ? "light" : "dark";
+    applyTheme(nextTheme);
+    updateThemeToggleLabel(toggle, nextTheme);
+  });
+}
+
 $(() => {
   initTypedHeadline();
 });
 
-document.addEventListener("DOMContentLoaded", initSmoothNavigation);
+document.addEventListener("DOMContentLoaded", () => {
+  initSmoothNavigation();
+  initThemeToggle();
+});
