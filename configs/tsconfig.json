@@ -3,7 +3,7 @@
     "target": "ES2017",
     "module": "none",
     "lib": ["ES2017", "DOM", "DOM.Iterable"],
-    "rootDir": "../src",
+    "rootDir": "../src/ts",
     "outDir": "../dist/js",
     "strict": true,
     "noUnusedLocals": true,
@@ -11,5 +11,5 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true
   },
-  "include": ["../src"]
+  "include": ["../src/ts"]
 }
