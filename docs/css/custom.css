@@ -77,7 +77,7 @@ a:hover {
 
 .container {
     margin: auto;
-    max-width: 780px;
+    max-width: 1170px;
     padding: 0 20px;
 }
 
@@ -440,7 +440,10 @@ a:hover {
 }
 
 .skills .skill-row {
-    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 14px;
 }
 
 .skills .skill-row:last-child {
@@ -448,14 +451,24 @@ a:hover {
 }
 
 .skills .skill-sub {
-    display: inline-block;
-    min-width: 175px;
+    flex: 0 0 175px;
+    max-width: 175px;
+    padding-top: 5px;
     font-family: "Lato", Arial, sans-serif;
     font-size: 0.85em;
     font-weight: 700;
     color: var(--body-text);
     margin-right: 8px;
-    vertical-align: middle;
+}
+
+.skills .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 6px;
+    flex: 1 1 300px;
+    min-width: 0;
 }
 
 .skills .tag {
@@ -472,6 +485,28 @@ a:hover {
     white-space: nowrap;
     -webkit-transition: all 0.15s ease;
     transition: all 0.15s ease;
+}
+
+.skills .skill-tags .tag {
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .skills .skill-row {
+        flex-direction: column;
+    }
+
+    .skills .skill-sub {
+        flex-basis: auto;
+        max-width: none;
+        padding-top: 0;
+        margin-bottom: 6px;
+    }
+
+    .skills .skill-tags {
+        flex-basis: auto;
+        width: 100%;
+    }
 }
 
 .skills .tag:hover {
