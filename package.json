@@ -8,11 +8,13 @@
     "node": ">=22.18"
   },
   "scripts": {
+    "dev": "vite --config configs/vite.config.ts",
     "typecheck": "tsc --noEmit --project configs/tsconfig.json",
-    "build": "node scripts/build.ts",
-    "serve": "npx --yes serve dist"
+    "build": "vite build --config configs/vite.config.ts",
+    "serve": "vite preview --config configs/vite.config.ts"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vite": "^8.2.0"
   }
 }
