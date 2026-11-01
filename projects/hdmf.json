@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/project.schema.json",
   "name": "Hierarchical Data Modeling Framework (HDMF)",
-  "url": "https://github.com/hdmf/hdmf-dev",
+  "url": "https://github.com/hdmf-dev/hdmf",
   "role": "Contributor",
   "priority": 8,
   "description": [
