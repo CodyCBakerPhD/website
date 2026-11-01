@@ -26,6 +26,13 @@ const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
   "img/nwbwidgets_logo.png": 25,
 };
 
+/** Years of involvement in the style of the Experience section: "2020-2024", "2025-Present" or "2015". */
+function formatYears(startDate: string, endDate?: string): string {
+  const start = startDate.slice(0, 4);
+  const end = endDate ? endDate.slice(0, 4) : "Present";
+  return start === end ? start : `${start}-${end}`;
+}
+
 export function renderProject(project: Project): string[] {
   const lines: string[] = [];
 
@@ -38,11 +45,12 @@ export function renderProject(project: Project): string[] {
     );
   }
 
-  lines.push(
-    `<li><a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>${SEPARATOR}${escapeHtml(project.role)}</li>`,
-    "<br>",
-    ...renderParagraphs(project.description),
-  );
+  const details = [project.role, formatYears(project.startDate, project.endDate)].map(escapeHtml);
+  lines.push(`<li><a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>${SEPARATOR}${details.join(SEPARATOR)}</li>`);
+  if (project.contribution) {
+    lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
+  }
+  lines.push("<br>", ...renderParagraphs(project.description));
 
   return ['<ul class="work-list">', ...indent(lines), "</ul>"];
 }

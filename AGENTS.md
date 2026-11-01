@@ -6,6 +6,13 @@
 - PR titles should be human-readable and in the past tense. They should NOT use conventional commit style.
 - Every commit must include a `Co-Authored-By` trailer identifying the tool and the model that wrote it.
 
+## Versioning
+
+- The site's version is `version` in `package.json`, stamped at the bottom left of the page. It is independent of the record schema versions.
+- Bump it once per PR, following semantic versioning, when the PR changes the built site: anything under `src/`, `configs/`, `projects/`, `datasets/` or `schemas/`, or `package.json`/`package-lock.json` themselves. Follow-up commits on the same unmerged PR do not bump it again.
+- Do NOT bump for changes that are purely documentation or CI, such as `docs/`, `README.md`, `AGENTS.md` or `.github/`.
+- There is no changelog.
+
 ## Writing style
 
 - Keep inline comments sparse. Explain non-obvious "why", never "what".

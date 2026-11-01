@@ -22,3 +22,8 @@ An invalid record fails the build with a message naming the file and the problem
 Every record declares the schema version it follows in `schemaVersion`, and the site renders one version per record type.
 A released schema version never changes.
 To evolve a schema, add a new version file following [semantic versioning](https://semver.org), move the records to it (`$schema` and `schemaVersion`), and update the version pinned in `src/build/sections.ts`.
+
+## Site version
+
+The version stamped at the bottom left of the page is `version` in `package.json`, written into the HTML at build time.
+It versions the site as a whole and is independent of the schema versions above.
