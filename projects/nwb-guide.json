@@ -1,0 +1,15 @@
+{
+  "$schema": "../schemas/project.schema.json",
+  "name": "NWB GUIDE",
+  "url": "https://github.com/NeurodataWithoutBorders/nwb-guide",
+  "role": "Lead Developer",
+  "priority": 1,
+  "logo": {
+    "src": "img/guide_logo.png"
+  },
+  "description": [
+    "Developed an intuitive user interface for file management using interactive validation and real-time suggestions, streamlining the process for data submission to NIH archives.",
+    "Ensured a robust testing suite involving multiple levels of integration and user interactions emulated using Puppeteer to enhance reliability and long-term maintainability.",
+    "Tracked and documented dozens of hands-on user tests to refine the user experience."
+  ]
+}

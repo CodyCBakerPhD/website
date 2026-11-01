@@ -1,0 +1,11 @@
+{
+  "$schema": "../schemas/project.schema.json",
+  "name": "duct",
+  "url": "https://github.com/con/duct",
+  "role": "Developer",
+  "priority": 7,
+  "description": [
+    "Maintained a simple command line tool for monitoring and maintaining records of process-specific system resource utilization of any other command line invocation.",
+    "Tracks wall clock time, CPU time, RAM consumption, and more!"
+  ]
+}

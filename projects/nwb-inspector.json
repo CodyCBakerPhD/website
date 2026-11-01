@@ -1,0 +1,14 @@
+{
+  "$schema": "../schemas/project.schema.json",
+  "name": "NWB Inspector",
+  "url": "https://github.com/NeurodataWithoutBorders/nwbinspector",
+  "role": "Lead Developer",
+  "priority": 4,
+  "logo": {
+    "src": "img/inspector_logo.png"
+  },
+  "description": [
+    "Built a command line tool used by the NIH data archive to validate all data uploads, which ensures all submissions are provided automated suggestions for metadata improvements that enhance data findability and reuse.",
+    "Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff."
+  ]
+}

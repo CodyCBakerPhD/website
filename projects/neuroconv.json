@@ -1,0 +1,15 @@
+{
+  "$schema": "../schemas/project.schema.json",
+  "name": "NeuroConv",
+  "url": "https://github.com/catalystneuro/neuroconv",
+  "role": "Lead Developer",
+  "priority": 3,
+  "logo": {
+    "src": "img/neuroconv_logo.png"
+  },
+  "description": [
+    "Established an automated data conversion tool capable of reading more than 40 distinct data formats used by neurophysiology acquisition devices in order to automatically write to the NeurodataWithoutBorders (NWB) standard.",
+    "Designed universal APIs which transparently handled each layer of complexity to simplify the tasks of tagging, grouping, metadata transcription, temporal alignment, asset linking, buffering, chunking, and compression.",
+    "Implemented a distributed cloud deployment system to run large-scale, off-site, batched conversions through Amazon Web Services (AWS)."
+  ]
+}

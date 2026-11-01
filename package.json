@@ -9,11 +9,14 @@
   },
   "scripts": {
     "dev": "vite --config configs/vite.config.ts",
-    "typecheck": "tsc --noEmit --project configs/tsconfig.json",
+    "typecheck": "tsc --noEmit --project configs/tsconfig.json && tsc --noEmit --project configs/tsconfig.node.json",
     "build": "vite build --config configs/vite.config.ts",
     "serve": "vite preview --config configs/vite.config.ts"
   },
   "devDependencies": {
+    "@types/node": "^22.20.5",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "typescript": "^5.9.3",
     "vite": "^8.2.0"
   }

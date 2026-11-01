@@ -1,0 +1,14 @@
+{
+  "$schema": "../schemas/project.schema.json",
+  "name": "Neurosift",
+  "url": "https://neurosift.app",
+  "role": "UX Consultant",
+  "priority": 5,
+  "logo": {
+    "src": "img/neurosift_logo.png",
+    "widthPercent": 25
+  },
+  "description": [
+    "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives."
+  ]
+}

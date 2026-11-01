@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/project.schema.json",
+  "title": "Project",
+  "description": "A software project and the role held on it. Each record is one JSON file under projects/.",
+  "type": "object",
+  "required": ["name", "url", "role", "priority", "description"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "description": "Reference to this schema, so editors can validate and autocomplete the record.",
+      "type": "string"
+    },
+    "name": {
+      "description": "Display name of the project.",
+      "type": "string",
+      "minLength": 1
+    },
+    "url": {
+      "description": "Primary link for the project, such as its source repository or homepage.",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    },
+    "role": {
+      "description": "Role held on the project, e.g. \"Lead Developer\" or \"Contributor\".",
+      "type": "string",
+      "minLength": 1
+    },
+    "priority": {
+      "description": "Display order on the website: lower values are listed first, and ties are broken by name.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "logo": {
+      "description": "Logo displayed above the project entry.",
+      "type": "object",
+      "required": ["src"],
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "description": "Path to the image relative to the website root (the file itself lives under src/public/), e.g. \"img/guide_logo.png\".",
+          "type": "string",
+          "format": "uri-reference",
+          "pattern": "^[^/]"
+        },
+        "widthPercent": {
+          "description": "Displayed width as a percentage of the content column.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 50
+        }
+      }
+    },
+    "description": {
+      "description": "Plain-text paragraphs describing the project and the contributions made to it.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}
