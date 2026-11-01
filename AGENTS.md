@@ -13,6 +13,7 @@
 
 ## Records and schemas
 
+- [`docs/development.md`](docs/development.md) explains how the records, schemas and build fit together. Keep `README.md` to the short project description.
 - Site content beyond the page structure lives in JSON records, one file per record, under `projects/` and `datasets/`.
 - Every record is validated against a versioned schema at `schemas/<type>/<version>.schema.json` and declares that version in `schemaVersion`.
 - A schema version never changes once merged. To change a schema, add a new version file following semantic versioning, move the records to it (`$schema` and `schemaVersion`), and update the version pinned in `src/build/sections.ts`.
