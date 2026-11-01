@@ -1,12 +1,11 @@
 {
-  "$schema": "../schemas/project.schema.json",
+  "$schema": "../schemas/project/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
   "name": "nwb2bids",
   "url": "https://github.com/con/nwb2bids",
   "role": "Lead Developer",
-  "priority": 2,
-  "logo": {
-    "src": "img/nwb2bids_logo.svg"
-  },
+  "startDate": "2024-03",
+  "logo": "img/nwb2bids_logo.svg",
   "description": [
     "Created a metadata extraction tool for organizing datasets of NeurodataWithoutBorders (NWB) files following the Brain Imaging Data Structure (BIDS) structure. Encourages best practices in data curation, such as self-describing entities, FAIR principles, and rich Hierarchical Event Descriptor (HED) annotations.",
     "Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode neurophysiology data."

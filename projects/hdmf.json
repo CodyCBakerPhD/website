@@ -1,9 +1,12 @@
 {
-  "$schema": "../schemas/project.schema.json",
+  "$schema": "../schemas/project/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
   "name": "Hierarchical Data Modeling Framework (HDMF)",
   "url": "https://github.com/hdmf-dev/hdmf",
   "role": "Contributor",
-  "priority": 8,
+  "contribution": "Created the GenericDataChunkIterator for lazy, buffered writing of terabyte-scale datasets, later extending it with serialization and progress bar control, and exposed AWS region selection for HDF5 streaming.",
+  "startDate": "2021-04",
+  "endDate": "2025-09",
   "description": [
     "Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets."
   ]

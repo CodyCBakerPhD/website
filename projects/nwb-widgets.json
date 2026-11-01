@@ -1,13 +1,12 @@
 {
-  "$schema": "../schemas/project.schema.json",
+  "$schema": "../schemas/project/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
   "name": "NWB Widgets (Legacy)",
   "url": "https://github.com/NeurodataWithoutBorders/nwbwidgets",
   "role": "Developer",
-  "priority": 9,
-  "logo": {
-    "src": "img/nwbwidgets_logo.png",
-    "widthPercent": 25
-  },
+  "startDate": "2021-05",
+  "endDate": "2023-06",
+  "logo": "img/nwbwidgets_logo.png",
   "description": [
     "Drafted Jupyter widgets-based tools for visualizing the contents of terabyte-scale neurophysiology datasets. Supports many custom plugins for specific neural data types. Has some remote streaming capability, but is more intended for reading from local disks.",
     "Largely replaced by the Neurosift browser-based application."

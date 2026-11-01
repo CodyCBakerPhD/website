@@ -375,7 +375,7 @@
 
 
 
-	<!-- Projects (rendered at build time from projects/*.json by src/build/projects.ts) -->
+	<!-- Projects (rendered at build time from projects/*.json; see src/build/sections.ts) -->
 	<div class="work section second" id="highlighted-projects">
 		<div class="container">
 			<h1>Highlighted Projects</h1>
@@ -385,7 +385,7 @@
 
 
 
-	<!-- Data Curation Projects -->
+	<!-- Data Curation (rendered at build time from datasets/*.json; see src/build/sections.ts) -->
 	<div class="work section second" id="data-curation">
 		<div class="container">
 			<h1>Data Curation</h1>
@@ -396,120 +396,7 @@
 				Those described below are among the more notable.
 			</p>
 			<br>
-			<ul class="work-list">
-				<h3>Visual Coding (2-Photon Calcium Imaging)</h3>
-				<li>
-					Group: Neural Dynamics and Computing &nbsp; | &nbsp; Location: Allen Institute for Brain Science
-				</li>
-				<li>
-					Modality: Microscopy  &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://dandiarchive.org/dandiset/000728/0.240827.1809"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/blob/694e97043373e2d1138d58af89b7be8dd5a3786b/000728/AllenInstitute/visual_coding_ophys_tutorial.ipynb"> Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/visual-coding-to-nwb-v2"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.
-				<br><br>
-					Published a total of <strong>93.4 TB</strong> of visual cortex microscopy data on the
-					associated NIH data
-												  archive.
-				<br><br>
-				Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Brain Wide Map</h3>
-				<li>
-					Group: International Brain Lab &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp;
-					Role: Primary Engineer
-				</li>
-				<a href="https://doi.org/10.1038/s41586-025-09235-0"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000409/draft"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/tree/master/000409/IBL"> Jupyter Notebooks</a> &nbsp;
-				| &nbsp;
-				<a href="https://github.com/catalystneuro/IBL-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote conversion code which interfaced with PostgreSQL metadata database to standardize the data structure of thousands of extracellular electrophysiology experiments with complex behavior.
-				<br><br>
-				Uploaded a total of <strong>66 TB</strong> of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Neural signal propagation atlas of Caenorhabditis elegans</h3>
-				<li>
-					Group: Leifer Lab &nbsp; | &nbsp; Location: Princeton University &nbsp; | &nbsp;
-					Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://doi.org/10.1038/s41586-023-06683-4"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/001075/0.240930.1859"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/tree/master/001075"> Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/leifer_lab_to_nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.
-				<br><br>
-				Published a total of <strong>10 TB</strong> of C. elegans microscopy data on the associated NIH data archive.
-				<br><br>
-				Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior</h3>
-				<li>
-					Group: Ahrens Lab &nbsp; | &nbsp; Location: Janelia Research Campus (HHMI) &nbsp; | &nbsp;
-					Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://doi.org/10.1016/j.cell.2019.05.050"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000350/0.240822.1759"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/ahrens-lab-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality
-				environment and some limited electrophysiology responses from peripheral motor nerves.
-				<br><br>
-				Published a total of <strong>23</strong> TB of volumetric whole-brain zebrafish microscopy data on
-				the associated NIH data archive.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>MICrONS</h3>
-				<li>
-					Group: Tolias Lab &nbsp; | &nbsp; Location: Baylor College of Medicine &nbsp; | &nbsp;
-					Modality: Microscopy &nbsp; | &nbsp; Role: Supervisor
-				</li>
-				<a href="https://doi.org/10.1038/s41586-025-08790-w"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000402/0.230307.2132"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/blob/master/000402/MICrONS/demo/000402_microns_demo.ipynb"> Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/MICrONS-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Supervised the conversion and publication of a high-value dataset which combined large-scale
-				two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.
-				<br><br>
-				Resulted in the publication of a total <strong>1.2 TB</strong> of functional imaging data on
-				the	NIH data archive, with region IDs coregistered with the associated electron microscopy datasets.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Miscellaneous (Buzsaki Lab)</h3>
-				<li>
-					Group: Buzsaki Lab &nbsp; | &nbsp; Location: New York University &nbsp; | &nbsp;
-					Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://github.com/catalystneuro/buzsaki-lab-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom conversion code for a dozen previous datasets.
-				Unique aspects of these data collections include temperature-modulating probes, long-term
-				passive recordings of spontaneous behavior, and paired optogenetic stimulation with
-				extracellular electrophysiology.
-				<br><br>
-				Published a total of <strong>39 TB</strong> of mouse electrophysiology and behavioral data
-				on the associated NIH data archive.
-				</p>
-			</ul>
+			<!-- build:datasets -->
 		</div>
 	</div>
 

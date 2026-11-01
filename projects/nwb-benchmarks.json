@@ -1,12 +1,11 @@
 {
-  "$schema": "../schemas/project.schema.json",
+  "$schema": "../schemas/project/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
   "name": "NWB Benchmarks",
   "url": "https://github.com/NeurodataWithoutBorders/nwb_benchmarks",
   "role": "Core Developer",
-  "priority": 6,
-  "logo": {
-    "src": "img/nwb_benchmarks_logo.png"
-  },
+  "startDate": "2024-01",
+  "logo": "img/nwb_benchmarks_logo.png",
   "description": [
     "Managed a collection of unit and integration tests whose performance metrics (time, memory, and web packets) are sampled against a range of environmental run configurations, machine specifications, and bandwidth limits with the results used to assess the performance of HDF5 and Zarr file packaging parameterization against cloud streaming methods.",
     "Run outputs are aggregated into a common public database and built-in visualization tools generate reports of summary findings. A manuscript discussing interpretations and recommendations is in preparation.",

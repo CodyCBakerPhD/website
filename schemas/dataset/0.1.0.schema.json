@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/dataset/0.1.0.schema.json",
+  "title": "Dataset",
+  "description": "A dataset, or collection of datasets, curated for publication and the role held in curating it. Each record is one JSON file under datasets/.",
+  "type": "object",
+  "required": ["schemaVersion", "name", "group", "modality", "role", "description"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "description": "Path or URL of this schema, so editors can validate and autocomplete the record.",
+      "type": "string"
+    },
+    "schemaVersion": {
+      "description": "Version of this schema that the record follows.",
+      "const": "0.1.0"
+    },
+    "name": {
+      "description": "Title of the dataset or collection.",
+      "type": "string",
+      "minLength": 1
+    },
+    "group": {
+      "description": "Research group that produced the data, e.g. \"Leifer Lab\".",
+      "type": "string",
+      "minLength": 1
+    },
+    "institution": {
+      "description": "Institution the group belongs to, e.g. \"Princeton University\". Omitted for groups that span several institutions.",
+      "type": "string",
+      "minLength": 1
+    },
+    "modality": {
+      "description": "Primary data modality, e.g. \"Microscopy\" or \"Electrophysiology\".",
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "description": "Role held in curating the data, e.g. \"Primary Engineer\" or \"Supervisor\".",
+      "type": "string",
+      "minLength": 1
+    },
+    "links": {
+      "description": "Related resources.",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "manuscript": {
+          "description": "The associated publication, ideally as a DOI link.",
+          "$ref": "#/$defs/url"
+        },
+        "dataset": {
+          "description": "The published data, e.g. a Dandiset on the DANDI Archive.",
+          "$ref": "#/$defs/url"
+        },
+        "notebook": {
+          "description": "Jupyter Notebook(s) demonstrating how to access and analyze the data.",
+          "$ref": "#/$defs/url"
+        },
+        "code": {
+          "description": "Source code that converted the data to a standard format.",
+          "$ref": "#/$defs/url"
+        }
+      }
+    },
+    "description": {
+      "description": "Paragraphs of plain text describing the curation work. **Double asterisks** mark emphasis.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://"
+    }
+  }
+}

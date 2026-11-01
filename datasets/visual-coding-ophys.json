@@ -1,0 +1,19 @@
+{
+  "$schema": "../schemas/dataset/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
+  "name": "Visual Coding (2-Photon Calcium Imaging)",
+  "group": "Neural Dynamics and Computing",
+  "institution": "Allen Institute for Brain Science",
+  "modality": "Microscopy",
+  "role": "Primary Engineer",
+  "links": {
+    "dataset": "https://dandiarchive.org/dandiset/000728/0.240827.1809",
+    "notebook": "https://github.com/dandi/example-notebooks/blob/694e97043373e2d1138d58af89b7be8dd5a3786b/000728/AllenInstitute/visual_coding_ophys_tutorial.ipynb",
+    "code": "https://github.com/catalystneuro/visual-coding-to-nwb-v2"
+  },
+  "description": [
+    "Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.",
+    "Published a total of **93.4 TB** of visual cortex microscopy data on the associated NIH data archive.",
+    "Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset."
+  ]
+}

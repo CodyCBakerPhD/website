@@ -1,0 +1,16 @@
+{
+  "$schema": "../schemas/dataset/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
+  "name": "Miscellaneous (Buzsaki Lab)",
+  "group": "Buzsaki Lab",
+  "institution": "New York University",
+  "modality": "Electrophysiology",
+  "role": "Primary Engineer",
+  "links": {
+    "code": "https://github.com/catalystneuro/buzsaki-lab-to-nwb"
+  },
+  "description": [
+    "Wrote custom conversion code for a dozen previous datasets. Unique aspects of these data collections include temperature-modulating probes, long-term passive recordings of spontaneous behavior, and paired optogenetic stimulation with extracellular electrophysiology.",
+    "Published a total of **39 TB** of mouse electrophysiology and behavioral data on the associated NIH data archive."
+  ]
+}

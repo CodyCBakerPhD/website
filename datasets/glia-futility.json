@@ -1,0 +1,18 @@
+{
+  "$schema": "../schemas/dataset/0.1.0.schema.json",
+  "schemaVersion": "0.1.0",
+  "name": "Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior",
+  "group": "Ahrens Lab",
+  "institution": "Janelia Research Campus (HHMI)",
+  "modality": "Microscopy",
+  "role": "Primary Engineer",
+  "links": {
+    "manuscript": "https://doi.org/10.1016/j.cell.2019.05.050",
+    "dataset": "https://dandiarchive.org/dandiset/000350/0.240822.1759",
+    "code": "https://github.com/catalystneuro/ahrens-lab-to-nwb"
+  },
+  "description": [
+    "Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality environment and some limited electrophysiology responses from peripheral motor nerves.",
+    "Published a total of **23 TB** of volumetric whole-brain zebrafish microscopy data on the associated NIH data archive."
+  ]
+}
