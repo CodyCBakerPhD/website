@@ -1,19 +1,21 @@
 // The sections of index.html that are rendered from JSON records.
 //
-// Each section pins the schema version this site renders and lists its records
-// in display order. Order is the site's choice rather than a property of the
-// records, so it lives here instead of in them. Adding a record file means
-// adding its ID to the matching list below.
+// Each section names the JSON Schema its records are validated against
+// (generated from schemas/records.yaml) and lists its records in display
+// order. Order is the site's choice rather than a property of the records, so
+// it lives here instead of in them. Adding a record file means adding its ID
+// to the matching list below.
 
-import { renderDataset, type Dataset } from "./datasets.ts";
-import { checkProject, renderProject, type Project } from "./projects.ts";
+import { renderDataset } from "./datasets.ts";
+import type { Dataset, Project } from "./generated/records.ts";
+import { checkProject, renderProject } from "./projects.ts";
 import { defineSection } from "./records.ts";
 
 export const sections = [
   defineSection<Project>({
     name: "projects",
     recordsDir: "projects",
-    schemaFile: "schemas/project/0.1.0.schema.json",
+    schemaFile: "schemas/jsonschema/project.schema.json",
     render: renderProject,
     check: checkProject,
     order: [
@@ -31,7 +33,7 @@ export const sections = [
   defineSection<Dataset>({
     name: "datasets",
     recordsDir: "datasets",
-    schemaFile: "schemas/dataset/0.1.0.schema.json",
+    schemaFile: "schemas/jsonschema/dataset.schema.json",
     render: renderDataset,
     order: [
       "visual-coding-ophys",

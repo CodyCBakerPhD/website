@@ -1,0 +1,25 @@
+name: Check version bumps
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check_version_bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check that each changed versioned file bumped its version
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: node .github/scripts/check-version-bump.mjs

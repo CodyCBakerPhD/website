@@ -1,11 +1,11 @@
 {
-  "$schema": "../schemas/project/0.1.0.schema.json",
-  "schemaVersion": "0.1.0",
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
   "name": "duct",
   "url": "https://github.com/con/duct",
   "role": "Contributor",
   "contribution": "Added macOS support and CI runners, a basic structure for using duct as a library, and clearer errors on unsupported systems.",
-  "startDate": "2025-10",
+  "start_date": "2025-10",
   "description": [
     "Maintained a simple command line tool for monitoring and maintaining records of process-specific system resource utilization of any other command line invocation.",
     "Tracks wall clock time, CPU time, RAM consumption, and more!"

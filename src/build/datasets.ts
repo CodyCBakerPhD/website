@@ -1,23 +1,7 @@
 // Rendering of datasets/*.json for the "Data Curation" section.
 
+import type { Dataset } from "./generated/records.ts";
 import { escapeHtml, indent, renderParagraphs, SEPARATOR } from "./html.ts";
-
-/** A record in datasets/, as described by schemas/dataset/0.1.0.schema.json. */
-export interface Dataset {
-  schemaVersion: "0.1.0";
-  name: string;
-  group: string;
-  institution?: string;
-  modality: string;
-  role: string;
-  links?: {
-    manuscript?: string;
-    dataset?: string;
-    notebook?: string;
-    code?: string;
-  };
-  description: string[];
-}
 
 /** Link labels, in the order the links are shown. */
 const LINK_LABELS = {

@@ -1,5 +1,6 @@
 // Build-time rendering of the sections of index.html that come from JSON
-// records (one file per record, validated against a versioned JSON Schema).
+// records (one file per record, validated against a JSON Schema generated from
+// the LinkML schema in schemas/records.yaml).
 //
 // Any problem fails the build, or shows an error in the dev server, instead of
 // rendering a broken page: malformed JSON, a schema violation, a failed
@@ -10,7 +11,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, resolve, sep } from "node:path";
 import type { ErrorObject } from "ajv";
-import Ajv2020 from "ajv/dist/2020.js";
+import Ajv2019 from "ajv/dist/2019.js";
 import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
 
@@ -19,7 +20,7 @@ export interface SectionOptions<T> {
   name: string;
   /** Directory holding one JSON file per record, relative to the repository root. */
   recordsDir: string;
-  /** The schema version the site renders, relative to the repository root. */
+  /** JSON Schema that every record must satisfy, relative to the repository root. */
   schemaFile: string;
   /** Record IDs (file names without .json) in display order. Every record must be listed once. */
   order: readonly string[];
@@ -63,7 +64,10 @@ function loadRecords<T>(options: SectionOptions<T>, root: string, publicDir: str
 
   // A fresh Ajv per load: the dev server reloads on every request, and Ajv
   // refuses to compile a second schema with the same $id.
-  const ajv = new Ajv2020({ allErrors: true });
+  // LinkML's JSON Schema generator targets draft 2019-09 and adds its own
+  // top-level annotations, which strict mode would otherwise reject.
+  const ajv = new Ajv2019({ allErrors: true });
+  ajv.addVocabulary(["version", "metamodel_version"]);
   addFormats(ajv);
   const validate = ajv.compile<T>(JSON.parse(readFileSync(schemaFile, "utf8")));
 
@@ -172,10 +176,20 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
       // exactly as if it had been written in index.html by hand.
       order: "pre",
       handler(html) {
-        return sections.reduce(
-          (page, section) => injectSection(page, section.name, section.render(root, publicDir)),
-          html,
-        );
+        // Render every section before failing, so one build reports all problems.
+        const failures: string[] = [];
+        let page = html;
+        for (const section of sections) {
+          try {
+            page = injectSection(page, section.name, section.render(root, publicDir));
+          } catch (error) {
+            failures.push((error as Error).message);
+          }
+        }
+        if (failures.length > 0) {
+          throw new Error(failures.join("\n"));
+        }
+        return page;
       },
     },
   };

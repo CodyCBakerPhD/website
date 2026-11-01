@@ -1,6 +1,6 @@
 {
-  "$schema": "../schemas/dataset/0.1.0.schema.json",
-  "schemaVersion": "0.1.0",
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
   "name": "Brain Wide Map",
   "group": "International Brain Lab",
   "modality": "Electrophysiology",

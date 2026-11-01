@@ -1,0 +1,45 @@
+name: Validate records
+on:
+  pull_request:
+    paths:
+      - "schemas/**"
+      - "projects/**"
+      - "datasets/**"
+      - "src/build/generated/**"
+      - "scripts/generate-schemas.sh"
+      - ".github/workflows/validate_records.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: schemas/requirements.txt
+
+      - name: Install LinkML
+        run: pip install -r schemas/requirements.txt
+
+      - name: Lint the schema
+        run: linkml-lint schemas/records.yaml
+
+      - name: Validate projects
+        run: linkml-validate --schema schemas/records.yaml --target-class Project projects/*.json
+
+      - name: Validate datasets
+        run: linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
+
+      - name: Check that the generated files are up to date
+        run: |
+          sh scripts/generate-schemas.sh
+          git diff --exit-code -- schemas/jsonschema src/build/generated

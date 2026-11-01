@@ -2,20 +2,8 @@
 
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
+import type { Project } from "./generated/records.ts";
 import { escapeHtml, indent, renderParagraphs, SEPARATOR } from "./html.ts";
-
-/** A record in projects/, as described by schemas/project/0.1.0.schema.json. */
-export interface Project {
-  schemaVersion: "0.1.0";
-  name: string;
-  url: string;
-  role: string;
-  contribution?: string;
-  startDate: string;
-  endDate?: string;
-  logo?: string;
-  description: string[];
-}
 
 /** Displayed logo width as a percentage of the content column. */
 const LOGO_WIDTH_PERCENT = 50;
@@ -45,7 +33,7 @@ export function renderProject(project: Project): string[] {
     );
   }
 
-  const details = [project.role, formatYears(project.startDate, project.endDate)].map(escapeHtml);
+  const details = [project.role, formatYears(project.start_date, project.end_date)].map(escapeHtml);
   lines.push(`<li><a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>${SEPARATOR}${details.join(SEPARATOR)}</li>`);
   if (project.contribution) {
     lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
@@ -61,8 +49,8 @@ export function checkProject(project: Project, { publicDir }: { publicDir: strin
     problems.push(`/logo "${project.logo}" does not exist in ${publicDir}`);
   }
   // ISO 8601 dates compare correctly as strings, even at mixed precision.
-  if (project.endDate && project.endDate < project.startDate) {
-    problems.push(`/endDate ${project.endDate} is before /startDate ${project.startDate}`);
+  if (project.end_date && project.end_date < project.start_date) {
+    problems.push(`/end_date ${project.end_date} is before /start_date ${project.start_date}`);
   }
   return problems;
 }

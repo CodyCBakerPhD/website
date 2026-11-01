@@ -1,6 +1,6 @@
 {
-  "$schema": "../schemas/dataset/0.1.0.schema.json",
-  "schemaVersion": "0.1.0",
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
   "name": "Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior",
   "group": "Ahrens Lab",
   "institution": "Janelia Research Campus (HHMI)",
