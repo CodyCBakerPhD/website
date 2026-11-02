@@ -46,5 +46,3 @@ linkml-validate --schema schemas/records.yaml --target-class Project projects/*.
 linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
 sh scripts/generate-schemas.sh
 ```
-
-Then run `npm run dev` and look at the page.
