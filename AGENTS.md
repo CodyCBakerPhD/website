@@ -14,8 +14,6 @@ Three versions are bumped independently, each once per PR and following semantic
 - The schema: `version` in `schemas/records.yaml`. Bump it when the schema changes.
 - Each record: its `record_version`. Bump it when the record changes.
 
-There is no changelog.
-
 ## Writing style
 
 - Keep inline comments sparse. Explain non-obvious "why", never "what".
