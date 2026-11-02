@@ -4,6 +4,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Project } from "./generated/records.ts";
 import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
 
 /** Link labels, in the order the links are shown. */
@@ -30,6 +31,21 @@ function formatYears(startDate: string, endDate?: string): string {
   return start === end ? start : `${start}-${end}`;
 }
 
+export const projectSearch: SearchConfig<Project> = {
+  noun: "projects",
+  filters: [
+    { key: "name", description: "Name of the project", values: (project) => [project.name] },
+    { key: "role", description: "Role on the project", values: (project) => [project.role] },
+  ],
+  years: (project) => [yearOf(project.start_date), project.end_date ? yearOf(project.end_date) : null],
+  sorts: [
+    // Ongoing projects first, then by when they ended, then by when they started.
+    { id: "recent", label: "Most recent", value: (project) => `${project.end_date ?? "9999"} ${project.start_date}`, descending: true },
+    { id: "oldest", label: "Oldest", value: (project) => project.start_date },
+    { id: "name", label: "Name (A–Z)", value: (project) => project.name },
+  ],
+};
+
 export function renderProject(project: Project): string[] {
   const lines: string[] = [];
 
@@ -53,7 +69,7 @@ export function renderProject(project: Project): string[] {
   }
   lines.push("<br>", ...renderParagraphs(project.description), ...renderTags(project.tags));
 
-  return renderCard(lines);
+  return renderCard(lines, searchAttribute(projectSearch, project));
 }
 
 export function checkProject(project: Project, { publicDir }: { publicDir: string }): string[] {

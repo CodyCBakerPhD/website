@@ -12,7 +12,7 @@ Each HTML file directly under [`src/`](../src) is one page of the site:
 | `publications.html`  | Publications                            |
 
 The parts every page shares live in [`src/partials/`](../src/partials) and are filled in at build time where a page marks them: `<!-- build:head -->` at the top of `<head>`, then `<!-- build:header -->` and `<!-- build:footer -->` in `<body>`.
-The navigation bar's links are listed in [`src/build/layout.ts`](../src/build/layout.ts), which renders them for each page, marking the page that is open.
+The navigation links are listed in [`src/build/layout.ts`](../src/build/layout.ts), which renders them for each page, in both the navigation bar and the footer, marking the page that is open.
 A new page needs those three placeholders and, to be reachable, a link there.
 
 ## Records
@@ -32,12 +32,22 @@ The Publications section groups its records under a heading per `kind` (article,
 
 ## Search
 
-Each record section has a search bar above its records, which filters them as you type.
-A record is shown when its card's text contains every word typed (ignoring case and accents) and it has every tag selected.
-Selecting a tag on any card filters by it, and selecting it again (or its label in the search bar) removes it.
-The filters are kept in the page's URL, such as `publications.html?q=cosyne&tag=standards:NWB`, so a filtered view can be linked to.
+Each record section has a search bar above its records, which filters them as you type, and a menu to sort them.
+A search is free text plus `key:value` filters, after [DANDI's search](https://docs.dandiarchive.org/user-guide-using/advanced-search/), and a record is shown only when every term matches:
 
-The search bar's markup is rendered by [`src/build/search.ts`](../src/build/search.ts), and the filtering runs in the browser, in [`src/ts/search.ts`](../src/ts/search.ts).
+- Free text matches a record whose card contains it, ignoring case and accents.
+- Every tag theme is a filter key, matching part of a tag's name: `standards:NWB`, or `methods:imaging` for both kinds of imaging. `tag:` matches a tag of any theme.
+- Each section adds filters on its records' fields, such as `role:`, `author:` or `kind:`. `year:` takes a year (`year:2024`) or a range (`year:>=2023`).
+- Values with spaces are quoted: `methods:"Calcium Imaging"`.
+
+Selecting a tag on a card adds its filter to the search, and selecting it again removes it.
+The search box suggests filters, and then the values of the one being typed, with how many records have each.
+A filter key it does not know is searched as text, with a suggestion for the key that was probably meant.
+Sorting keeps Publications grouped by kind, ordering the publications within each group.
+The search and the order are kept in the page's URL, such as `publications.html?q=kind:workshop+cosyne&sort=newest`, so a view can be linked to.
+
+Each record type's filters and orders are set beside its renderer, such as `projectSearch` in [`src/build/projects.ts`](../src/build/projects.ts).
+The search bar's markup is rendered by [`src/build/search.ts`](../src/build/search.ts), and the searching runs in the browser, in [`src/ts/search.ts`](../src/ts/search.ts).
 
 ## Tags
 
