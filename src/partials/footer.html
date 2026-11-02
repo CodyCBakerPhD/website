@@ -1,0 +1,37 @@
+<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+<!-- Quote -->
+<div class="quote">
+	<div class="container text-centered">
+		<h1>never stop learning</h1>
+	</div>
+</div>
+
+<footer>
+	<div class="container">
+		<!-- The same links as the navigation bar, for readers who reach the bottom of a page. -->
+		<nav class="footer-nav" aria-label="Footer">
+			<ul class="list-flat">
+				<!-- build:nav -->
+			</ul>
+		</nav>
+		<div class="units-row">
+		    <div class="unit-50">
+				<ul class="social list-flat right">
+					<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
+				</ul>
+		    </div>
+		</div>
+		<div class="footer-version">
+			<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
+			<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub"><!-- build:version --></a>
+		</div>
+	</div>
+</footer>
+
+<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
+<script src="js/jquery.min.js"></script>
+<script src="js/typed.min.js"></script>
+<script src="js/kube.min.js"></script>
+<script type="module" src="./ts/main.ts"></script>

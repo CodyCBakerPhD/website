@@ -2,7 +2,8 @@
 
 import type { Publication } from "./generated/records.ts";
 import { PublicationKind } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs } from "./html.ts";
+import { escapeHtml, indent, renderCard, renderParagraphs } from "./html.ts";
+import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
 
 /** The site owner's name as it appears in author lists, shown in bold. */
@@ -32,6 +33,23 @@ function sentence(text: string): string {
   return /[.?!]$/.test(text) ? text : `${text}.`;
 }
 
+// Sorting keeps the groups by kind and orders the publications within each.
+export const publicationSearch: SearchConfig<Publication> = {
+  noun: "publications",
+  filters: [
+    { key: "title", description: "Words in the title", values: (publication) => [publication.name] },
+    { key: "author", description: "One of the authors", values: (publication) => publication.authors },
+    { key: "venue", description: "Journal, conference or event", values: (publication) => [publication.venue] },
+    { key: "kind", description: "Article, presentation or workshop", values: (publication) => [publication.kind] },
+  ],
+  years: (publication) => [yearOf(publication.date), yearOf(publication.date)],
+  sorts: [
+    { id: "newest", label: "Newest", value: (publication) => publication.date, descending: true },
+    { id: "oldest", label: "Oldest", value: (publication) => publication.date },
+    { id: "title", label: "Title (A–Z)", value: (publication) => publication.name },
+  ],
+};
+
 function renderPublication(publication: Publication): string[] {
   const citation = [
     `${formatAuthors(publication.authors, publication.et_al ?? false)} (${escapeHtml(publication.date.slice(0, 4))}).`,
@@ -44,17 +62,20 @@ function renderPublication(publication: Publication): string[] {
     lines.push("<br>", ...renderParagraphs(publication.description));
   }
   lines.push(...renderTags(publication.tags));
-  return ['<ul class="work-list">', ...indent(lines), "</ul>"];
+  return renderCard(lines, searchAttribute(publicationSearch, publication));
 }
 
-/** Groups publications under a heading per kind, keeping the display order within each group. */
+/**
+ * Groups publications under a heading per kind, keeping the display order within each group.
+ * Each group is its own element so the search can hide a heading whose publications are all filtered out.
+ */
 export function renderPublications(publications: readonly Publication[]): string[] {
   const groups = Object.entries(KIND_HEADINGS)
     .map(([kind, heading]) => ({ heading, members: publications.filter((publication) => publication.kind === kind) }))
     .filter(({ members }) => members.length > 0);
-  return groups.flatMap(({ heading, members }, index) => [
-    ...(index > 0 ? ["<br><br>"] : []),
-    `<h2>${heading}</h2>`,
-    ...members.flatMap(renderPublication),
+  return groups.flatMap(({ heading, members }) => [
+    '<div class="record-group" data-search-group>',
+    ...indent([`<h2>${heading}</h2>`, ...members.flatMap(renderPublication)]),
+    "</div>",
   ]);
 }

@@ -1,6 +1,7 @@
 // Minimal declarations for the vendored libraries loaded via <script> tags in
-// index.html (js/jquery.min.js and js/typed.min.js). Only the surface the site
-// actually uses is declared, so the full @types/jquery package is not needed.
+// src/partials/footer.html (js/jquery.min.js and js/typed.min.js). Only the
+// surface the site actually uses is declared, so the full @types/jquery
+// package is not needed.
 
 interface TypedOptions {
   strings: string[];

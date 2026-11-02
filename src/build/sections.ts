@@ -1,4 +1,5 @@
-// The sections of index.html that are rendered from JSON records.
+// The sections of the site that are rendered from JSON records, each on its
+// own page under src/ with a search bar above its records.
 //
 // Each section names the JSON Schema its records are validated against
 // (generated from schemas/records.yaml) and lists its records in display
@@ -6,18 +7,19 @@
 // it lives here instead of in them. Adding a record file means adding its ID
 // to the matching list below.
 
-import { renderDataset } from "./datasets.ts";
+import { datasetSearch, renderDataset } from "./datasets.ts";
 import type { Dataset, Project, Publication } from "./generated/records.ts";
-import { checkProject, renderProject } from "./projects.ts";
-import { renderPublications } from "./publications.ts";
+import { checkProject, projectSearch, renderProject } from "./projects.ts";
+import { publicationSearch, renderPublications } from "./publications.ts";
 import { defineSection } from "./records.ts";
+import { renderSearchable } from "./search.ts";
 
 export const sections = [
   defineSection<Project>({
     name: "projects",
     recordsDir: "projects",
     schemaFile: "schemas/jsonschema/project.schema.json",
-    render: (projects) => projects.flatMap(renderProject),
+    render: (projects) => renderSearchable(projectSearch, projects.flatMap(renderProject)),
     check: checkProject,
     order: [
       "nwb-guide",
@@ -39,7 +41,7 @@ export const sections = [
     name: "datasets",
     recordsDir: "datasets",
     schemaFile: "schemas/jsonschema/dataset.schema.json",
-    render: (datasets) => datasets.flatMap(renderDataset),
+    render: (datasets) => renderSearchable(datasetSearch, datasets.flatMap(renderDataset)),
     order: [
       "visual-coding-ophys",
       "ibl-brain-wide-map",
@@ -54,7 +56,7 @@ export const sections = [
     recordsDir: "publications",
     schemaFile: "schemas/jsonschema/publication.schema.json",
     // Grouped by kind under a heading each; this order applies within a group.
-    render: renderPublications,
+    render: (publications) => renderSearchable(publicationSearch, renderPublications(publications)),
     order: [
       "open-data-in-neurophysiology-2025",
       "dandi-2025",

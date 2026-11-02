@@ -1,8 +1,8 @@
-// Small helpers shared by the record renderers. Record text is plain text, so
-// everything taken from a record goes through escapeHtml (or renderInline,
-// which escapes first).
+// Small helpers shared by the record renderers and the plugins that fill in
+// the pages. Record text is plain text, so everything taken from a record goes
+// through escapeHtml (or renderInline, which escapes first).
 
-/** Separator between items on one line, matching the rest of index.html. */
+/** Separator between items on one line, matching the hand-written parts of the pages. */
 export const SEPARATOR = " &nbsp; | &nbsp; ";
 
 const HTML_ESCAPES: Record<string, string> = {
@@ -42,4 +42,33 @@ export function renderLinks<K extends string>(
 /** Indents every line (including lines inside multi-line strings) by one tab. */
 export function indent(lines: readonly string[]): string[] {
   return lines.flatMap((line) => line.split("\n")).map((line) => `\t${line}`);
+}
+
+/** Renders a record as one card, which its page's search filters by `searchAttribute` (see search.ts). */
+export function renderCard(lines: readonly string[], searchAttribute: string): string[] {
+  return [`<ul class="work-list" data-search-item ${searchAttribute}>`, ...indent(lines), "</ul>"];
+}
+
+/** Matches a line holding only the <!-- build:NAME --> placeholder, capturing its indentation. */
+function placeholderLine(name: string): RegExp {
+  return new RegExp(`^([ \\t]*)<!-- build:${name} -->[ \\t]*$`, "m");
+}
+
+export function hasPlaceholder(html: string, name: string): boolean {
+  return placeholderLine(name).test(html);
+}
+
+/** Replaces the <!-- build:NAME --> placeholder line in `html` with `lines`, keeping its indentation. */
+export function fillPlaceholder(html: string, name: string, lines: readonly string[], page: string): string {
+  const markerLine = placeholderLine(name);
+  const match = markerLine.exec(html);
+  if (!match) {
+    throw new Error(`${page} is missing the <!-- build:${name} --> placeholder`);
+  }
+  const rendered = lines
+    .flatMap((line) => line.split("\n"))
+    .map((line) => (line ? match[1] + line : line))
+    .join("\n");
+  // A replacer function, so "$" sequences in the content are not special.
+  return html.replace(markerLine, () => rendered);
 }

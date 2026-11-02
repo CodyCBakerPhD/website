@@ -1,15 +1,37 @@
-// Site behavior for index.html: the animated "typed" headline, smooth
-// scrolling for the fixed navigation bar, and the light/dark theme toggle.
-// Compiled to dist/js/main.js.
+// Site behavior shared by every page: the animated "typed" headline and
+// smooth scrolling on the home page, the light/dark theme toggle, and the
+// search on the pages listing records. Bundled by Vite into dist/assets/.
+
+import { initRecordSearch } from "./search";
 
 /** Fallback when the nav bar has not rendered yet (matches its CSS height). */
 const DEFAULT_NAV_OFFSET_PX = 80;
+
+/** Sections that moved off the home page onto pages of their own, by their old anchors. */
+const MOVED_SECTIONS: Readonly<Record<string, string>> = {
+  "#highlighted-projects": "projects.html",
+  "#data-curation": "data-curation.html",
+  "#publications": "publications.html",
+};
 
 type Theme = "light" | "dark";
 
 const THEME_STORAGE_KEY = "theme";
 
+/** Sends links to a section's old place on the home page on to its own page. */
+function redirectMovedSection(): void {
+  const { hash } = window.location;
+  const page = MOVED_SECTIONS[hash];
+  // The new pages keep the sections' IDs, so this only applies where the section is missing.
+  if (page && !document.getElementById(hash.slice(1))) {
+    window.location.replace(page);
+  }
+}
+
 function initTypedHeadline(): void {
+  if (!document.getElementById("typed")) {
+    return;
+  }
   $("#typed").typed({
     strings: ["data science", "informatics", "software"],
     typeSpeed: 90,
@@ -40,7 +62,7 @@ function initSmoothNavigation(): void {
   const navOffset = nav?.offsetHeight || DEFAULT_NAV_OFFSET_PX;
 
   const links = document.querySelectorAll<HTMLAnchorElement>(
-    '.navbar a[href^="#"]',
+    '.navbar a[href^="#"], .footer-nav a[href^="#"]',
   );
   links.forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -103,6 +125,10 @@ function initThemeToggle(): void {
   });
 }
 
+redirectMovedSection();
+// An old link opened from the home page itself only changes the hash, without reloading.
+window.addEventListener("hashchange", redirectMovedSection);
+
 $(() => {
   initTypedHeadline();
 });
@@ -110,4 +136,5 @@ $(() => {
 document.addEventListener("DOMContentLoaded", () => {
   initSmoothNavigation();
   initThemeToggle();
+  initRecordSearch();
 });

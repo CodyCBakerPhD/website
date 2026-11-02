@@ -22,14 +22,23 @@ export function checkTags(tags: readonly string[]): string[] {
   );
 }
 
-/** Renders tags as one row of labels reading "theme | tag", sorted by theme. */
+/**
+ * Renders tags as one row of labels reading "theme | tag", sorted by theme.
+ * Each label is a toggle button the page's search (src/ts/search.ts) filters by.
+ */
 export function renderTags(tags: readonly string[]): string[] {
   const sorted = [...tags].sort((a, b) => (RANK.get(a) ?? RANK.size) - (RANK.get(b) ?? RANK.size));
   return [
     '<li class="tag-list">',
     ...sorted.map((tag) => {
-      const { key, name } = splitTag(escapeHtml(tag));
-      return `\t<span class="tag tag-${key}"><span class="tag-theme">${key}</span><span class="tag-name">${name}</span></span>`;
+      const escaped = escapeHtml(tag);
+      const { key, name } = splitTag(escaped);
+      // The space between the halves is not rendered (the label is a flex box),
+      // but keeps them apart in the text the search matches against.
+      return (
+        `\t<button type="button" class="tag tag-${key}" data-tag="${escaped}" aria-pressed="false">` +
+        `<span class="tag-theme">${key}</span> <span class="tag-name">${name}</span></button>`
+      );
     }),
     "</li>",
   ];

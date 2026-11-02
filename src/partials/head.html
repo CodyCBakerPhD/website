@@ -1,0 +1,22 @@
+<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+<meta charset="utf-8" />
+<script>
+    (function () {
+        try {
+            var stored = localStorage.getItem("theme");
+            var theme = stored === "light" || stored === "dark"
+                ? stored
+                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+    })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="css/kube.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/custom.min.css" />
+<link rel="shortcut icon" href="img/como_favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
