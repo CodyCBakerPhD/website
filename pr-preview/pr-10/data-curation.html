@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<meta charset="utf-8" />
+	<script>
+	    (function () {
+	        try {
+	            var stored = localStorage.getItem("theme");
+	            var theme = stored === "light" || stored === "dark"
+	                ? stored
+	                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+	            document.documentElement.setAttribute("data-theme", theme);
+	        } catch (e) {}
+	    })();
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="css/kube.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/custom.min.css" />
+	<link rel="shortcut icon" href="img/como_favicon.ico" />
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<title>Data Curation | Cody C. Baker, Ph.D.</title>
+	<meta name="description" content="Datasets curated by Cody C. Baker, Ph.D.">
+  <script type="module" crossorigin src="./assets/main-ClK1iDkG.js"></script>
+</head>
+
+<body>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<!-- Fixed top-right controls -->
+	<div class="nav-actions">
+		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+			<i class="fa fa-moon-o theme-toggle-icon theme-toggle-icon-dark" aria-hidden="true"></i>
+			<i class="fa fa-sun-o theme-toggle-icon theme-toggle-icon-light" aria-hidden="true"></i>
+		</button>
+		<a class="icon-btn" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+			<i class="fa fa-github" aria-hidden="true"></i>
+		</a>
+	</div>
+
+	<!-- Navigation -->
+	<div class="main-nav">
+		<div class="container">
+			<header class="group top-nav">
+				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+				    <span class="logo">Cody C. Baker</span>
+				</div>
+			    <nav id="navbar-1" class="navbar item-nav">
+				    <ul>
+						<li><a href="./">About</a></li>
+						<li><a href="./#education">Education</a></li>
+						<li><a href="./#skills">Skills</a></li>
+						<li><a href="./#experience">Experience</a></li>
+						<li><a href="projects.html">Projects</a></li>
+						<li class="active"><a href="data-curation.html" aria-current="page">Data Curation</a></li>
+						<li><a href="publications.html">Publications</a></li>
+				    </ul>
+				</nav>
+			</header>
+		</div>
+	</div>
+
+	<!-- Data Curation (rendered at build time from datasets/*.json; see src/build/sections.ts) -->
+	<div class="work section second page" id="data-curation">
+		<div class="container">
+			<h1>Data Curation</h1>
+			<p>
+				Over the years, I have participated directly (by acting as the primary point person) or indirectly (in a
+				supervisory capacity) in the management, curation, and publication of dozens of high-impact datasets across many research institutions.
+				<br><br>
+				Those described below are among the more notable.
+			</p>
+			<br>
+			<div class="record-search-scope" data-search="datasets">
+				<form class="record-search" role="search" data-search-form>
+					<div class="record-search-field">
+						<i class="fa fa-search" aria-hidden="true"></i>
+						<input type="search" name="q" placeholder="Search datasets" aria-label="Search datasets" autocomplete="off" spellcheck="false" data-search-input>
+					</div>
+					<div class="record-search-summary">
+						<p class="record-search-status" role="status" data-search-status></p>
+						<div class="record-search-tags" data-search-tags></div>
+						<button type="button" class="record-search-clear" data-search-clear hidden>Clear filters</button>
+					</div>
+				</form>
+				<ul class="work-list" data-search-item>
+					<h3>Visual Coding (2-Photon Calcium Imaging)</h3>
+					<li>Group: Neural Dynamics and Computing &nbsp; | &nbsp; Location: Allen Institute for Brain Science &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer</li>
+					<a href="https://dandiarchive.org/dandiset/000728/0.240827.1809">Dataset</a> &nbsp; | &nbsp;
+					<a href="https://github.com/dandi/example-notebooks/blob/694e97043373e2d1138d58af89b7be8dd5a3786b/000728/AllenInstitute/visual_coding_ophys_tutorial.ipynb">Jupyter Notebook</a> &nbsp; | &nbsp;
+					<a href="https://github.com/catalystneuro/visual-coding-to-nwb-v2">Conversion Code</a>
+					<br>
+					<p>
+						Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.
+						<br><br>
+						Published a total of <strong>93.4 TB</strong> of visual cortex microscopy data on the associated NIH data archive.
+						<br><br>
+						Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.
+						<br><br>
+						Significant portions of this tutorial later became the flagship scientific example of the DANDI archive indexed by the Open Data Program (AWS) landing page.
+					</p>
+					<li class="tag-list">
+						<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Calcium Imaging" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Calcium Imaging</span></button>
+						<button type="button" class="tag tag-neuroscience" data-tag="neuroscience:Visual Cortex" aria-pressed="false"><span class="tag-theme">neuroscience</span> <span class="tag-name">Visual Cortex</span></button>
+					</li>
+				</ul>
+				<ul class="work-list" data-search-item>
+					<h3>Brain Wide Map</h3>
+					<li>Group: International Brain Lab &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer</li>
+					<a href="https://doi.org/10.1038/s41586-025-09235-0">Manuscript</a> &nbsp; | &nbsp;
+					<a href="https://dandiarchive.org/dandiset/000409/draft">Dataset</a> &nbsp; | &nbsp;
+					<a href="https://github.com/dandi/example-notebooks/tree/master/000409/IBL">Jupyter Notebook</a> &nbsp; | &nbsp;
+					<a href="https://github.com/catalystneuro/IBL-to-nwb">Conversion Code</a>
+					<br>
+					<p>
+						Wrote conversion code which interfaced with PostgreSQL metadata database to standardize the data structure of thousands of extracellular electrophysiology experiments with complex behavior.
+						<br><br>
+						Uploaded a total of <strong>66 TB</strong> of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive.
+					</p>
+					<li class="tag-list">
+						<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Extracellular Electrophysiology" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Extracellular Electrophysiology</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Behavior" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Behavior</span></button>
+					</li>
+				</ul>
+				<ul class="work-list" data-search-item>
+					<h3>Neural signal propagation atlas of Caenorhabditis elegans</h3>
+					<li>Group: Leifer Lab &nbsp; | &nbsp; Location: Princeton University &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer</li>
+					<a href="https://doi.org/10.1038/s41586-023-06683-4">Manuscript</a> &nbsp; | &nbsp;
+					<a href="https://dandiarchive.org/dandiset/001075/0.240930.1859">Dataset</a> &nbsp; | &nbsp;
+					<a href="https://github.com/dandi/example-notebooks/tree/master/001075">Jupyter Notebook</a> &nbsp; | &nbsp;
+					<a href="https://github.com/catalystneuro/leifer_lab_to_nwb">Conversion Code</a>
+					<br>
+					<p>
+						Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.
+						<br><br>
+						Published a total of <strong>10 TB</strong> of C. elegans microscopy data on the associated NIH data archive.
+						<br><br>
+						Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook.
+					</p>
+					<li class="tag-list">
+						<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+						<button type="button" class="tag tag-organisms" data-tag="organisms:C. elegans" aria-pressed="false"><span class="tag-theme">organisms</span> <span class="tag-name">C. elegans</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Volumetric Imaging" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Volumetric Imaging</span></button>
+					</li>
+				</ul>
+				<ul class="work-list" data-search-item>
+					<h3>Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior</h3>
+					<li>Group: Ahrens Lab &nbsp; | &nbsp; Location: Janelia Research Campus (HHMI) &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer</li>
+					<a href="https://doi.org/10.1016/j.cell.2019.05.050">Manuscript</a> &nbsp; | &nbsp;
+					<a href="https://dandiarchive.org/dandiset/000350/0.240822.1759">Dataset</a> &nbsp; | &nbsp;
+					<a href="https://github.com/catalystneuro/ahrens-lab-to-nwb">Conversion Code</a>
+					<br>
+					<p>
+						Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality environment and some limited electrophysiology responses from peripheral motor nerves.
+						<br><br>
+						Published a total of <strong>23 TB</strong> of volumetric whole-brain zebrafish microscopy data on the associated NIH data archive.
+					</p>
+					<li class="tag-list">
+						<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+						<button type="button" class="tag tag-organisms" data-tag="organisms:Zebrafish" aria-pressed="false"><span class="tag-theme">organisms</span> <span class="tag-name">Zebrafish</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Volumetric Imaging" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Volumetric Imaging</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Virtual Reality" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Virtual Reality</span></button>
+						<button type="button" class="tag tag-neuroscience" data-tag="neuroscience:Glia" aria-pressed="false"><span class="tag-theme">neuroscience</span> <span class="tag-name">Glia</span></button>
+					</li>
+				</ul>
+				<ul class="work-list" data-search-item>
+					<h3>MICrONS</h3>
+					<li>Group: Tolias Lab &nbsp; | &nbsp; Location: Baylor College of Medicine &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Supervisor</li>
+					<a href="https://doi.org/10.1038/s41586-025-08790-w">Manuscript</a> &nbsp; | &nbsp;
+					<a href="https://dandiarchive.org/dandiset/000402/0.230307.2132">Dataset</a> &nbsp; | &nbsp;
+					<a href="https://github.com/dandi/example-notebooks/blob/master/000402/MICrONS/demo/000402_microns_demo.ipynb">Jupyter Notebook</a> &nbsp; | &nbsp;
+					<a href="https://github.com/catalystneuro/MICrONS-to-nwb">Conversion Code</a>
+					<br>
+					<p>
+						Supervised the conversion and publication of a high-value dataset which combined large-scale two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.
+						<br><br>
+						Resulted in the publication of a total <strong>1.2 TB</strong> of functional imaging data on the NIH data archive, with region IDs coregistered with the associated electron microscopy datasets.
+					</p>
+					<li class="tag-list">
+						<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:BossDB" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">BossDB</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Calcium Imaging" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Calcium Imaging</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Electron Microscopy" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Electron Microscopy</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Behavior" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Behavior</span></button>
+					</li>
+				</ul>
+				<ul class="work-list" data-search-item>
+					<h3>Miscellaneous (Buzsaki Lab)</h3>
+					<li>Group: Buzsaki Lab &nbsp; | &nbsp; Location: New York University &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer</li>
+					<a href="https://github.com/catalystneuro/buzsaki-lab-to-nwb">Conversion Code</a>
+					<br>
+					<p>
+						Wrote custom conversion code for a dozen previous datasets. Unique aspects of these data collections include temperature-modulating probes, long-term passive recordings of spontaneous behavior, and paired optogenetic stimulation with extracellular electrophysiology.
+						<br><br>
+						Published a total of <strong>39 TB</strong> of mouse electrophysiology and behavioral data on the associated NIH data archive, including the first TB-scale dataset on DANDI.
+					</p>
+					<li class="tag-list">
+						<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+						<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+						<button type="button" class="tag tag-organisms" data-tag="organisms:Mouse" aria-pressed="false"><span class="tag-theme">organisms</span> <span class="tag-name">Mouse</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Extracellular Electrophysiology" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Extracellular Electrophysiology</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Optogenetics" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Optogenetics</span></button>
+						<button type="button" class="tag tag-methods" data-tag="methods:Behavior" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Behavior</span></button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<!-- Quote -->
+	<div class="quote">
+		<div class="container text-centered">
+			<h1>never stop learning</h1>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<div class="units-row">
+			    <div class="unit-50">
+					<ul class="social list-flat right">
+						<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
+					</ul>
+			    </div>
+			</div>
+			<div class="footer-version">
+				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.5.0</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/typed.min.js"></script>
+	<script src="js/kube.min.js"></script>
+</body>
+
+</html>
