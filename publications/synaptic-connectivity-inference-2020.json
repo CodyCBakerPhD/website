@@ -5,9 +5,11 @@
   "kind": "article",
   "authors": [
     "C. Baker",
-    "E. Froudarakis"
+    "E. Froudarakis",
+    "D. Yatsenko",
+    "A. S. Tolias",
+    "R. Rosenbaum"
   ],
-  "et_al": true,
   "date": "2020",
   "venue": "Journal of Computational Neuroscience, vol. 48, pp. 123–147, 2020",
   "description": [
