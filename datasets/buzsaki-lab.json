@@ -11,6 +11,6 @@
   },
   "description": [
     "Wrote custom conversion code for a dozen previous datasets. Unique aspects of these data collections include temperature-modulating probes, long-term passive recordings of spontaneous behavior, and paired optogenetic stimulation with extracellular electrophysiology.",
-    "Published a total of **39 TB** of mouse electrophysiology and behavioral data on the associated NIH data archive."
+    "Published a total of **39 TB** of mouse electrophysiology and behavioral data on the associated NIH data archive, including the first TB-scale dataset on DANDI."
   ]
 }
