@@ -407,7 +407,7 @@
 			<ul class="work-list">
 				<img src="img/neuroconv_logo.png" alt="NeuroConv logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 				<br>
-				<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2020-Present</li>
+				<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2020-2024</li>
 				<br>
 				<p>
 					Established an automated data conversion tool capable of reading more than 40 distinct data formats used by neurophysiology acquisition devices in order to automatically write to the NeurodataWithoutBorders (NWB) standard.
@@ -429,9 +429,62 @@
 				</p>
 			</ul>
 			<ul class="work-list">
+				<img src="img/dandi_compute_logo.png" alt="DANDI Compute logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
+				<br>
+				<li><a href="https://github.com/dandi-compute">DANDI Compute</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2025-Present</li>
+				<br>
+				<p>
+					Built an orchestration system that runs processing pipelines over assets already published on the DANDI Archive and uploads the results back to the archive, such as spike sorting through the AIND ephys pipeline and LFP extraction from raw electrophysiology.
+					<br><br>
+					Packages each unit of work as a self-describing job capsule carrying its own submission script, parameters, and provenance, runs it as part of a SLURM array job on the MIT Engaging cluster, and tracks every capsule through its lifecycle using nothing but the archive&#39;s own metadata.
+					<br><br>
+					Automated job submission through a self-hosted runner on the cluster, and published a results page for reviewing, comparing, and curating the pipeline runs.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img src="img/s3_log_extraction_logo.svg" alt="S3 Log Extraction logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
+				<br>
+				<li><a href="https://github.com/dandi/s3-log-extraction">S3 Log Extraction</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2024-Present</li>
+				<br>
+				<p>
+					Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive and steadily being rolled out to others.
+					<br><br>
+					Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository.
+					<br><br>
+					Extended it for the DANDI Archive&#39;s own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img src="img/hearth_logo.svg" alt="HEARTH logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
+				<br>
+				<li><a href="https://hearth.emberarchive.org">HEARTH</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
+				<br>
+				<p>
+					Built the Hub for Exploratory Analysis, Resource-sharing, Testing, and Hypothesis-generation (HEARTH), a suite of web apps for the Brain Behavior Quantification and Synchronization (BBQS) consortium and its data on the EMBER Archive.
+					<br><br>
+					Includes an uploader for adding files to a Dandiset on the EMBER Archive through a simple drag-and-drop interface, a clip extractor for saving a snippet or single frame of a video, and an encoding helper for the education and comparison of video encodings. The latter two grew from prototypes created in collaboration with the Talmo Lab.
+					<br><br>
+					Generalized the shell the apps share into a template for new single-page, backend-free apps and a set of common component packages, each covered by unit, integration, and visual snapshot tests.
+				</p>
+			</ul>
+			<ul class="work-list">
+				<img src="img/historia_logo.svg" alt="Historia logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
+				<br>
+				<li><a href="https://github.com/CodyCBakerPhD/historia">Historia</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
+				<br>
+				<p>
+					Created a command line tool for backing up records of GitHub activity (the pull requests and issues a person opened, was assigned, or reviewed) for use in creating dashboard reports of work history.
+					<br><br>
+					Paired with a GitHub Action that runs the whole scheduled update of a work history data repository: fetching recent activity, committing it, populating a GitHub Projects board, and publishing a compressed archive of the data.
+					<br><br>
+					Distributed on PyPI and conda-forge.
+				</p>
+			</ul>
+			<ul class="work-list">
 				<img src="img/neurosift_logo.png" alt="Neurosift logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
 				<br>
-				<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Consultant &nbsp; | &nbsp; 2023-Present</li>
+				<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Consultant and Contributor &nbsp; | &nbsp; 2023-Present</li>
+				<li>Contribution: Added on-the-fly analyses computed in the browser: spectrograms of LFP streams with adjustable hyperparameters, and event-related signals that align any time series to a table of intervals.</li>
 				<br>
 				<p>
 					Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives.
@@ -807,7 +860,7 @@
 			</div>
 			<div class="footer-version">
 				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
-				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.2.0</a>
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.3.0</a>
 			</div>
 		</div>
 	</footer>
