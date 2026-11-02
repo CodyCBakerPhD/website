@@ -3,7 +3,8 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Project } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs, renderTags, SEPARATOR } from "./html.ts";
+import { escapeHtml, indent, renderParagraphs, SEPARATOR } from "./html.ts";
+import { renderTags } from "./tags.ts";
 
 /** Displayed logo width as a percentage of the content column. */
 const LOGO_WIDTH_PERCENT = 50;

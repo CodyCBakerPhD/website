@@ -12,11 +12,10 @@
   ],
   "tags": [
     "NWB",
+    "HDF5",
     "DANDI",
     "Data Visualization",
     "Web Apps",
-    "Cloud Streaming",
-    "HDF5",
     "User Experience",
     "TypeScript"
   ]

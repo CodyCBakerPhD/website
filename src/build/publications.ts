@@ -2,7 +2,8 @@
 
 import type { Publication } from "./generated/records.ts";
 import { PublicationKind } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs, renderTags } from "./html.ts";
+import { escapeHtml, indent, renderParagraphs } from "./html.ts";
+import { renderTags } from "./tags.ts";
 
 /** The site owner's name as it appears in author lists, shown in bold. */
 const OWNER = "C. Baker";

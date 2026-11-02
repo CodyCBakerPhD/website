@@ -13,10 +13,10 @@
   ],
   "tags": [
     "DANDI",
-    "Data Pipelines",
+    "Provenance",
     "Spike Sorting",
     "HPC",
-    "Provenance",
+    "Data Pipelines",
     "Python"
   ]
 }

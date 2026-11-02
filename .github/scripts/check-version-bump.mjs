@@ -1,6 +1,7 @@
 // Fails when a versioned file changed in a pull request without its version
 // increasing. Three things carry versions, each independent of the others:
-//   - the LinkML schema, schemas/records.yaml (its top-level `version`),
+//   - the LinkML schema, schemas/records.yaml (its top-level `version`), which
+//     also covers the tag vocabulary it imports, schemas/tags.yaml,
 //   - each record under projects/, datasets/ or publications/ (its `record_version`),
 //   - the site itself, package.json (its `version`), whenever any file that
 //     shapes the built site changed.
@@ -12,6 +13,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 
 const SCHEMA_FILE = "schemas/records.yaml";
+const SCHEMA_PARTS = [SCHEMA_FILE, "schemas/tags.yaml"];
 const RECORD_FILE = /^(projects|datasets|publications)\/[^/]+\.json$/;
 const SITE_PATHS = ["src/", "configs/", "projects/", "datasets/", "publications/", "schemas/", "package.json", "package-lock.json"];
 
@@ -50,7 +52,7 @@ const changed = git("diff", "--name-only", `${base}...HEAD`)
   .filter((path) => path && existsSync(path));
 
 const checks = [];
-if (changed.includes(SCHEMA_FILE)) {
+if (SCHEMA_PARTS.some((path) => changed.includes(path))) {
   checks.push({ file: SCHEMA_FILE, label: "version", extract: yamlVersion });
 }
 for (const file of changed.filter((path) => RECORD_FILE.test(path))) {

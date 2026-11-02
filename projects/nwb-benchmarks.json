@@ -13,10 +13,9 @@
   ],
   "tags": [
     "NWB",
-    "Benchmarking",
-    "Cloud Streaming",
     "HDF5",
     "Zarr",
+    "Benchmarking",
     "Python"
   ]
 }

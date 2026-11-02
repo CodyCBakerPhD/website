@@ -1,5 +1,28 @@
 {
     "$defs": {
+        "AnalysisTag": {
+            "description": "Ways of analyzing and presenting data.",
+            "enum": [
+                "Spike Sorting",
+                "Data Visualization",
+                "Analytics",
+                "Machine Learning",
+                "Unsupervised Learning"
+            ],
+            "title": "AnalysisTag",
+            "type": "string"
+        },
+        "ArchiveTag": {
+            "description": "Data archives, and the initiatives and consortia behind them.",
+            "enum": [
+                "DANDI",
+                "EMBER",
+                "BBQS",
+                "BRAIN Initiative"
+            ],
+            "title": "ArchiveTag",
+            "type": "string"
+        },
         "BaseRecord": {
             "additionalProperties": false,
             "description": "The fields every record has.",
@@ -19,10 +42,40 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Short keywords for the topics, methods and technologies of the work, e.g. \"NWB\", \"Data Conversion\" or \"Python\". Records share one vocabulary, so reuse an existing tag's spelling where one fits.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
                     "items": {
-                        "pattern": "^\\S+( \\S+)*$",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/StandardTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ArchiveTag"
+                            },
+                            {
+                                "$ref": "#/$defs/DataManagementTag"
+                            },
+                            {
+                                "$ref": "#/$defs/OrganismTag"
+                            },
+                            {
+                                "$ref": "#/$defs/MethodTag"
+                            },
+                            {
+                                "$ref": "#/$defs/NeuroscienceTag"
+                            },
+                            {
+                                "$ref": "#/$defs/AnalysisTag"
+                            },
+                            {
+                                "$ref": "#/$defs/EngineeringTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ComputingTag"
+                            },
+                            {
+                                "$ref": "#/$defs/LanguageTag"
+                            }
+                        ]
                     },
                     "minItems": 1,
                     "type": "array"
@@ -36,6 +89,33 @@
             ],
             "title": "BaseRecord",
             "type": "object"
+        },
+        "ComputingTag": {
+            "description": "Where and at what scale the work runs.",
+            "enum": [
+                "Cloud Computing",
+                "AWS",
+                "HPC",
+                "Parallel Computing",
+                "Data Pipelines"
+            ],
+            "title": "ComputingTag",
+            "type": "string"
+        },
+        "DataManagementTag": {
+            "description": "Preparing, describing, checking and sharing data.",
+            "enum": [
+                "Data Conversion",
+                "Data Standards",
+                "Metadata",
+                "Validation",
+                "Provenance",
+                "FAIR Data",
+                "Open Data",
+                "Data Sharing"
+            ],
+            "title": "DataManagementTag",
+            "type": "string"
         },
         "Dataset": {
             "additionalProperties": false,
@@ -94,10 +174,40 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Short keywords for the topics, methods and technologies of the work, e.g. \"NWB\", \"Data Conversion\" or \"Python\". Records share one vocabulary, so reuse an existing tag's spelling where one fits.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
                     "items": {
-                        "pattern": "^\\S+( \\S+)*$",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/StandardTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ArchiveTag"
+                            },
+                            {
+                                "$ref": "#/$defs/DataManagementTag"
+                            },
+                            {
+                                "$ref": "#/$defs/OrganismTag"
+                            },
+                            {
+                                "$ref": "#/$defs/MethodTag"
+                            },
+                            {
+                                "$ref": "#/$defs/NeuroscienceTag"
+                            },
+                            {
+                                "$ref": "#/$defs/AnalysisTag"
+                            },
+                            {
+                                "$ref": "#/$defs/EngineeringTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ComputingTag"
+                            },
+                            {
+                                "$ref": "#/$defs/LanguageTag"
+                            }
+                        ]
                     },
                     "minItems": 1,
                     "type": "array"
@@ -159,6 +269,75 @@
             },
             "title": "DatasetLinks",
             "type": "object"
+        },
+        "EngineeringTag": {
+            "description": "How the software is built, tested and delivered.",
+            "enum": [
+                "API Design",
+                "Command Line",
+                "Web Apps",
+                "User Interface",
+                "User Experience",
+                "Testing",
+                "Benchmarking",
+                "Continuous Integration",
+                "GitHub Actions",
+                "Automation",
+                "Resource Monitoring"
+            ],
+            "title": "EngineeringTag",
+            "type": "string"
+        },
+        "LanguageTag": {
+            "description": "The main language of a software project.",
+            "enum": [
+                "Python",
+                "JavaScript",
+                "TypeScript"
+            ],
+            "title": "LanguageTag",
+            "type": "string"
+        },
+        "MethodTag": {
+            "description": "How data is recorded, and the kinds of data recorded.",
+            "enum": [
+                "Extracellular Electrophysiology",
+                "Calcium Imaging",
+                "Volumetric Imaging",
+                "Electron Microscopy",
+                "Optogenetics",
+                "Behavior",
+                "Virtual Reality",
+                "Video"
+            ],
+            "title": "MethodTag",
+            "type": "string"
+        },
+        "NeuroscienceTag": {
+            "description": "Fields, theories and subjects of neuroscience research.",
+            "enum": [
+                "Computational Neuroscience",
+                "Neuroinformatics",
+                "Spiking Neural Networks",
+                "Balanced Networks",
+                "Synaptic Connectivity",
+                "Synaptic Plasticity",
+                "Correlations",
+                "Visual Cortex",
+                "Glia"
+            ],
+            "title": "NeuroscienceTag",
+            "type": "string"
+        },
+        "OrganismTag": {
+            "description": "The species data was recorded from.",
+            "enum": [
+                "Mouse",
+                "Zebrafish",
+                "C. elegans"
+            ],
+            "title": "OrganismTag",
+            "type": "string"
         },
         "Project": {
             "additionalProperties": false,
@@ -229,10 +408,40 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Short keywords for the topics, methods and technologies of the work, e.g. \"NWB\", \"Data Conversion\" or \"Python\". Records share one vocabulary, so reuse an existing tag's spelling where one fits.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
                     "items": {
-                        "pattern": "^\\S+( \\S+)*$",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/StandardTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ArchiveTag"
+                            },
+                            {
+                                "$ref": "#/$defs/DataManagementTag"
+                            },
+                            {
+                                "$ref": "#/$defs/OrganismTag"
+                            },
+                            {
+                                "$ref": "#/$defs/MethodTag"
+                            },
+                            {
+                                "$ref": "#/$defs/NeuroscienceTag"
+                            },
+                            {
+                                "$ref": "#/$defs/AnalysisTag"
+                            },
+                            {
+                                "$ref": "#/$defs/EngineeringTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ComputingTag"
+                            },
+                            {
+                                "$ref": "#/$defs/LanguageTag"
+                            }
+                        ]
                     },
                     "minItems": 1,
                     "type": "array"
@@ -335,10 +544,40 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Short keywords for the topics, methods and technologies of the work, e.g. \"NWB\", \"Data Conversion\" or \"Python\". Records share one vocabulary, so reuse an existing tag's spelling where one fits.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
                     "items": {
-                        "pattern": "^\\S+( \\S+)*$",
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/StandardTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ArchiveTag"
+                            },
+                            {
+                                "$ref": "#/$defs/DataManagementTag"
+                            },
+                            {
+                                "$ref": "#/$defs/OrganismTag"
+                            },
+                            {
+                                "$ref": "#/$defs/MethodTag"
+                            },
+                            {
+                                "$ref": "#/$defs/NeuroscienceTag"
+                            },
+                            {
+                                "$ref": "#/$defs/AnalysisTag"
+                            },
+                            {
+                                "$ref": "#/$defs/EngineeringTag"
+                            },
+                            {
+                                "$ref": "#/$defs/ComputingTag"
+                            },
+                            {
+                                "$ref": "#/$defs/LanguageTag"
+                            }
+                        ]
                     },
                     "minItems": 1,
                     "type": "array"
@@ -369,6 +608,17 @@
                 "workshop"
             ],
             "title": "PublicationKind",
+            "type": "string"
+        },
+        "StandardTag": {
+            "description": "Data standards and the file formats they build on.",
+            "enum": [
+                "NWB",
+                "BIDS",
+                "HDF5",
+                "Zarr"
+            ],
+            "title": "StandardTag",
             "type": "string"
         }
     },
@@ -443,10 +693,40 @@
             "type": "string"
         },
         "tags": {
-            "description": "Short keywords for the topics, methods and technologies of the work, e.g. \"NWB\", \"Data Conversion\" or \"Python\". Records share one vocabulary, so reuse an existing tag's spelling where one fits.",
+            "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
             "items": {
-                "pattern": "^\\S+( \\S+)*$",
-                "type": "string"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/StandardTag"
+                    },
+                    {
+                        "$ref": "#/$defs/ArchiveTag"
+                    },
+                    {
+                        "$ref": "#/$defs/DataManagementTag"
+                    },
+                    {
+                        "$ref": "#/$defs/OrganismTag"
+                    },
+                    {
+                        "$ref": "#/$defs/MethodTag"
+                    },
+                    {
+                        "$ref": "#/$defs/NeuroscienceTag"
+                    },
+                    {
+                        "$ref": "#/$defs/AnalysisTag"
+                    },
+                    {
+                        "$ref": "#/$defs/EngineeringTag"
+                    },
+                    {
+                        "$ref": "#/$defs/ComputingTag"
+                    },
+                    {
+                        "$ref": "#/$defs/LanguageTag"
+                    }
+                ]
             },
             "minItems": 1,
             "type": "array"

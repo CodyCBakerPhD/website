@@ -6,7 +6,8 @@ description: >-
   Cody C. Baker is built from: software projects, curated datasets and
   publications. Each record is one JSON file under projects/, datasets/ or
   publications/, and carries its own version as well as the version of this
-  schema it was written against.
+  schema it was written against. The vocabulary of tags is in tags.yaml,
+  which this schema imports.
 version: 0.2.0
 
 prefixes:
@@ -19,6 +20,7 @@ default_range: string
 
 imports:
   - linkml:types
+  - tags
 
 types:
   SemanticVersion:
@@ -35,12 +37,6 @@ types:
     typeof: uri
     description: An absolute http or https URL.
     pattern: "^https?://"
-  Tag:
-    typeof: string
-    description: >-
-      A keyword of one or more words, without leading, trailing or repeated
-      spaces.
-    pattern: "^\\S+( \\S+)*$"
 
 slots:
   schema_version:
@@ -61,17 +57,6 @@ slots:
     description: Display name of the record.
     slot_uri: schema:name
     required: true
-  tags:
-    description: >-
-      Short keywords for the topics, methods and technologies of the work,
-      e.g. "NWB", "Data Conversion" or "Python". Records share one vocabulary,
-      so reuse an existing tag's spelling where one fits.
-    slot_uri: schema:keywords
-    range: Tag
-    multivalued: true
-    list_elements_unique: true
-    required: true
-    minimum_cardinality: 1
   role:
     description: Role held on the work the record describes.
     slot_uri: schema:roleName

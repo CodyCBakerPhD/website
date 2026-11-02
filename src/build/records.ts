@@ -3,10 +3,11 @@
 // the LinkML schema in schemas/records.yaml).
 //
 // Any problem fails the build, or shows an error in the dev server, instead of
-// rendering a broken page: malformed JSON, a schema violation, a repeated tag,
-// a failed section-specific check, or a mismatch between the records on disk
-// and the section's display order. Each section's markup replaces its
-// <!-- build:NAME --> placeholder, so the published page is static HTML.
+// rendering a broken page: malformed JSON, a schema violation, a repeated or
+// unthemed tag, a failed section-specific check, or a mismatch between the
+// records on disk and the section's display order. Each section's markup
+// replaces its <!-- build:NAME --> placeholder, so the published page is
+// static HTML.
 
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, resolve, sep } from "node:path";
@@ -15,6 +16,7 @@ import Ajv2019 from "ajv/dist/2019.js";
 import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
 import type { BaseRecord } from "./generated/records.ts";
+import { checkTags } from "./tags.ts";
 
 export interface SectionOptions<T extends BaseRecord> {
   /** Names the section's <!-- build:NAME --> placeholder in index.html. */
@@ -48,6 +50,9 @@ export function defineSection<T extends BaseRecord>(options: SectionOptions<T>):
 }
 
 function describeError(error: ErrorObject): string {
+  if (error.keyword === "anyOf" && /^\/tags\/\d+$/.test(error.instancePath)) {
+    return `${error.instancePath} ${JSON.stringify(error.data)} is not a tag listed in schemas/tags.yaml`;
+  }
   const detail =
     error.keyword === "additionalProperties"
       ? ` ("${error.params.additionalProperty}")`
@@ -55,13 +60,6 @@ function describeError(error: ErrorObject): string {
         ? ` (${JSON.stringify(error.params.allowedValue)})`
         : "";
   return `${error.instancePath || "(root)"} ${error.message}${detail}`;
-}
-
-// The schema marks tags list_elements_unique, but LinkML's JSON Schema
-// generator does not carry that over as uniqueItems.
-function checkTags(record: BaseRecord): string[] {
-  const repeated = record.tags.filter((tag, index) => record.tags.indexOf(tag) !== index);
-  return [...new Set(repeated)].map((tag) => `/tags lists "${tag}" more than once`);
 }
 
 /** Reads, validates and orders a section's records, or throws listing every problem. */
@@ -73,7 +71,8 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
   // refuses to compile a second schema with the same $id.
   // LinkML's JSON Schema generator targets draft 2019-09 and adds its own
   // top-level annotations, which strict mode would otherwise reject.
-  const ajv = new Ajv2019({ allErrors: true });
+  // verbose, so each error carries the offending value.
+  const ajv = new Ajv2019({ allErrors: true, verbose: true });
   ajv.addVocabulary(["version", "metamodel_version"]);
   addFormats(ajv);
   const validate = ajv.compile<T>(JSON.parse(readFileSync(schemaFile, "utf8")));
@@ -95,14 +94,18 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
 
     if (!validate(record)) {
       // An unmet if/then also reports a generic "must match then schema"; the
-      // specific error beside it is the useful one.
-      for (const error of (validate.errors ?? []).filter((error) => error.keyword !== "if")) {
+      // specific error beside it is the useful one. An unmet anyOf is the
+      // reverse: it also reports why each alternative failed (for a tag, one
+      // error per theme), and the anyOf error alone is the useful one.
+      const errors = (validate.errors ?? []).filter((error) => error.keyword !== "if");
+      const anyOfPaths = new Set(errors.filter((error) => error.keyword === "anyOf").map((error) => error.instancePath));
+      for (const error of errors.filter((error) => error.keyword === "anyOf" || !anyOfPaths.has(error.instancePath))) {
         problems.push(`${file}: ${describeError(error)}`);
       }
       continue;
     }
 
-    const checkProblems = [...checkTags(record), ...(options.check?.(record, { publicDir }) ?? [])];
+    const checkProblems = [...checkTags(record.tags), ...(options.check?.(record, { publicDir }) ?? [])];
     problems.push(...checkProblems.map((problem) => `${file}: ${problem}`));
     if (checkProblems.length === 0) {
       records.set(basename(file, ".json"), record);

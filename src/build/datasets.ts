@@ -1,7 +1,8 @@
 // Rendering of datasets/*.json for the "Data Curation" section.
 
 import type { Dataset } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs, renderTags, SEPARATOR } from "./html.ts";
+import { escapeHtml, indent, renderParagraphs, SEPARATOR } from "./html.ts";
+import { renderTags } from "./tags.ts";
 
 /** Link labels, in the order the links are shown. */
 const LINK_LABELS = {

@@ -14,7 +14,6 @@
     "An in-progress manuscript detailing a series of benchmarks which evaluate the performance of various remote access methods for reading data stored in AWS S3 cloud storage across a range of environmental and machine configurations."
   ],
   "tags": [
-    "Cloud Streaming",
     "Benchmarking",
     "AWS"
   ]

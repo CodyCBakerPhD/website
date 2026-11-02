@@ -420,16 +420,50 @@ a:hover {
 }
 
 .work .work-list .tag {
-    padding: 0 10px;
+    display: inline-flex;
     font-size: 0.8em;
-    font-weight: 700;
     line-height: 1.9em;
     white-space: nowrap;
-    color: var(--accent-dark);
-    background: var(--accent-soft);
-    border: 1px solid var(--accent-border);
+    border: 1px solid var(--tag-color);
     border-radius: 999px;
+    overflow: hidden;
 }
+
+.work .work-list .tag-theme {
+    padding: 0 7px 0 9px;
+    color: var(--tag-on-color);
+    background: var(--tag-color);
+}
+
+.work .work-list .tag-name {
+    padding: 0 9px 0 7px;
+    font-weight: 700;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
+}
+
+/* The darkest viridis steps barely stand out from a dark card, so the outline is lightened. */
+:root[data-theme="dark"] .work .work-list .tag {
+    border-color: color-mix(in srgb, var(--tag-color) 70%, #ffffff);
+}
+
+:root[data-theme="dark"] .work .work-list .tag-name {
+    background: color-mix(in srgb, var(--tag-color) 30%, var(--card-bg));
+}
+
+/* One step of the viridis palette per theme, in display order, so it stays
+   distinguishable with color vision deficiencies. Text on the darker half is
+   white and on the lighter half dark, each at 4.5:1 contrast or more. */
+.tag-standards { --tag-color: #440154; --tag-on-color: #ffffff; }
+.tag-archives { --tag-color: #482878; --tag-on-color: #ffffff; }
+.tag-data { --tag-color: #3e4989; --tag-on-color: #ffffff; }
+.tag-organisms { --tag-color: #31688e; --tag-on-color: #ffffff; }
+.tag-methods { --tag-color: #26828e; --tag-on-color: #ffffff; }
+.tag-neuroscience { --tag-color: #1f9e89; --tag-on-color: #1c2733; }
+.tag-analysis { --tag-color: #35b779; --tag-on-color: #1c2733; }
+.tag-engineering { --tag-color: #6ece58; --tag-on-color: #1c2733; }
+.tag-computing { --tag-color: #b5de2b; --tag-on-color: #1c2733; }
+.tag-languages { --tag-color: #fde725; --tag-on-color: #1c2733; }
 
 /* ---------- Skills ---------- */
 

@@ -27,11 +27,6 @@ export function renderParagraphs(paragraphs: readonly string[]): string[] {
   return ["<p>", paragraphs.map((paragraph) => `\t${renderInline(paragraph)}`).join("\n\t<br><br>\n"), "</p>"];
 }
 
-/** Renders a record's tags as one row of labels, in the record's order. */
-export function renderTags(tags: readonly string[]): string[] {
-  return ['<li class="tag-list">', ...tags.map((tag) => `\t<span class="tag">${escapeHtml(tag)}</span>`), "</li>"];
-}
-
 /** Indents every line (including lines inside multi-line strings) by one tab. */
 export function indent(lines: readonly string[]): string[] {
   return lines.flatMap((line) => line.split("\n")).map((line) => `\t${line}`);
