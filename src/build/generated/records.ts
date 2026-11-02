@@ -4,25 +4,25 @@
 export enum TagTheme {
     
     /** Data standards and the file formats they build on. */
-    Standards_and_formats = "standards",
+    standards = "standards",
     /** Data archives, and the initiatives and consortia behind them. */
-    Archives_and_initiatives = "archives",
+    archives = "archives",
     /** Preparing, describing, checking and sharing data. */
-    Data_management = "data",
+    data = "data",
     /** The species data was recorded from. */
-    Organisms = "organisms",
+    organisms = "organisms",
     /** How data is recorded, and the kinds of data recorded. */
-    Experimental_methods = "methods",
+    methods = "methods",
     /** Fields, theories and subjects of neuroscience research. */
-    Neuroscience = "neuroscience",
+    neuroscience = "neuroscience",
     /** Ways of analyzing and presenting data. */
-    Analysis = "analysis",
+    analysis = "analysis",
     /** How the software is built, tested and delivered. */
-    Software_engineering = "engineering",
+    engineering = "engineering",
     /** Where and at what scale the work runs. */
-    Computing_infrastructure = "computing",
+    computing = "computing",
     /** The main language of a software project. */
-    Programming_languages = "languages",
+    languages = "languages",
 };
 /**
 * Every tag a record may carry, as a theme:tag pair, listed theme by theme in the order of TagTheme.
@@ -30,125 +30,125 @@ export enum TagTheme {
 export enum Tag {
     
     /** Neurodata Without Borders, the data standard for neurophysiology. */
-    standardsCOLONNWB = "standards:NWB",
+    standards_nwb = "standards:NWB",
     /** The Brain Imaging Data Structure, a standard for organizing datasets. */
-    standardsCOLONBIDS = "standards:BIDS",
+    standards_bids = "standards:BIDS",
     /** Hierarchical Data Format 5, a file format for large arrays. */
-    standardsCOLONHDF5 = "standards:HDF5",
+    standards_hdf5 = "standards:HDF5",
     /** A chunked, compressed array format suited to cloud storage. */
-    standardsCOLONZarr = "standards:Zarr",
+    standards_zarr = "standards:Zarr",
     /** The DANDI Archive for neurophysiology and neuroimaging data. */
-    archivesCOLONDANDI = "archives:DANDI",
+    archives_dandi = "archives:DANDI",
     /** The EMBER Archive, which holds the BBQS consortium's data. */
-    archivesCOLONEMBER = "archives:EMBER",
+    archives_ember = "archives:EMBER",
     /** The Brain Behavior Quantification and Synchronization consortium. */
-    archivesCOLONBBQS = "archives:BBQS",
+    archives_bbqs = "archives:BBQS",
     /** The NIH BRAIN Initiative and its consortia. */
-    archivesCOLONBRAIN_Initiative = "archives:BRAIN Initiative",
+    archives_brain_initiative = "archives:BRAIN Initiative",
     /** Converting data from acquisition or lab formats to a standard. */
-    dataCOLONData_Conversion = "data:Data Conversion",
+    data_data_conversion = "data:Data Conversion",
     /** Designing or extending schemas for structured data. */
-    dataCOLONData_Standards = "data:Data Standards",
+    data_data_standards = "data:Data Standards",
     /** Describing data so that it can be found, understood and reused. */
-    dataCOLONMetadata = "data:Metadata",
+    data_metadata = "data:Metadata",
     /** Checking data and metadata against a standard and its best practices. */
-    dataCOLONValidation = "data:Validation",
+    data_validation = "data:Validation",
     /** Recording how results were produced and from what. */
-    dataCOLONProvenance = "data:Provenance",
+    data_provenance = "data:Provenance",
     /** Making data findable, accessible, interoperable and reusable. */
-    dataCOLONFAIR_Data = "data:FAIR Data",
+    data_fair_data = "data:FAIR Data",
     /** Data released publicly for anyone to use. */
-    dataCOLONOpen_Data = "data:Open Data",
+    data_open_data = "data:Open Data",
     /** Publishing and distributing data to other researchers. */
-    dataCOLONData_Sharing = "data:Data Sharing",
+    data_data_sharing = "data:Data Sharing",
     /** The house mouse, Mus musculus. */
-    organismsCOLONMouse = "organisms:Mouse",
+    organisms_mouse = "organisms:Mouse",
     /** The zebrafish, Danio rerio. */
-    organismsCOLONZebrafish = "organisms:Zebrafish",
+    organisms_zebrafish = "organisms:Zebrafish",
     /** The nematode Caenorhabditis elegans. */
-    organismsCOLONCFULL_STOP_elegans = "organisms:C. elegans",
+    organisms_c_elegans = "organisms:C. elegans",
     /** Recording neural activity with electrodes outside the cells. */
-    methodsCOLONExtracellular_Electrophysiology = "methods:Extracellular Electrophysiology",
+    methods_extracellular_electrophysiology = "methods:Extracellular Electrophysiology",
     /** Optical recording of neural activity through calcium indicators. */
-    methodsCOLONCalcium_Imaging = "methods:Calcium Imaging",
+    methods_calcium_imaging = "methods:Calcium Imaging",
     /** Imaging at many depths to capture a volume of tissue. */
-    methodsCOLONVolumetric_Imaging = "methods:Volumetric Imaging",
+    methods_volumetric_imaging = "methods:Volumetric Imaging",
     /** Imaging of tissue structure at nanometer resolution. */
-    methodsCOLONElectron_Microscopy = "methods:Electron Microscopy",
+    methods_electron_microscopy = "methods:Electron Microscopy",
     /** Controlling neural activity with light. */
-    methodsCOLONOptogenetics = "methods:Optogenetics",
+    methods_optogenetics = "methods:Optogenetics",
     /** Recording and quantifying what an animal does. */
-    methodsCOLONBehavior = "methods:Behavior",
+    methods_behavior = "methods:Behavior",
     /** Virtual environments that respond to a behaving animal. */
-    methodsCOLONVirtual_Reality = "methods:Virtual Reality",
+    methods_virtual_reality = "methods:Virtual Reality",
     /** Recording, encoding and handling video. */
-    methodsCOLONVideo = "methods:Video",
+    methods_video = "methods:Video",
     /** Mathematical and computational models of the nervous system. */
-    neuroscienceCOLONComputational_Neuroscience = "neuroscience:Computational Neuroscience",
+    neuroscience_computational_neuroscience = "neuroscience:Computational Neuroscience",
     /** Infrastructure for organizing, sharing and analyzing neuroscience data. */
-    neuroscienceCOLONNeuroinformatics = "neuroscience:Neuroinformatics",
+    neuroscience_neuroinformatics = "neuroscience:Neuroinformatics",
     /** Models of networks of spiking neurons. */
-    neuroscienceCOLONSpiking_Neural_Networks = "neuroscience:Spiking Neural Networks",
+    neuroscience_spiking_neural_networks = "neuroscience:Spiking Neural Networks",
     /** Networks in which excitation and inhibition approximately cancel. */
-    neuroscienceCOLONBalanced_Networks = "neuroscience:Balanced Networks",
+    neuroscience_balanced_networks = "neuroscience:Balanced Networks",
     /** The pattern of synaptic connections between neurons. */
-    neuroscienceCOLONSynaptic_Connectivity = "neuroscience:Synaptic Connectivity",
+    neuroscience_synaptic_connectivity = "neuroscience:Synaptic Connectivity",
     /** Activity-dependent changes in synaptic strength. */
-    neuroscienceCOLONSynaptic_Plasticity = "neuroscience:Synaptic Plasticity",
+    neuroscience_synaptic_plasticity = "neuroscience:Synaptic Plasticity",
     /** Correlated variability in neural activity, such as between spike trains. */
-    neuroscienceCOLONCorrelations = "neuroscience:Correlations",
+    neuroscience_correlations = "neuroscience:Correlations",
     /** The cortical areas that process vision. */
-    neuroscienceCOLONVisual_Cortex = "neuroscience:Visual Cortex",
+    neuroscience_visual_cortex = "neuroscience:Visual Cortex",
     /** The non-neuronal cells of the nervous system. */
-    neuroscienceCOLONGlia = "neuroscience:Glia",
+    neuroscience_glia = "neuroscience:Glia",
     /** Assigning extracellularly recorded spikes to individual neurons. */
-    analysisCOLONSpike_Sorting = "analysis:Spike Sorting",
+    analysis_spike_sorting = "analysis:Spike Sorting",
     /** Plotting and interactive exploration of data. */
-    analysisCOLONData_Visualization = "analysis:Data Visualization",
+    analysis_data_visualization = "analysis:Data Visualization",
     /** Summarizing usage or activity logs into statistics. */
-    analysisCOLONAnalytics = "analysis:Analytics",
+    analysis_analytics = "analysis:Analytics",
     /** Models that learn from data. */
-    analysisCOLONMachine_Learning = "analysis:Machine Learning",
+    analysis_machine_learning = "analysis:Machine Learning",
     /** Learning structure from unlabeled data. */
-    analysisCOLONUnsupervised_Learning = "analysis:Unsupervised Learning",
+    analysis_unsupervised_learning = "analysis:Unsupervised Learning",
     /** Designing programming interfaces for other developers. */
-    engineeringCOLONAPI_Design = "engineering:API Design",
+    engineering_api_design = "engineering:API Design",
     /** Tools run from a terminal. */
-    engineeringCOLONCommand_Line = "engineering:Command Line",
+    engineering_command_line = "engineering:Command Line",
     /** Applications that run in a web browser. */
-    engineeringCOLONWeb_Apps = "engineering:Web Apps",
+    engineering_web_apps = "engineering:Web Apps",
     /** Graphical interfaces for people who do not write code. */
-    engineeringCOLONUser_Interface = "engineering:User Interface",
+    engineering_user_interface = "engineering:User Interface",
     /** Shaping software around how people use it, informed by user testing. */
-    engineeringCOLONUser_Experience = "engineering:User Experience",
+    engineering_user_experience = "engineering:User Experience",
     /** Automated unit, integration and end-to-end tests. */
-    engineeringCOLONTesting = "engineering:Testing",
+    engineering_testing = "engineering:Testing",
     /** Measuring and comparing performance. */
-    engineeringCOLONBenchmarking = "engineering:Benchmarking",
+    engineering_benchmarking = "engineering:Benchmarking",
     /** Building and testing automatically on every change. */
-    engineeringCOLONContinuous_Integration = "engineering:Continuous Integration",
+    engineering_continuous_integration = "engineering:Continuous Integration",
     /** Workflows run by GitHub's automation platform. */
-    engineeringCOLONGitHub_Actions = "engineering:GitHub Actions",
+    engineering_github_actions = "engineering:GitHub Actions",
     /** Scheduled or event-driven jobs that run without manual steps. */
-    engineeringCOLONAutomation = "engineering:Automation",
+    engineering_automation = "engineering:Automation",
     /** Measuring the time, CPU and memory that programs use. */
-    engineeringCOLONResource_Monitoring = "engineering:Resource Monitoring",
+    engineering_resource_monitoring = "engineering:Resource Monitoring",
     /** Running or storing work on cloud services. */
-    computingCOLONCloud_Computing = "computing:Cloud Computing",
+    computing_cloud_computing = "computing:Cloud Computing",
     /** Amazon Web Services, including S3 storage. */
-    computingCOLONAWS = "computing:AWS",
+    computing_aws = "computing:AWS",
     /** High-performance computing clusters and their job schedulers. */
-    computingCOLONHPC = "computing:HPC",
+    computing_hpc = "computing:HPC",
     /** Splitting work across processes or machines. */
-    computingCOLONParallel_Computing = "computing:Parallel Computing",
+    computing_parallel_computing = "computing:Parallel Computing",
     /** Multi-step processing workflows run over many datasets. */
-    computingCOLONData_Pipelines = "computing:Data Pipelines",
+    computing_data_pipelines = "computing:Data Pipelines",
     /** The Python programming language. */
-    languagesCOLONPython = "languages:Python",
+    languages_python = "languages:Python",
     /** The JavaScript programming language. */
-    languagesCOLONJavaScript = "languages:JavaScript",
+    languages_javascript = "languages:JavaScript",
     /** The TypeScript programming language. */
-    languagesCOLONTypeScript = "languages:TypeScript",
+    languages_typescript = "languages:TypeScript",
 };
 /**
 * The kinds of scholarly work a Publication can be.
@@ -175,7 +175,7 @@ export interface BaseRecord {
     /** Display name of the record. */
     name: string,
     /** Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. "standards:NWB". */
-    tags: string,
+    tags: Tag[],
 }
 
 
@@ -241,7 +241,7 @@ export interface Publication extends BaseRecord {
     /** Paragraphs of plain text summarizing the work, in which **double asterisks** mark emphasis. */
     description?: string[],
     /** What kind of work it is. */
-    kind: string,
+    kind: PublicationKind,
     /** Authors in citation order, as initials and surname, e.g. "C. J. Gillon". Lists only the leading authors when et_al is true. */
     authors: string[],
     /** Whether further authors follow those listed. */
