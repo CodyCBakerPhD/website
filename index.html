@@ -4,41 +4,42 @@
 
 
 <head>
-    <title>Cody C. Baker, Ph.D.</title>
-    <meta charset="utf-8" />
-    <script>
-        (function () {
-            try {
-                var stored = localStorage.getItem("theme");
-                var theme = stored === "light" || stored === "dark"
-                    ? stored
-                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-                document.documentElement.setAttribute("data-theme", theme);
-            } catch (e) {}
-        })();
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="css/kube.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/custom.min.css" />
-    <link rel="shortcut icon" href="img/como_favicon.ico" />
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<meta charset="utf-8" />
+	<script>
+	    (function () {
+	        try {
+	            var stored = localStorage.getItem("theme");
+	            var theme = stored === "light" || stored === "dark"
+	                ? stored
+	                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+	            document.documentElement.setAttribute("data-theme", theme);
+	        } catch (e) {}
+	    })();
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="css/kube.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/custom.min.css" />
+	<link rel="shortcut icon" href="img/como_favicon.ico" />
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<title>Cody C. Baker, Ph.D.</title>
+	<meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
 	<style>
 		.intro h1:before {
 			content: 'DATA';
 		}
 	</style>
-  <script type="module" crossorigin src="./assets/index-D85Sans6.js"></script>
+  <script type="module" crossorigin src="./assets/main-DJenMJcS.js"></script>
 </head>
 
 
 
 <body>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
 	<!-- Fixed top-right controls -->
 	<div class="nav-actions">
 		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
@@ -62,14 +63,14 @@
 						<li><a href="#" data-scroll-top>About</a></li>
 						<li><a href="#education">Education</a></li>
 						<li><a href="#skills">Skills</a></li>
-				        <li><a href="#experience">Experience</a></li>
-						<li><a href="#highlighted-projects">Projects</a></li>
-						<li><a href="#data-curation">Data Curation</a></li>
-						<li><a href="#publications">Publications</a></li>
+						<li><a href="#experience">Experience</a></li>
+						<li><a href="projects.html">Projects</a></li>
+						<li><a href="data-curation.html">Data Curation</a></li>
+						<li><a href="publications.html">Publications</a></li>
 				    </ul>
 				</nav>
 			</header>
-        </div>
+		</div>
 	</div>
 
 	<!-- Introduction -->
@@ -376,681 +377,7 @@
 
 
 
-	<!-- Projects (rendered at build time from projects/*.json; see src/build/sections.ts) -->
-	<div class="work section second" id="highlighted-projects">
-		<div class="container">
-			<h1>Highlighted Projects</h1>
-			<ul class="work-list">
-				<img src="img/guide_logo.png" alt="NWB GUIDE logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwb-guide">NWB GUIDE</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2023-2026</li>
-				<br>
-				<p>
-					Developed an intuitive user interface for file management using interactive validation and real-time suggestions, streamlining the process for data submission to NIH archives.
-					<br><br>
-					Ensured a robust testing suite involving multiple levels of integration and user interactions emulated using Puppeteer to enhance reliability and long-term maintainability.
-					<br><br>
-					Tracked and documented dozens of hands-on user tests to refine the user experience.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Validation</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">User Interface</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">User Experience</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Testing</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">JavaScript</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/nwb2bids_logo.svg" alt="nwb2bids logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
-				<br>
-				<li><a href="https://github.com/con/nwb2bids">nwb2bids</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2024-Present</li>
-				<br>
-				<p>
-					Created a metadata extraction tool for organizing datasets of NeurodataWithoutBorders (NWB) files following the Brain Imaging Data Structure (BIDS) structure. Encourages best practices in data curation, such as self-describing entities, FAIR principles, and rich Hierarchical Event Descriptor (HED) annotations.
-					<br><br>
-					Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode neurophysiology data.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">BIDS</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Standards</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Metadata</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">FAIR Data</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/neuroconv_logo.png" alt="NeuroConv logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
-				<br>
-				<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2020-2024</li>
-				<br>
-				<p>
-					Established an automated data conversion tool capable of reading more than 40 distinct data formats used by neurophysiology acquisition devices in order to automatically write to the NeurodataWithoutBorders (NWB) standard.
-					<br><br>
-					Designed universal APIs which transparently handled each layer of complexity to simplify the tasks of tagging, grouping, metadata transcription, temporal alignment, asset linking, buffering, chunking, and compression.
-					<br><br>
-					Implemented a distributed cloud deployment system to run large-scale, off-site, batched conversions through Amazon Web Services (AWS).
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">API Design</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">Cloud Computing</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">AWS</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/inspector_logo.png" alt="NWB Inspector logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwbinspector">NWB Inspector</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2022-2025</li>
-				<br>
-				<p>
-					Built a command line tool used by the NIH data archive to validate all data uploads, which ensures all submissions are provided automated suggestions for metadata improvements that enhance data findability and reuse.
-					<br><br>
-					Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Metadata</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Validation</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Command Line</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/dandi_compute_logo.png" alt="DANDI Compute logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
-				<br>
-				<li><a href="https://github.com/dandi-compute">DANDI Compute</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2025-Present</li>
-				<br>
-				<p>
-					Built an orchestration system that runs processing pipelines over assets already published on the DANDI Archive and uploads the results back to the archive, such as spike sorting through the AIND ephys pipeline and LFP extraction from raw electrophysiology.
-					<br><br>
-					Packages each unit of work as a self-describing job capsule carrying its own submission script, parameters, and provenance, runs it as part of a SLURM array job on the MIT Engaging cluster, and tracks every capsule through its lifecycle using nothing but the archive&#39;s own metadata.
-					<br><br>
-					Automated job submission through a self-hosted runner on the cluster, and published a results page for reviewing, comparing, and curating the pipeline runs.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Provenance</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Spike Sorting</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">HPC</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">Data Pipelines</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/s3_log_extraction_logo.svg" alt="S3 Log Extraction logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
-				<br>
-				<li><a href="https://github.com/dandi/s3-log-extraction">S3 Log Extraction</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2024-Present</li>
-				<br>
-				<p>
-					Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive and steadily being rolled out to others.
-					<br><br>
-					Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository.
-					<br><br>
-					Extended it for the DANDI Archive&#39;s own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Data Visualization</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Analytics</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">AWS</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/hearth_logo.svg" alt="HEARTH logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
-				<br>
-				<li><a href="https://hearth.emberarchive.org">HEARTH</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
-				<a href="https://www.npmjs.com/org/brain-bbqs">Packages</a>
-				<br>
-				<br>
-				<p>
-					Built the Hub for Exploratory Analysis, Resource-sharing, Testing, and Hypothesis-generation (HEARTH), a suite of web apps for the Brain Behavior Quantification and Synchronization (BBQS) consortium and its data on the EMBER Archive.
-					<br><br>
-					Includes an uploader for adding files to a Dandiset on the EMBER Archive through a simple drag-and-drop interface, a clip extractor for saving a snippet or single frame of a video, and an encoding helper for the education and comparison of video encodings. The latter two grew from prototypes created in collaboration with the Talmo Lab.
-					<br><br>
-					Generalized the shell the apps share into a template for new single-page, backend-free apps and a set of common component packages, each covered by unit, integration, and visual snapshot tests.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">EMBER</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">BBQS</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Video</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Web Apps</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Testing</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">TypeScript</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/historia_logo.svg" alt="Historia logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
-				<br>
-				<li><a href="https://github.com/CodyCBakerPhD/historia">Historia</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
-				<br>
-				<p>
-					Created a command line tool for backing up records of GitHub activity (the pull requests and issues a person opened, was assigned, or reviewed) for use in creating dashboard reports of work history.
-					<br><br>
-					Paired with a GitHub Action that runs the whole scheduled update of a work history data repository: fetching recent activity, committing it, populating a GitHub Projects board, and publishing a compressed archive of the data.
-					<br><br>
-					Distributed on PyPI and conda-forge.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Command Line</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">GitHub Actions</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Automation</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/neurosift_logo.png" alt="Neurosift logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
-				<br>
-				<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Consultant and Contributor &nbsp; | &nbsp; 2023-Present</li>
-				<li>Contribution: Added on-the-fly analyses computed in the browser: spectrograms of LFP streams with adjustable hyperparameters, and event-related signals that align any time series to a table of intervals.</li>
-				<br>
-				<p>
-					Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-format"><span class="tag-theme">format</span><span class="tag-name">HDF5</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Data Visualization</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Web Apps</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">User Experience</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">TypeScript</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/nwb_benchmarks_logo.png" alt="NWB Benchmarks logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwb-benchmarks">NWB Benchmarks</a> &nbsp; | &nbsp; Core Developer &nbsp; | &nbsp; 2024-Present</li>
-				<br>
-				<p>
-					Managed a collection of unit and integration tests whose performance metrics (time, memory, and web packets) are sampled against a range of environmental run configurations, machine specifications, and bandwidth limits with the results used to assess the performance of HDF5 and Zarr file packaging parameterization against cloud streaming methods.
-					<br><br>
-					Run outputs are aggregated into a common public database and built-in visualization tools generate reports of summary findings. A manuscript discussing interpretations and recommendations is in preparation.
-					<br><br>
-					Built as an extension on top of the popular Airspeed Velocity (ASV) benchmarking framework.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-format"><span class="tag-theme">format</span><span class="tag-name">HDF5</span></span>
-					<span class="tag tag-format"><span class="tag-theme">format</span><span class="tag-name">Zarr</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Benchmarking</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li><a href="https://github.com/con/duct">duct</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2025-Present</li>
-				<li>Contribution: Added macOS support and CI runners, a basic structure for using duct as a library, demonstrated self-contained executable binary builds, and clearer errors on unsupported systems.</li>
-				<br>
-				<p>
-					Maintained a simple command line tool for monitoring and maintaining records of process-specific system resource utilization of any other command line invocation.
-					<br><br>
-					Tracks wall clock time, CPU time, RAM consumption, and more!
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Command Line</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Continuous Integration</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Resource Monitoring</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li><a href="https://github.com/hdmf-dev/hdmf">Hierarchical Data Modeling Framework (HDMF)</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2021-2025</li>
-				<li>Contribution: Created the GenericDataChunkIterator for more efficient lazy, buffered writing of terabyte-scale datasets (existing defaults overlapped chunks and had poor default chunking heuristics), later extending it with serialization, parallel orchestration, and progress bar control.</li>
-				<br>
-				<p>
-					Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-format"><span class="tag-theme">format</span><span class="tag-name">HDF5</span></span>
-					<span class="tag tag-format"><span class="tag-theme">format</span><span class="tag-name">Zarr</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Standards</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">Parallel Computing</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<img src="img/nwbwidgets_logo.png" alt="NWB Widgets (Legacy) logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwbwidgets">NWB Widgets (Legacy)</a> &nbsp; | &nbsp; Developer &nbsp; | &nbsp; 2021-2023</li>
-				<br>
-				<p>
-					Drafted Jupyter widgets-based tools for visualizing the contents of terabyte-scale neurophysiology datasets. Supports many custom plugins for specific neural data types. Has some remote streaming capability, but is more intended for reading from local disks.
-					<br><br>
-					Largely replaced by the Neurosift browser-based application.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Data Visualization</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-
-
-	<!-- Data Curation (rendered at build time from datasets/*.json; see src/build/sections.ts) -->
-	<div class="work section second" id="data-curation">
-		<div class="container">
-			<h1>Data Curation</h1>
-			<p>
-				Over the years, I have participated directly (by acting as the primary point person) or indirectly (in a
-				supervisory capacity) in the management, curation, and publication of dozens of high-impact datasets across many research institutions.
-				<br><br>
-				Those described below are among the more notable.
-			</p>
-			<br>
-			<ul class="work-list">
-				<h3>Visual Coding (2-Photon Calcium Imaging)</h3>
-				<li>Group: Neural Dynamics and Computing &nbsp; | &nbsp; Location: Allen Institute for Brain Science &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer</li>
-				<a href="https://dandiarchive.org/dandiset/000728/0.240827.1809">Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/blob/694e97043373e2d1138d58af89b7be8dd5a3786b/000728/AllenInstitute/visual_coding_ophys_tutorial.ipynb">Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/visual-coding-to-nwb-v2">Conversion Code</a>
-				<br>
-				<p>
-					Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.
-					<br><br>
-					Published a total of <strong>93.4 TB</strong> of visual cortex microscopy data on the associated NIH data archive.
-					<br><br>
-					Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.
-					<br><br>
-					Significant portions of this tutorial later became the flagship scientific example of the DANDI archive indexed by the Open Data Program (AWS) landing page.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Calcium Imaging</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Visual Cortex</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<h3>Brain Wide Map</h3>
-				<li>Group: International Brain Lab &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer</li>
-				<a href="https://doi.org/10.1038/s41586-025-09235-0">Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000409/draft">Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/tree/master/000409/IBL">Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/IBL-to-nwb">Conversion Code</a>
-				<br>
-				<p>
-					Wrote conversion code which interfaced with PostgreSQL metadata database to standardize the data structure of thousands of extracellular electrophysiology experiments with complex behavior.
-					<br><br>
-					Uploaded a total of <strong>66 TB</strong> of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Extracellular Electrophysiology</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Behavior</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<h3>Neural signal propagation atlas of Caenorhabditis elegans</h3>
-				<li>Group: Leifer Lab &nbsp; | &nbsp; Location: Princeton University &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer</li>
-				<a href="https://doi.org/10.1038/s41586-023-06683-4">Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/001075/0.240930.1859">Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/tree/master/001075">Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/leifer_lab_to_nwb">Conversion Code</a>
-				<br>
-				<p>
-					Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.
-					<br><br>
-					Published a total of <strong>10 TB</strong> of C. elegans microscopy data on the associated NIH data archive.
-					<br><br>
-					Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-organisms"><span class="tag-theme">organisms</span><span class="tag-name">C. elegans</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Volumetric Imaging</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<h3>Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior</h3>
-				<li>Group: Ahrens Lab &nbsp; | &nbsp; Location: Janelia Research Campus (HHMI) &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer</li>
-				<a href="https://doi.org/10.1016/j.cell.2019.05.050">Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000350/0.240822.1759">Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/ahrens-lab-to-nwb">Conversion Code</a>
-				<br>
-				<p>
-					Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality environment and some limited electrophysiology responses from peripheral motor nerves.
-					<br><br>
-					Published a total of <strong>23 TB</strong> of volumetric whole-brain zebrafish microscopy data on the associated NIH data archive.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-organisms"><span class="tag-theme">organisms</span><span class="tag-name">Zebrafish</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Volumetric Imaging</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Virtual Reality</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Glia</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<h3>MICrONS</h3>
-				<li>Group: Tolias Lab &nbsp; | &nbsp; Location: Baylor College of Medicine &nbsp; | &nbsp; Modality: Microscopy &nbsp; | &nbsp; Role: Supervisor</li>
-				<a href="https://doi.org/10.1038/s41586-025-08790-w">Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000402/0.230307.2132">Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/blob/master/000402/MICrONS/demo/000402_microns_demo.ipynb">Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/MICrONS-to-nwb">Conversion Code</a>
-				<br>
-				<p>
-					Supervised the conversion and publication of a high-value dataset which combined large-scale two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.
-					<br><br>
-					Resulted in the publication of a total <strong>1.2 TB</strong> of functional imaging data on the NIH data archive, with region IDs coregistered with the associated electron microscopy datasets.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">BossDB</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Calcium Imaging</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Electron Microscopy</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Behavior</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<h3>Miscellaneous (Buzsaki Lab)</h3>
-				<li>Group: Buzsaki Lab &nbsp; | &nbsp; Location: New York University &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer</li>
-				<a href="https://github.com/catalystneuro/buzsaki-lab-to-nwb">Conversion Code</a>
-				<br>
-				<p>
-					Wrote custom conversion code for a dozen previous datasets. Unique aspects of these data collections include temperature-modulating probes, long-term passive recordings of spontaneous behavior, and paired optogenetic stimulation with extracellular electrophysiology.
-					<br><br>
-					Published a total of <strong>39 TB</strong> of mouse electrophysiology and behavioral data on the associated NIH data archive, including the first TB-scale dataset on DANDI.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-organisms"><span class="tag-theme">organisms</span><span class="tag-name">Mouse</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Extracellular Electrophysiology</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Optogenetics</span></span>
-					<span class="tag tag-methods"><span class="tag-theme">methods</span><span class="tag-name">Behavior</span></span>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-
-
-	<!-- Publications (rendered at build time from publications/*.json; see src/build/sections.ts) -->
-	<div class="work section second" id="publications">
-		<div class="container">
-			<h1>Publications</h1>
-			<h2>Journal Articles</h2>
-			<ul class="work-list">
-				<li>
-					C. J. Gillon, <strong>C. Baker</strong>, R. Ly, E. Balzani, B. W. Brunton, M. Schottdorf, S. Ghosh, and N. Dehghani (2025).
-					<em>Open data in neurophysiology: Advancements, solutions &amp; challenges.</em>
-					eNeuro, vol. 12, no. 11.
-					<a href="https://doi.org/10.1523/ENEURO.0486-24.2025">DOI</a>
-				</li>
-				<br>
-				<p>
-					Review article summarizing the current state of open data sharing in the field of neurophysiology as portrayed by the myriad of presentations and ensuing discussions from the inaugural Open Data in Neuroscience (ODIN) conference at MIT in 2023.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Open Data</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Sharing</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					K. Gunalan, R. Choudhury, et al. (2025).
-					<em>DANDI: Shaping the future of neurophysiology and neuroimage data publishing and exploration through collaboration with the community, standards, and analytic platforms.</em>
-					In preparation.
-				</li>
-				<br>
-				<p>
-					An in-progress manuscript detailing the cloud architecture, core features, and future plans for the DANDI archive for neurophysiology and neuroimaging data. Includes contributions from the entire extended DANDI team (10+ authors).
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Standards</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Sharing</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">Cloud Computing</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					R. Ly, <strong>C. Baker</strong>, S. Prince, and O. Rübel (2025).
-					<em>A practical evaluation of remote access methods for neurophysiology data in the cloud.</em>
-					In preparation.
-				</li>
-				<br>
-				<p>
-					An in-progress manuscript detailing a series of benchmarks which evaluate the performance of various remote access methods for reading data stored in AWS S3 cloud storage across a range of environmental and machine configurations.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Benchmarking</span></span>
-					<span class="tag tag-computing"><span class="tag-theme">computing</span><span class="tag-name">AWS</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					H. Mayorquin, <strong>C. Baker</strong>, P. Adkisson-Floro, S. Weigl, A. Trappani, L. Tauffer, O. Rübel, and B. Dichter (2025).
-					<em>NeuroConv: Streamlining neurophysiology data conversion to the NWB standard.</em>
-					Python in Science Conference, 2025.
-					<a href="https://doi.org/10.25080/cehj4257">DOI</a>
-				</li>
-				<br>
-				<p>
-					The seminal article presented at the SciPy conference which describes the years-long effort of creating NeuroConv, the automated data conversion tool capable of translating more than 40 distinct data formats used by neurophysiology acquisition devices to the NWB standard.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-					<span class="tag tag-languages"><span class="tag-theme">languages</span><span class="tag-name">Python</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					J. Magland, J. Soules, <strong>C. Baker</strong>, and B. Dichter (2024).
-					<em>Neurosift: DANDI exploration and NWB visualization in the browser.</em>
-					Journal of Open Source Software, vol. 9, no. 97, p. 6590, 2024.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Data Visualization</span></span>
-					<span class="tag tag-engineering"><span class="tag-theme">engineering</span><span class="tag-name">Web Apps</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					M. Hawrylycz, M. E. Martone, et al. (2023).
-					<em>A guide to the BRAIN Initiative Cell Census Network data ecosystem.</em>
-					PLoS biology, vol. 21, no. 6, e3002133, 2023.
-				</li>
-				<br>
-				<p>
-					Consortium article (with dozens of authors) describing the data ecosystem developed by the BRAIN Initiative Cell Census Network, of which the DANDI Archive is a core component for data sharing and publication.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">BRAIN Initiative</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Sharing</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, E. Froudarakis, D. Yatsenko, A. S. Tolias, and R. Rosenbaum (2020).
-					<em>Inference of synaptic connectivity and external variability in neural microcircuits.</em>
-					Journal of Computational Neuroscience, vol. 48, pp. 123–147, 2020.
-				</li>
-				<br>
-				<p>
-					This paper made up the bulk of my doctoral thesis which explores the relationship between anatomical synaptic connectivity and observed spike train correlations in biophysically realistic systems of spiking neurons.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Computational Neuroscience</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Spiking Neural Networks</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Synaptic Connectivity</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Correlations</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, V. Zhu, and R. Rosenbaum (2020).
-					<em>Nonlinear stimulus representations in neural circuits with approximate excitatory-inhibitory balance.</em>
-					PLoS computational biology, vol. 16, no. 9, e1008192, 2020.
-				</li>
-				<br>
-				<p>
-					This paper demonstrates how even simple biophysical plasticity rules can give rise to complex nonlinear computations in networks of spiking neurons operating within a semi-balanced regime. Trained a realistic spiking neural network in an unsupervised manner to perform image classification on the MNIST dataset.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Computational Neuroscience</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Spiking Neural Networks</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Balanced Networks</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Synaptic Plasticity</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Unsupervised Learning</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, C. Ebsch, I. Lampl, and R. Rosenbaum (2019).
-					<em>Correlated states in balanced neuronal networks.</em>
-					Physical Review E, vol. 99, no. 5, p. 052 414, 2019.
-				</li>
-				<br>
-				<p>
-					My very first publication - mathematically derives the asymptotic scaling for spike count correlations in balanced networks of spiking neurons.
-				</p>
-				<li class="tag-list">
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Computational Neuroscience</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Spiking Neural Networks</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Balanced Networks</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Correlations</span></span>
-				</li>
-			</ul>
-			<br><br>
-			<h2>Conference Presentations</h2>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, G. Flynn, R. Ly, O. Rübel, and B. Dichter (2024).
-					<em>NWB GUIDE: Simplifying the conversion of neurophysiology data to NWB format.</em>
-					Society for Neuroscience (SfN) 2024.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, S. Weigl, H. Mayorquin, and B. Dichter (2023).
-					<em>NeuroConv: Automated conversion of neurophysiology data to NWB format.</em>
-					Society for Neuroscience (SfN) 2023.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, V. Zhu, and R. Rosenbaum (2020).
-					<em>Nonlinear computations in semi-balanced networks.</em>
-					Computational and Systems Neuroscience (COSYNE) 2020. Contributed talk (top 4% of abstracts).
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Computational Neuroscience</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Balanced Networks</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong> and R. Rosenbaum (2018).
-					<em>Inferring connectivity and latent input covariance from spike train correlations.</em>
-					Computational and Systems Neuroscience (COSYNE) 2018. Poster (top 43% of abstracts).
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Computational Neuroscience</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Synaptic Connectivity</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Correlations</span></span>
-				</li>
-			</ul>
-			<br><br>
-			<h2>Workshops</h2>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, R. Ly, and B. Dichter (2024).
-					<em>Neurodata Without Borders and DANDI Archive Tutorial.</em>
-					NWB and DANDI Workshop, Baylor College of Medicine.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong> (2023).
-					<em>Neuroconv and NWB GUIDE tutorial.</em>
-					NWB User Days, Janelia Research Campus.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong> and R. Ly (2023).
-					<em>Neurodata Without Borders and DANDI Archive Tutorial.</em>
-					Pre-conference, COSYNE.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong>, O. Rübel, and S. Ghosh (2023).
-					<em>Neurodata Without Borders and DANDI Archive Hackathon.</em>
-					NeuroDataShare, Sainsbury Wellcome Centre.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-archives"><span class="tag-theme">archives</span><span class="tag-name">DANDI</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong> and G. Viejo (2023).
-					<em>Artificial intelligence, machine learning, computing, and visualization in neuroinformatics.</em>
-					Open Data in Neuroscience (ODIN), Massachusetts Institute of Technology.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Open Data</span></span>
-					<span class="tag tag-neuroscience"><span class="tag-theme">neuroscience</span><span class="tag-name">Neuroinformatics</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Data Visualization</span></span>
-					<span class="tag tag-analysis"><span class="tag-theme">analysis</span><span class="tag-name">Machine Learning</span></span>
-				</li>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<strong>C. Baker</strong> (2022).
-					<em>NeuroConv tutorial.</em>
-					NWB User Days, Janelia Research Campus.
-				</li>
-				<li class="tag-list">
-					<span class="tag tag-standards"><span class="tag-theme">standards</span><span class="tag-name">NWB</span></span>
-					<span class="tag tag-data"><span class="tag-theme">data</span><span class="tag-name">Data Conversion</span></span>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-
-
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
 	<!-- Quote -->
 	<div class="quote">
 		<div class="container text-centered">
@@ -1060,6 +387,18 @@
 
 	<footer>
 		<div class="container">
+			<!-- The same links as the navigation bar, for readers who reach the bottom of a page. -->
+			<nav class="footer-nav" aria-label="Footer">
+				<ul class="list-flat">
+					<li><a href="#" data-scroll-top>About</a></li>
+					<li><a href="#education">Education</a></li>
+					<li><a href="#skills">Skills</a></li>
+					<li><a href="#experience">Experience</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="data-curation.html">Data Curation</a></li>
+					<li><a href="publications.html">Publications</a></li>
+				</ul>
+			</nav>
 			<div class="units-row">
 			    <div class="unit-50">
 					<ul class="social list-flat right">
@@ -1071,7 +410,7 @@
 			</div>
 			<div class="footer-version">
 				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
-				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.4.0</a>
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.5.0</a>
 			</div>
 		</div>
 	</footer>
@@ -1079,8 +418,7 @@
 	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/typed.min.js"></script>
-    <script src="js/kube.min.js"></script>
-
+	<script src="js/kube.min.js"></script>
 </body>
 
 
