@@ -14,6 +14,7 @@
   "description": [
     "Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.",
     "Published a total of **93.4 TB** of visual cortex microscopy data on the associated NIH data archive.",
-    "Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset."
+    "Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.",
+    "Significant portions of this tutorial later became the flagship scientific example of the DANDI archive indexed by the Open Data Program (AWS) landing page."
   ]
 }
