@@ -410,6 +410,62 @@ a:hover {
     margin-top: 6px;
 }
 
+/* ---------- Tags ---------- */
+
+.work .work-list li.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+}
+
+.work .work-list .tag {
+    display: inline-flex;
+    font-size: 0.8em;
+    line-height: 1.9em;
+    white-space: nowrap;
+    border: 1px solid var(--tag-color);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.work .work-list .tag-theme {
+    padding: 0 7px 0 9px;
+    color: var(--tag-on-color);
+    background: var(--tag-color);
+}
+
+.work .work-list .tag-name {
+    padding: 0 9px 0 7px;
+    font-weight: 700;
+    color: var(--ink);
+    background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
+}
+
+/* The darkest viridis steps barely stand out from a dark card, so the outline is lightened. */
+:root[data-theme="dark"] .work .work-list .tag {
+    border-color: color-mix(in srgb, var(--tag-color) 70%, #ffffff);
+}
+
+:root[data-theme="dark"] .work .work-list .tag-name {
+    background: color-mix(in srgb, var(--tag-color) 30%, var(--card-bg));
+}
+
+/* One step of the viridis palette per theme, in display order, so it stays
+   distinguishable with color vision deficiencies. Text on the darker half is
+   white and on the lighter half near-black, each at 4.5:1 contrast or more. */
+.tag-standards { --tag-color: #440154; --tag-on-color: #ffffff; }
+.tag-format { --tag-color: #482475; --tag-on-color: #ffffff; }
+.tag-archives { --tag-color: #414487; --tag-on-color: #ffffff; }
+.tag-data { --tag-color: #355f8d; --tag-on-color: #ffffff; }
+.tag-organisms { --tag-color: #2a788e; --tag-on-color: #ffffff; }
+.tag-methods { --tag-color: #21918c; --tag-on-color: #0b0f14; }
+.tag-neuroscience { --tag-color: #22a884; --tag-on-color: #0b0f14; }
+.tag-analysis { --tag-color: #44bf70; --tag-on-color: #0b0f14; }
+.tag-engineering { --tag-color: #7ad151; --tag-on-color: #0b0f14; }
+.tag-computing { --tag-color: #bddf26; --tag-on-color: #0b0f14; }
+.tag-languages { --tag-color: #fde725; --tag-on-color: #0b0f14; }
+
 /* ---------- Skills ---------- */
 
 .skills .skill-group {
