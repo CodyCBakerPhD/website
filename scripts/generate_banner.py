@@ -107,18 +107,18 @@ def cluster(seed: int) -> dict:
     return {"neurons": somas, "ribbons": ribbons}
 
 
-def render_cluster(c: dict) -> str:
+def render_cluster(neuron_cluster: dict) -> str:
     def layer(far: bool) -> str:
-        return "".join(f'<path d="{n["d"]}" opacity="{format(n["opacity"])}"/>' for n in c["neurons"] if n["far"] == far)
+        return "".join(f'<path d="{n["d"]}" opacity="{format(n["opacity"])}"/>' for n in neuron_cluster["neurons"] if n["far"] == far)
 
     somas = "".join(
         f'<circle cx="{format(n["x"])}" cy="{format(n["y"])}" r="{format(n["r"] * 4.5)}" fill="url(#halo)" '
         f'opacity="{format(n["opacity"] * (0.5 if n["far"] else 1))}"/>'
         f'<circle cx="{format(n["x"])}" cy="{format(n["y"])}" r="{format(n["r"] * (0.7 if n["far"] else 1))}" '
         f'fill="{"#9fdde6" if n["far"] else "#e3fffb"}" opacity="{0.6 if n["far"] else 0.95}"/>'
-        for n in c["neurons"]
+        for n in neuron_cluster["neurons"]
     )
-    ribbons = "".join(f'<path d="{d}"/>' for d in c["ribbons"])
+    ribbons = "".join(f'<path d="{d}"/>' for d in neuron_cluster["ribbons"])
     return (
         '<g class="net" mask="url(#fade)">'
         f'<g class="ribbons" fill="none" stroke="url(#ribbon)" stroke-width="0.6">{ribbons}</g>'
