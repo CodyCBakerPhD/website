@@ -26,7 +26,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 	<title>Highlighted Projects | Cody C. Baker, Ph.D.</title>
 	<meta name="description" content="Highlighted projects of Cody C. Baker, Ph.D.">
-  <script type="module" crossorigin src="./assets/main-Bq4p4drt.js"></script>
+  <script type="module" crossorigin src="./assets/main-DJenMJcS.js"></script>
 </head>
 
 <body>
@@ -68,19 +68,32 @@
 	<div class="work section second page" id="highlighted-projects">
 		<div class="container">
 			<h1>Highlighted Projects</h1>
-			<div class="record-search-scope" data-search="projects">
-				<form class="record-search" role="search" data-search-form>
-					<div class="record-search-field">
-						<i class="fa fa-search" aria-hidden="true"></i>
-						<input type="search" name="q" placeholder="Search projects" aria-label="Search projects" autocomplete="off" spellcheck="false" data-search-input>
+			<div class="record-search-scope" data-search>
+				<form class="record-search" role="search" data-search-form data-search-config="{&quot;noun&quot;:&quot;projects&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;name&quot;,&quot;description&quot;:&quot;Name of the project&quot;,&quot;kind&quot;:&quot;field&quot;},{&quot;key&quot;:&quot;role&quot;,&quot;description&quot;:&quot;Role on the project&quot;,&quot;kind&quot;:&quot;field&quot;},{&quot;key&quot;:&quot;year&quot;,&quot;description&quot;:&quot;Year of the work, or a range such as year:&gt;=2023&quot;,&quot;kind&quot;:&quot;year&quot;},{&quot;key&quot;:&quot;tag&quot;,&quot;description&quot;:&quot;Any tag, whatever its theme&quot;,&quot;kind&quot;:&quot;tag&quot;},{&quot;key&quot;:&quot;standards&quot;,&quot;description&quot;:&quot;Data standards&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;format&quot;,&quot;description&quot;:&quot;File formats&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;archives&quot;,&quot;description&quot;:&quot;Archives and initiatives&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;data&quot;,&quot;description&quot;:&quot;Data management&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;organisms&quot;,&quot;description&quot;:&quot;Organisms&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;methods&quot;,&quot;description&quot;:&quot;Experimental methods&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;neuroscience&quot;,&quot;description&quot;:&quot;Neuroscience&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;analysis&quot;,&quot;description&quot;:&quot;Analysis&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;engineering&quot;,&quot;description&quot;:&quot;Software engineering&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;computing&quot;,&quot;description&quot;:&quot;Computing infrastructure&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;languages&quot;,&quot;description&quot;:&quot;Programming languages&quot;,&quot;kind&quot;:&quot;theme&quot;}],&quot;sorts&quot;:[{&quot;id&quot;:&quot;featured&quot;,&quot;label&quot;:&quot;Featured&quot;},{&quot;id&quot;:&quot;recent&quot;,&quot;label&quot;:&quot;Most recent&quot;,&quot;descending&quot;:true},{&quot;id&quot;:&quot;oldest&quot;,&quot;label&quot;:&quot;Oldest&quot;},{&quot;id&quot;:&quot;name&quot;,&quot;label&quot;:&quot;Name (A–Z)&quot;}]}">
+					<div class="record-search-controls">
+						<div class="record-search-field">
+							<i class="fa fa-search" aria-hidden="true"></i>
+							<input type="search" name="q" placeholder="Search projects" aria-label="Search projects" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="projects-suggestions" data-search-input>
+							<ul class="record-search-suggestions" id="projects-suggestions" role="listbox" aria-label="Suggestions" tabindex="-1" hidden data-search-suggestions></ul>
+						</div>
+						<label class="record-search-sort">
+							<span>Sort by</span>
+							<span class="record-search-select">
+								<select name="sort" data-search-sort>
+									<option value="featured">Featured</option>
+									<option value="recent">Most recent</option>
+									<option value="oldest">Oldest</option>
+									<option value="name">Name (A–Z)</option>
+								</select>
+							</span>
+						</label>
 					</div>
 					<div class="record-search-summary">
 						<p class="record-search-status" role="status" data-search-status></p>
-						<div class="record-search-tags" data-search-tags></div>
-						<button type="button" class="record-search-clear" data-search-clear hidden>Clear filters</button>
+						<button type="button" class="record-search-clear" data-search-clear hidden>Clear search</button>
 					</div>
 				</form>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB GUIDE&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2023,2026],&quot;sort&quot;:{&quot;recent&quot;:&quot;2026-02 2023-03&quot;,&quot;oldest&quot;:&quot;2023-03&quot;,&quot;name&quot;:&quot;NWB GUIDE&quot;}}">
 					<img src="img/guide_logo.png" alt="NWB GUIDE logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 					<br>
 					<li><a href="https://github.com/NeurodataWithoutBorders/nwb-guide">NWB GUIDE</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2023-2026</li>
@@ -102,7 +115,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:JavaScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">JavaScript</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;nwb2bids&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2024,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2024-03&quot;,&quot;oldest&quot;:&quot;2024-03&quot;,&quot;name&quot;:&quot;nwb2bids&quot;}}">
 					<img src="img/nwb2bids_logo.svg" alt="nwb2bids logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 					<br>
 					<li><a href="https://github.com/con/nwb2bids">nwb2bids</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2024-Present</li>
@@ -121,7 +134,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NeuroConv&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2020,2024],&quot;sort&quot;:{&quot;recent&quot;:&quot;2024-10 2020-06&quot;,&quot;oldest&quot;:&quot;2020-06&quot;,&quot;name&quot;:&quot;NeuroConv&quot;}}">
 					<img src="img/neuroconv_logo.png" alt="NeuroConv logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 					<br>
 					<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2020-2024</li>
@@ -142,7 +155,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB Inspector&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2022,2025],&quot;sort&quot;:{&quot;recent&quot;:&quot;2025-09 2022-01&quot;,&quot;oldest&quot;:&quot;2022-01&quot;,&quot;name&quot;:&quot;NWB Inspector&quot;}}">
 					<img src="img/inspector_logo.png" alt="NWB Inspector logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 					<br>
 					<li><a href="https://github.com/NeurodataWithoutBorders/nwbinspector">NWB Inspector</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2022-2025</li>
@@ -161,7 +174,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;DANDI Compute&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025-11&quot;,&quot;oldest&quot;:&quot;2025-11&quot;,&quot;name&quot;:&quot;DANDI Compute&quot;}}">
 					<img src="img/dandi_compute_logo.png" alt="DANDI Compute logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
 					<br>
 					<li><a href="https://github.com/dandi-compute">DANDI Compute</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2025-Present</li>
@@ -182,7 +195,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;S3 Log Extraction&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2024,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2024-07&quot;,&quot;oldest&quot;:&quot;2024-07&quot;,&quot;name&quot;:&quot;S3 Log Extraction&quot;}}">
 					<img src="img/s3_log_extraction_logo.svg" alt="S3 Log Extraction logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 					<br>
 					<li><a href="https://github.com/dandi/s3-log-extraction">S3 Log Extraction</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2024-Present</li>
@@ -202,7 +215,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;HEARTH&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-07&quot;,&quot;oldest&quot;:&quot;2026-07&quot;,&quot;name&quot;:&quot;HEARTH&quot;}}">
 					<img src="img/hearth_logo.svg" alt="HEARTH logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
 					<br>
 					<li><a href="https://hearth.emberarchive.org">HEARTH</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
@@ -225,7 +238,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:TypeScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">TypeScript</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;Historia&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-04&quot;,&quot;oldest&quot;:&quot;2026-04&quot;,&quot;name&quot;:&quot;Historia&quot;}}">
 					<img src="img/historia_logo.svg" alt="Historia logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
 					<br>
 					<li><a href="https://github.com/CodyCBakerPhD/historia">Historia</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
@@ -244,7 +257,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;Neurosift&quot;],&quot;role&quot;:[&quot;UX Consultant and Contributor&quot;]},&quot;years&quot;:[2023,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2023-07&quot;,&quot;oldest&quot;:&quot;2023-07&quot;,&quot;name&quot;:&quot;Neurosift&quot;}}">
 					<img src="img/neurosift_logo.png" alt="Neurosift logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
 					<br>
 					<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Consultant and Contributor &nbsp; | &nbsp; 2023-Present</li>
@@ -263,7 +276,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:TypeScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">TypeScript</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB Benchmarks&quot;],&quot;role&quot;:[&quot;Core Developer&quot;]},&quot;years&quot;:[2024,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2024-01&quot;,&quot;oldest&quot;:&quot;2024-01&quot;,&quot;name&quot;:&quot;NWB Benchmarks&quot;}}">
 					<img src="img/nwb_benchmarks_logo.png" alt="NWB Benchmarks logo" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" />
 					<br>
 					<li><a href="https://github.com/NeurodataWithoutBorders/nwb-benchmarks">NWB Benchmarks</a> &nbsp; | &nbsp; Core Developer &nbsp; | &nbsp; 2024-Present</li>
@@ -283,7 +296,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;duct&quot;],&quot;role&quot;:[&quot;Contributor&quot;]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025-10&quot;,&quot;oldest&quot;:&quot;2025-10&quot;,&quot;name&quot;:&quot;duct&quot;}}">
 					<li><a href="https://github.com/con/duct">duct</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2025-Present</li>
 					<li>Contribution: Added macOS support and CI runners, a basic structure for using duct as a library, demonstrated self-contained executable binary builds, and clearer errors on unsupported systems.</li>
 					<br>
@@ -299,7 +312,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;Hierarchical Data Modeling Framework (HDMF)&quot;],&quot;role&quot;:[&quot;Contributor&quot;]},&quot;years&quot;:[2021,2025],&quot;sort&quot;:{&quot;recent&quot;:&quot;2025-09 2021-04&quot;,&quot;oldest&quot;:&quot;2021-04&quot;,&quot;name&quot;:&quot;Hierarchical Data Modeling Framework (HDMF)&quot;}}">
 					<li><a href="https://github.com/hdmf-dev/hdmf">Hierarchical Data Modeling Framework (HDMF)</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2021-2025</li>
 					<li>Contribution: Created the GenericDataChunkIterator for more efficient lazy, buffered writing of terabyte-scale datasets (existing defaults overlapped chunks and had poor default chunking heuristics), later extending it with serialization, parallel orchestration, and progress bar control.</li>
 					<br>
@@ -314,7 +327,7 @@
 						<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
 					</li>
 				</ul>
-				<ul class="work-list" data-search-item>
+				<ul class="work-list" data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB Widgets (Legacy)&quot;],&quot;role&quot;:[&quot;Developer&quot;]},&quot;years&quot;:[2021,2023],&quot;sort&quot;:{&quot;recent&quot;:&quot;2023-06 2021-05&quot;,&quot;oldest&quot;:&quot;2021-05&quot;,&quot;name&quot;:&quot;NWB Widgets (Legacy)&quot;}}">
 					<img src="img/nwbwidgets_logo.png" alt="NWB Widgets (Legacy) logo" style="display: block; margin-left: auto; margin-right: auto; width: 25%;" />
 					<br>
 					<li><a href="https://github.com/NeurodataWithoutBorders/nwbwidgets">NWB Widgets (Legacy)</a> &nbsp; | &nbsp; Developer &nbsp; | &nbsp; 2021-2023</li>
