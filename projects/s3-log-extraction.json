@@ -7,7 +7,7 @@
   "start_date": "2024-07",
   "logo": "img/s3_log_extraction_logo.svg",
   "description": [
-    "Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive.",
+    "Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive and slowly being rolled out to others.",
     "Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository.",
     "Extended it for the DANDI Archive's own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive."
   ]
