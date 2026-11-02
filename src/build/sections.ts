@@ -60,6 +60,7 @@ export const sections = [
       "dandi-2025",
       "remote-access-methods-2025",
       "neuroconv-2025",
+      "neurosift-2024",
       "biccn-data-ecosystem-2023",
       "synaptic-connectivity-inference-2020",
       "nonlinear-stimulus-representations-2020",
@@ -73,7 +74,7 @@ export const sections = [
       "nwb-dandi-tutorial-cosyne-2023",
       "nwb-dandi-hackathon-swc-2023",
       "neuroinformatics-odin-2023",
-      "neuroconv-tutorial-janelia-2023",
+      "neuroconv-tutorial-janelia-2022",
     ],
   }),
 ];

@@ -4,11 +4,9 @@
   "name": "NeuroConv tutorial",
   "kind": "workshop",
   "authors": [
-    "C. Baker",
-    "O. Ruebel"
+    "C. Baker"
   ],
-  "et_al": true,
-  "date": "2023",
+  "date": "2022",
   "venue": "NWB User Days, Janelia Research Campus",
   "tags": [
     "standards:NWB",

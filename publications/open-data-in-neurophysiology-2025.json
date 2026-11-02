@@ -5,9 +5,14 @@
   "kind": "article",
   "authors": [
     "C. J. Gillon",
-    "C. Baker"
+    "C. Baker",
+    "R. Ly",
+    "E. Balzani",
+    "B. W. Brunton",
+    "M. Schottdorf",
+    "S. Ghosh",
+    "N. Dehghani"
   ],
-  "et_al": true,
   "date": "2025",
   "venue": "eNeuro, vol. 12, no. 11",
   "doi": "https://doi.org/10.1523/ENEURO.0486-24.2025",

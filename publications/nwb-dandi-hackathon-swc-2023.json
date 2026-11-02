@@ -5,9 +5,9 @@
   "kind": "workshop",
   "authors": [
     "C. Baker",
-    "O. Ruebel"
+    "O. Ruebel",
+    "S. Ghosh"
   ],
-  "et_al": true,
   "date": "2023",
   "venue": "NeuroDataShare, Sainsbury Wellcome Centre",
   "tags": [

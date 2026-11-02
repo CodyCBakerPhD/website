@@ -5,9 +5,14 @@
   "kind": "article",
   "authors": [
     "H. Mayorquin",
-    "C. Baker"
+    "C. Baker",
+    "P. Adkisson-Floro",
+    "S. Weigl",
+    "A. Trappani",
+    "L. Tauffer",
+    "O. Rübel",
+    "B. Dichter"
   ],
-  "et_al": true,
   "date": "2025",
   "venue": "Python in Science Conference, 2025",
   "doi": "https://doi.org/10.25080/cehj4257",
