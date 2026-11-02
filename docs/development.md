@@ -1,19 +1,43 @@
 # Development
 
+## Pages
+
+Each HTML file directly under [`src/`](../src) is one page of the site:
+
+| Page                 | Holds                                   |
+|----------------------|-----------------------------------------|
+| `index.html`         | About, Education, Skills and Experience |
+| `projects.html`      | Highlighted Projects                    |
+| `data-curation.html` | Data Curation                           |
+| `publications.html`  | Publications                            |
+
+The parts every page shares live in [`src/partials/`](../src/partials) and are filled in at build time where a page marks them: `<!-- build:head -->` at the top of `<head>`, then `<!-- build:header -->` and `<!-- build:footer -->` in `<body>`.
+The navigation bar's links are listed in [`src/build/layout.ts`](../src/build/layout.ts), which renders them for each page, marking the page that is open.
+A new page needs those three placeholders and, to be reachable, a link there.
+
 ## Records
 
 Parts of the site are generated from machine-readable JSON records, one file per record:
 
-| Records                            | LinkML class  | Site section         |
-|------------------------------------|---------------|----------------------|
-| [`projects/`](../projects)         | `Project`     | Highlighted Projects |
-| [`datasets/`](../datasets)         | `Dataset`     | Data Curation        |
-| [`publications/`](../publications) | `Publication` | Publications         |
+| Records                            | LinkML class  | Section (page)                         |
+|------------------------------------|---------------|----------------------------------------|
+| [`projects/`](../projects)         | `Project`     | Highlighted Projects (`projects.html`) |
+| [`datasets/`](../datasets)         | `Dataset`     | Data Curation (`data-curation.html`)   |
+| [`publications/`](../publications) | `Publication` | Publications (`publications.html`)     |
 
 Records hold only facts about the work.
 How the site presents them, such as the order each section lists them in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
 A record's file name is its ID.
 The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+
+## Search
+
+Each record section has a search bar above its records, which filters them as you type.
+A record is shown when its card's text contains every word typed (ignoring case and accents) and it has every tag selected.
+Selecting a tag on any card filters by it, and selecting it again (or its label in the search bar) removes it.
+The filters are kept in the page's URL, such as `publications.html?q=cosyne&tag=standards:NWB`, so a filtered view can be linked to.
+
+The search bar's markup is rendered by [`src/build/search.ts`](../src/build/search.ts), and the filtering runs in the browser, in [`src/ts/search.ts`](../src/ts/search.ts).
 
 ## Tags
 
@@ -135,7 +159,7 @@ linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.
 linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
 ```
 
-`npm run build` (and `npm run dev`) also validates every record and renders each section into `index.html` as static HTML.
+`npm run build` (and `npm run dev`) also validates every record and renders each section into its page as static HTML.
 An invalid record fails the build with a message naming the file and the problem.
 
 ## Banner
@@ -161,5 +185,5 @@ Three things carry their own [semantic version](https://semver.org), independent
 Each record also names the schema version it was written against in `schema_version`.
 It may still be valid under later schema versions, so `schema_version` only needs updating when the record is revised to follow a newer schema.
 
-The site version is stamped at the bottom left of the page at build time.
+The site version is stamped at the bottom left of every page at build time.
 The `Check version bumps` workflow fails a pull request that changes any of these without increasing its version.

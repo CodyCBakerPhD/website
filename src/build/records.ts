@@ -1,4 +1,4 @@
-// Build-time rendering of the sections of index.html that come from JSON
+// Build-time rendering of the sections of the site that come from JSON
 // records (one file per record, validated against a JSON Schema generated from
 // the LinkML schema in schemas/records.yaml).
 //
@@ -6,19 +6,21 @@
 // rendering a broken page: malformed JSON, a schema violation, a repeated
 // tag, a failed section-specific check, or a mismatch between the records on
 // disk and the section's display order. Each section's markup replaces its
-// <!-- build:NAME --> placeholder, so the published page is static HTML.
+// <!-- build:NAME --> placeholder on whichever page holds it, so the published
+// pages are static HTML.
 
 import { readdirSync, readFileSync } from "node:fs";
-import { basename, resolve, sep } from "node:path";
+import { basename, relative, resolve, sep } from "node:path";
 import type { ErrorObject } from "ajv";
 import Ajv2019 from "ajv/dist/2019.js";
 import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
 import type { BaseRecord } from "./generated/records.ts";
+import { fillPlaceholder, hasPlaceholder } from "./html.ts";
 import { checkTags } from "./tags.ts";
 
 export interface SectionOptions<T extends BaseRecord> {
-  /** Names the section's <!-- build:NAME --> placeholder in index.html. */
+  /** Names the section's <!-- build:NAME --> placeholder, which one page under src/ holds. */
   name: string;
   /** Directory holding one JSON file per record, relative to the repository root. */
   recordsDir: string;
@@ -138,35 +140,23 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
   return options.order.map((id) => records.get(id) as T);
 }
 
-/** Replaces the section's placeholder in `html` with `lines`, keeping its indentation. */
-function injectSection(html: string, name: string, lines: readonly string[]): string {
-  const marker = `<!-- build:${name} -->`;
-  const markerLine = new RegExp(`^([ \\t]*)${marker}[ \\t]*$`, "m");
-  const match = markerLine.exec(html);
-  if (!match) {
-    throw new Error(`index.html is missing the ${marker} placeholder`);
-  }
-  const rendered = lines
-    .flatMap((line) => line.split("\n"))
-    .map((line) => match[1] + line)
-    .join("\n");
-  // A replacer function, so "$" sequences in the content are not special.
-  return html.replace(markerLine, () => rendered);
-}
-
 /**
- * Vite plugin that renders every section into index.html, in both `vite build`
- * and the dev server (which reloads when a record or schema changes).
+ * Vite plugin that renders each section into the page holding its placeholder,
+ * in both `vite build` and the dev server (which reloads when a record or
+ * schema changes). A build fails if some section's placeholder is on no page.
  */
 export function recordSections(sections: readonly Section[], { root }: { root: string }): Plugin {
   const watched = sections.flatMap((section) => section.watchPaths.map((path) => resolve(root, path)));
+  const placed = new Set<string>();
   let publicDir = "";
+  let isBuild = false;
 
   return {
     name: "record-sections",
 
     configResolved(config) {
       publicDir = config.publicDir;
+      isBuild = config.command === "build";
     },
 
     configureServer(server) {
@@ -183,15 +173,17 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
 
     transformIndexHtml: {
       // Before Vite's own HTML processing, so the generated markup is handled
-      // exactly as if it had been written in index.html by hand.
+      // exactly as if it had been written in the page by hand.
       order: "pre",
-      handler(html) {
+      handler(html, { filename }) {
+        const pageName = relative(root, filename);
         // Render every section before failing, so one build reports all problems.
         const failures: string[] = [];
         let page = html;
-        for (const section of sections) {
+        for (const section of sections.filter((section) => hasPlaceholder(html, section.name))) {
           try {
-            page = injectSection(page, section.name, section.render(root, publicDir));
+            page = fillPlaceholder(page, section.name, section.render(root, publicDir), pageName);
+            placed.add(section.name);
           } catch (error) {
             failures.push((error as Error).message);
           }
@@ -201,6 +193,17 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
         }
         return page;
       },
+    },
+
+    // By now every page has been transformed. The dev server transforms pages
+    // only as they are requested, so this check is for builds alone.
+    buildEnd(error) {
+      const missing = sections.filter((section) => !placed.has(section.name));
+      if (isBuild && !error && missing.length > 0) {
+        this.error(
+          missing.map((section) => `No page under src/ has the <!-- build:${section.name} --> placeholder`).join("\n"),
+        );
+      }
     },
   };
 }

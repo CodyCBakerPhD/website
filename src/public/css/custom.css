@@ -419,36 +419,65 @@ a:hover {
     margin-top: 16px;
 }
 
-.work .work-list .tag {
+/* Tags are buttons that filter the page by themselves (see src/ts/search.ts). */
+.work .tag {
     display: inline-flex;
+    margin: 0;
+    padding: 0;
+    font-family: "Lato", Arial, sans-serif;
     font-size: 0.8em;
+    font-weight: 400;
     line-height: 1.9em;
     white-space: nowrap;
+    background: none;
     border: 1px solid var(--tag-color);
     border-radius: 999px;
     overflow: hidden;
+    cursor: pointer;
 }
 
-.work .work-list .tag-theme {
+.work .tag:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.work .tag-theme {
     padding: 0 7px 0 9px;
     color: var(--tag-on-color);
     background: var(--tag-color);
 }
 
-.work .work-list .tag-name {
+.work .tag-name {
     padding: 0 9px 0 7px;
     font-weight: 700;
     color: var(--ink);
     background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
+    -webkit-transition: background-color 0.15s ease;
+    transition: background-color 0.15s ease;
+}
+
+.work .tag[aria-pressed="false"]:hover .tag-name {
+    background: color-mix(in srgb, var(--tag-color) 32%, var(--card-bg));
 }
 
 /* The darkest viridis steps barely stand out from a dark card, so the outline is lightened. */
-:root[data-theme="dark"] .work .work-list .tag {
+:root[data-theme="dark"] .work .tag {
     border-color: color-mix(in srgb, var(--tag-color) 70%, #ffffff);
 }
 
-:root[data-theme="dark"] .work .work-list .tag-name {
+:root[data-theme="dark"] .work .tag-name {
     background: color-mix(in srgb, var(--tag-color) 30%, var(--card-bg));
+}
+
+:root[data-theme="dark"] .work .tag[aria-pressed="false"]:hover .tag-name {
+    background: color-mix(in srgb, var(--tag-color) 50%, var(--card-bg));
+}
+
+/* A tag the page is filtered by, on a card or in the search bar, is filled in solid. */
+.work .tag[aria-pressed="true"] .tag-name,
+.work .record-search-tags .tag .tag-name {
+    color: var(--tag-on-color);
+    background: var(--tag-color);
 }
 
 /* One step of the viridis palette per theme, in display order, so it stays
@@ -465,6 +494,115 @@ a:hover {
 .tag-engineering { --tag-color: #7ad151; --tag-on-color: #0b0f14; }
 .tag-computing { --tag-color: #bddf26; --tag-on-color: #0b0f14; }
 .tag-languages { --tag-color: #fde725; --tag-on-color: #0b0f14; }
+
+/* ---------- Pages ---------- */
+
+/* Pages other than the home page have no hero above their first section. */
+.section.page {
+    padding-top: 60px;
+}
+
+/* ---------- Record search ---------- */
+
+.record-search-scope [hidden] {
+    display: none !important;
+}
+
+.record-search {
+    margin: 0 0 28px 0;
+}
+
+.record-search-field {
+    position: relative;
+}
+
+/* Above the input, which kube.css gives z-index 2. */
+.record-search-field .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    z-index: 3;
+    color: var(--muted);
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.record-search-field input[type="search"] {
+    width: 100%;
+    padding: 12px 20px 12px 48px;
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: var(--ink);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    box-shadow: var(--card-shadow);
+    -webkit-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.record-search-field input[type="search"]::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+.record-search-field input[type="search"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-border);
+}
+
+.record-search-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 14px;
+    margin-top: 12px;
+    padding: 0 8px;
+}
+
+.record-search-status {
+    margin: 0;
+    font-size: 0.9375em;
+    color: var(--muted);
+}
+
+.record-search-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.record-search-tags:empty {
+    display: none;
+}
+
+.record-search-tags .tag .fa {
+    margin-left: 2px;
+}
+
+.record-search-clear {
+    padding: 0 0 2px 0;
+    font-family: "Lato", Arial, sans-serif;
+    font-size: 0.9375em;
+    font-weight: 700;
+    line-height: 1.75em;
+    color: var(--accent-dark);
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--accent-border);
+    cursor: pointer;
+}
+
+.record-search-clear:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.record-search-clear:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 
 /* ---------- Skills ---------- */
 

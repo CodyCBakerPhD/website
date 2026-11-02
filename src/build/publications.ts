@@ -2,7 +2,7 @@
 
 import type { Publication } from "./generated/records.ts";
 import { PublicationKind } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs } from "./html.ts";
+import { escapeHtml, indent, renderCard, renderParagraphs } from "./html.ts";
 import { renderTags } from "./tags.ts";
 
 /** The site owner's name as it appears in author lists, shown in bold. */
@@ -44,17 +44,20 @@ function renderPublication(publication: Publication): string[] {
     lines.push("<br>", ...renderParagraphs(publication.description));
   }
   lines.push(...renderTags(publication.tags));
-  return ['<ul class="work-list">', ...indent(lines), "</ul>"];
+  return renderCard(lines);
 }
 
-/** Groups publications under a heading per kind, keeping the display order within each group. */
+/**
+ * Groups publications under a heading per kind, keeping the display order within each group.
+ * Each group is its own element so the search can hide a heading whose publications are all filtered out.
+ */
 export function renderPublications(publications: readonly Publication[]): string[] {
   const groups = Object.entries(KIND_HEADINGS)
     .map(([kind, heading]) => ({ heading, members: publications.filter((publication) => publication.kind === kind) }))
     .filter(({ members }) => members.length > 0);
-  return groups.flatMap(({ heading, members }, index) => [
-    ...(index > 0 ? ["<br><br>"] : []),
-    `<h2>${heading}</h2>`,
-    ...members.flatMap(renderPublication),
+  return groups.flatMap(({ heading, members }) => [
+    '<div class="record-group" data-search-group>',
+    ...indent([`<h2>${heading}</h2>`, ...members.flatMap(renderPublication)]),
+    "</div>",
   ]);
 }

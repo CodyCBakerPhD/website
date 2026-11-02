@@ -3,7 +3,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Project } from "./generated/records.ts";
-import { escapeHtml, indent, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
 import { renderTags } from "./tags.ts";
 
 /** Link labels, in the order the links are shown. */
@@ -53,7 +53,7 @@ export function renderProject(project: Project): string[] {
   }
   lines.push("<br>", ...renderParagraphs(project.description), ...renderTags(project.tags));
 
-  return ['<ul class="work-list">', ...indent(lines), "</ul>"];
+  return renderCard(lines);
 }
 
 export function checkProject(project: Project, { publicDir }: { publicDir: string }): string[] {

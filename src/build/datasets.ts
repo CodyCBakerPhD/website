@@ -1,7 +1,7 @@
 // Rendering of datasets/*.json for the "Data Curation" section.
 
 import type { Dataset } from "./generated/records.ts";
-import { escapeHtml, indent, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
 import { renderTags } from "./tags.ts";
 
 /** Link labels, in the order the links are shown. */
@@ -27,5 +27,5 @@ export function renderDataset(dataset: Dataset): string[] {
   }
 
   lines.push(...renderParagraphs(dataset.description), ...renderTags(dataset.tags));
-  return ['<ul class="work-list">', ...indent(lines), "</ul>"];
+  return renderCard(lines);
 }

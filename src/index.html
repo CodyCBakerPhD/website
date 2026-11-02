@@ -4,30 +4,9 @@
 
 
 <head>
-    <title>Cody C. Baker, Ph.D.</title>
-    <meta charset="utf-8" />
-    <script>
-        (function () {
-            try {
-                var stored = localStorage.getItem("theme");
-                var theme = stored === "light" || stored === "dark"
-                    ? stored
-                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-                document.documentElement.setAttribute("data-theme", theme);
-            } catch (e) {}
-        })();
-    </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="css/kube.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/custom.min.css" />
-    <link rel="shortcut icon" href="img/como_favicon.ico" />
-	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<!-- build:head -->
+	<title>Cody C. Baker, Ph.D.</title>
+	<meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
 	<style>
 		.intro h1:before {
 			content: 'DATA';
@@ -38,38 +17,7 @@
 
 
 <body>
-	<!-- Fixed top-right controls -->
-	<div class="nav-actions">
-		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
-			<i class="fa fa-moon-o theme-toggle-icon theme-toggle-icon-dark" aria-hidden="true"></i>
-			<i class="fa fa-sun-o theme-toggle-icon theme-toggle-icon-light" aria-hidden="true"></i>
-		</button>
-		<a class="icon-btn" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
-			<i class="fa fa-github" aria-hidden="true"></i>
-		</a>
-	</div>
-
-	<!-- Navigation -->
-	<div class="main-nav">
-		<div class="container">
-			<header class="group top-nav">
-				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
-				    <span class="logo">Cody C. Baker</span>
-				</div>
-			    <nav id="navbar-1" class="navbar item-nav">
-				    <ul>
-						<li><a href="#" data-scroll-top>About</a></li>
-						<li><a href="#education">Education</a></li>
-						<li><a href="#skills">Skills</a></li>
-				        <li><a href="#experience">Experience</a></li>
-						<li><a href="#highlighted-projects">Projects</a></li>
-						<li><a href="#data-curation">Data Curation</a></li>
-						<li><a href="#publications">Publications</a></li>
-				    </ul>
-				</nav>
-			</header>
-        </div>
-	</div>
+	<!-- build:header -->
 
 	<!-- Introduction -->
 	<div class="hero-name">
@@ -375,74 +323,7 @@
 
 
 
-	<!-- Projects (rendered at build time from projects/*.json; see src/build/sections.ts) -->
-	<div class="work section second" id="highlighted-projects">
-		<div class="container">
-			<h1>Highlighted Projects</h1>
-			<!-- build:projects -->
-		</div>
-	</div>
-
-
-
-	<!-- Data Curation (rendered at build time from datasets/*.json; see src/build/sections.ts) -->
-	<div class="work section second" id="data-curation">
-		<div class="container">
-			<h1>Data Curation</h1>
-			<p>
-				Over the years, I have participated directly (by acting as the primary point person) or indirectly (in a
-				supervisory capacity) in the management, curation, and publication of dozens of high-impact datasets across many research institutions.
-				<br><br>
-				Those described below are among the more notable.
-			</p>
-			<br>
-			<!-- build:datasets -->
-		</div>
-	</div>
-
-
-
-	<!-- Publications (rendered at build time from publications/*.json; see src/build/sections.ts) -->
-	<div class="work section second" id="publications">
-		<div class="container">
-			<h1>Publications</h1>
-			<!-- build:publications -->
-		</div>
-	</div>
-
-
-
-	<!-- Quote -->
-	<div class="quote">
-		<div class="container text-centered">
-			<h1>never stop learning</h1>
-		</div>
-	</div>
-
-	<footer>
-		<div class="container">
-			<div class="units-row">
-			    <div class="unit-50">
-					<ul class="social list-flat right">
-						<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
-						<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
-						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
-					</ul>
-			    </div>
-			</div>
-			<div class="footer-version">
-				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
-				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub"><!-- build:version --></a>
-			</div>
-		</div>
-	</footer>
-
-	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/typed.min.js"></script>
-    <script src="js/kube.min.js"></script>
-    <script type="module" src="./ts/main.ts"></script>
-
+	<!-- build:footer -->
 </body>
 
 
