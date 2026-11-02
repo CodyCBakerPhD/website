@@ -11,9 +11,9 @@
     "Tracks wall clock time, CPU time, RAM consumption, and more!"
   ],
   "tags": [
-    "Command Line",
-    "Continuous Integration",
-    "Resource Monitoring",
-    "Python"
+    "engineering:Command Line",
+    "engineering:Continuous Integration",
+    "engineering:Resource Monitoring",
+    "languages:Python"
   ]
 }

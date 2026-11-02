@@ -12,9 +12,9 @@
     "Distributed on PyPI and conda-forge."
   ],
   "tags": [
-    "Command Line",
-    "GitHub Actions",
-    "Automation",
-    "Python"
+    "engineering:Command Line",
+    "engineering:GitHub Actions",
+    "engineering:Automation",
+    "languages:Python"
   ]
 }

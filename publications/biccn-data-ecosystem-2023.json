@@ -14,8 +14,8 @@
     "Consortium article (with dozens of authors) describing the data ecosystem developed by the BRAIN Initiative Cell Census Network, of which the DANDI Archive is a core component for data sharing and publication."
   ],
   "tags": [
-    "DANDI",
-    "BRAIN Initiative",
-    "Data Sharing"
+    "archives:DANDI",
+    "archives:BRAIN Initiative",
+    "data:Data Sharing"
   ]
 }

@@ -3,7 +3,9 @@ name: tags
 title: Tags
 description: >-
   The tags a record may carry, grouped by theme. Each theme is one enum, and
-  the tags slot accepts a value from any of them. Themes are listed in the
+  the tags slot accepts a value from any of them. Every tag is written as a
+  flat theme:tag pair, e.g. "standards:NWB", whose key is shared by all the
+  tags of its theme. Themes are listed in the
   order the site shows them, and tags within a theme likewise. This file is
   part of the records schema (schemas/records.yaml imports it), so changing it
   bumps the version there. The tag table in docs/development.md is generated
@@ -23,8 +25,9 @@ imports:
 slots:
   tags:
     description: >-
-      Keywords for the topics, methods and technologies of the work, each
-      taken from the vocabulary in schemas/tags.yaml.
+      Keywords for the topics, methods and technologies of the work, each a
+      theme:tag pair from the vocabulary in schemas/tags.yaml, e.g.
+      "standards:NWB".
     slot_uri: schema:keywords
     multivalued: true
     list_elements_unique: true
@@ -47,168 +50,168 @@ enums:
     title: Standards and formats
     description: Data standards and the file formats they build on.
     permissible_values:
-      NWB:
+      standards:NWB:
         description: Neurodata Without Borders, the data standard for neurophysiology.
-      BIDS:
+      standards:BIDS:
         description: The Brain Imaging Data Structure, a standard for organizing datasets.
-      HDF5:
+      standards:HDF5:
         description: Hierarchical Data Format 5, a file format for large arrays.
-      Zarr:
+      standards:Zarr:
         description: A chunked, compressed array format suited to cloud storage.
 
   ArchiveTag:
     title: Archives and initiatives
     description: Data archives, and the initiatives and consortia behind them.
     permissible_values:
-      DANDI:
+      archives:DANDI:
         description: The DANDI Archive for neurophysiology and neuroimaging data.
-      EMBER:
+      archives:EMBER:
         description: The EMBER Archive, which holds the BBQS consortium's data.
-      BBQS:
+      archives:BBQS:
         description: The Brain Behavior Quantification and Synchronization consortium.
-      BRAIN Initiative:
+      archives:BRAIN Initiative:
         description: The NIH BRAIN Initiative and its consortia.
 
   DataManagementTag:
     title: Data management
     description: Preparing, describing, checking and sharing data.
     permissible_values:
-      Data Conversion:
+      data:Data Conversion:
         description: Converting data from acquisition or lab formats to a standard.
-      Data Standards:
+      data:Data Standards:
         description: Designing or extending schemas for structured data.
-      Metadata:
+      data:Metadata:
         description: Describing data so that it can be found, understood and reused.
-      Validation:
+      data:Validation:
         description: Checking data and metadata against a standard and its best practices.
-      Provenance:
+      data:Provenance:
         description: Recording how results were produced and from what.
-      FAIR Data:
+      data:FAIR Data:
         description: Making data findable, accessible, interoperable and reusable.
-      Open Data:
+      data:Open Data:
         description: Data released publicly for anyone to use.
-      Data Sharing:
+      data:Data Sharing:
         description: Publishing and distributing data to other researchers.
 
   OrganismTag:
     title: Organisms
     description: The species data was recorded from.
     permissible_values:
-      Mouse:
+      organisms:Mouse:
         description: The house mouse, Mus musculus.
-      Zebrafish:
+      organisms:Zebrafish:
         description: The zebrafish, Danio rerio.
-      C. elegans:
+      organisms:C. elegans:
         description: The nematode Caenorhabditis elegans.
 
   MethodTag:
     title: Experimental methods
     description: How data is recorded, and the kinds of data recorded.
     permissible_values:
-      Extracellular Electrophysiology:
+      methods:Extracellular Electrophysiology:
         description: Recording neural activity with electrodes outside the cells.
-      Calcium Imaging:
+      methods:Calcium Imaging:
         description: Optical recording of neural activity through calcium indicators.
-      Volumetric Imaging:
+      methods:Volumetric Imaging:
         description: Imaging at many depths to capture a volume of tissue.
-      Electron Microscopy:
+      methods:Electron Microscopy:
         description: Imaging of tissue structure at nanometer resolution.
-      Optogenetics:
+      methods:Optogenetics:
         description: Controlling neural activity with light.
-      Behavior:
+      methods:Behavior:
         description: Recording and quantifying what an animal does.
-      Virtual Reality:
+      methods:Virtual Reality:
         description: Virtual environments that respond to a behaving animal.
-      Video:
+      methods:Video:
         description: Recording, encoding and handling video.
 
   NeuroscienceTag:
     title: Neuroscience
     description: Fields, theories and subjects of neuroscience research.
     permissible_values:
-      Computational Neuroscience:
+      neuroscience:Computational Neuroscience:
         description: Mathematical and computational models of the nervous system.
-      Neuroinformatics:
+      neuroscience:Neuroinformatics:
         description: Infrastructure for organizing, sharing and analyzing neuroscience data.
-      Spiking Neural Networks:
+      neuroscience:Spiking Neural Networks:
         description: Models of networks of spiking neurons.
-      Balanced Networks:
+      neuroscience:Balanced Networks:
         description: Networks in which excitation and inhibition approximately cancel.
-      Synaptic Connectivity:
+      neuroscience:Synaptic Connectivity:
         description: The pattern of synaptic connections between neurons.
-      Synaptic Plasticity:
+      neuroscience:Synaptic Plasticity:
         description: Activity-dependent changes in synaptic strength.
-      Correlations:
+      neuroscience:Correlations:
         description: Correlated variability in neural activity, such as between spike trains.
-      Visual Cortex:
+      neuroscience:Visual Cortex:
         description: The cortical areas that process vision.
-      Glia:
+      neuroscience:Glia:
         description: The non-neuronal cells of the nervous system.
 
   AnalysisTag:
     title: Analysis
     description: Ways of analyzing and presenting data.
     permissible_values:
-      Spike Sorting:
+      analysis:Spike Sorting:
         description: Assigning extracellularly recorded spikes to individual neurons.
-      Data Visualization:
+      analysis:Data Visualization:
         description: Plotting and interactive exploration of data.
-      Analytics:
+      analysis:Analytics:
         description: Summarizing usage or activity logs into statistics.
-      Machine Learning:
+      analysis:Machine Learning:
         description: Models that learn from data.
-      Unsupervised Learning:
+      analysis:Unsupervised Learning:
         description: Learning structure from unlabeled data.
 
   EngineeringTag:
     title: Software engineering
     description: How the software is built, tested and delivered.
     permissible_values:
-      API Design:
+      engineering:API Design:
         description: Designing programming interfaces for other developers.
-      Command Line:
+      engineering:Command Line:
         description: Tools run from a terminal.
-      Web Apps:
+      engineering:Web Apps:
         description: Applications that run in a web browser.
-      User Interface:
+      engineering:User Interface:
         description: Graphical interfaces for people who do not write code.
-      User Experience:
+      engineering:User Experience:
         description: Shaping software around how people use it, informed by user testing.
-      Testing:
+      engineering:Testing:
         description: Automated unit, integration and end-to-end tests.
-      Benchmarking:
+      engineering:Benchmarking:
         description: Measuring and comparing performance.
-      Continuous Integration:
+      engineering:Continuous Integration:
         description: Building and testing automatically on every change.
-      GitHub Actions:
+      engineering:GitHub Actions:
         description: Workflows run by GitHub's automation platform.
-      Automation:
+      engineering:Automation:
         description: Scheduled or event-driven jobs that run without manual steps.
-      Resource Monitoring:
+      engineering:Resource Monitoring:
         description: Measuring the time, CPU and memory that programs use.
 
   ComputingTag:
     title: Computing infrastructure
     description: Where and at what scale the work runs.
     permissible_values:
-      Cloud Computing:
+      computing:Cloud Computing:
         description: Running or storing work on cloud services.
-      AWS:
+      computing:AWS:
         description: Amazon Web Services, including S3 storage.
-      HPC:
+      computing:HPC:
         description: High-performance computing clusters and their job schedulers.
-      Parallel Computing:
+      computing:Parallel Computing:
         description: Splitting work across processes or machines.
-      Data Pipelines:
+      computing:Data Pipelines:
         description: Multi-step processing workflows run over many datasets.
 
   LanguageTag:
     title: Programming languages
     description: The main language of a software project.
     permissible_values:
-      Python:
+      languages:Python:
         description: The Python programming language.
-      JavaScript:
+      languages:JavaScript:
         description: The JavaScript programming language.
-      TypeScript:
+      languages:TypeScript:
         description: The TypeScript programming language.

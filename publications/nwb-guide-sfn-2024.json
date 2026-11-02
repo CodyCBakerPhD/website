@@ -11,7 +11,7 @@
   "date": "2024",
   "venue": "Society for Neuroscience (SfN) 2024",
   "tags": [
-    "NWB",
-    "Data Conversion"
+    "standards:NWB",
+    "data:Data Conversion"
   ]
 }

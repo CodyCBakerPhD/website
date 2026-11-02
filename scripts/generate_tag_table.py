@@ -1,7 +1,8 @@
 """Writes the tag table in docs/development.md from the vocabulary in schemas/tags.yaml.
 
 Run by scripts/generate-schemas.sh. Fails if the tags slot and the theme enums
-in schemas/tags.yaml disagree, or if a tag is listed under more than one theme.
+in schemas/tags.yaml disagree, or if a theme's tags are not all theme:tag pairs
+sharing one key that no other theme uses.
 """
 
 import re
@@ -24,13 +25,18 @@ def rows() -> list[tuple[str, str, str]]:
     if sorted(themes) != sorted(enums):
         sys.exit(f"{VOCABULARY}: the tags slot's any_of must list each theme enum exactly once")
 
-    theme_of: dict[str, str] = {}
+    key_of: dict[str, str] = {}
     table = []
     for theme in themes:
-        for index, (tag, value) in enumerate(enums[theme]["permissible_values"].items()):
-            if tag in theme_of:
-                sys.exit(f"{VOCABULARY}: {tag!r} is listed under both {theme_of[tag]} and {theme}")
-            theme_of[tag] = theme
+        tags = enums[theme]["permissible_values"]
+        keys = {tag.split(":", 1)[0] for tag in tags if ":" in tag}
+        if len(keys) != 1 or not all(":" in tag for tag in tags):
+            sys.exit(f"{VOCABULARY}: every tag in {theme} must be a theme:tag pair, all with the same key")
+        (key,) = keys
+        if key in key_of:
+            sys.exit(f"{VOCABULARY}: {theme} and {key_of[key]} both use the key {key!r}")
+        key_of[key] = theme
+        for index, (tag, value) in enumerate(tags.items()):
             # The theme is named on its first row only, so the groups stand out.
             table.append((enums[theme]["title"] if index == 0 else "", f"`{tag}`", value["description"]))
     return table

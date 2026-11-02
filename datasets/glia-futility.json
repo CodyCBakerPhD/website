@@ -16,11 +16,11 @@
     "Published a total of **23 TB** of volumetric whole-brain zebrafish microscopy data on the associated NIH data archive."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "Zebrafish",
-    "Volumetric Imaging",
-    "Virtual Reality",
-    "Glia"
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Zebrafish",
+    "methods:Volumetric Imaging",
+    "methods:Virtual Reality",
+    "neuroscience:Glia"
   ]
 }

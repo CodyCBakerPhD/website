@@ -14,10 +14,10 @@
     "This paper demonstrates how even simple biophysical plasticity rules can give rise to complex nonlinear computations in networks of spiking neurons operating within a semi-balanced regime. Trained a realistic spiking neural network in an unsupervised manner to perform image classification on the MNIST dataset."
   ],
   "tags": [
-    "Computational Neuroscience",
-    "Spiking Neural Networks",
-    "Balanced Networks",
-    "Synaptic Plasticity",
-    "Unsupervised Learning"
+    "neuroscience:Computational Neuroscience",
+    "neuroscience:Spiking Neural Networks",
+    "neuroscience:Balanced Networks",
+    "neuroscience:Synaptic Plasticity",
+    "analysis:Unsupervised Learning"
   ]
 }

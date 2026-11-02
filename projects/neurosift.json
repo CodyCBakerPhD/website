@@ -11,12 +11,12 @@
     "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives."
   ],
   "tags": [
-    "NWB",
-    "HDF5",
-    "DANDI",
-    "Data Visualization",
-    "Web Apps",
-    "User Experience",
-    "TypeScript"
+    "standards:NWB",
+    "standards:HDF5",
+    "archives:DANDI",
+    "analysis:Data Visualization",
+    "engineering:Web Apps",
+    "engineering:User Experience",
+    "languages:TypeScript"
   ]
 }

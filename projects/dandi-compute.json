@@ -12,11 +12,11 @@
     "Automated job submission through a self-hosted runner on the cluster, and published a results page for reviewing, comparing, and curating the pipeline runs."
   ],
   "tags": [
-    "DANDI",
-    "Provenance",
-    "Spike Sorting",
-    "HPC",
-    "Data Pipelines",
-    "Python"
+    "archives:DANDI",
+    "data:Provenance",
+    "analysis:Spike Sorting",
+    "computing:HPC",
+    "computing:Data Pipelines",
+    "languages:Python"
   ]
 }

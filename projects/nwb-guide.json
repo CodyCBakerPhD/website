@@ -13,12 +13,12 @@
     "Tracked and documented dozens of hands-on user tests to refine the user experience."
   ],
   "tags": [
-    "NWB",
-    "Data Conversion",
-    "Validation",
-    "User Interface",
-    "User Experience",
-    "Testing",
-    "JavaScript"
+    "standards:NWB",
+    "data:Data Conversion",
+    "data:Validation",
+    "engineering:User Interface",
+    "engineering:User Experience",
+    "engineering:Testing",
+    "languages:JavaScript"
   ]
 }

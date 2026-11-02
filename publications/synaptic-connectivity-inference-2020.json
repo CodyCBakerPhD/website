@@ -14,9 +14,9 @@
     "This paper made up the bulk of my doctoral thesis which explores the relationship between anatomical synaptic connectivity and observed spike train correlations in biophysically realistic systems of spiking neurons."
   ],
   "tags": [
-    "Computational Neuroscience",
-    "Spiking Neural Networks",
-    "Synaptic Connectivity",
-    "Correlations"
+    "neuroscience:Computational Neuroscience",
+    "neuroscience:Spiking Neural Networks",
+    "neuroscience:Synaptic Connectivity",
+    "neuroscience:Correlations"
   ]
 }

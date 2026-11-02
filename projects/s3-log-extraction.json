@@ -12,10 +12,10 @@
     "Extended it for the DANDI Archive's own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive."
   ],
   "tags": [
-    "DANDI",
-    "Data Visualization",
-    "Analytics",
-    "AWS",
-    "Python"
+    "archives:DANDI",
+    "analysis:Data Visualization",
+    "analysis:Analytics",
+    "computing:AWS",
+    "languages:Python"
   ]
 }

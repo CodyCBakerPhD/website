@@ -12,11 +12,11 @@
     "Generalized the shell the apps share into a template for new single-page, backend-free apps and a set of common component packages, each covered by unit, integration, and visual snapshot tests."
   ],
   "tags": [
-    "EMBER",
-    "BBQS",
-    "Video",
-    "Web Apps",
-    "Testing",
-    "TypeScript"
+    "archives:EMBER",
+    "archives:BBQS",
+    "methods:Video",
+    "engineering:Web Apps",
+    "engineering:Testing",
+    "languages:TypeScript"
   ]
 }

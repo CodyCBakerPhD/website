@@ -51,7 +51,7 @@ export function defineSection<T extends BaseRecord>(options: SectionOptions<T>):
 
 function describeError(error: ErrorObject): string {
   if (error.keyword === "anyOf" && /^\/tags\/\d+$/.test(error.instancePath)) {
-    return `${error.instancePath} ${JSON.stringify(error.data)} is not a tag listed in schemas/tags.yaml`;
+    return `${error.instancePath} ${JSON.stringify(error.data)} is not one of the theme:tag pairs listed in schemas/tags.yaml`;
   }
   const detail =
     error.keyword === "additionalProperties"

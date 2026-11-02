@@ -17,9 +17,9 @@
     "Resulted in the publication of a total **1.2 TB** of functional imaging data on the NIH data archive, with region IDs coregistered with the associated electron microscopy datasets."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "Calcium Imaging",
-    "Electron Microscopy"
+    "standards:NWB",
+    "archives:DANDI",
+    "methods:Calcium Imaging",
+    "methods:Electron Microscopy"
   ]
 }

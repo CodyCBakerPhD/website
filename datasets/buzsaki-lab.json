@@ -14,11 +14,11 @@
     "Published a total of **39 TB** of mouse electrophysiology and behavioral data on the associated NIH data archive, including the first TB-scale dataset on DANDI."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "Mouse",
-    "Extracellular Electrophysiology",
-    "Optogenetics",
-    "Behavior"
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Mouse",
+    "methods:Extracellular Electrophysiology",
+    "methods:Optogenetics",
+    "methods:Behavior"
   ]
 }

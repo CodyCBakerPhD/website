@@ -16,9 +16,9 @@
     "Uploaded a total of **66 TB** of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "Extracellular Electrophysiology",
-    "Behavior"
+    "standards:NWB",
+    "archives:DANDI",
+    "methods:Extracellular Electrophysiology",
+    "methods:Behavior"
   ]
 }

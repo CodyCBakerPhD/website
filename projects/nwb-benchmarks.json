@@ -12,10 +12,10 @@
     "Built as an extension on top of the popular Airspeed Velocity (ASV) benchmarking framework."
   ],
   "tags": [
-    "NWB",
-    "HDF5",
-    "Zarr",
-    "Benchmarking",
-    "Python"
+    "standards:NWB",
+    "standards:HDF5",
+    "standards:Zarr",
+    "engineering:Benchmarking",
+    "languages:Python"
   ]
 }

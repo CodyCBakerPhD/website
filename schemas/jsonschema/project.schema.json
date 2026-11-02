@@ -3,11 +3,11 @@
         "AnalysisTag": {
             "description": "Ways of analyzing and presenting data.",
             "enum": [
-                "Spike Sorting",
-                "Data Visualization",
-                "Analytics",
-                "Machine Learning",
-                "Unsupervised Learning"
+                "analysis:Spike Sorting",
+                "analysis:Data Visualization",
+                "analysis:Analytics",
+                "analysis:Machine Learning",
+                "analysis:Unsupervised Learning"
             ],
             "title": "AnalysisTag",
             "type": "string"
@@ -15,10 +15,10 @@
         "ArchiveTag": {
             "description": "Data archives, and the initiatives and consortia behind them.",
             "enum": [
-                "DANDI",
-                "EMBER",
-                "BBQS",
-                "BRAIN Initiative"
+                "archives:DANDI",
+                "archives:EMBER",
+                "archives:BBQS",
+                "archives:BRAIN Initiative"
             ],
             "title": "ArchiveTag",
             "type": "string"
@@ -42,7 +42,7 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
                         "anyOf": [
                             {
@@ -93,11 +93,11 @@
         "ComputingTag": {
             "description": "Where and at what scale the work runs.",
             "enum": [
-                "Cloud Computing",
-                "AWS",
-                "HPC",
-                "Parallel Computing",
-                "Data Pipelines"
+                "computing:Cloud Computing",
+                "computing:AWS",
+                "computing:HPC",
+                "computing:Parallel Computing",
+                "computing:Data Pipelines"
             ],
             "title": "ComputingTag",
             "type": "string"
@@ -105,14 +105,14 @@
         "DataManagementTag": {
             "description": "Preparing, describing, checking and sharing data.",
             "enum": [
-                "Data Conversion",
-                "Data Standards",
-                "Metadata",
-                "Validation",
-                "Provenance",
-                "FAIR Data",
-                "Open Data",
-                "Data Sharing"
+                "data:Data Conversion",
+                "data:Data Standards",
+                "data:Metadata",
+                "data:Validation",
+                "data:Provenance",
+                "data:FAIR Data",
+                "data:Open Data",
+                "data:Data Sharing"
             ],
             "title": "DataManagementTag",
             "type": "string"
@@ -174,7 +174,7 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
                         "anyOf": [
                             {
@@ -273,17 +273,17 @@
         "EngineeringTag": {
             "description": "How the software is built, tested and delivered.",
             "enum": [
-                "API Design",
-                "Command Line",
-                "Web Apps",
-                "User Interface",
-                "User Experience",
-                "Testing",
-                "Benchmarking",
-                "Continuous Integration",
-                "GitHub Actions",
-                "Automation",
-                "Resource Monitoring"
+                "engineering:API Design",
+                "engineering:Command Line",
+                "engineering:Web Apps",
+                "engineering:User Interface",
+                "engineering:User Experience",
+                "engineering:Testing",
+                "engineering:Benchmarking",
+                "engineering:Continuous Integration",
+                "engineering:GitHub Actions",
+                "engineering:Automation",
+                "engineering:Resource Monitoring"
             ],
             "title": "EngineeringTag",
             "type": "string"
@@ -291,9 +291,9 @@
         "LanguageTag": {
             "description": "The main language of a software project.",
             "enum": [
-                "Python",
-                "JavaScript",
-                "TypeScript"
+                "languages:Python",
+                "languages:JavaScript",
+                "languages:TypeScript"
             ],
             "title": "LanguageTag",
             "type": "string"
@@ -301,14 +301,14 @@
         "MethodTag": {
             "description": "How data is recorded, and the kinds of data recorded.",
             "enum": [
-                "Extracellular Electrophysiology",
-                "Calcium Imaging",
-                "Volumetric Imaging",
-                "Electron Microscopy",
-                "Optogenetics",
-                "Behavior",
-                "Virtual Reality",
-                "Video"
+                "methods:Extracellular Electrophysiology",
+                "methods:Calcium Imaging",
+                "methods:Volumetric Imaging",
+                "methods:Electron Microscopy",
+                "methods:Optogenetics",
+                "methods:Behavior",
+                "methods:Virtual Reality",
+                "methods:Video"
             ],
             "title": "MethodTag",
             "type": "string"
@@ -316,15 +316,15 @@
         "NeuroscienceTag": {
             "description": "Fields, theories and subjects of neuroscience research.",
             "enum": [
-                "Computational Neuroscience",
-                "Neuroinformatics",
-                "Spiking Neural Networks",
-                "Balanced Networks",
-                "Synaptic Connectivity",
-                "Synaptic Plasticity",
-                "Correlations",
-                "Visual Cortex",
-                "Glia"
+                "neuroscience:Computational Neuroscience",
+                "neuroscience:Neuroinformatics",
+                "neuroscience:Spiking Neural Networks",
+                "neuroscience:Balanced Networks",
+                "neuroscience:Synaptic Connectivity",
+                "neuroscience:Synaptic Plasticity",
+                "neuroscience:Correlations",
+                "neuroscience:Visual Cortex",
+                "neuroscience:Glia"
             ],
             "title": "NeuroscienceTag",
             "type": "string"
@@ -332,9 +332,9 @@
         "OrganismTag": {
             "description": "The species data was recorded from.",
             "enum": [
-                "Mouse",
-                "Zebrafish",
-                "C. elegans"
+                "organisms:Mouse",
+                "organisms:Zebrafish",
+                "organisms:C. elegans"
             ],
             "title": "OrganismTag",
             "type": "string"
@@ -408,7 +408,7 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
                         "anyOf": [
                             {
@@ -544,7 +544,7 @@
                     "type": "string"
                 },
                 "tags": {
-                    "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
                         "anyOf": [
                             {
@@ -613,10 +613,10 @@
         "StandardTag": {
             "description": "Data standards and the file formats they build on.",
             "enum": [
-                "NWB",
-                "BIDS",
-                "HDF5",
-                "Zarr"
+                "standards:NWB",
+                "standards:BIDS",
+                "standards:HDF5",
+                "standards:Zarr"
             ],
             "title": "StandardTag",
             "type": "string"
@@ -693,7 +693,7 @@
             "type": "string"
         },
         "tags": {
-            "description": "Keywords for the topics, methods and technologies of the work, each taken from the vocabulary in schemas/tags.yaml.",
+            "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
             "items": {
                 "anyOf": [
                     {

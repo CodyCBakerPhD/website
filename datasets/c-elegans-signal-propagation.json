@@ -18,9 +18,9 @@
     "Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "C. elegans",
-    "Volumetric Imaging"
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:C. elegans",
+    "methods:Volumetric Imaging"
   ]
 }

@@ -13,11 +13,11 @@
     "Implemented a distributed cloud deployment system to run large-scale, off-site, batched conversions through Amazon Web Services (AWS)."
   ],
   "tags": [
-    "NWB",
-    "Data Conversion",
-    "API Design",
-    "Cloud Computing",
-    "AWS",
-    "Python"
+    "standards:NWB",
+    "data:Data Conversion",
+    "engineering:API Design",
+    "computing:Cloud Computing",
+    "computing:AWS",
+    "languages:Python"
   ]
 }

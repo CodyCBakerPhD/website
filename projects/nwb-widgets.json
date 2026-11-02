@@ -12,8 +12,8 @@
     "Largely replaced by the Neurosift browser-based application."
   ],
   "tags": [
-    "NWB",
-    "Data Visualization",
-    "Python"
+    "standards:NWB",
+    "analysis:Data Visualization",
+    "languages:Python"
   ]
 }

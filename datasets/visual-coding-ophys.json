@@ -18,9 +18,9 @@
     "Significant portions of this tutorial later became the flagship scientific example of the DANDI archive indexed by the Open Data Program (AWS) landing page."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "Calcium Imaging",
-    "Visual Cortex"
+    "standards:NWB",
+    "archives:DANDI",
+    "methods:Calcium Imaging",
+    "neuroscience:Visual Cortex"
   ]
 }

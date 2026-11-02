@@ -12,11 +12,11 @@
     "Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff."
   ],
   "tags": [
-    "NWB",
-    "DANDI",
-    "Metadata",
-    "Validation",
-    "Command Line",
-    "Python"
+    "standards:NWB",
+    "archives:DANDI",
+    "data:Metadata",
+    "data:Validation",
+    "engineering:Command Line",
+    "languages:Python"
   ]
 }

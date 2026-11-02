@@ -14,9 +14,9 @@
     "My very first publication - mathematically derives the asymptotic scaling for spike count correlations in balanced networks of spiking neurons."
   ],
   "tags": [
-    "Computational Neuroscience",
-    "Spiking Neural Networks",
-    "Balanced Networks",
-    "Correlations"
+    "neuroscience:Computational Neuroscience",
+    "neuroscience:Spiking Neural Networks",
+    "neuroscience:Balanced Networks",
+    "neuroscience:Correlations"
   ]
 }

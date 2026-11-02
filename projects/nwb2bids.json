@@ -11,11 +11,11 @@
     "Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode neurophysiology data."
   ],
   "tags": [
-    "NWB",
-    "BIDS",
-    "Data Standards",
-    "Metadata",
-    "FAIR Data",
-    "Python"
+    "standards:NWB",
+    "standards:BIDS",
+    "data:Data Standards",
+    "data:Metadata",
+    "data:FAIR Data",
+    "languages:Python"
   ]
 }

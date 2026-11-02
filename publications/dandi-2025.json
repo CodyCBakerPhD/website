@@ -14,9 +14,9 @@
     "An in-progress manuscript detailing the cloud architecture, core features, and future plans for the DANDI archive for neurophysiology and neuroimaging data. Includes contributions from the entire extended DANDI team (10+ authors)."
   ],
   "tags": [
-    "DANDI",
-    "Data Standards",
-    "Data Sharing",
-    "Cloud Computing"
+    "archives:DANDI",
+    "data:Data Standards",
+    "data:Data Sharing",
+    "computing:Cloud Computing"
   ]
 }

@@ -1,6 +1,7 @@
-// Display of record tags. The vocabulary, and the theme each tag belongs to,
-// come from schemas/tags.yaml through the generated enums; the order themes
-// are shown in and their labels are the site's choice, so they live here.
+// Display of record tags. Each tag is a flat theme:tag pair (e.g.
+// "standards:NWB") from the vocabulary in schemas/tags.yaml, which reaches the
+// build through the generated enums, one per theme. The order themes are
+// shown in is the site's choice, so it lives here.
 
 import {
   AnalysisTag,
@@ -17,27 +18,32 @@ import {
 import { escapeHtml } from "./html.ts";
 
 /**
- * Themes in display order, each with the label shown before its tags. The label
- * also names the theme's CSS class, tag-<label>, which sets its color.
+ * Themes in display order. A theme's key, the part of its tags before ":",
+ * names its CSS class, tag-<key>, which sets its color.
  */
 const THEMES = [
-  { label: "standards", tags: StandardTag },
-  { label: "archives", tags: ArchiveTag },
-  { label: "data", tags: DataManagementTag },
-  { label: "organisms", tags: OrganismTag },
-  { label: "methods", tags: MethodTag },
-  { label: "neuroscience", tags: NeuroscienceTag },
-  { label: "analysis", tags: AnalysisTag },
-  { label: "engineering", tags: EngineeringTag },
-  { label: "computing", tags: ComputingTag },
-  { label: "languages", tags: LanguageTag },
+  StandardTag,
+  ArchiveTag,
+  DataManagementTag,
+  OrganismTag,
+  MethodTag,
+  NeuroscienceTag,
+  AnalysisTag,
+  EngineeringTag,
+  ComputingTag,
+  LanguageTag,
 ] as const;
 
-/** Each tag's theme label, in display order: theme by theme, then as schemas/tags.yaml lists them. */
-const THEME_OF: ReadonlyMap<string, string> = new Map(
-  THEMES.flatMap(({ label, tags }) => Object.values(tags).map((tag): [string, string] => [tag, label])),
+/** Each tag's position in display order: theme by theme, then as schemas/tags.yaml lists them. */
+const RANK: ReadonlyMap<string, number> = new Map(
+  THEMES.flatMap((theme): string[] => Object.values(theme)).map((tag, index) => [tag, index]),
 );
-const RANK: ReadonlyMap<string, number> = new Map([...THEME_OF.keys()].map((tag, index) => [tag, index]));
+
+/** Splits "standards:NWB" into its theme key and tag. */
+function splitTag(tag: string): { key: string; name: string } {
+  const separator = tag.indexOf(":");
+  return { key: tag.slice(0, separator), name: tag.slice(separator + 1) };
+}
 
 /** Problems with a record's tags that its schema cannot catch. */
 export function checkTags(tags: readonly string[]): string[] {
@@ -47,7 +53,7 @@ export function checkTags(tags: readonly string[]): string[] {
     (tag) => `/tags lists "${tag}" more than once`,
   );
   const themeless = tags
-    .filter((tag) => !THEME_OF.has(tag))
+    .filter((tag) => !RANK.has(tag))
     .map((tag) => `/tags "${tag}" belongs to a theme missing from THEMES in src/build/tags.ts`);
   return [...repeated, ...themeless];
 }
@@ -58,11 +64,8 @@ export function renderTags(tags: readonly string[]): string[] {
   return [
     '<li class="tag-list">',
     ...sorted.map((tag) => {
-      const theme = THEME_OF.get(tag) ?? "";
-      return (
-        `\t<span class="tag tag-${theme}">` +
-        `<span class="tag-theme">${theme}</span><span class="tag-name">${escapeHtml(tag)}</span></span>`
-      );
+      const { key, name } = splitTag(escapeHtml(tag));
+      return `\t<span class="tag tag-${key}"><span class="tag-theme">${key}</span><span class="tag-name">${name}</span></span>`;
     }),
     "</li>",
   ];
