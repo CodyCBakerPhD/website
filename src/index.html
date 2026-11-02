@@ -375,163 +375,17 @@
 
 
 
-	<!-- Projects -->
+	<!-- Projects (rendered at build time from projects/*.json; see src/build/sections.ts) -->
 	<div class="work section second" id="highlighted-projects">
 		<div class="container">
 			<h1>Highlighted Projects</h1>
-			<ul class="work-list">
-				<img
-					src="img/guide_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 50%;"
-				/>
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwb-guide">NWB GUIDE</a> &nbsp; | &nbsp; Lead Developer</li>
-				<br>
-				<p>
-					Developed an intuitive user interface for file management using interactive validation and
-					real-time suggestions, streamlining the process for data submission to NIH archives.
-					<br><br>
-					Ensured a robust testing suite involving multiple levels of integration and user
-					interactions emulated using Puppeteer to enhance reliability and long-term maintainability.
-					<br><br>
-					Tracked and documented dozens of hands-on user tests to refine the user experience.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<img
-					src="img/nwb2bids_logo.svg" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 50%;"
-				/>
-				<br>
-				<li><a href="https://github.com/con/nwb2bids"> nwb2bids </a> &nbsp; | &nbsp;Lead Developer</li>
-				<br>
-				<p>
-					Created a metadata extraction tool for organizing datasets of NeurodataWithoutBorders (NWB) files
-					following the Brain Imaging Data Structure (BIDS) structure. Encourages best practices in data
-					curation, such as self-describing entities, FAIR principles, and rich Hierarchical Event
-					Descriptor (HED) annotations.
-					<br><br>
-					Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode
-					neurophysiology data.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<img
-					src="img/neuroconv_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 50%;"
-				/>
-				<br>
-				<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer</li>
-				<br>
-				<p>
-					Established an automated data conversion tool capable of reading more than 40 distinct
-					data formats used by neurophysiology acquisition devices in order to automatically write to the
-					NeurodataWithoutBorders (NWB) standard.
-					<br><br>
-					Designed universal APIs which transparently handled each layer of complexity to simplify the
-					tasks of tagging, grouping, metadata transcription, temporal alignment, asset linking, buffering,
-					chunking, and compression.
-					<br><br>
-					Implemented a distributed cloud deployment system to run large-scale, off-site, batched conversions
-					through Amazon Web Services (AWS).
-				</p>
-			</ul>
-			<ul class="work-list">
-				<img
-					src="img/inspector_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 50%;"
-				/>
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwbinspector">NWB Inspector</a> &nbsp; | &nbsp; Lead Developer</li>
-				<br>
-				<p>
-					Built a command line tool used by the NIH data archive to validate all data uploads, which
-					ensures all submissions are provided automated suggestions for metadata improvements that enhance
-					data findability and reuse.
-					<br><br>
-					Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<img
-					src="img/neurosift_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 25%;"
-				/>
-				<br>
-				<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Consultant</li>
-				<br>
-				<p>
-					Aided in the design of a browser-based application for visualizing the contents of terabyte-scale
-					neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events,
-					and all associated metadata through an intuitive exploration interface. Utilizes a specialized
-					HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<img
-					src="img/nwb_benchmarks_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 50%;"
-				/>
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwb_benchmarks">NWB Benchmarks</a> &nbsp; | &nbsp; Core Developer</li>
-				<br>
-				<p>
-					Managed a collection of unit and integration tests whose performance metrics (time, memory, and web
-					packets) are sampled against a range of environmental run configurations, machine
-					specifications, and bandwidth limits with the results used to assess the performance of HDF5 and
-					Zarr file packaging parameterization against cloud streaming methods.
-					<br><br>
-					Run outputs are aggregated into a common public database and built-in visualization tools generate
-					reports of summary findings. A manuscript discussing interpretations and recommendations is in
-					preparation.
-					<br><br>
-					Built as an extension on top of the popular Airspeed Velocity (ASV) benchmarking framework.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<li><a href="https://github.com/con/duct">duct</a> &nbsp; | &nbsp; Developer</li>
-				<br>
-				<p>
-				Maintained a simple command line tool for monitoring and maintaining records of process-specific system
-				resource utilization of any other command line invocation.
-				<br><br>
-				Tracks wall clock time, CPU time, RAM consumption, and more!
-				</p>
-			</ul>
-			<ul class="work-list">
-				<li>
-					<a href="https://github.com/hdmf/hdmf-dev">Hierarchical Data Modeling Framework (HDMF)</a>
-					&nbsp;| &nbsp; Contributor
-				</li>
-				<br>
-				<p>
-				Enhanced a generic schema language for defining structured data standards intended to be written to
-				group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing
-				lazy data buffering for terabyte-scale datasets.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<img
-					src="img/nwbwidgets_logo.png" alt="Centered Image" style="display: block; margin-left: auto;
-					margin-right: auto; width: 25%;"
-				/>
-				<br>
-				<li><a href="https://github.com/NeurodataWithoutBorders/nwbwidgets">NWB Widgets (Legacy)</a> &nbsp; | &nbsp; Developer</li>
-				<br>
-				<p>
-					Drafted Jupyter widgets-based tools for visualizing the contents of terabyte-scale neurophysiology
-					datasets. Supports many custom plugins for specific neural data types. Has some remote streaming
-					capability, but is more intended for reading from local disks.
-					<br><br>
-					Largely replaced by the Neurosift browser-based application.
-				</p>
-			</ul>
+			<!-- build:projects -->
 		</div>
 	</div>
 
 
 
-	<!-- Data Curation Projects -->
+	<!-- Data Curation (rendered at build time from datasets/*.json; see src/build/sections.ts) -->
 	<div class="work section second" id="data-curation">
 		<div class="container">
 			<h1>Data Curation</h1>
@@ -542,120 +396,7 @@
 				Those described below are among the more notable.
 			</p>
 			<br>
-			<ul class="work-list">
-				<h3>Visual Coding (2-Photon Calcium Imaging)</h3>
-				<li>
-					Group: Neural Dynamics and Computing &nbsp; | &nbsp; Location: Allen Institute for Brain Science
-				</li>
-				<li>
-					Modality: Microscopy  &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://dandiarchive.org/dandiset/000728/0.240827.1809"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/blob/694e97043373e2d1138d58af89b7be8dd5a3786b/000728/AllenInstitute/visual_coding_ophys_tutorial.ipynb"> Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/visual-coding-to-nwb-v2"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom code to standardize the mixed JSON/HDF5 metadata records for thousands of microscopy experiments and their associated visual stimuli.
-				<br><br>
-					Published a total of <strong>93.4 TB</strong> of visual cortex microscopy data on the
-					associated NIH data
-												  archive.
-				<br><br>
-				Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Brain Wide Map</h3>
-				<li>
-					Group: International Brain Lab &nbsp; | &nbsp; Modality: Electrophysiology &nbsp; | &nbsp;
-					Role: Primary Engineer
-				</li>
-				<a href="https://doi.org/10.1038/s41586-025-09235-0"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000409/draft"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/tree/master/000409/IBL"> Jupyter Notebooks</a> &nbsp;
-				| &nbsp;
-				<a href="https://github.com/catalystneuro/IBL-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote conversion code which interfaced with PostgreSQL metadata database to standardize the data structure of thousands of extracellular electrophysiology experiments with complex behavior.
-				<br><br>
-				Uploaded a total of <strong>66 TB</strong> of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Neural signal propagation atlas of Caenorhabditis elegans</h3>
-				<li>
-					Group: Leifer Lab &nbsp; | &nbsp; Location: Princeton University &nbsp; | &nbsp;
-					Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://doi.org/10.1038/s41586-023-06683-4"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/001075/0.240930.1859"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/tree/master/001075"> Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/leifer_lab_to_nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.
-				<br><br>
-				Published a total of <strong>10 TB</strong> of C. elegans microscopy data on the associated NIH data archive.
-				<br><br>
-				Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior</h3>
-				<li>
-					Group: Ahrens Lab &nbsp; | &nbsp; Location: Janelia Research Campus (HHMI) &nbsp; | &nbsp;
-					Modality: Microscopy &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://doi.org/10.1016/j.cell.2019.05.050"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000350/0.240822.1759"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/ahrens-lab-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality
-				environment and some limited electrophysiology responses from peripheral motor nerves.
-				<br><br>
-				Published a total of <strong>23</strong> TB of volumetric whole-brain zebrafish microscopy data on
-				the associated NIH data archive.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>MICrONS</h3>
-				<li>
-					Group: Tolias Lab &nbsp; | &nbsp; Location: Baylor College of Medicine &nbsp; | &nbsp;
-					Modality: Microscopy &nbsp; | &nbsp; Role: Supervisor
-				</li>
-				<a href="https://doi.org/10.1038/s41586-025-08790-w"> Manuscript</a> &nbsp; | &nbsp;
-				<a href="https://dandiarchive.org/dandiset/000402/0.230307.2132"> Dataset</a> &nbsp; | &nbsp;
-				<a href="https://github.com/dandi/example-notebooks/blob/master/000402/MICrONS/demo/000402_microns_demo.ipynb"> Jupyter Notebook</a> &nbsp; | &nbsp;
-				<a href="https://github.com/catalystneuro/MICrONS-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Supervised the conversion and publication of a high-value dataset which combined large-scale
-				two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.
-				<br><br>
-				Resulted in the publication of a total <strong>1.2 TB</strong> of functional imaging data on
-				the	NIH data archive, with region IDs coregistered with the associated electron microscopy datasets.
-				</p>
-			</ul>
-			<ul class="work-list">
-				<h3>Miscellaneous (Buzsaki Lab)</h3>
-				<li>
-					Group: Buzsaki Lab &nbsp; | &nbsp; Location: New York University &nbsp; | &nbsp;
-					Modality: Electrophysiology &nbsp; | &nbsp; Role: Primary Engineer
-				</li>
-				<a href="https://github.com/catalystneuro/buzsaki-lab-to-nwb"> Conversion Code</a>
-				<br>
-				<p>
-				Wrote custom conversion code for a dozen previous datasets.
-				Unique aspects of these data collections include temperature-modulating probes, long-term
-				passive recordings of spontaneous behavior, and paired optogenetic stimulation with
-				extracellular electrophysiology.
-				<br><br>
-				Published a total of <strong>39 TB</strong> of mouse electrophysiology and behavioral data
-				on the associated NIH data archive.
-				</p>
-			</ul>
+			<!-- build:datasets -->
 		</div>
 	</div>
 
@@ -880,6 +621,10 @@
 						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
 					</ul>
 			    </div>
+			</div>
+			<div class="footer-version">
+				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub"><!-- build:version --></a>
 			</div>
 		</div>
 	</footer>

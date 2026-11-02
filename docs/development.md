@@ -1,0 +1,64 @@
+# Development
+
+## Records
+
+Parts of the site are generated from machine-readable JSON records, one file per record:
+
+| Records                    | LinkML class | Site section         |
+|----------------------------|--------------|----------------------|
+| [`projects/`](../projects) | `Project`    | Highlighted Projects |
+| [`datasets/`](../datasets) | `Dataset`    | Data Curation        |
+
+Records hold only facts about the work.
+How the site presents them, such as the order each section lists them in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
+A record's file name is its ID.
+
+## Schema
+
+The [LinkML](https://linkml.io/) schema [`schemas/records.yaml`](../schemas/records.yaml) is the source of truth for the shape of every record.
+Its classes map onto [schema.org](https://schema.org/) terms (`Project` is a `schema:SoftwareSourceCode`, `Dataset` a `schema:Dataset`).
+
+Two kinds of files are generated from it and committed, so building the site needs no Python:
+
+- [`schemas/jsonschema/`](../schemas/jsonschema): one JSON Schema per record type, which the site build validates every record against.
+- [`src/build/generated/records.ts`](../src/build/generated/records.ts): the TypeScript types the renderers use.
+
+Never edit them by hand.
+After changing the schema, regenerate them with LinkML installed:
+
+```bash
+pip install -r schemas/requirements.txt
+```
+
+```bash
+sh scripts/generate-schemas.sh
+```
+
+To validate the records the way CI does:
+
+```bash
+linkml-validate --schema schemas/records.yaml --target-class Project projects/*.json
+```
+
+```bash
+linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
+```
+
+`npm run build` (and `npm run dev`) also validates every record and renders each section into `index.html` as static HTML.
+An invalid record fails the build with a message naming the file and the problem.
+
+## Versions
+
+Three things carry their own [semantic version](https://semver.org), independently of one another:
+
+| What           | Where                               | Bump when                                     |
+|----------------|-------------------------------------|-----------------------------------------------|
+| The schema     | `version` in `schemas/records.yaml` | the schema changes                            |
+| Each record    | `record_version` in the record      | the record changes                            |
+| The site       | `version` in `package.json`         | anything that shapes the built site changes   |
+
+Each record also names the schema version it was written against in `schema_version`.
+It may still be valid under later schema versions, so `schema_version` only needs updating when the record is revised to follow a newer schema.
+
+The site version is stamped at the bottom left of the page at build time.
+The `Check version bumps` workflow fails a pull request that changes any of these without increasing its version.

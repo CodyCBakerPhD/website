@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
+  "name": "Neurosift",
+  "url": "https://neurosift.app",
+  "role": "UX Consultant",
+  "start_date": "2023-07",
+  "logo": "img/neurosift_logo.png",
+  "description": [
+    "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives."
+  ]
+}

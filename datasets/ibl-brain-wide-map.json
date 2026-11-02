@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
+  "name": "Brain Wide Map",
+  "group": "International Brain Lab",
+  "modality": "Electrophysiology",
+  "role": "Primary Engineer",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41586-025-09235-0",
+    "dataset": "https://dandiarchive.org/dandiset/000409/draft",
+    "notebook": "https://github.com/dandi/example-notebooks/tree/master/000409/IBL",
+    "code": "https://github.com/catalystneuro/IBL-to-nwb"
+  },
+  "description": [
+    "Wrote conversion code which interfaced with PostgreSQL metadata database to standardize the data structure of thousands of extracellular electrophysiology experiments with complex behavior.",
+    "Uploaded a total of **66 TB** of synchronized electrophysiology, audio, and behavioral event data on the associated NIH data archive."
+  ]
+}

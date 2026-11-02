@@ -1,0 +1,325 @@
+{
+    "$defs": {
+        "BaseRecord": {
+            "additionalProperties": false,
+            "description": "The fields every record has.",
+            "properties": {
+                "description": {
+                    "description": "Paragraphs of plain text, in which **double asterisks** mark emphasis.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "name": {
+                    "description": "Display name of the record.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role held on the work the record describes.",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "schema_version",
+                "record_version",
+                "name",
+                "role",
+                "description"
+            ],
+            "title": "BaseRecord",
+            "type": "object"
+        },
+        "Dataset": {
+            "additionalProperties": false,
+            "description": "A dataset, or collection of datasets, curated for publication and the role held in curating it. Each record is one JSON file under datasets/.",
+            "properties": {
+                "description": {
+                    "description": "Paragraphs of plain text describing the curation work, in which **double asterisks** mark emphasis.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "group": {
+                    "description": "Research group that produced the data, e.g. \"Leifer Lab\".",
+                    "type": "string"
+                },
+                "institution": {
+                    "description": "Institution the group belongs to, e.g. \"Princeton University\". Omitted for groups that span several institutions.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "links": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/DatasetLinks"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Related resources."
+                },
+                "modality": {
+                    "description": "Primary data modality, e.g. \"Microscopy\" or \"Electrophysiology\".",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Title of the dataset or collection.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role held in curating the data, e.g. \"Primary Engineer\" or \"Supervisor\".",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "group",
+                "modality",
+                "schema_version",
+                "record_version",
+                "name",
+                "role",
+                "description"
+            ],
+            "title": "Dataset",
+            "type": "object"
+        },
+        "DatasetLinks": {
+            "additionalProperties": false,
+            "description": "Resources related to a dataset, keyed by type.",
+            "properties": {
+                "code": {
+                    "description": "Source code that converted the data to a standard format.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dataset": {
+                    "description": "The published data, e.g. a Dandiset on the DANDI Archive.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "manuscript": {
+                    "description": "The associated publication, ideally as a DOI link.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "notebook": {
+                    "description": "Jupyter Notebook(s) demonstrating how to access and analyze the data.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "DatasetLinks",
+            "type": "object"
+        },
+        "Project": {
+            "additionalProperties": false,
+            "description": "A software project and the role held on it. Each record is one JSON file under projects/.",
+            "if": {
+                "properties": {
+                    "role": {
+                        "const": "Contributor"
+                    }
+                },
+                "required": [
+                    "role"
+                ]
+            },
+            "properties": {
+                "contribution": {
+                    "description": "Summary of the contributions made to the project. Required when the role is \"Contributor\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Paragraphs of plain text describing the project and the contributions made to it, in which **double asterisks** mark emphasis.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "end_date": {
+                    "description": "When involvement in the project ended. Omitted while it is ongoing.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "logo": {
+                    "description": "Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/guide_logo.png\".",
+                    "pattern": "^[^/]",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Display name of the project.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role held on the project, e.g. \"Lead Developer\" or \"Contributor\".",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "When involvement in the project began.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Primary link for the project, such as its source repository or homepage.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url",
+                "start_date",
+                "schema_version",
+                "record_version",
+                "name",
+                "role",
+                "description"
+            ],
+            "then": {
+                "properties": {
+                    "contribution": {}
+                },
+                "required": [
+                    "contribution"
+                ]
+            },
+            "title": "Project",
+            "type": "object"
+        }
+    },
+    "$id": "https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/records",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "A dataset, or collection of datasets, curated for publication and the role held in curating it. Each record is one JSON file under datasets/.",
+    "metamodel_version": "1.12.0",
+    "properties": {
+        "description": {
+            "description": "Paragraphs of plain text describing the curation work, in which **double asterisks** mark emphasis.",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+        },
+        "group": {
+            "description": "Research group that produced the data, e.g. \"Leifer Lab\".",
+            "type": "string"
+        },
+        "institution": {
+            "description": "Institution the group belongs to, e.g. \"Princeton University\". Omitted for groups that span several institutions.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "links": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/DatasetLinks"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "Related resources."
+        },
+        "modality": {
+            "description": "Primary data modality, e.g. \"Microscopy\" or \"Electrophysiology\".",
+            "type": "string"
+        },
+        "name": {
+            "description": "Title of the dataset or collection.",
+            "type": "string"
+        },
+        "record_version": {
+            "description": "Version of the record's own content, bumped whenever the record changes.",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "type": "string"
+        },
+        "role": {
+            "description": "Role held in curating the data, e.g. \"Primary Engineer\" or \"Supervisor\".",
+            "type": "string"
+        },
+        "schema_version": {
+            "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "group",
+        "modality",
+        "schema_version",
+        "record_version",
+        "name",
+        "role",
+        "description"
+    ],
+    "title": "records",
+    "type": "object",
+    "version": "0.1.0"
+}
+

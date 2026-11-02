@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
+  "name": "Neural signal propagation atlas of Caenorhabditis elegans",
+  "group": "Leifer Lab",
+  "institution": "Princeton University",
+  "modality": "Microscopy",
+  "role": "Primary Engineer",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41586-023-06683-4",
+    "dataset": "https://dandiarchive.org/dandiset/001075/0.240930.1859",
+    "notebook": "https://github.com/dandi/example-notebooks/tree/master/001075",
+    "code": "https://github.com/catalystneuro/leifer_lab_to_nwb"
+  },
+  "description": [
+    "Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.",
+    "Published a total of **10 TB** of C. elegans microscopy data on the associated NIH data archive.",
+    "Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook."
+  ]
+}

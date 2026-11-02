@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1.0",
+  "record_version": "0.1.0",
+  "name": "MICrONS",
+  "group": "Tolias Lab",
+  "institution": "Baylor College of Medicine",
+  "modality": "Microscopy",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41586-025-08790-w",
+    "dataset": "https://dandiarchive.org/dandiset/000402/0.230307.2132",
+    "notebook": "https://github.com/dandi/example-notebooks/blob/master/000402/MICrONS/demo/000402_microns_demo.ipynb",
+    "code": "https://github.com/catalystneuro/MICrONS-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion and publication of a high-value dataset which combined large-scale two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.",
+    "Resulted in the publication of a total **1.2 TB** of functional imaging data on the NIH data archive, with region IDs coregistered with the associated electron microscopy datasets."
+  ]
+}

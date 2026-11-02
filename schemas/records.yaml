@@ -1,0 +1,182 @@
+id: https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/records
+name: records
+title: Records Schema
+description: >-
+  LinkML schema for the machine-readable records that the personal website of
+  Cody C. Baker is built from: software projects and curated datasets. Each
+  record is one JSON file under projects/ or datasets/, and carries its own
+  version as well as the version of this schema it was written against.
+version: 0.1.0
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  records: https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/records/
+
+default_prefix: records
+default_range: string
+
+imports:
+  - linkml:types
+
+types:
+  SemanticVersion:
+    typeof: string
+    description: A semantic version (MAJOR.MINOR.PATCH), e.g. "0.1.0".
+    pattern: "^\\d+\\.\\d+\\.\\d+$"
+  PartialDate:
+    typeof: string
+    description: >-
+      An ISO 8601 calendar date at year (YYYY), month (YYYY-MM) or day
+      (YYYY-MM-DD) precision.
+    pattern: "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+  HttpUrl:
+    typeof: uri
+    description: An absolute http or https URL.
+    pattern: "^https?://"
+
+slots:
+  schema_version:
+    description: >-
+      Version of this schema the record was written against. The record may
+      still be valid under other schema versions; this names the version at
+      the time it was written.
+    slot_uri: schema:schemaVersion
+    range: SemanticVersion
+    required: true
+  record_version:
+    description: >-
+      Version of the record's own content, bumped whenever the record changes.
+    slot_uri: schema:version
+    range: SemanticVersion
+    required: true
+  name:
+    description: Display name of the record.
+    slot_uri: schema:name
+    required: true
+  role:
+    description: Role held on the work the record describes.
+    slot_uri: schema:roleName
+    required: true
+  description:
+    description: >-
+      Paragraphs of plain text, in which **double asterisks** mark emphasis.
+    slot_uri: schema:description
+    multivalued: true
+    required: true
+    minimum_cardinality: 1
+
+classes:
+  BaseRecord:
+    abstract: true
+    description: The fields every record has.
+    slots:
+      - schema_version
+      - record_version
+      - name
+      - role
+      - description
+
+  Project:
+    is_a: BaseRecord
+    description: >-
+      A software project and the role held on it. Each record is one JSON file
+      under projects/.
+    class_uri: schema:SoftwareSourceCode
+    slot_usage:
+      name:
+        description: Display name of the project.
+      role:
+        description: Role held on the project, e.g. "Lead Developer" or "Contributor".
+      description:
+        description: >-
+          Paragraphs of plain text describing the project and the contributions
+          made to it, in which **double asterisks** mark emphasis.
+    attributes:
+      url:
+        description: Primary link for the project, such as its source repository or homepage.
+        slot_uri: schema:url
+        range: HttpUrl
+        required: true
+      contribution:
+        description: >-
+          Summary of the contributions made to the project. Required when the
+          role is "Contributor".
+      start_date:
+        description: When involvement in the project began.
+        slot_uri: schema:startDate
+        range: PartialDate
+        required: true
+      end_date:
+        description: When involvement in the project ended. Omitted while it is ongoing.
+        slot_uri: schema:endDate
+        range: PartialDate
+      logo:
+        description: >-
+          Path to the project's logo relative to the website root (the file
+          itself lives under src/public/), e.g. "img/guide_logo.png".
+        slot_uri: schema:logo
+        pattern: "^[^/]"
+    rules:
+      - description: A contributor's record summarizes what they contributed.
+        preconditions:
+          slot_conditions:
+            role:
+              equals_string: Contributor
+        postconditions:
+          slot_conditions:
+            contribution:
+              required: true
+
+  Dataset:
+    is_a: BaseRecord
+    description: >-
+      A dataset, or collection of datasets, curated for publication and the
+      role held in curating it. Each record is one JSON file under datasets/.
+    class_uri: schema:Dataset
+    slot_usage:
+      name:
+        description: Title of the dataset or collection.
+      role:
+        description: Role held in curating the data, e.g. "Primary Engineer" or "Supervisor".
+      description:
+        description: >-
+          Paragraphs of plain text describing the curation work, in which
+          **double asterisks** mark emphasis.
+    attributes:
+      group:
+        description: Research group that produced the data, e.g. "Leifer Lab".
+        slot_uri: schema:creator
+        required: true
+      institution:
+        description: >-
+          Institution the group belongs to, e.g. "Princeton University".
+          Omitted for groups that span several institutions.
+        slot_uri: schema:sourceOrganization
+      modality:
+        description: Primary data modality, e.g. "Microscopy" or "Electrophysiology".
+        slot_uri: schema:measurementTechnique
+        required: true
+      links:
+        description: Related resources.
+        range: DatasetLinks
+        inlined: true
+
+  DatasetLinks:
+    description: Resources related to a dataset, keyed by type.
+    attributes:
+      manuscript:
+        description: The associated publication, ideally as a DOI link.
+        slot_uri: schema:citation
+        range: HttpUrl
+      dataset:
+        description: The published data, e.g. a Dandiset on the DANDI Archive.
+        slot_uri: schema:url
+        range: HttpUrl
+      notebook:
+        description: Jupyter Notebook(s) demonstrating how to access and analyze the data.
+        range: HttpUrl
+      code:
+        description: Source code that converted the data to a standard format.
+        slot_uri: schema:isBasedOn
+        range: HttpUrl
