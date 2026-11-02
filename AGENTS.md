@@ -18,6 +18,7 @@ Three versions are bumped independently, each once per PR and following semantic
 
 - Keep inline comments sparse. Explain non-obvious "why", never "what".
 - Avoid excessive em-dashes in written text, such as documentation, comments and PR descriptions. Prefer commas, parentheses or separate sentences.
+- Use American English spelling everywhere (code, comments, page text, records and PR descriptions): "normalize" not "normalise", "color" not "colour", "behavior" not "behaviour". Proper names keep their own spelling, e.g. "Sainsbury Wellcome Centre".
 
 ## Records and schemas
 
