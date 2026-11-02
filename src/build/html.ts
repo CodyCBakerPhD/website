@@ -44,9 +44,12 @@ export function indent(lines: readonly string[]): string[] {
   return lines.flatMap((line) => line.split("\n")).map((line) => `\t${line}`);
 }
 
-/** Renders a record as one card, which its page's search filters by `searchAttribute` (see search.ts). */
-export function renderCard(lines: readonly string[], searchAttribute: string): string[] {
-  return [`<ul class="work-list" data-search-item ${searchAttribute}>`, ...indent(lines), "</ul>"];
+/**
+ * Renders a record as one card, which its page's search filters by `searchAttribute` (see search.ts).
+ * The card's `id` is the record's, so other cards can link to it.
+ */
+export function renderCard(lines: readonly string[], searchAttribute: string, id: string): string[] {
+  return [`<ul class="work-list" id="${escapeHtml(id)}" data-search-item ${searchAttribute}>`, ...indent(lines), "</ul>"];
 }
 
 /** Matches a line holding only the <!-- build:NAME --> placeholder, capturing its indentation. */

@@ -4,10 +4,11 @@
 //
 // Any problem fails the build, or shows an error in the dev server, instead of
 // rendering a broken page: malformed JSON, a schema violation, a repeated
-// tag, a failed section-specific check, or a mismatch between the records on
-// disk and the section's display order. Each section's markup replaces its
-// <!-- build:NAME --> placeholder on whichever page holds it, so the published
-// pages are static HTML.
+// tag, a failed section-specific check, a mismatch between the records on
+// disk and the section's display order, or a link to a record that does not
+// exist (see references.ts). Each section's markup replaces its
+// <!-- build:NAME --> placeholder on its page, so the published pages are
+// static HTML.
 
 import { readdirSync, readFileSync } from "node:fs";
 import { basename, relative, resolve, sep } from "node:path";
@@ -17,36 +18,75 @@ import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
 import type { BaseRecord } from "./generated/records.ts";
 import { fillPlaceholder, hasPlaceholder } from "./html.ts";
+import { linkRecords, type RecordNode } from "./references.ts";
 import { checkTags } from "./tags.ts";
 
+/** A record, with what its card shows beyond the record itself. */
+export interface RecordEntry<T> {
+  /** File name without .json, which its card takes as its ID, so other cards can link to it. */
+  id: string;
+  record: T;
+  /** Lines listing its links to and from other records and its evidence (see references.ts). */
+  references: readonly string[];
+}
+
 export interface SectionOptions<T extends BaseRecord> {
-  /** Names the section's <!-- build:NAME --> placeholder, which one page under src/ holds. */
+  /** Names the section's <!-- build:NAME --> placeholder. */
   name: string;
+  /** The page under src/ holding the placeholder, where links to the section's records point. */
+  page: string;
   /** Directory holding one JSON file per record, relative to the repository root. */
   recordsDir: string;
   /** JSON Schema that every record must satisfy, relative to the repository root. */
   schemaFile: string;
   /** Record IDs (file names without .json) in display order. Every record must be listed once. */
   order: readonly string[];
+  /** Font Awesome icon marking links to the section's records from other cards. */
+  icon: string;
+  /** Text of a link to a record from another card. Defaults to its name. */
+  label?: (record: T) => string;
   /** Renders the section's records, in display order, as lines of HTML. */
-  render: (records: readonly T[]) => string[];
+  render: (entries: readonly RecordEntry<T>[]) => string[];
   /** Checks a schema cannot express. Returns a description of each problem found. */
   check?: (record: T, context: { publicDir: string }) => string[];
+}
+
+/** A section's records, loaded and validated, waiting for their links to other records. */
+interface LoadedSection {
+  readonly nodes: readonly RecordNode[];
+  render(references: ReadonlyMap<string, readonly string[]>): string[];
 }
 
 /** A section with its record type erased, so sections of different types can share a list. */
 export interface Section {
   readonly name: string;
+  readonly page: string;
   /** Paths relative to the repository root whose changes should reload the dev server. */
   readonly watchPaths: readonly string[];
-  render(root: string, publicDir: string): string[];
+  load(root: string, publicDir: string): LoadedSection;
 }
 
 export function defineSection<T extends BaseRecord>(options: SectionOptions<T>): Section {
+  const label = options.label ?? ((record: T) => record.name);
   return {
     name: options.name,
+    page: options.page,
     watchPaths: [options.recordsDir, options.schemaFile],
-    render: (root, publicDir) => options.render(loadRecords(options, root, publicDir)),
+    load(root, publicDir) {
+      const records = loadRecords(options, root, publicDir);
+      const nodes = records.map(({ id, record }) => ({
+        path: `${options.recordsDir}/${id}`,
+        href: `${options.page}#${id}`,
+        label: label(record),
+        icon: options.icon,
+        record,
+      }));
+      return {
+        nodes,
+        render: (references) =>
+          options.render(records.map(({ id, record }) => ({ id, record, references: references.get(`${options.recordsDir}/${id}`) ?? [] }))),
+      };
+    },
   };
 }
 
@@ -65,7 +105,7 @@ function describeError(error: ErrorObject): string {
 }
 
 /** Reads, validates and orders a section's records, or throws listing every problem. */
-function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): T[] {
+function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): { id: string; record: T }[] {
   const recordsDir = resolve(root, options.recordsDir);
   const schemaFile = resolve(root, options.schemaFile);
 
@@ -137,13 +177,36 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
   }
 
   // Every listed ID now names a file that passed validation.
-  return options.order.map((id) => records.get(id) as T);
+  return options.order.map((id) => ({ id, record: records.get(id) as T }));
+}
+
+/** Loads every section, since cards link to records of other sections, or throws listing every problem. */
+function loadSections(sections: readonly Section[], root: string, publicDir: string): Map<Section, LoadedSection> {
+  const loaded = new Map<Section, LoadedSection>();
+  const failures: string[] = [];
+  for (const section of sections) {
+    try {
+      loaded.set(section, section.load(root, publicDir));
+    } catch (error) {
+      failures.push((error as Error).message);
+    }
+  }
+  if (failures.length > 0) {
+    throw new Error(failures.join("\n"));
+  }
+  return loaded;
+}
+
+/** IDs given to more than one element of a page, which would break links to its cards. */
+function duplicateIds(html: string): string[] {
+  const ids = Array.from(html.matchAll(/\sid="([^"]*)"/g), (match) => match[1]);
+  return [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
 }
 
 /**
- * Vite plugin that renders each section into the page holding its placeholder,
- * in both `vite build` and the dev server (which reloads when a record or
- * schema changes). A build fails if some section's placeholder is on no page.
+ * Vite plugin that renders each section into its page, in both `vite build`
+ * and the dev server (which reloads when a record or schema changes). A build
+ * fails if a section's page does not exist or lacks its placeholder.
  */
 export function recordSections(sections: readonly Section[], { root }: { root: string }): Plugin {
   const watched = sections.flatMap((section) => section.watchPaths.map((path) => resolve(root, path)));
@@ -177,19 +240,33 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
       order: "pre",
       handler(html, { filename }) {
         const pageName = relative(root, filename);
-        // Render every section before failing, so one build reports all problems.
-        const failures: string[] = [];
-        let page = html;
-        for (const section of sections.filter((section) => hasPlaceholder(html, section.name))) {
-          try {
-            page = fillPlaceholder(page, section.name, section.render(root, publicDir), pageName);
-            placed.add(section.name);
-          } catch (error) {
-            failures.push((error as Error).message);
-          }
+        const misplaced = sections.filter((section) => section.page !== basename(filename) && hasPlaceholder(html, section.name));
+        if (misplaced.length > 0) {
+          throw new Error(
+            misplaced
+              .map((section) => `${pageName} has the <!-- build:${section.name} --> placeholder, but src/build/sections.ts puts that section on ${section.page}`)
+              .join("\n"),
+          );
         }
-        if (failures.length > 0) {
-          throw new Error(failures.join("\n"));
+        const onPage = sections.filter((section) => section.page === basename(filename));
+        if (onPage.length === 0) {
+          return html;
+        }
+
+        const loaded = loadSections(sections, root, publicDir);
+        const { problems, references } = linkRecords([...loaded.values()].flatMap((section) => section.nodes));
+        if (problems.length > 0) {
+          throw new Error(`Invalid links between records:\n${problems.map((problem) => `  - ${problem}`).join("\n")}`);
+        }
+
+        let page = html;
+        for (const section of onPage) {
+          page = fillPlaceholder(page, section.name, loaded.get(section)!.render(references), pageName);
+          placed.add(section.name);
+        }
+        const duplicates = duplicateIds(page);
+        if (duplicates.length > 0) {
+          throw new Error(`${pageName} gives more than one element each of these IDs: ${duplicates.join(", ")}`);
         }
         return page;
       },
@@ -200,9 +277,7 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
     buildEnd(error) {
       const missing = sections.filter((section) => !placed.has(section.name));
       if (isBuild && !error && missing.length > 0) {
-        this.error(
-          missing.map((section) => `No page under src/ has the <!-- build:${section.name} --> placeholder`).join("\n"),
-        );
+        this.error(missing.map((section) => `The "${section.name}" section's page, src/${section.page}, does not exist`).join("\n"));
       }
     },
   };

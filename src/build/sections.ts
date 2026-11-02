@@ -5,7 +5,8 @@
 // (generated from schemas/records.yaml) and lists its records in display
 // order. Order is the site's choice rather than a property of the records, so
 // it lives here instead of in them. Adding a record file means adding its ID
-// to the matching list below.
+// to the matching list below. Its page, icon and label are how cards on any
+// page link to its records (see references.ts).
 
 import { datasetSearch, renderDataset } from "./datasets.ts";
 import type { Dataset, Project, Publication } from "./generated/records.ts";
@@ -17,6 +18,8 @@ import { renderSearchable } from "./search.ts";
 export const sections = [
   defineSection<Project>({
     name: "projects",
+    page: "projects.html",
+    icon: "fa-code",
     recordsDir: "projects",
     schemaFile: "schemas/jsonschema/project.schema.json",
     render: (projects) => renderSearchable(projectSearch, projects.flatMap(renderProject)),
@@ -39,6 +42,8 @@ export const sections = [
   }),
   defineSection<Dataset>({
     name: "datasets",
+    page: "data-curation.html",
+    icon: "fa-database",
     recordsDir: "datasets",
     schemaFile: "schemas/jsonschema/dataset.schema.json",
     render: (datasets) => renderSearchable(datasetSearch, datasets.flatMap(renderDataset)),
@@ -53,6 +58,10 @@ export const sections = [
   }),
   defineSection<Publication>({
     name: "publications",
+    page: "publications.html",
+    icon: "fa-file-text-o",
+    // Two workshops share a title, so links to publications also name the year.
+    label: (publication) => `${publication.name} (${publication.date.slice(0, 4)})`,
     recordsDir: "publications",
     schemaFile: "schemas/jsonschema/publication.schema.json",
     // Grouped by kind under a heading each; this order applies within a group.

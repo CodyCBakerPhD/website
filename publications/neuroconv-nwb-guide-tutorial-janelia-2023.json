@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.2.0",
   "name": "Neuroconv and NWB GUIDE tutorial",
   "kind": "workshop",
   "authors": [
@@ -8,6 +8,10 @@
   ],
   "date": "2023",
   "venue": "NWB User Days, Janelia Research Campus",
+  "about": [
+    "projects/neuroconv",
+    "projects/nwb-guide"
+  ],
   "tags": [
     "standards:NWB",
     "data:Data Conversion"

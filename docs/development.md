@@ -26,9 +26,45 @@ Parts of the site are generated from machine-readable JSON records, one file per
 | [`publications/`](../publications) | `Publication` | Publications (`publications.html`)     |
 
 Records hold only facts about the work.
-How the site presents them, such as the order each section lists them in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
-A record's file name is its ID.
+How the site presents them, such as the page each section is on and the order it lists its records in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
+A record's file name is its ID, and its card on the page takes the same ID, so `projects.html#neuroconv` opens the NeuroConv card.
 The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+
+## Links between records
+
+A record can name other records, by the path of their file without `.json`, such as `projects/neuroconv`:
+
+| Slot          | On                    | Means                                              | Shown on its card | Shown on the named card |
+|---------------|-----------------------|----------------------------------------------------|-------------------|-------------------------|
+| `about`       | Publication           | the work the publication presents or teaches       | About             | Featured in             |
+| `built_with`  | Project, Dataset      | the software it was built with, or converted with  | Built with        | Used by                 |
+| `replaced_by` | Project               | the work that has largely replaced it              | Replaced by       | Replaces                |
+
+For example, `publications/neuroconv-2025.json` names the project it is about:
+
+```json
+"about": ["projects/neuroconv"]
+```
+
+Write each link once, on the record that makes it.
+The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Featured in" without its record saying so.
+The build fails on a link to a record that does not exist, to the record itself, or listed twice.
+[`src/build/references.ts`](../src/build/references.ts) checks and renders the links, and each section in `sections.ts` sets the icon and text of links to its records.
+
+## Evidence
+
+Any record can cite `evidence`: sources outside the site that back up what it says, each with a `title` saying what the source is and its `url`.
+
+```json
+"evidence": [
+  { "title": "GenericDataChunkIterator", "url": "https://github.com/hdmf-dev/hdmf/pull/672" }
+]
+```
+
+Good evidence is the pull requests behind a contribution, the package index a project says it is published on, or a page its description mentions.
+Cards list it under "Evidence", after the links to other records, and the build fails if a record cites the same URL twice.
+
+Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
 
 ## Search
 

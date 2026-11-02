@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.2.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.3.0",
   "name": "Visual Coding (2-Photon Calcium Imaging)",
   "group": "Neural Dynamics and Computing",
   "institution": "Allen Institute for Brain Science",
@@ -16,6 +16,9 @@
     "Published a total of **93.4 TB** of visual cortex microscopy data on the associated NIH data archive.",
     "Adapted a Jupyter Notebook tutorial to demonstrate how to remotely stream and analyze the dataset.",
     "Significant portions of this tutorial later became the flagship scientific example of the DANDI archive indexed by the Open Data Program (AWS) landing page."
+  ],
+  "built_with": [
+    "projects/neuroconv"
   ],
   "tags": [
     "standards:NWB",

@@ -410,6 +410,80 @@ a:hover {
     margin-top: 6px;
 }
 
+/* A card that a link from another card has opened. */
+.work .work-list:target {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-border), var(--card-shadow-hover);
+}
+
+/* ---------- Links between records ---------- */
+
+/* A card's links to and from other records, and its evidence, under a label
+   per relation (see src/build/references.ts). */
+.work .work-list li.record-references {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--card-border);
+}
+
+/* One grid for the whole list, so every group's label lines up in the same
+   column; the groups' wrappers drop out of the layout. */
+.work .record-references dl {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: baseline;
+    gap: 2px 22px;
+    margin: 0;
+}
+
+.work .record-references dl > div {
+    display: contents;
+}
+
+.work .record-references dt {
+    grid-column: 1;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.work .record-references dd {
+    grid-column: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0;
+    line-height: 1.6em;
+}
+
+/* Space between groups: on a label and the first link beside it, so they stay level. */
+.work .record-references div + div dt,
+.work .record-references div + div dt + dd {
+    padding-top: 8px;
+}
+
+.work .record-references dd .fa {
+    flex: 0 0 auto;
+    color: var(--muted);
+}
+
+@media only screen and (max-width: 600px) {
+    .work .record-references dl {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .work .record-references dt,
+    .work .record-references dd {
+        grid-column: 1;
+    }
+
+    .work .record-references div + div dt + dd {
+        padding-top: 0;
+    }
+}
+
 /* ---------- Tags ---------- */
 
 .work .work-list li.tag-list {

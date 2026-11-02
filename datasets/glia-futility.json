@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.2.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.3.0",
   "name": "Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior",
   "group": "Ahrens Lab",
   "institution": "Janelia Research Campus (HHMI)",
@@ -14,6 +14,9 @@
   "description": [
     "Wrote custom code for handling the output of a unique microscopy rig coupled with virtual reality environment and some limited electrophysiology responses from peripheral motor nerves.",
     "Published a total of **23 TB** of volumetric whole-brain zebrafish microscopy data on the associated NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
   ],
   "tags": [
     "standards:NWB",

@@ -29,6 +29,8 @@ Three versions are bumped independently, each once per PR and following semantic
 - Records describe the work, not how this site shows it. Display order, sizing and other presentation choices belong in `src/build/` (the section lists in `sections.ts` and the renderers).
 - Record text is plain text, with `**double asterisks**` for emphasis. Renderers pass it through the helpers in `src/build/html.ts` and never concatenate it into HTML unescaped.
 - Never invent record content such as dates, roles, contributions or tags. Take it from a source you can name, and say where it came from.
+- Link records to one another through the relation slots (`about`, `built_with`, `replaced_by`), naming each by path, e.g. `projects/neuroconv`, rather than repeating its content. Write a link once, on the record making it: the build shows it on both cards.
+- Back up claims with `evidence`, links to sources outside the site such as the pull requests behind a contribution. Like the rest of a record, take links and evidence from a source you can name.
 - Every record has `tags`, written as flat `theme:tag` pairs (e.g. `standards:NWB`) from the vocabulary in `schemas/tags.yaml`, which groups them by theme. Use the tags listed there; add one only when none fits, under its theme and with its meaning.
 
 ## Verifying a change

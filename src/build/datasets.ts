@@ -2,6 +2,7 @@
 
 import type { Dataset } from "./generated/records.ts";
 import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import type { RecordEntry } from "./records.ts";
 import { searchAttribute, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
 
@@ -29,7 +30,7 @@ export const datasetSearch: SearchConfig<Dataset> = {
   ],
 };
 
-export function renderDataset(dataset: Dataset): string[] {
+export function renderDataset({ id, record: dataset, references }: RecordEntry<Dataset>): string[] {
   const details = [
     `Group: ${dataset.group}`,
     ...(dataset.institution ? [`Location: ${dataset.institution}`] : []),
@@ -43,6 +44,6 @@ export function renderDataset(dataset: Dataset): string[] {
     lines.push(...links, "<br>");
   }
 
-  lines.push(...renderParagraphs(dataset.description), ...renderTags(dataset.tags));
-  return renderCard(lines, searchAttribute(datasetSearch, dataset));
+  lines.push(...renderParagraphs(dataset.description), ...references, ...renderTags(dataset.tags));
+  return renderCard(lines, searchAttribute(datasetSearch, dataset), id);
 }

@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.2.0",
   "name": "NeuroConv: Streamlining neurophysiology data conversion to the NWB standard",
   "kind": "article",
   "authors": [
@@ -18,6 +18,9 @@
   "doi": "https://doi.org/10.25080/cehj4257",
   "description": [
     "The seminal article presented at the SciPy conference which describes the years-long effort of creating NeuroConv, the automated data conversion tool capable of translating more than 40 distinct data formats used by neurophysiology acquisition devices to the NWB standard."
+  ],
+  "about": [
+    "projects/neuroconv"
   ],
   "tags": [
     "standards:NWB",

@@ -4,6 +4,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Project } from "./generated/records.ts";
 import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import type { RecordEntry } from "./records.ts";
 import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
 
@@ -46,7 +47,7 @@ export const projectSearch: SearchConfig<Project> = {
   ],
 };
 
-export function renderProject(project: Project): string[] {
+export function renderProject({ id, record: project, references }: RecordEntry<Project>): string[] {
   const lines: string[] = [];
 
   if (project.logo) {
@@ -67,9 +68,9 @@ export function renderProject(project: Project): string[] {
   if (links.length > 0) {
     lines.push(...links, "<br>");
   }
-  lines.push("<br>", ...renderParagraphs(project.description), ...renderTags(project.tags));
+  lines.push("<br>", ...renderParagraphs(project.description), ...references, ...renderTags(project.tags));
 
-  return renderCard(lines, searchAttribute(projectSearch, project));
+  return renderCard(lines, searchAttribute(projectSearch, project), id);
 }
 
 export function checkProject(project: Project, { publicDir }: { publicDir: string }): string[] {

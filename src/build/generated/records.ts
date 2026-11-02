@@ -169,7 +169,7 @@ export enum PublicationKind {
 
 
 /**
- * The fields every record has.
+ * The fields every record has, and the evidence any record may cite.
  */
 export interface BaseRecord {
     /** Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written. */
@@ -180,6 +180,19 @@ export interface BaseRecord {
     name: string,
     /** Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. "standards:NWB". */
     tags: string[],
+    /** Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions. */
+    evidence?: Evidence[],
+}
+
+
+/**
+ * A source outside this site that backs up part of a record, such as a pull request, a package index or a page the record mentions.
+ */
+export interface Evidence {
+    /** What the source is or shows, without a trailing period, e.g. the title of a pull request. */
+    title: string,
+    /** Where the source is. */
+    url: string,
 }
 
 
@@ -191,6 +204,8 @@ export interface Project extends BaseRecord {
     role: string,
     /** Paragraphs of plain text describing the project and the contributions made to it, in which **double asterisks** mark emphasis. */
     description: string[],
+    /** Other records of the software this work was built with, such as a project it depends on directly or the one that converted a dataset, e.g. "projects/neuroconv". */
+    built_with?: string[],
     /** Primary link for the project, such as its source repository or homepage. */
     url: string,
     /** Summary of the contributions made to the project. Required when the role is "Contributor". */
@@ -203,6 +218,8 @@ export interface Project extends BaseRecord {
     logo?: string,
     /** Related resources. */
     links?: ProjectLinks,
+    /** Other records of the work that has largely replaced this project, e.g. "projects/neurosift". */
+    replaced_by?: string[],
 }
 
 
@@ -214,6 +231,8 @@ export interface Dataset extends BaseRecord {
     role: string,
     /** Paragraphs of plain text describing the curation work, in which **double asterisks** mark emphasis. */
     description: string[],
+    /** Other records of the software this work was built with, such as a project it depends on directly or the one that converted a dataset, e.g. "projects/neuroconv". */
+    built_with?: string[],
     /** Research group that produced the data, e.g. "Leifer Lab". */
     group: string,
     /** Institution the group belongs to, e.g. "Princeton University". Omitted for groups that span several institutions. */
@@ -269,6 +288,8 @@ export interface Publication extends BaseRecord {
     note?: string,
     /** The work's DOI, as a link, e.g. "https://doi.org/10.25080/cehj4257". */
     doi?: string,
+    /** Other records of the work this one presents, describes or teaches, e.g. "projects/neuroconv". */
+    about?: string[],
 }
 
 
