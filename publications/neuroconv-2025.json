@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "NeuroConv: Streamlining neurophysiology data conversion to the NWB standard",
+  "kind": "article",
+  "authors": [
+    "H. Mayorquin",
+    "C. Baker",
+    "P. Adkisson-Floro",
+    "S. Weigl",
+    "A. Trappani",
+    "L. Tauffer",
+    "O. Rübel",
+    "B. Dichter"
+  ],
+  "date": "2025",
+  "venue": "Python in Science Conference, 2025",
+  "doi": "https://doi.org/10.25080/cehj4257",
+  "description": [
+    "The seminal article presented at the SciPy conference which describes the years-long effort of creating NeuroConv, the automated data conversion tool capable of translating more than 40 distinct data formats used by neurophysiology acquisition devices to the NWB standard."
+  ],
+  "tags": [
+    "standards:NWB",
+    "data:Data Conversion",
+    "languages:Python"
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.1.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.2.0",
+  "record_version": "0.2.0",
   "name": "Hierarchical Data Modeling Framework (HDMF)",
   "url": "https://github.com/hdmf-dev/hdmf",
   "role": "Contributor",
@@ -9,5 +9,12 @@
   "end_date": "2025-09",
   "description": [
     "Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets."
+  ],
+  "tags": [
+    "format:HDF5",
+    "format:Zarr",
+    "data:Data Standards",
+    "computing:Parallel Computing",
+    "languages:Python"
   ]
 }

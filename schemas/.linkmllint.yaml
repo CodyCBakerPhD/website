@@ -1,0 +1,7 @@
+# Tags are enum values shown on the site as written ("NWB", "C. elegans"), so
+# they cannot follow LinkML's naming convention for permissible values.
+extends: recommended
+rules:
+  standard_naming:
+    exclude_type:
+      - permissible_value

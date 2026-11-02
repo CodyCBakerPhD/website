@@ -1,0 +1,603 @@
+{
+    "$defs": {
+        "BaseRecord": {
+            "additionalProperties": false,
+            "description": "The fields every record has.",
+            "properties": {
+                "name": {
+                    "description": "Display name of the record.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Tag"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "schema_version",
+                "record_version",
+                "name",
+                "tags"
+            ],
+            "title": "BaseRecord",
+            "type": "object"
+        },
+        "Dataset": {
+            "additionalProperties": false,
+            "description": "A dataset, or collection of datasets, curated for publication and the role held in curating it. Each record is one JSON file under datasets/.",
+            "properties": {
+                "description": {
+                    "description": "Paragraphs of plain text describing the curation work, in which **double asterisks** mark emphasis.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "group": {
+                    "description": "Research group that produced the data, e.g. \"Leifer Lab\".",
+                    "type": "string"
+                },
+                "institution": {
+                    "description": "Institution the group belongs to, e.g. \"Princeton University\". Omitted for groups that span several institutions.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "links": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/DatasetLinks"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Related resources."
+                },
+                "modality": {
+                    "description": "Primary data modality, e.g. \"Microscopy\" or \"Electrophysiology\".",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Title of the dataset or collection.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role held in curating the data, e.g. \"Primary Engineer\" or \"Supervisor\".",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Tag"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "role",
+                "description",
+                "group",
+                "modality",
+                "schema_version",
+                "record_version",
+                "name",
+                "tags"
+            ],
+            "title": "Dataset",
+            "type": "object"
+        },
+        "DatasetLinks": {
+            "additionalProperties": false,
+            "description": "Resources related to a dataset, keyed by type.",
+            "properties": {
+                "code": {
+                    "description": "Source code that converted the data to a standard format.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dataset": {
+                    "description": "The published data, e.g. a Dandiset on the DANDI Archive.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "manuscript": {
+                    "description": "The associated publication, ideally as a DOI link.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "notebook": {
+                    "description": "Jupyter Notebook(s) demonstrating how to access and analyze the data.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "DatasetLinks",
+            "type": "object"
+        },
+        "Project": {
+            "additionalProperties": false,
+            "description": "A software project and the role held on it. Each record is one JSON file under projects/.",
+            "if": {
+                "properties": {
+                    "role": {
+                        "const": "Contributor"
+                    }
+                },
+                "required": [
+                    "role"
+                ]
+            },
+            "properties": {
+                "contribution": {
+                    "description": "Summary of the contributions made to the project. Required when the role is \"Contributor\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Paragraphs of plain text describing the project and the contributions made to it, in which **double asterisks** mark emphasis.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "end_date": {
+                    "description": "When involvement in the project ended. Omitted while it is ongoing.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "links": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ProjectLinks"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Related resources."
+                },
+                "logo": {
+                    "description": "Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/guide_logo.png\".",
+                    "pattern": "^[^/]",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Display name of the project.",
+                    "type": "string"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role held on the project, e.g. \"Lead Developer\" or \"Contributor\".",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "When involvement in the project began.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Tag"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "url": {
+                    "description": "Primary link for the project, such as its source repository or homepage.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "role",
+                "description",
+                "url",
+                "start_date",
+                "schema_version",
+                "record_version",
+                "name",
+                "tags"
+            ],
+            "then": {
+                "properties": {
+                    "contribution": {}
+                },
+                "required": [
+                    "contribution"
+                ]
+            },
+            "title": "Project",
+            "type": "object"
+        },
+        "ProjectLinks": {
+            "additionalProperties": false,
+            "description": "Resources related to a project, keyed by type.",
+            "properties": {
+                "packages": {
+                    "description": "Where the project's packages are published, e.g. an npm organization or a PyPI project.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ProjectLinks",
+            "type": "object"
+        },
+        "Publication": {
+            "additionalProperties": false,
+            "description": "A scholarly work: an article, a conference presentation or a workshop. Each record is one JSON file under publications/.",
+            "properties": {
+                "authors": {
+                    "description": "Authors in citation order, as initials and surname, e.g. \"C. J. Gillon\". Lists only the leading authors when et_al is true.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "date": {
+                    "description": "When the work was published or presented, or last dated while in preparation.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Paragraphs of plain text summarizing the work, in which **double asterisks** mark emphasis.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "doi": {
+                    "description": "The work's DOI, as a link, e.g. \"https://doi.org/10.25080/cehj4257\".",
+                    "format": "uri",
+                    "pattern": "^https://doi\\.org/10\\.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "et_al": {
+                    "description": "Whether further authors follow those listed. Set only for works with more than 10 authors; otherwise list every author.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "kind": {
+                    "$ref": "#/$defs/PublicationKind",
+                    "description": "What kind of work it is."
+                },
+                "name": {
+                    "description": "Title of the work, without a trailing period.",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "A remark on how the work was presented or selected, without a trailing period, e.g. \"Poster (top 43% of abstracts)\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Tag"
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "venue": {
+                    "description": "Where the work appeared, as cited after its title and without a trailing period: the journal and issue, the conference, or the event and its host, e.g. \"eNeuro, vol. 12, no. 11\". \"In preparation\" for a manuscript not yet published.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "kind",
+                "authors",
+                "date",
+                "venue",
+                "schema_version",
+                "record_version",
+                "name",
+                "tags"
+            ],
+            "title": "Publication",
+            "type": "object"
+        },
+        "PublicationKind": {
+            "description": "The kinds of scholarly work a Publication can be.",
+            "enum": [
+                "article",
+                "presentation",
+                "workshop"
+            ],
+            "title": "PublicationKind",
+            "type": "string"
+        },
+        "Tag": {
+            "description": "Every tag a record may carry, as a theme:tag pair, listed theme by theme in the order of TagTheme.",
+            "enum": [
+                "standards:NWB",
+                "standards:BIDS",
+                "format:HDF5",
+                "format:Zarr",
+                "archives:DANDI",
+                "archives:EMBER",
+                "archives:BossDB",
+                "archives:BBQS",
+                "archives:BRAIN Initiative",
+                "data:Data Conversion",
+                "data:Data Standards",
+                "data:Metadata",
+                "data:Validation",
+                "data:Provenance",
+                "data:FAIR Data",
+                "data:Open Data",
+                "data:Data Sharing",
+                "organisms:Mouse",
+                "organisms:Zebrafish",
+                "organisms:C. elegans",
+                "methods:Extracellular Electrophysiology",
+                "methods:Calcium Imaging",
+                "methods:Volumetric Imaging",
+                "methods:Electron Microscopy",
+                "methods:Optogenetics",
+                "methods:Behavior",
+                "methods:Virtual Reality",
+                "methods:Video",
+                "neuroscience:Computational Neuroscience",
+                "neuroscience:Neuroinformatics",
+                "neuroscience:Spiking Neural Networks",
+                "neuroscience:Balanced Networks",
+                "neuroscience:Synaptic Connectivity",
+                "neuroscience:Synaptic Plasticity",
+                "neuroscience:Correlations",
+                "neuroscience:Visual Cortex",
+                "neuroscience:Glia",
+                "analysis:Spike Sorting",
+                "analysis:Data Visualization",
+                "analysis:Analytics",
+                "analysis:Machine Learning",
+                "analysis:Unsupervised Learning",
+                "engineering:API Design",
+                "engineering:Command Line",
+                "engineering:Web Apps",
+                "engineering:User Interface",
+                "engineering:User Experience",
+                "engineering:Testing",
+                "engineering:Benchmarking",
+                "engineering:Continuous Integration",
+                "engineering:GitHub Actions",
+                "engineering:Automation",
+                "engineering:Resource Monitoring",
+                "computing:Cloud Computing",
+                "computing:AWS",
+                "computing:HPC",
+                "computing:Parallel Computing",
+                "computing:Data Pipelines",
+                "languages:Python",
+                "languages:JavaScript",
+                "languages:TypeScript"
+            ],
+            "title": "Tag",
+            "type": "string"
+        },
+        "TagTheme": {
+            "description": "The themes tags are grouped by, in the order the site shows them. Each value is the key that the theme's tags begin with.",
+            "enum": [
+                "standards",
+                "format",
+                "archives",
+                "data",
+                "organisms",
+                "methods",
+                "neuroscience",
+                "analysis",
+                "engineering",
+                "computing",
+                "languages"
+            ],
+            "title": "TagTheme",
+            "type": "string"
+        }
+    },
+    "$id": "https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/records",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "A scholarly work: an article, a conference presentation or a workshop. Each record is one JSON file under publications/.",
+    "metamodel_version": "1.12.0",
+    "properties": {
+        "authors": {
+            "description": "Authors in citation order, as initials and surname, e.g. \"C. J. Gillon\". Lists only the leading authors when et_al is true.",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+        },
+        "date": {
+            "description": "When the work was published or presented, or last dated while in preparation.",
+            "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+            "type": "string"
+        },
+        "description": {
+            "description": "Paragraphs of plain text summarizing the work, in which **double asterisks** mark emphasis.",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "doi": {
+            "description": "The work's DOI, as a link, e.g. \"https://doi.org/10.25080/cehj4257\".",
+            "format": "uri",
+            "pattern": "^https://doi\\.org/10\\.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "et_al": {
+            "description": "Whether further authors follow those listed. Set only for works with more than 10 authors; otherwise list every author.",
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "kind": {
+            "$ref": "#/$defs/PublicationKind",
+            "description": "What kind of work it is."
+        },
+        "name": {
+            "description": "Title of the work, without a trailing period.",
+            "type": "string"
+        },
+        "note": {
+            "description": "A remark on how the work was presented or selected, without a trailing period, e.g. \"Poster (top 43% of abstracts)\".",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "record_version": {
+            "description": "Version of the record's own content, bumped whenever the record changes.",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "type": "string"
+        },
+        "schema_version": {
+            "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "type": "string"
+        },
+        "tags": {
+            "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Tag"
+                    }
+                ]
+            },
+            "minItems": 1,
+            "type": "array"
+        },
+        "venue": {
+            "description": "Where the work appeared, as cited after its title and without a trailing period: the journal and issue, the conference, or the event and its host, e.g. \"eNeuro, vol. 12, no. 11\". \"In preparation\" for a manuscript not yet published.",
+            "type": "string"
+        }
+    },
+    "required": [
+        "kind",
+        "authors",
+        "date",
+        "venue",
+        "schema_version",
+        "record_version",
+        "name",
+        "tags"
+    ],
+    "title": "records",
+    "type": "object",
+    "version": "0.2.0"
+}
+

@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "NWB GUIDE: Simplifying the conversion of neurophysiology data to NWB format",
+  "kind": "presentation",
+  "authors": [
+    "C. Baker",
+    "G. Flynn",
+    "R. Ly",
+    "O. Rübel",
+    "B. Dichter"
+  ],
+  "date": "2024",
+  "venue": "Society for Neuroscience (SfN) 2024",
+  "tags": [
+    "standards:NWB",
+    "data:Data Conversion"
+  ]
+}

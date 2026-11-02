@@ -5,8 +5,11 @@ on:
       - "schemas/**"
       - "projects/**"
       - "datasets/**"
+      - "publications/**"
       - "src/build/generated/**"
       - "scripts/generate-schemas.sh"
+      - "scripts/generate_tag_table.py"
+      - "docs/development.md"
       - ".github/workflows/validate_records.yml"
   workflow_dispatch:
 
@@ -31,7 +34,7 @@ jobs:
         run: pip install -r schemas/requirements.txt
 
       - name: Lint the schema
-        run: linkml-lint schemas/records.yaml
+        run: linkml-lint --config schemas/.linkmllint.yaml schemas/
 
       - name: Validate projects
         run: linkml-validate --schema schemas/records.yaml --target-class Project projects/*.json
@@ -39,7 +42,10 @@ jobs:
       - name: Validate datasets
         run: linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
 
+      - name: Validate publications
+        run: linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
+
       - name: Check that the generated files are up to date
         run: |
           sh scripts/generate-schemas.sh
-          git diff --exit-code -- schemas/jsonschema src/build/generated
+          git diff --exit-code -- schemas/jsonschema src/build/generated docs/development.md

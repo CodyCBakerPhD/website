@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "A practical evaluation of remote access methods for neurophysiology data in the cloud",
+  "kind": "article",
+  "authors": [
+    "R. Ly",
+    "C. Baker",
+    "S. Prince",
+    "O. Rübel"
+  ],
+  "date": "2025",
+  "venue": "In preparation",
+  "description": [
+    "An in-progress manuscript detailing a series of benchmarks which evaluate the performance of various remote access methods for reading data stored in AWS S3 cloud storage across a range of environmental and machine configurations."
+  ],
+  "tags": [
+    "engineering:Benchmarking",
+    "computing:AWS"
+  ]
+}

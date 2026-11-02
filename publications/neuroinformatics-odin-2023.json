@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Artificial intelligence, machine learning, computing, and visualization in neuroinformatics",
+  "kind": "workshop",
+  "authors": [
+    "C. Baker",
+    "G. Viejo"
+  ],
+  "date": "2023",
+  "venue": "Open Data in Neuroscience (ODIN), Massachusetts Institute of Technology",
+  "tags": [
+    "data:Open Data",
+    "neuroscience:Neuroinformatics",
+    "analysis:Data Visualization",
+    "analysis:Machine Learning"
+  ]
+}

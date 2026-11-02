@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Nonlinear stimulus representations in neural circuits with approximate excitatory-inhibitory balance",
+  "kind": "article",
+  "authors": [
+    "C. Baker",
+    "V. Zhu",
+    "R. Rosenbaum"
+  ],
+  "date": "2020",
+  "venue": "PLoS computational biology, vol. 16, no. 9, e1008192, 2020",
+  "description": [
+    "This paper demonstrates how even simple biophysical plasticity rules can give rise to complex nonlinear computations in networks of spiking neurons operating within a semi-balanced regime. Trained a realistic spiking neural network in an unsupervised manner to perform image classification on the MNIST dataset."
+  ],
+  "tags": [
+    "neuroscience:Computational Neuroscience",
+    "neuroscience:Spiking Neural Networks",
+    "neuroscience:Balanced Networks",
+    "neuroscience:Synaptic Plasticity",
+    "analysis:Unsupervised Learning"
+  ]
+}

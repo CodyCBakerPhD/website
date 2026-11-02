@@ -3,10 +3,12 @@ name: records
 title: Records Schema
 description: >-
   LinkML schema for the machine-readable records that the personal website of
-  Cody C. Baker is built from: software projects and curated datasets. Each
-  record is one JSON file under projects/ or datasets/, and carries its own
-  version as well as the version of this schema it was written against.
-version: 0.1.0
+  Cody C. Baker is built from: software projects, curated datasets and
+  publications. Each record is one JSON file under projects/, datasets/ or
+  publications/, and carries its own version as well as the version of this
+  schema it was written against. The vocabulary of tags is in tags.yaml,
+  which this schema imports.
+version: 0.2.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -18,6 +20,7 @@ default_range: string
 
 imports:
   - linkml:types
+  - tags
 
 types:
   SemanticVersion:
@@ -57,13 +60,11 @@ slots:
   role:
     description: Role held on the work the record describes.
     slot_uri: schema:roleName
-    required: true
   description:
     description: >-
       Paragraphs of plain text, in which **double asterisks** mark emphasis.
     slot_uri: schema:description
     multivalued: true
-    required: true
     minimum_cardinality: 1
 
 classes:
@@ -74,8 +75,7 @@ classes:
       - schema_version
       - record_version
       - name
-      - role
-      - description
+      - tags
 
   Project:
     is_a: BaseRecord
@@ -83,15 +83,20 @@ classes:
       A software project and the role held on it. Each record is one JSON file
       under projects/.
     class_uri: schema:SoftwareSourceCode
+    slots:
+      - role
+      - description
     slot_usage:
       name:
         description: Display name of the project.
       role:
         description: Role held on the project, e.g. "Lead Developer" or "Contributor".
+        required: true
       description:
         description: >-
           Paragraphs of plain text describing the project and the contributions
           made to it, in which **double asterisks** mark emphasis.
+        required: true
     attributes:
       url:
         description: Primary link for the project, such as its source repository or homepage.
@@ -117,6 +122,10 @@ classes:
           itself lives under src/public/), e.g. "img/guide_logo.png".
         slot_uri: schema:logo
         pattern: "^[^/]"
+      links:
+        description: Related resources.
+        range: ProjectLinks
+        inlined: true
     rules:
       - description: A contributor's record summarizes what they contributed.
         preconditions:
@@ -134,15 +143,20 @@ classes:
       A dataset, or collection of datasets, curated for publication and the
       role held in curating it. Each record is one JSON file under datasets/.
     class_uri: schema:Dataset
+    slots:
+      - role
+      - description
     slot_usage:
       name:
         description: Title of the dataset or collection.
       role:
         description: Role held in curating the data, e.g. "Primary Engineer" or "Supervisor".
+        required: true
       description:
         description: >-
           Paragraphs of plain text describing the curation work, in which
           **double asterisks** mark emphasis.
+        required: true
     attributes:
       group:
         description: Research group that produced the data, e.g. "Leifer Lab".
@@ -162,6 +176,15 @@ classes:
         range: DatasetLinks
         inlined: true
 
+  ProjectLinks:
+    description: Resources related to a project, keyed by type.
+    attributes:
+      packages:
+        description: >-
+          Where the project's packages are published, e.g. an npm organization
+          or a PyPI project.
+        range: HttpUrl
+
   DatasetLinks:
     description: Resources related to a dataset, keyed by type.
     attributes:
@@ -180,3 +203,74 @@ classes:
         description: Source code that converted the data to a standard format.
         slot_uri: schema:isBasedOn
         range: HttpUrl
+
+  Publication:
+    is_a: BaseRecord
+    description: >-
+      A scholarly work: an article, a conference presentation or a workshop.
+      Each record is one JSON file under publications/.
+    class_uri: schema:CreativeWork
+    slots:
+      - description
+    slot_usage:
+      name:
+        description: Title of the work, without a trailing period.
+      description:
+        description: >-
+          Paragraphs of plain text summarizing the work, in which **double
+          asterisks** mark emphasis.
+    attributes:
+      kind:
+        description: What kind of work it is.
+        range: PublicationKind
+        required: true
+      authors:
+        description: >-
+          Authors in citation order, as initials and surname, e.g. "C. J.
+          Gillon". Lists only the leading authors when et_al is true.
+        slot_uri: schema:author
+        multivalued: true
+        required: true
+        minimum_cardinality: 1
+      et_al:
+        description: >-
+          Whether further authors follow those listed. Set only for works with
+          more than 10 authors; otherwise list every author.
+        range: boolean
+      date:
+        description: >-
+          When the work was published or presented, or last dated while in
+          preparation.
+        slot_uri: schema:datePublished
+        range: PartialDate
+        required: true
+      venue:
+        description: >-
+          Where the work appeared, as cited after its title and without a
+          trailing period: the journal and issue, the conference, or the event
+          and its host, e.g. "eNeuro, vol. 12, no. 11". "In preparation" for a
+          manuscript not yet published.
+        required: true
+      note:
+        description: >-
+          A remark on how the work was presented or selected, without a
+          trailing period, e.g. "Poster (top 43% of abstracts)".
+      doi:
+        description: The work's DOI, as a link, e.g. "https://doi.org/10.25080/cehj4257".
+        slot_uri: schema:sameAs
+        range: HttpUrl
+        pattern: "^https://doi\\.org/10\\."
+
+enums:
+  PublicationKind:
+    description: The kinds of scholarly work a Publication can be.
+    permissible_values:
+      article:
+        description: A journal article, conference paper or manuscript.
+        meaning: schema:ScholarlyArticle
+      presentation:
+        description: A talk or poster at a conference.
+        meaning: schema:PresentationDigitalDocument
+      workshop:
+        description: A tutorial, hackathon or workshop session led or co-led.
+        meaning: schema:EducationEvent

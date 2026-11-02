@@ -1,0 +1,215 @@
+id: https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/tags
+name: tags
+title: Tags
+description: >-
+  The tags a record may carry. Every tag is a flat theme:tag pair, e.g.
+  "standards:NWB", listed in one enum (Tag), theme by theme. The themes, and
+  the key each one gives its tags, are listed in TagTheme. This file is part
+  of the records schema (schemas/records.yaml imports it), so changing it
+  bumps the version there. The tag table in docs/development.md is generated
+  from it.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  records: https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/records/
+
+default_prefix: records
+default_range: string
+
+imports:
+  - linkml:types
+
+slots:
+  tags:
+    description: >-
+      Keywords for the topics, methods and technologies of the work, each a
+      theme:tag pair from the vocabulary in schemas/tags.yaml, e.g.
+      "standards:NWB".
+    slot_uri: schema:keywords
+    # A one-item any_of rather than range: Tag, because gen-typescript types a
+    # slot whose range is an enum as a single string, even when multivalued.
+    any_of:
+      - range: Tag
+    multivalued: true
+    list_elements_unique: true
+    required: true
+    minimum_cardinality: 1
+
+enums:
+  TagTheme:
+    description: >-
+      The themes tags are grouped by, in the order the site shows them. Each
+      value is the key that the theme's tags begin with.
+    permissible_values:
+      standards:
+        title: Data standards
+        description: Standards for organizing and describing data.
+      format:
+        title: File formats
+        description: File formats that data is stored in.
+      archives:
+        title: Archives and initiatives
+        description: Data archives, and the initiatives and consortia behind them.
+      data:
+        title: Data management
+        description: Preparing, describing, checking and sharing data.
+      organisms:
+        title: Organisms
+        description: The species data was recorded from.
+      methods:
+        title: Experimental methods
+        description: How data is recorded, and the kinds of data recorded.
+      neuroscience:
+        title: Neuroscience
+        description: Fields, theories and subjects of neuroscience research.
+      analysis:
+        title: Analysis
+        description: Ways of analyzing and presenting data.
+      engineering:
+        title: Software engineering
+        description: How the software is built, tested and delivered.
+      computing:
+        title: Computing infrastructure
+        description: Where and at what scale the work runs.
+      languages:
+        title: Programming languages
+        description: The main language of a software project.
+
+  Tag:
+    description: >-
+      Every tag a record may carry, as a theme:tag pair, listed theme by theme
+      in the order of TagTheme.
+    permissible_values:
+      standards:NWB:
+        description: Neurodata Without Borders, the data standard for neurophysiology.
+      standards:BIDS:
+        description: The Brain Imaging Data Structure, a standard for organizing datasets.
+
+      format:HDF5:
+        description: Hierarchical Data Format 5, a file format for large arrays.
+      format:Zarr:
+        description: A chunked, compressed array format suited to cloud storage.
+
+      archives:DANDI:
+        description: The DANDI Archive for neurophysiology and neuroimaging data.
+      archives:EMBER:
+        description: The EMBER Archive, which holds the BBQS consortium's data.
+      archives:BossDB:
+        description: BossDB, a cloud archive for volumetric neuroimaging data such as electron microscopy.
+      archives:BBQS:
+        description: The Brain Behavior Quantification and Synchronization consortium.
+      archives:BRAIN Initiative:
+        description: The NIH BRAIN Initiative and its consortia.
+
+      data:Data Conversion:
+        description: Converting data from acquisition or lab formats to a standard.
+      data:Data Standards:
+        description: Designing or extending schemas for structured data.
+      data:Metadata:
+        description: Describing data so that it can be found, understood and reused.
+      data:Validation:
+        description: Checking data and metadata against a standard and its best practices.
+      data:Provenance:
+        description: Recording how results were produced and from what.
+      data:FAIR Data:
+        description: Making data findable, accessible, interoperable and reusable.
+      data:Open Data:
+        description: Data released publicly for anyone to use.
+      data:Data Sharing:
+        description: Publishing and distributing data to other researchers.
+
+      organisms:Mouse:
+        description: The house mouse, Mus musculus.
+      organisms:Zebrafish:
+        description: The zebrafish, Danio rerio.
+      organisms:C. elegans:
+        description: The nematode Caenorhabditis elegans.
+
+      methods:Extracellular Electrophysiology:
+        description: Recording neural activity with electrodes outside the cells.
+      methods:Calcium Imaging:
+        description: Optical recording of neural activity through calcium indicators.
+      methods:Volumetric Imaging:
+        description: Imaging at many depths to capture a volume of tissue.
+      methods:Electron Microscopy:
+        description: Imaging of tissue structure at nanometer resolution.
+      methods:Optogenetics:
+        description: Controlling neural activity with light.
+      methods:Behavior:
+        description: Recording and quantifying what an animal does.
+      methods:Virtual Reality:
+        description: Virtual environments that respond to a behaving animal.
+      methods:Video:
+        description: Recording, encoding and handling video.
+
+      neuroscience:Computational Neuroscience:
+        description: Mathematical and computational models of the nervous system.
+      neuroscience:Neuroinformatics:
+        description: Infrastructure for organizing, sharing and analyzing neuroscience data.
+      neuroscience:Spiking Neural Networks:
+        description: Models of networks of spiking neurons.
+      neuroscience:Balanced Networks:
+        description: Networks in which excitation and inhibition approximately cancel.
+      neuroscience:Synaptic Connectivity:
+        description: The pattern of synaptic connections between neurons.
+      neuroscience:Synaptic Plasticity:
+        description: Activity-dependent changes in synaptic strength.
+      neuroscience:Correlations:
+        description: Correlated variability in neural activity, such as between spike trains.
+      neuroscience:Visual Cortex:
+        description: The cortical areas that process vision.
+      neuroscience:Glia:
+        description: The non-neuronal cells of the nervous system.
+
+      analysis:Spike Sorting:
+        description: Assigning extracellularly recorded spikes to individual neurons.
+      analysis:Data Visualization:
+        description: Plotting and interactive exploration of data.
+      analysis:Analytics:
+        description: Summarizing usage or activity logs into statistics.
+      analysis:Machine Learning:
+        description: Models that learn from data.
+      analysis:Unsupervised Learning:
+        description: Learning structure from unlabeled data.
+
+      engineering:API Design:
+        description: Designing programming interfaces for other developers.
+      engineering:Command Line:
+        description: Tools run from a terminal.
+      engineering:Web Apps:
+        description: Applications that run in a web browser.
+      engineering:User Interface:
+        description: Graphical interfaces for people who do not write code.
+      engineering:User Experience:
+        description: Shaping software around how people use it, informed by user testing.
+      engineering:Testing:
+        description: Automated unit, integration and end-to-end tests.
+      engineering:Benchmarking:
+        description: Measuring and comparing performance.
+      engineering:Continuous Integration:
+        description: Building and testing automatically on every change.
+      engineering:GitHub Actions:
+        description: Workflows run by GitHub's automation platform.
+      engineering:Automation:
+        description: Scheduled or event-driven jobs that run without manual steps.
+      engineering:Resource Monitoring:
+        description: Measuring the time, CPU and memory that programs use.
+
+      computing:Cloud Computing:
+        description: Running or storing work on cloud services.
+      computing:AWS:
+        description: Amazon Web Services, including S3 storage.
+      computing:HPC:
+        description: High-performance computing clusters and their job schedulers.
+      computing:Parallel Computing:
+        description: Splitting work across processes or machines.
+      computing:Data Pipelines:
+        description: Multi-step processing workflows run over many datasets.
+
+      languages:Python:
+        description: The Python programming language.
+      languages:JavaScript:
+        description: The JavaScript programming language.
+      languages:TypeScript:
+        description: The TypeScript programming language.

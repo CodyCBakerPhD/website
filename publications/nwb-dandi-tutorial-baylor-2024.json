@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Neurodata Without Borders and DANDI Archive Tutorial",
+  "kind": "workshop",
+  "authors": [
+    "C. Baker",
+    "R. Ly",
+    "B. Dichter"
+  ],
+  "date": "2024",
+  "venue": "NWB and DANDI Workshop, Baylor College of Medicine",
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI"
+  ]
+}

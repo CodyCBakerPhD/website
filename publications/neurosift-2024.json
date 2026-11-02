@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Neurosift: DANDI exploration and NWB visualization in the browser",
+  "kind": "article",
+  "authors": [
+    "J. Magland",
+    "J. Soules",
+    "C. Baker",
+    "B. Dichter"
+  ],
+  "date": "2024",
+  "venue": "Journal of Open Source Software, vol. 9, no. 97, p. 6590, 2024",
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "analysis:Data Visualization",
+    "engineering:Web Apps"
+  ]
+}

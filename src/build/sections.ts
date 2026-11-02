@@ -7,8 +7,9 @@
 // to the matching list below.
 
 import { renderDataset } from "./datasets.ts";
-import type { Dataset, Project } from "./generated/records.ts";
+import type { Dataset, Project, Publication } from "./generated/records.ts";
 import { checkProject, renderProject } from "./projects.ts";
+import { renderPublications } from "./publications.ts";
 import { defineSection } from "./records.ts";
 
 export const sections = [
@@ -16,7 +17,7 @@ export const sections = [
     name: "projects",
     recordsDir: "projects",
     schemaFile: "schemas/jsonschema/project.schema.json",
-    render: renderProject,
+    render: (projects) => projects.flatMap(renderProject),
     check: checkProject,
     order: [
       "nwb-guide",
@@ -38,7 +39,7 @@ export const sections = [
     name: "datasets",
     recordsDir: "datasets",
     schemaFile: "schemas/jsonschema/dataset.schema.json",
-    render: renderDataset,
+    render: (datasets) => datasets.flatMap(renderDataset),
     order: [
       "visual-coding-ophys",
       "ibl-brain-wide-map",
@@ -46,6 +47,34 @@ export const sections = [
       "glia-futility",
       "microns",
       "buzsaki-lab",
+    ],
+  }),
+  defineSection<Publication>({
+    name: "publications",
+    recordsDir: "publications",
+    schemaFile: "schemas/jsonschema/publication.schema.json",
+    // Grouped by kind under a heading each; this order applies within a group.
+    render: renderPublications,
+    order: [
+      "open-data-in-neurophysiology-2025",
+      "dandi-2025",
+      "remote-access-methods-2025",
+      "neuroconv-2025",
+      "neurosift-2024",
+      "biccn-data-ecosystem-2023",
+      "synaptic-connectivity-inference-2020",
+      "nonlinear-stimulus-representations-2020",
+      "correlated-states-2019",
+      "nwb-guide-sfn-2024",
+      "neuroconv-sfn-2023",
+      "semi-balanced-networks-cosyne-2020",
+      "connectivity-inference-cosyne-2018",
+      "nwb-dandi-tutorial-baylor-2024",
+      "neuroconv-nwb-guide-tutorial-janelia-2023",
+      "nwb-dandi-tutorial-cosyne-2023",
+      "nwb-dandi-hackathon-swc-2023",
+      "neuroinformatics-odin-2023",
+      "neuroconv-tutorial-janelia-2022",
     ],
   }),
 ];

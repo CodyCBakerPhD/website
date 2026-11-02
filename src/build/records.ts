@@ -3,9 +3,9 @@
 // the LinkML schema in schemas/records.yaml).
 //
 // Any problem fails the build, or shows an error in the dev server, instead of
-// rendering a broken page: malformed JSON, a schema violation, a failed
-// section-specific check, or a mismatch between the records on disk and the
-// section's display order. Each section's markup replaces its
+// rendering a broken page: malformed JSON, a schema violation, a repeated
+// tag, a failed section-specific check, or a mismatch between the records on
+// disk and the section's display order. Each section's markup replaces its
 // <!-- build:NAME --> placeholder, so the published page is static HTML.
 
 import { readdirSync, readFileSync } from "node:fs";
@@ -14,8 +14,10 @@ import type { ErrorObject } from "ajv";
 import Ajv2019 from "ajv/dist/2019.js";
 import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
+import type { BaseRecord } from "./generated/records.ts";
+import { checkTags } from "./tags.ts";
 
-export interface SectionOptions<T> {
+export interface SectionOptions<T extends BaseRecord> {
   /** Names the section's <!-- build:NAME --> placeholder in index.html. */
   name: string;
   /** Directory holding one JSON file per record, relative to the repository root. */
@@ -24,8 +26,8 @@ export interface SectionOptions<T> {
   schemaFile: string;
   /** Record IDs (file names without .json) in display order. Every record must be listed once. */
   order: readonly string[];
-  /** Renders one record as lines of HTML. */
-  render: (record: T) => string[];
+  /** Renders the section's records, in display order, as lines of HTML. */
+  render: (records: readonly T[]) => string[];
   /** Checks a schema cannot express. Returns a description of each problem found. */
   check?: (record: T, context: { publicDir: string }) => string[];
 }
@@ -38,16 +40,19 @@ export interface Section {
   render(root: string, publicDir: string): string[];
 }
 
-export function defineSection<T>(options: SectionOptions<T>): Section {
+export function defineSection<T extends BaseRecord>(options: SectionOptions<T>): Section {
   return {
     name: options.name,
     watchPaths: [options.recordsDir, options.schemaFile],
-    render: (root, publicDir) =>
-      loadRecords(options, root, publicDir).flatMap((record) => options.render(record)),
+    render: (root, publicDir) => options.render(loadRecords(options, root, publicDir)),
   };
 }
 
 function describeError(error: ErrorObject): string {
+  // The tag vocabulary is long, so name the file to look in instead of listing it.
+  if (error.keyword === "anyOf" && /^\/tags\/\d+$/.test(error.instancePath)) {
+    return `${error.instancePath} ${JSON.stringify(error.data)} is not one of the theme:tag pairs listed in schemas/tags.yaml`;
+  }
   const detail =
     error.keyword === "additionalProperties"
       ? ` ("${error.params.additionalProperty}")`
@@ -58,7 +63,7 @@ function describeError(error: ErrorObject): string {
 }
 
 /** Reads, validates and orders a section's records, or throws listing every problem. */
-function loadRecords<T>(options: SectionOptions<T>, root: string, publicDir: string): T[] {
+function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): T[] {
   const recordsDir = resolve(root, options.recordsDir);
   const schemaFile = resolve(root, options.schemaFile);
 
@@ -66,7 +71,8 @@ function loadRecords<T>(options: SectionOptions<T>, root: string, publicDir: str
   // refuses to compile a second schema with the same $id.
   // LinkML's JSON Schema generator targets draft 2019-09 and adds its own
   // top-level annotations, which strict mode would otherwise reject.
-  const ajv = new Ajv2019({ allErrors: true });
+  // verbose, so each error carries the offending value.
+  const ajv = new Ajv2019({ allErrors: true, verbose: true });
   ajv.addVocabulary(["version", "metamodel_version"]);
   addFormats(ajv);
   const validate = ajv.compile<T>(JSON.parse(readFileSync(schemaFile, "utf8")));
@@ -88,14 +94,18 @@ function loadRecords<T>(options: SectionOptions<T>, root: string, publicDir: str
 
     if (!validate(record)) {
       // An unmet if/then also reports a generic "must match then schema"; the
-      // specific error beside it is the useful one.
-      for (const error of (validate.errors ?? []).filter((error) => error.keyword !== "if")) {
+      // specific error beside it is the useful one. An unmet anyOf is the
+      // reverse: it also reports why its alternative failed, and the anyOf
+      // error alone is the useful one.
+      const errors = (validate.errors ?? []).filter((error) => error.keyword !== "if");
+      const anyOfPaths = new Set(errors.filter((error) => error.keyword === "anyOf").map((error) => error.instancePath));
+      for (const error of errors.filter((error) => error.keyword === "anyOf" || !anyOfPaths.has(error.instancePath))) {
         problems.push(`${file}: ${describeError(error)}`);
       }
       continue;
     }
 
-    const checkProblems = options.check?.(record, { publicDir }) ?? [];
+    const checkProblems = [...checkTags(record.tags), ...(options.check?.(record, { publicDir }) ?? [])];
     problems.push(...checkProblems.map((problem) => `${file}: ${problem}`));
     if (checkProblems.length === 0) {
       records.set(basename(file, ".json"), record);
