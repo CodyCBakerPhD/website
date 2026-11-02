@@ -62,7 +62,7 @@ function initSmoothNavigation(): void {
   const navOffset = nav?.offsetHeight || DEFAULT_NAV_OFFSET_PX;
 
   const links = document.querySelectorAll<HTMLAnchorElement>(
-    '.navbar a[href^="#"]',
+    '.navbar a[href^="#"], .footer-nav a[href^="#"]',
   );
   links.forEach((link) => {
     link.addEventListener("click", (event) => {

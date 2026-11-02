@@ -735,6 +735,28 @@ footer {
     padding: 50px 0px 0px 0px;
 }
 
+/* Styled like the navigation bar, whose links it repeats. */
+footer .footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 26px;
+    margin: 0 0 26px 0;
+}
+
+footer .footer-nav a {
+    color: var(--muted);
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+footer .footer-nav a[aria-current="page"] {
+    color: var(--ink);
+}
+
 footer .social li {
     display: inline;
     margin-left: 20px;

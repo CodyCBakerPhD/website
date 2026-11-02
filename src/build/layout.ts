@@ -1,9 +1,10 @@
 // The parts every page shares: the tags opening its <head>, the navigation
 // bar and the footer. Each page under src/ marks where they go with
 // <!-- build:head -->, <!-- build:header --> and <!-- build:footer -->, which
-// are filled in from src/partials/ at build time. The navigation links are
-// rendered here rather than in the partial, so they can point within the
-// current page and mark it as current.
+// are filled in from src/partials/ at build time. The navigation links, which
+// both the navigation bar and the footer list, are rendered here rather than
+// in the partials, so they can point within the current page and mark it as
+// current.
 
 import { readFileSync } from "node:fs";
 import { basename, resolve } from "node:path";
@@ -61,10 +62,12 @@ export function pageLayout({ partialsDir }: { partialsDir: string }): Plugin {
       handler(html, { filename }) {
         const page = basename(filename);
         const nav = NAV.map((link) => renderNavLink(link, page));
+        // The header and the footer both list the navigation links.
         const header = fillPlaceholder(partial("header").join("\n"), "nav", nav, "src/partials/header.html");
+        const footer = fillPlaceholder(partial("footer").join("\n"), "nav", nav, "src/partials/footer.html");
         let result = fillPlaceholder(html, "head", partial("head"), page);
         result = fillPlaceholder(result, "header", [header], page);
-        return fillPlaceholder(result, "footer", partial("footer"), page);
+        return fillPlaceholder(result, "footer", [footer], page);
       },
     },
   };
