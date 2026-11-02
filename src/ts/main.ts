@@ -126,6 +126,8 @@ function initThemeToggle(): void {
 }
 
 redirectMovedSection();
+// An old link opened from the home page itself only changes the hash, without reloading.
+window.addEventListener("hashchange", redirectMovedSection);
 
 $(() => {
   initTypedHeadline();
