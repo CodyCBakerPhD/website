@@ -173,4 +173,4 @@ def render() -> str:
 if __name__ == "__main__":
     svg = render()
     OUT.write_text(svg)
-    print(f"Wrote {OUT} ({len(svg) / 1024:.1f} KiB)")
+    print(f"Wrote {OUT} ({len(svg) / 1000:.1f} kB)")
