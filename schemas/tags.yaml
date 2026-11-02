@@ -40,8 +40,11 @@ enums:
       value is the key that the theme's tags begin with.
     permissible_values:
       standards:
-        title: Standards and formats
-        description: Data standards and the file formats they build on.
+        title: Data standards
+        description: Standards for organizing and describing data.
+      format:
+        title: File formats
+        description: File formats that data is stored in.
       archives:
         title: Archives and initiatives
         description: Data archives, and the initiatives and consortia behind them.
@@ -79,15 +82,18 @@ enums:
         description: Neurodata Without Borders, the data standard for neurophysiology.
       standards:BIDS:
         description: The Brain Imaging Data Structure, a standard for organizing datasets.
-      standards:HDF5:
+
+      format:HDF5:
         description: Hierarchical Data Format 5, a file format for large arrays.
-      standards:Zarr:
+      format:Zarr:
         description: A chunked, compressed array format suited to cloud storage.
 
       archives:DANDI:
         description: The DANDI Archive for neurophysiology and neuroimaging data.
       archives:EMBER:
         description: The EMBER Archive, which holds the BBQS consortium's data.
+      archives:BossDB:
+        description: BossDB, a cloud archive for volumetric neuroimaging data such as electron microscopy.
       archives:BBQS:
         description: The Brain Behavior Quantification and Synchronization consortium.
       archives:BRAIN Initiative:

@@ -33,68 +33,69 @@ Take each record's tags from a source you can name, such as the record's own tex
 The table is generated from `schemas/tags.yaml`, so edit that file rather than the table.
 
 <!-- tags:start -->
-| Theme                    | Tag                                       | Meaning                                                                  |
-|--------------------------|-------------------------------------------|--------------------------------------------------------------------------|
-| Standards and formats    | `standards:NWB`                           | Neurodata Without Borders, the data standard for neurophysiology.        |
-|                          | `standards:BIDS`                          | The Brain Imaging Data Structure, a standard for organizing datasets.    |
-|                          | `standards:HDF5`                          | Hierarchical Data Format 5, a file format for large arrays.              |
-|                          | `standards:Zarr`                          | A chunked, compressed array format suited to cloud storage.              |
-| Archives and initiatives | `archives:DANDI`                          | The DANDI Archive for neurophysiology and neuroimaging data.             |
-|                          | `archives:EMBER`                          | The EMBER Archive, which holds the BBQS consortium's data.               |
-|                          | `archives:BBQS`                           | The Brain Behavior Quantification and Synchronization consortium.        |
-|                          | `archives:BRAIN Initiative`               | The NIH BRAIN Initiative and its consortia.                              |
-| Data management          | `data:Data Conversion`                    | Converting data from acquisition or lab formats to a standard.           |
-|                          | `data:Data Standards`                     | Designing or extending schemas for structured data.                      |
-|                          | `data:Metadata`                           | Describing data so that it can be found, understood and reused.          |
-|                          | `data:Validation`                         | Checking data and metadata against a standard and its best practices.    |
-|                          | `data:Provenance`                         | Recording how results were produced and from what.                       |
-|                          | `data:FAIR Data`                          | Making data findable, accessible, interoperable and reusable.            |
-|                          | `data:Open Data`                          | Data released publicly for anyone to use.                                |
-|                          | `data:Data Sharing`                       | Publishing and distributing data to other researchers.                   |
-| Organisms                | `organisms:Mouse`                         | The house mouse, Mus musculus.                                           |
-|                          | `organisms:Zebrafish`                     | The zebrafish, Danio rerio.                                              |
-|                          | `organisms:C. elegans`                    | The nematode Caenorhabditis elegans.                                     |
-| Experimental methods     | `methods:Extracellular Electrophysiology` | Recording neural activity with electrodes outside the cells.             |
-|                          | `methods:Calcium Imaging`                 | Optical recording of neural activity through calcium indicators.         |
-|                          | `methods:Volumetric Imaging`              | Imaging at many depths to capture a volume of tissue.                    |
-|                          | `methods:Electron Microscopy`             | Imaging of tissue structure at nanometer resolution.                     |
-|                          | `methods:Optogenetics`                    | Controlling neural activity with light.                                  |
-|                          | `methods:Behavior`                        | Recording and quantifying what an animal does.                           |
-|                          | `methods:Virtual Reality`                 | Virtual environments that respond to a behaving animal.                  |
-|                          | `methods:Video`                           | Recording, encoding and handling video.                                  |
-| Neuroscience             | `neuroscience:Computational Neuroscience` | Mathematical and computational models of the nervous system.             |
-|                          | `neuroscience:Neuroinformatics`           | Infrastructure for organizing, sharing and analyzing neuroscience data.  |
-|                          | `neuroscience:Spiking Neural Networks`    | Models of networks of spiking neurons.                                   |
-|                          | `neuroscience:Balanced Networks`          | Networks in which excitation and inhibition approximately cancel.        |
-|                          | `neuroscience:Synaptic Connectivity`      | The pattern of synaptic connections between neurons.                     |
-|                          | `neuroscience:Synaptic Plasticity`        | Activity-dependent changes in synaptic strength.                         |
-|                          | `neuroscience:Correlations`               | Correlated variability in neural activity, such as between spike trains. |
-|                          | `neuroscience:Visual Cortex`              | The cortical areas that process vision.                                  |
-|                          | `neuroscience:Glia`                       | The non-neuronal cells of the nervous system.                            |
-| Analysis                 | `analysis:Spike Sorting`                  | Assigning extracellularly recorded spikes to individual neurons.         |
-|                          | `analysis:Data Visualization`             | Plotting and interactive exploration of data.                            |
-|                          | `analysis:Analytics`                      | Summarizing usage or activity logs into statistics.                      |
-|                          | `analysis:Machine Learning`               | Models that learn from data.                                             |
-|                          | `analysis:Unsupervised Learning`          | Learning structure from unlabeled data.                                  |
-| Software engineering     | `engineering:API Design`                  | Designing programming interfaces for other developers.                   |
-|                          | `engineering:Command Line`                | Tools run from a terminal.                                               |
-|                          | `engineering:Web Apps`                    | Applications that run in a web browser.                                  |
-|                          | `engineering:User Interface`              | Graphical interfaces for people who do not write code.                   |
-|                          | `engineering:User Experience`             | Shaping software around how people use it, informed by user testing.     |
-|                          | `engineering:Testing`                     | Automated unit, integration and end-to-end tests.                        |
-|                          | `engineering:Benchmarking`                | Measuring and comparing performance.                                     |
-|                          | `engineering:Continuous Integration`      | Building and testing automatically on every change.                      |
-|                          | `engineering:GitHub Actions`              | Workflows run by GitHub's automation platform.                           |
-|                          | `engineering:Automation`                  | Scheduled or event-driven jobs that run without manual steps.            |
-|                          | `engineering:Resource Monitoring`         | Measuring the time, CPU and memory that programs use.                    |
-| Computing infrastructure | `computing:Cloud Computing`               | Running or storing work on cloud services.                               |
-|                          | `computing:AWS`                           | Amazon Web Services, including S3 storage.                               |
-|                          | `computing:HPC`                           | High-performance computing clusters and their job schedulers.            |
-|                          | `computing:Parallel Computing`            | Splitting work across processes or machines.                             |
-|                          | `computing:Data Pipelines`                | Multi-step processing workflows run over many datasets.                  |
-| Programming languages    | `languages:Python`                        | The Python programming language.                                         |
-|                          | `languages:JavaScript`                    | The JavaScript programming language.                                     |
-|                          | `languages:TypeScript`                    | The TypeScript programming language.                                     |
+| Theme                    | Tag                                       | Meaning                                                                               |
+|--------------------------|-------------------------------------------|---------------------------------------------------------------------------------------|
+| Data standards           | `standards:NWB`                           | Neurodata Without Borders, the data standard for neurophysiology.                     |
+|                          | `standards:BIDS`                          | The Brain Imaging Data Structure, a standard for organizing datasets.                 |
+| File formats             | `format:HDF5`                             | Hierarchical Data Format 5, a file format for large arrays.                           |
+|                          | `format:Zarr`                             | A chunked, compressed array format suited to cloud storage.                           |
+| Archives and initiatives | `archives:DANDI`                          | The DANDI Archive for neurophysiology and neuroimaging data.                          |
+|                          | `archives:EMBER`                          | The EMBER Archive, which holds the BBQS consortium's data.                            |
+|                          | `archives:BossDB`                         | BossDB, a cloud archive for volumetric neuroimaging data such as electron microscopy. |
+|                          | `archives:BBQS`                           | The Brain Behavior Quantification and Synchronization consortium.                     |
+|                          | `archives:BRAIN Initiative`               | The NIH BRAIN Initiative and its consortia.                                           |
+| Data management          | `data:Data Conversion`                    | Converting data from acquisition or lab formats to a standard.                        |
+|                          | `data:Data Standards`                     | Designing or extending schemas for structured data.                                   |
+|                          | `data:Metadata`                           | Describing data so that it can be found, understood and reused.                       |
+|                          | `data:Validation`                         | Checking data and metadata against a standard and its best practices.                 |
+|                          | `data:Provenance`                         | Recording how results were produced and from what.                                    |
+|                          | `data:FAIR Data`                          | Making data findable, accessible, interoperable and reusable.                         |
+|                          | `data:Open Data`                          | Data released publicly for anyone to use.                                             |
+|                          | `data:Data Sharing`                       | Publishing and distributing data to other researchers.                                |
+| Organisms                | `organisms:Mouse`                         | The house mouse, Mus musculus.                                                        |
+|                          | `organisms:Zebrafish`                     | The zebrafish, Danio rerio.                                                           |
+|                          | `organisms:C. elegans`                    | The nematode Caenorhabditis elegans.                                                  |
+| Experimental methods     | `methods:Extracellular Electrophysiology` | Recording neural activity with electrodes outside the cells.                          |
+|                          | `methods:Calcium Imaging`                 | Optical recording of neural activity through calcium indicators.                      |
+|                          | `methods:Volumetric Imaging`              | Imaging at many depths to capture a volume of tissue.                                 |
+|                          | `methods:Electron Microscopy`             | Imaging of tissue structure at nanometer resolution.                                  |
+|                          | `methods:Optogenetics`                    | Controlling neural activity with light.                                               |
+|                          | `methods:Behavior`                        | Recording and quantifying what an animal does.                                        |
+|                          | `methods:Virtual Reality`                 | Virtual environments that respond to a behaving animal.                               |
+|                          | `methods:Video`                           | Recording, encoding and handling video.                                               |
+| Neuroscience             | `neuroscience:Computational Neuroscience` | Mathematical and computational models of the nervous system.                          |
+|                          | `neuroscience:Neuroinformatics`           | Infrastructure for organizing, sharing and analyzing neuroscience data.               |
+|                          | `neuroscience:Spiking Neural Networks`    | Models of networks of spiking neurons.                                                |
+|                          | `neuroscience:Balanced Networks`          | Networks in which excitation and inhibition approximately cancel.                     |
+|                          | `neuroscience:Synaptic Connectivity`      | The pattern of synaptic connections between neurons.                                  |
+|                          | `neuroscience:Synaptic Plasticity`        | Activity-dependent changes in synaptic strength.                                      |
+|                          | `neuroscience:Correlations`               | Correlated variability in neural activity, such as between spike trains.              |
+|                          | `neuroscience:Visual Cortex`              | The cortical areas that process vision.                                               |
+|                          | `neuroscience:Glia`                       | The non-neuronal cells of the nervous system.                                         |
+| Analysis                 | `analysis:Spike Sorting`                  | Assigning extracellularly recorded spikes to individual neurons.                      |
+|                          | `analysis:Data Visualization`             | Plotting and interactive exploration of data.                                         |
+|                          | `analysis:Analytics`                      | Summarizing usage or activity logs into statistics.                                   |
+|                          | `analysis:Machine Learning`               | Models that learn from data.                                                          |
+|                          | `analysis:Unsupervised Learning`          | Learning structure from unlabeled data.                                               |
+| Software engineering     | `engineering:API Design`                  | Designing programming interfaces for other developers.                                |
+|                          | `engineering:Command Line`                | Tools run from a terminal.                                                            |
+|                          | `engineering:Web Apps`                    | Applications that run in a web browser.                                               |
+|                          | `engineering:User Interface`              | Graphical interfaces for people who do not write code.                                |
+|                          | `engineering:User Experience`             | Shaping software around how people use it, informed by user testing.                  |
+|                          | `engineering:Testing`                     | Automated unit, integration and end-to-end tests.                                     |
+|                          | `engineering:Benchmarking`                | Measuring and comparing performance.                                                  |
+|                          | `engineering:Continuous Integration`      | Building and testing automatically on every change.                                   |
+|                          | `engineering:GitHub Actions`              | Workflows run by GitHub's automation platform.                                        |
+|                          | `engineering:Automation`                  | Scheduled or event-driven jobs that run without manual steps.                         |
+|                          | `engineering:Resource Monitoring`         | Measuring the time, CPU and memory that programs use.                                 |
+| Computing infrastructure | `computing:Cloud Computing`               | Running or storing work on cloud services.                                            |
+|                          | `computing:AWS`                           | Amazon Web Services, including S3 storage.                                            |
+|                          | `computing:HPC`                           | High-performance computing clusters and their job schedulers.                         |
+|                          | `computing:Parallel Computing`            | Splitting work across processes or machines.                                          |
+|                          | `computing:Data Pipelines`                | Multi-step processing workflows run over many datasets.                               |
+| Programming languages    | `languages:Python`                        | The Python programming language.                                                      |
+|                          | `languages:JavaScript`                    | The JavaScript programming language.                                                  |
+|                          | `languages:TypeScript`                    | The TypeScript programming language.                                                  |
 <!-- tags:end -->
 
 ## Schema

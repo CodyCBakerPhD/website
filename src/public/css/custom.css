@@ -453,17 +453,18 @@ a:hover {
 
 /* One step of the viridis palette per theme, in display order, so it stays
    distinguishable with color vision deficiencies. Text on the darker half is
-   white and on the lighter half dark, each at 4.5:1 contrast or more. */
+   white and on the lighter half near-black, each at 4.5:1 contrast or more. */
 .tag-standards { --tag-color: #440154; --tag-on-color: #ffffff; }
-.tag-archives { --tag-color: #482878; --tag-on-color: #ffffff; }
-.tag-data { --tag-color: #3e4989; --tag-on-color: #ffffff; }
-.tag-organisms { --tag-color: #31688e; --tag-on-color: #ffffff; }
-.tag-methods { --tag-color: #26828e; --tag-on-color: #ffffff; }
-.tag-neuroscience { --tag-color: #1f9e89; --tag-on-color: #1c2733; }
-.tag-analysis { --tag-color: #35b779; --tag-on-color: #1c2733; }
-.tag-engineering { --tag-color: #6ece58; --tag-on-color: #1c2733; }
-.tag-computing { --tag-color: #b5de2b; --tag-on-color: #1c2733; }
-.tag-languages { --tag-color: #fde725; --tag-on-color: #1c2733; }
+.tag-format { --tag-color: #482475; --tag-on-color: #ffffff; }
+.tag-archives { --tag-color: #414487; --tag-on-color: #ffffff; }
+.tag-data { --tag-color: #355f8d; --tag-on-color: #ffffff; }
+.tag-organisms { --tag-color: #2a788e; --tag-on-color: #ffffff; }
+.tag-methods { --tag-color: #21918c; --tag-on-color: #0b0f14; }
+.tag-neuroscience { --tag-color: #22a884; --tag-on-color: #0b0f14; }
+.tag-analysis { --tag-color: #44bf70; --tag-on-color: #0b0f14; }
+.tag-engineering { --tag-color: #7ad151; --tag-on-color: #0b0f14; }
+.tag-computing { --tag-color: #bddf26; --tag-on-color: #0b0f14; }
+.tag-languages { --tag-color: #fde725; --tag-on-color: #0b0f14; }
 
 /* ---------- Skills ---------- */
 

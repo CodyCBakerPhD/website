@@ -13,8 +13,8 @@
   ],
   "tags": [
     "standards:NWB",
-    "standards:HDF5",
-    "standards:Zarr",
+    "format:HDF5",
+    "format:Zarr",
     "engineering:Benchmarking",
     "languages:Python"
   ]

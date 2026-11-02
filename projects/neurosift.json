@@ -12,7 +12,7 @@
   ],
   "tags": [
     "standards:NWB",
-    "standards:HDF5",
+    "format:HDF5",
     "archives:DANDI",
     "analysis:Data Visualization",
     "engineering:Web Apps",

@@ -11,8 +11,8 @@
     "Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets."
   ],
   "tags": [
-    "standards:HDF5",
-    "standards:Zarr",
+    "format:HDF5",
+    "format:Zarr",
     "data:Data Standards",
     "computing:Parallel Computing",
     "languages:Python"

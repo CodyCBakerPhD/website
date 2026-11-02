@@ -3,8 +3,10 @@
 */
 export enum TagTheme {
     
-    /** Data standards and the file formats they build on. */
+    /** Standards for organizing and describing data. */
     standards = "standards",
+    /** File formats that data is stored in. */
+    format = "format",
     /** Data archives, and the initiatives and consortia behind them. */
     archives = "archives",
     /** Preparing, describing, checking and sharing data. */
@@ -34,13 +36,15 @@ export enum Tag {
     /** The Brain Imaging Data Structure, a standard for organizing datasets. */
     standards_bids = "standards:BIDS",
     /** Hierarchical Data Format 5, a file format for large arrays. */
-    standards_hdf5 = "standards:HDF5",
+    format_hdf5 = "format:HDF5",
     /** A chunked, compressed array format suited to cloud storage. */
-    standards_zarr = "standards:Zarr",
+    format_zarr = "format:Zarr",
     /** The DANDI Archive for neurophysiology and neuroimaging data. */
     archives_dandi = "archives:DANDI",
     /** The EMBER Archive, which holds the BBQS consortium's data. */
     archives_ember = "archives:EMBER",
+    /** BossDB, a cloud archive for volumetric neuroimaging data such as electron microscopy. */
+    archives_bossdb = "archives:BossDB",
     /** The Brain Behavior Quantification and Synchronization consortium. */
     archives_bbqs = "archives:BBQS",
     /** The NIH BRAIN Initiative and its consortia. */

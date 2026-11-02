@@ -372,10 +372,11 @@
             "enum": [
                 "standards:NWB",
                 "standards:BIDS",
-                "standards:HDF5",
-                "standards:Zarr",
+                "format:HDF5",
+                "format:Zarr",
                 "archives:DANDI",
                 "archives:EMBER",
+                "archives:BossDB",
                 "archives:BBQS",
                 "archives:BRAIN Initiative",
                 "data:Data Conversion",
@@ -438,6 +439,7 @@
             "description": "The themes tags are grouped by, in the order the site shows them. Each value is the key that the theme's tags begin with.",
             "enum": [
                 "standards",
+                "format",
                 "archives",
                 "data",
                 "organisms",

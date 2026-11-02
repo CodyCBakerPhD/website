@@ -19,7 +19,9 @@
   "tags": [
     "standards:NWB",
     "archives:DANDI",
+    "archives:BossDB",
     "methods:Calcium Imaging",
-    "methods:Electron Microscopy"
+    "methods:Electron Microscopy",
+    "methods:Behavior"
   ]
 }
