@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.1.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.2.0",
+  "record_version": "0.2.0",
   "name": "duct",
   "url": "https://github.com/con/duct",
   "role": "Contributor",
@@ -9,5 +9,11 @@
   "description": [
     "Maintained a simple command line tool for monitoring and maintaining records of process-specific system resource utilization of any other command line invocation.",
     "Tracks wall clock time, CPU time, RAM consumption, and more!"
+  ],
+  "tags": [
+    "Command Line",
+    "Resource Monitoring",
+    "Continuous Integration",
+    "Python"
   ]
 }

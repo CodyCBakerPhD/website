@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Open data in neurophysiology: Advancements, solutions & challenges",
+  "kind": "article",
+  "authors": [
+    "C. J. Gillon",
+    "C. Baker"
+  ],
+  "et_al": true,
+  "date": "2025",
+  "venue": "eNeuro, vol. 12, no. 11",
+  "doi": "https://doi.org/10.1523/ENEURO.0486-24.2025",
+  "description": [
+    "Review article summarizing the current state of open data sharing in the field of neurophysiology as portrayed by the myriad of presentations and ensuing discussions from the inaugural Open Data in Neuroscience (ODIN) conference at MIT in 2023."
+  ],
+  "tags": [
+    "Open Data",
+    "Data Sharing",
+    "Review"
+  ]
+}

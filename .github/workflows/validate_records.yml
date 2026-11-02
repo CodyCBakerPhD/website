@@ -5,6 +5,7 @@ on:
       - "schemas/**"
       - "projects/**"
       - "datasets/**"
+      - "publications/**"
       - "src/build/generated/**"
       - "scripts/generate-schemas.sh"
       - ".github/workflows/validate_records.yml"
@@ -38,6 +39,9 @@ jobs:
 
       - name: Validate datasets
         run: linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
+
+      - name: Validate publications
+        run: linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
 
       - name: Check that the generated files are up to date
         run: |

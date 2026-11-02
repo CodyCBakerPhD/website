@@ -4,19 +4,25 @@
 
 Parts of the site are generated from machine-readable JSON records, one file per record:
 
-| Records                    | LinkML class | Site section         |
-|----------------------------|--------------|----------------------|
-| [`projects/`](../projects) | `Project`    | Highlighted Projects |
-| [`datasets/`](../datasets) | `Dataset`    | Data Curation        |
+| Records                            | LinkML class  | Site section         |
+|------------------------------------|---------------|----------------------|
+| [`projects/`](../projects)         | `Project`     | Highlighted Projects |
+| [`datasets/`](../datasets)         | `Dataset`     | Data Curation        |
+| [`publications/`](../publications) | `Publication` | Publications         |
 
 Records hold only facts about the work.
 How the site presents them, such as the order each section lists them in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
 A record's file name is its ID.
+The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+
+Every record carries `tags`: short keywords for the topics, methods and technologies of the work, shown as labels at the bottom of its card.
+Tags are free text rather than a fixed list, so keep them consistent by hand: reuse the spelling of a tag another record already has (`NWB`, not `Neurodata Without Borders`), and take each one from a source you can name, such as the record's own text or the repository it links to.
+The build fails if a record repeats a tag.
 
 ## Schema
 
 The [LinkML](https://linkml.io/) schema [`schemas/records.yaml`](../schemas/records.yaml) is the source of truth for the shape of every record.
-Its classes map onto [schema.org](https://schema.org/) terms (`Project` is a `schema:SoftwareSourceCode`, `Dataset` a `schema:Dataset`).
+Its classes map onto [schema.org](https://schema.org/) terms (`Project` is a `schema:SoftwareSourceCode`, `Dataset` a `schema:Dataset`, `Publication` a `schema:CreativeWork`, and tags are `schema:keywords`).
 
 Two kinds of files are generated from it and committed, so building the site needs no Python:
 
@@ -42,6 +48,10 @@ linkml-validate --schema schemas/records.yaml --target-class Project projects/*.
 
 ```bash
 linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
+```
+
+```bash
+linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
 ```
 
 `npm run build` (and `npm run dev`) also validates every record and renders each section into `index.html` as static HTML.

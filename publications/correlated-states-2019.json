@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Correlated states in balanced neuronal networks",
+  "kind": "article",
+  "authors": [
+    "C. Baker",
+    "C. Ebsch"
+  ],
+  "et_al": true,
+  "date": "2019",
+  "venue": "Physical Review E, vol. 99, no. 5, p. 052 414, 2019",
+  "description": [
+    "My very first publication - mathematically derives the asymptotic scaling for spike count correlations in balanced networks of spiking neurons."
+  ],
+  "tags": [
+    "Computational Neuroscience",
+    "Spiking Neural Networks",
+    "Balanced Networks",
+    "Correlations"
+  ]
+}

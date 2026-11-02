@@ -3,7 +3,7 @@
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Project } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, indent, renderParagraphs, renderTags, SEPARATOR } from "./html.ts";
 
 /** Displayed logo width as a percentage of the content column. */
 const LOGO_WIDTH_PERCENT = 50;
@@ -41,7 +41,7 @@ export function renderProject(project: Project): string[] {
   if (project.contribution) {
     lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
   }
-  lines.push("<br>", ...renderParagraphs(project.description));
+  lines.push("<br>", ...renderParagraphs(project.description), ...renderTags(project.tags));
 
   return ['<ul class="work-list">', ...indent(lines), "</ul>"];
 }

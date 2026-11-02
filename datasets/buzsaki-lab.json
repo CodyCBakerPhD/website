@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.1.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.2.0",
+  "record_version": "0.2.0",
   "name": "Miscellaneous (Buzsaki Lab)",
   "group": "Buzsaki Lab",
   "institution": "New York University",
@@ -12,5 +12,13 @@
   "description": [
     "Wrote custom conversion code for a dozen previous datasets. Unique aspects of these data collections include temperature-modulating probes, long-term passive recordings of spontaneous behavior, and paired optogenetic stimulation with extracellular electrophysiology.",
     "Published a total of **39 TB** of mouse electrophysiology and behavioral data on the associated NIH data archive, including the first TB-scale dataset on DANDI."
+  ],
+  "tags": [
+    "NWB",
+    "DANDI",
+    "Mouse",
+    "Extracellular Electrophysiology",
+    "Optogenetics",
+    "Behavior"
   ]
 }

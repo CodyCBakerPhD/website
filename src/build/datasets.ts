@@ -1,7 +1,7 @@
 // Rendering of datasets/*.json for the "Data Curation" section.
 
 import type { Dataset } from "./generated/records.ts";
-import { escapeHtml, indent, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, indent, renderParagraphs, renderTags, SEPARATOR } from "./html.ts";
 
 /** Link labels, in the order the links are shown. */
 const LINK_LABELS = {
@@ -28,6 +28,6 @@ export function renderDataset(dataset: Dataset): string[] {
     lines.push(links.join(`${SEPARATOR.trimEnd()}\n`), "<br>");
   }
 
-  lines.push(...renderParagraphs(dataset.description));
+  lines.push(...renderParagraphs(dataset.description), ...renderTags(dataset.tags));
   return ['<ul class="work-list">', ...indent(lines), "</ul>"];
 }

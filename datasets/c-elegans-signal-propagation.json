@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.1.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.2.0",
+  "record_version": "0.2.0",
   "name": "Neural signal propagation atlas of Caenorhabditis elegans",
   "group": "Leifer Lab",
   "institution": "Princeton University",
@@ -16,5 +16,12 @@
     "Wrote custom code for handling the output of a unique microscopy rig, including an electrically tunable lens capable of acquiring images at variable (but precisely measured) depths.",
     "Published a total of **10 TB** of C. elegans microscopy data on the associated NIH data archive.",
     "Showcased reproduction of key figures from the associated manuscript through an interactive Jupyter Notebook."
+  ],
+  "tags": [
+    "NWB",
+    "DANDI",
+    "C. elegans",
+    "Volumetric Imaging",
+    "Jupyter"
   ]
 }

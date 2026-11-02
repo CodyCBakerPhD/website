@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "NeuroConv tutorial",
+  "kind": "workshop",
+  "authors": [
+    "C. Baker",
+    "O. Ruebel"
+  ],
+  "et_al": true,
+  "date": "2023",
+  "venue": "NWB User Days, Janelia Research Campus",
+  "tags": [
+    "NWB",
+    "Data Conversion"
+  ]
+}

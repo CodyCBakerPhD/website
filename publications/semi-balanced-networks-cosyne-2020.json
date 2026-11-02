@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "Nonlinear computations in semi-balanced networks",
+  "kind": "presentation",
+  "authors": [
+    "C. Baker",
+    "V. Zhu"
+  ],
+  "et_al": true,
+  "date": "2020",
+  "venue": "Computational and Systems Neuroscience (COSYNE) 2020",
+  "note": "Contributed talk (top 4% of abstracts)",
+  "tags": [
+    "Computational Neuroscience",
+    "Balanced Networks"
+  ]
+}

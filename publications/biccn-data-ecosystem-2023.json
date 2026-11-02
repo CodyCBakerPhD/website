@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.2.0",
+  "record_version": "0.1.0",
+  "name": "A guide to the BRAIN Initiative Cell Census Network data ecosystem",
+  "kind": "article",
+  "authors": [
+    "M. Hawrylycz",
+    "M. E. Martone"
+  ],
+  "et_al": true,
+  "date": "2023",
+  "venue": "PLoS biology, vol. 21, no. 6, e3002133, 2023",
+  "description": [
+    "Consortium article (with dozens of authors) describing the data ecosystem developed by the BRAIN Initiative Cell Census Network, of which the DANDI Archive is a core component for data sharing and publication."
+  ],
+  "tags": [
+    "BRAIN Initiative",
+    "DANDI",
+    "Data Sharing"
+  ]
+}

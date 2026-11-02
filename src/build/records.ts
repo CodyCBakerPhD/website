@@ -3,9 +3,9 @@
 // the LinkML schema in schemas/records.yaml).
 //
 // Any problem fails the build, or shows an error in the dev server, instead of
-// rendering a broken page: malformed JSON, a schema violation, a failed
-// section-specific check, or a mismatch between the records on disk and the
-// section's display order. Each section's markup replaces its
+// rendering a broken page: malformed JSON, a schema violation, a repeated tag,
+// a failed section-specific check, or a mismatch between the records on disk
+// and the section's display order. Each section's markup replaces its
 // <!-- build:NAME --> placeholder, so the published page is static HTML.
 
 import { readdirSync, readFileSync } from "node:fs";
@@ -14,8 +14,9 @@ import type { ErrorObject } from "ajv";
 import Ajv2019 from "ajv/dist/2019.js";
 import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
+import type { BaseRecord } from "./generated/records.ts";
 
-export interface SectionOptions<T> {
+export interface SectionOptions<T extends BaseRecord> {
   /** Names the section's <!-- build:NAME --> placeholder in index.html. */
   name: string;
   /** Directory holding one JSON file per record, relative to the repository root. */
@@ -24,8 +25,8 @@ export interface SectionOptions<T> {
   schemaFile: string;
   /** Record IDs (file names without .json) in display order. Every record must be listed once. */
   order: readonly string[];
-  /** Renders one record as lines of HTML. */
-  render: (record: T) => string[];
+  /** Renders the section's records, in display order, as lines of HTML. */
+  render: (records: readonly T[]) => string[];
   /** Checks a schema cannot express. Returns a description of each problem found. */
   check?: (record: T, context: { publicDir: string }) => string[];
 }
@@ -38,12 +39,11 @@ export interface Section {
   render(root: string, publicDir: string): string[];
 }
 
-export function defineSection<T>(options: SectionOptions<T>): Section {
+export function defineSection<T extends BaseRecord>(options: SectionOptions<T>): Section {
   return {
     name: options.name,
     watchPaths: [options.recordsDir, options.schemaFile],
-    render: (root, publicDir) =>
-      loadRecords(options, root, publicDir).flatMap((record) => options.render(record)),
+    render: (root, publicDir) => options.render(loadRecords(options, root, publicDir)),
   };
 }
 
@@ -57,8 +57,15 @@ function describeError(error: ErrorObject): string {
   return `${error.instancePath || "(root)"} ${error.message}${detail}`;
 }
 
+// The schema marks tags list_elements_unique, but LinkML's JSON Schema
+// generator does not carry that over as uniqueItems.
+function checkTags(record: BaseRecord): string[] {
+  const repeated = record.tags.filter((tag, index) => record.tags.indexOf(tag) !== index);
+  return [...new Set(repeated)].map((tag) => `/tags lists "${tag}" more than once`);
+}
+
 /** Reads, validates and orders a section's records, or throws listing every problem. */
-function loadRecords<T>(options: SectionOptions<T>, root: string, publicDir: string): T[] {
+function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): T[] {
   const recordsDir = resolve(root, options.recordsDir);
   const schemaFile = resolve(root, options.schemaFile);
 
@@ -95,7 +102,7 @@ function loadRecords<T>(options: SectionOptions<T>, root: string, publicDir: str
       continue;
     }
 
-    const checkProblems = options.check?.(record, { publicDir }) ?? [];
+    const checkProblems = [...checkTags(record), ...(options.check?.(record, { publicDir }) ?? [])];
     problems.push(...checkProblems.map((problem) => `${file}: ${problem}`));
     if (checkProblems.length === 0) {
       records.set(basename(file, ".json"), record);
