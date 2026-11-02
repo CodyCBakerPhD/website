@@ -1,10 +1,11 @@
 {
   "schema_version": "0.1.0",
-  "record_version": "0.1.0",
+  "record_version": "0.1.1",
   "name": "NeuroConv",
   "url": "https://github.com/catalystneuro/neuroconv",
   "role": "Lead Developer",
-  "start_date": "2020-07",
+  "start_date": "2020-06",
+  "end_date": "2024-10",
   "logo": "img/neuroconv_logo.png",
   "description": [
     "Established an automated data conversion tool capable of reading more than 40 distinct data formats used by neurophysiology acquisition devices in order to automatically write to the NeurodataWithoutBorders (NWB) standard.",
