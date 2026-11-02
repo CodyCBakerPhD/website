@@ -248,7 +248,7 @@ export interface Publication extends BaseRecord {
     kind: string,
     /** Authors in citation order, as initials and surname, e.g. "C. J. Gillon". Lists only the leading authors when et_al is true. */
     authors: string[],
-    /** Whether further authors follow those listed. */
+    /** Whether further authors follow those listed. Set only for works with more than 10 authors; otherwise list every author. */
     et_al?: boolean,
     /** When the work was published or presented, or last dated while in preparation. */
     date: string,

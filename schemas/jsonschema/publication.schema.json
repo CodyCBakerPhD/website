@@ -312,7 +312,7 @@
                     ]
                 },
                 "et_al": {
-                    "description": "Whether further authors follow those listed.",
+                    "description": "Whether further authors follow those listed. Set only for works with more than 10 authors; otherwise list every author.",
                     "type": [
                         "boolean",
                         "null"
@@ -510,7 +510,7 @@
             ]
         },
         "et_al": {
-            "description": "Whether further authors follow those listed.",
+            "description": "Whether further authors follow those listed. Set only for works with more than 10 authors; otherwise list every author.",
             "type": [
                 "boolean",
                 "null"
