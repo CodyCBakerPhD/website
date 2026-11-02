@@ -10,6 +10,9 @@ const LOGO_WIDTH_PERCENT = 50;
 
 /** Logos near-square in shape, which look oversized at the default width. */
 const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
+  "img/dandi_compute_logo.png": 25,
+  "img/hearth_logo.svg": 25,
+  "img/historia_logo.svg": 25,
   "img/neurosift_logo.png": 25,
   "img/nwbwidgets_logo.png": 25,
 };
