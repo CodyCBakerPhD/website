@@ -3,11 +3,11 @@
   "record_version": "0.2.0",
   "name": "Neurosift",
   "url": "https://neurosift.app",
-  "role": "UX Consultant",
+  "role": "UX Consultant and Contributor",
+  "contribution": "Added on-the-fly analyses computed in the browser: spectrograms of LFP streams with adjustable hyperparameters, and event-related signals that align any time series to a table of intervals.",
   "start_date": "2023-07",
   "logo": "img/neurosift_logo.png",
   "description": [
-    "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives.",
-    "Also contributed features such as on-the-fly spectrograms of LFP streams, views of time series aligned to intervals and events, access to embargoed DANDI assets, support for the EMBER Archive, and a unit, visual, and integration testing infrastructure."
+    "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives."
   ]
 }
