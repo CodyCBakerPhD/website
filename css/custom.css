@@ -556,6 +556,23 @@ footer .social li a:hover {
     color: var(--accent) !important;
 }
 
+footer .footer-version {
+    text-align: left;
+    padding: 0px 0px 20px 0px;
+}
+
+/* Muted rather than accent-colored: the version is a provenance marker, not a call to action. */
+footer .version-link {
+    color: var(--muted);
+    font-size: 0.85em;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+footer .version-link:hover {
+    color: var(--accent);
+}
+
 .scroll-offset {
     position: relative;
     top: 80px;
