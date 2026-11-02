@@ -28,7 +28,7 @@ def r1(n: float) -> float:
     return round(n, 1)
 
 
-def fmt(n: float) -> str:
+def format(n: float) -> str:
     n = r1(n)
     return str(int(n)) if n == int(n) else str(n)
 
@@ -51,16 +51,16 @@ def cluster(seed: int) -> dict:
 
     # Each neuron is one path, drawn depth-first with relative moves; markers put a dot on every node.
     for soma in somas:
-        d = [f"M{fmt(soma['x'])} {fmt(soma['y'])}"]
+        d = [f"M{format(soma['x'])} {format(soma['y'])}"]
         pen = (soma["x"], soma["y"])
 
         def grow(x: float, y: float, angle: float, length: float, depth: int, max_depth: int) -> None:
             nonlocal pen
             if pen != (x, y):
-                d.append(f"M{fmt(x)} {fmt(y)}")
+                d.append(f"M{format(x)} {format(y)}")
             nx = r1(x + math.cos(angle) * length)
             ny = r1(y + math.sin(angle) * length)
-            d.append(f"l{fmt(nx - x)} {fmt(ny - y)}")
+            d.append(f"l{format(nx - x)} {format(ny - y)}")
             pen = (nx, ny)
             if depth == max_depth:
                 return
@@ -97,10 +97,10 @@ def cluster(seed: int) -> dict:
         for i in range(n):
             t = i / (n - 1)
             strands.append(
-                f"M-10 {fmt(y0 + t * 60)}"
-                f"C{fmt(reach * 0.3 + t * 30)} {fmt(y0 - twist + t * twist * 2)} "
-                f"{fmt(reach * 0.6 - t * 30)} {fmt(y1 + twist - t * twist * 2 + math.sin(t * math.pi) * 16)} "
-                f"{fmt(reach + t * 40)} {fmt(y1 + t * 50)}"
+                f"M-10 {format(y0 + t * 60)}"
+                f"C{format(reach * 0.3 + t * 30)} {format(y0 - twist + t * twist * 2)} "
+                f"{format(reach * 0.6 - t * 30)} {format(y1 + twist - t * twist * 2 + math.sin(t * math.pi) * 16)} "
+                f"{format(reach + t * 40)} {format(y1 + t * 50)}"
             )
         ribbons.append("".join(strands))
 
@@ -109,12 +109,12 @@ def cluster(seed: int) -> dict:
 
 def render_cluster(c: dict) -> str:
     def layer(far: bool) -> str:
-        return "".join(f'<path d="{n["d"]}" opacity="{fmt(n["opacity"])}"/>' for n in c["neurons"] if n["far"] == far)
+        return "".join(f'<path d="{n["d"]}" opacity="{format(n["opacity"])}"/>' for n in c["neurons"] if n["far"] == far)
 
     somas = "".join(
-        f'<circle cx="{fmt(n["x"])}" cy="{fmt(n["y"])}" r="{fmt(n["r"] * 4.5)}" fill="url(#halo)" '
-        f'opacity="{fmt(n["opacity"] * (0.5 if n["far"] else 1))}"/>'
-        f'<circle cx="{fmt(n["x"])}" cy="{fmt(n["y"])}" r="{fmt(n["r"] * (0.7 if n["far"] else 1))}" '
+        f'<circle cx="{format(n["x"])}" cy="{format(n["y"])}" r="{format(n["r"] * 4.5)}" fill="url(#halo)" '
+        f'opacity="{format(n["opacity"] * (0.5 if n["far"] else 1))}"/>'
+        f'<circle cx="{format(n["x"])}" cy="{format(n["y"])}" r="{format(n["r"] * (0.7 if n["far"] else 1))}" '
         f'fill="{"#9fdde6" if n["far"] else "#e3fffb"}" opacity="{0.6 if n["far"] else 0.95}"/>'
         for n in c["neurons"]
     )
