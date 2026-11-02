@@ -1,0 +1,27 @@
+name: Typecheck
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The site build (vite) strips types without checking them, so a type
+      # error would otherwise pass every other workflow.
+      - name: Typecheck the site and its build code
+        run: npm run typecheck
