@@ -201,6 +201,8 @@ export interface Project extends BaseRecord {
     end_date?: string,
     /** Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. "img/guide_logo.png". */
     logo?: string,
+    /** Related resources. */
+    links?: ProjectLinks,
 }
 
 
@@ -220,6 +222,15 @@ export interface Dataset extends BaseRecord {
     modality: string,
     /** Related resources. */
     links?: DatasetLinks,
+}
+
+
+/**
+ * Resources related to a project, keyed by type.
+ */
+export interface ProjectLinks {
+    /** Where the project's packages are published, e.g. an npm organization or a PyPI project. */
+    packages?: string,
 }
 
 

@@ -203,6 +203,17 @@
                         "null"
                     ]
                 },
+                "links": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ProjectLinks"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Related resources."
+                },
                 "logo": {
                     "description": "Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/guide_logo.png\".",
                     "pattern": "^[^/]",
@@ -272,6 +283,23 @@
                 ]
             },
             "title": "Project",
+            "type": "object"
+        },
+        "ProjectLinks": {
+            "additionalProperties": false,
+            "description": "Resources related to a project, keyed by type.",
+            "properties": {
+                "packages": {
+                    "description": "Where the project's packages are published, e.g. an npm organization or a PyPI project.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ProjectLinks",
             "type": "object"
         },
         "Publication": {
@@ -508,6 +536,17 @@
                 "string",
                 "null"
             ]
+        },
+        "links": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/ProjectLinks"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "Related resources."
         },
         "logo": {
             "description": "Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/guide_logo.png\".",

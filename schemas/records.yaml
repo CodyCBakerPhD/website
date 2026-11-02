@@ -122,6 +122,10 @@ classes:
           itself lives under src/public/), e.g. "img/guide_logo.png".
         slot_uri: schema:logo
         pattern: "^[^/]"
+      links:
+        description: Related resources.
+        range: ProjectLinks
+        inlined: true
     rules:
       - description: A contributor's record summarizes what they contributed.
         preconditions:
@@ -171,6 +175,15 @@ classes:
         description: Related resources.
         range: DatasetLinks
         inlined: true
+
+  ProjectLinks:
+    description: Resources related to a project, keyed by type.
+    attributes:
+      packages:
+        description: >-
+          Where the project's packages are published, e.g. an npm organization
+          or a PyPI project.
+        range: HttpUrl
 
   DatasetLinks:
     description: Resources related to a dataset, keyed by type.
