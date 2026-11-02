@@ -1,8 +1,8 @@
 """Writes the tag table in docs/development.md from the vocabulary in schemas/tags.yaml.
 
-Run by scripts/generate-schemas.sh. Fails if the tags slot and the theme enums
-in schemas/tags.yaml disagree, or if a theme's tags are not all theme:tag pairs
-sharing one key that no other theme uses.
+Run by scripts/generate-schemas.sh. Fails unless every tag is a theme:tag pair
+whose key is a theme in TagTheme, with the tags listed theme by theme in the
+order of TagTheme and every theme having at least one tag.
 """
 
 import re
@@ -19,26 +19,26 @@ END = "<!-- tags:end -->"
 
 
 def rows() -> list[tuple[str, str, str]]:
-    schema = yaml.safe_load(VOCABULARY.read_text())
-    enums = schema["enums"]
-    themes = [entry["range"] for entry in schema["slots"]["tags"]["any_of"]]
-    if sorted(themes) != sorted(enums):
-        sys.exit(f"{VOCABULARY}: the tags slot's any_of must list each theme enum exactly once")
+    enums = yaml.safe_load(VOCABULARY.read_text())["enums"]
+    themes = enums["TagTheme"]["permissible_values"]
+    tags = enums["Tag"]["permissible_values"]
 
-    key_of: dict[str, str] = {}
+    keys = []
+    for tag in tags:
+        key = tag.split(":", 1)[0] if ":" in tag else None
+        if key not in themes:
+            sys.exit(f"{VOCABULARY}: {tag!r} is not a theme:tag pair whose key is listed in TagTheme")
+        keys.append(key)
+    # Collapsing runs of the same key must give TagTheme's order exactly once each.
+    runs = [key for index, key in enumerate(keys) if index == 0 or keys[index - 1] != key]
+    if runs != list(themes):
+        sys.exit(f"{VOCABULARY}: Tag must list its tags theme by theme, in the order of TagTheme, with every theme used")
+
     table = []
-    for theme in themes:
-        tags = enums[theme]["permissible_values"]
-        keys = {tag.split(":", 1)[0] for tag in tags if ":" in tag}
-        if len(keys) != 1 or not all(":" in tag for tag in tags):
-            sys.exit(f"{VOCABULARY}: every tag in {theme} must be a theme:tag pair, all with the same key")
-        (key,) = keys
-        if key in key_of:
-            sys.exit(f"{VOCABULARY}: {theme} and {key_of[key]} both use the key {key!r}")
-        key_of[key] = theme
-        for index, (tag, value) in enumerate(tags.items()):
-            # The theme is named on its first row only, so the groups stand out.
-            table.append((enums[theme]["title"] if index == 0 else "", f"`{tag}`", value["description"]))
+    for index, (tag, value) in enumerate(tags.items()):
+        # The theme is named on its first row only, so the groups stand out.
+        first = index == 0 or keys[index - 1] != keys[index]
+        table.append((themes[keys[index]]["title"] if first else "", f"`{tag}`", value["description"]))
     return table
 
 

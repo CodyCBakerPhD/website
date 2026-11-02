@@ -1,7 +1,33 @@
 /**
-* Data standards and the file formats they build on.
+* The themes tags are grouped by, in the order the site shows them. Each value is the key that the theme's tags begin with.
 */
-export enum StandardTag {
+export enum TagTheme {
+    
+    /** Data standards and the file formats they build on. */
+    Standards_and_formats = "standards",
+    /** Data archives, and the initiatives and consortia behind them. */
+    Archives_and_initiatives = "archives",
+    /** Preparing, describing, checking and sharing data. */
+    Data_management = "data",
+    /** The species data was recorded from. */
+    Organisms = "organisms",
+    /** How data is recorded, and the kinds of data recorded. */
+    Experimental_methods = "methods",
+    /** Fields, theories and subjects of neuroscience research. */
+    Neuroscience = "neuroscience",
+    /** Ways of analyzing and presenting data. */
+    Analysis = "analysis",
+    /** How the software is built, tested and delivered. */
+    Software_engineering = "engineering",
+    /** Where and at what scale the work runs. */
+    Computing_infrastructure = "computing",
+    /** The main language of a software project. */
+    Programming_languages = "languages",
+};
+/**
+* Every tag a record may carry, as a theme:tag pair, listed theme by theme in the order of TagTheme.
+*/
+export enum Tag {
     
     /** Neurodata Without Borders, the data standard for neurophysiology. */
     standardsCOLONNWB = "standards:NWB",
@@ -11,12 +37,6 @@ export enum StandardTag {
     standardsCOLONHDF5 = "standards:HDF5",
     /** A chunked, compressed array format suited to cloud storage. */
     standardsCOLONZarr = "standards:Zarr",
-};
-/**
-* Data archives, and the initiatives and consortia behind them.
-*/
-export enum ArchiveTag {
-    
     /** The DANDI Archive for neurophysiology and neuroimaging data. */
     archivesCOLONDANDI = "archives:DANDI",
     /** The EMBER Archive, which holds the BBQS consortium's data. */
@@ -25,12 +45,6 @@ export enum ArchiveTag {
     archivesCOLONBBQS = "archives:BBQS",
     /** The NIH BRAIN Initiative and its consortia. */
     archivesCOLONBRAIN_Initiative = "archives:BRAIN Initiative",
-};
-/**
-* Preparing, describing, checking and sharing data.
-*/
-export enum DataManagementTag {
-    
     /** Converting data from acquisition or lab formats to a standard. */
     dataCOLONData_Conversion = "data:Data Conversion",
     /** Designing or extending schemas for structured data. */
@@ -47,24 +61,12 @@ export enum DataManagementTag {
     dataCOLONOpen_Data = "data:Open Data",
     /** Publishing and distributing data to other researchers. */
     dataCOLONData_Sharing = "data:Data Sharing",
-};
-/**
-* The species data was recorded from.
-*/
-export enum OrganismTag {
-    
     /** The house mouse, Mus musculus. */
     organismsCOLONMouse = "organisms:Mouse",
     /** The zebrafish, Danio rerio. */
     organismsCOLONZebrafish = "organisms:Zebrafish",
     /** The nematode Caenorhabditis elegans. */
     organismsCOLONCFULL_STOP_elegans = "organisms:C. elegans",
-};
-/**
-* How data is recorded, and the kinds of data recorded.
-*/
-export enum MethodTag {
-    
     /** Recording neural activity with electrodes outside the cells. */
     methodsCOLONExtracellular_Electrophysiology = "methods:Extracellular Electrophysiology",
     /** Optical recording of neural activity through calcium indicators. */
@@ -81,12 +83,6 @@ export enum MethodTag {
     methodsCOLONVirtual_Reality = "methods:Virtual Reality",
     /** Recording, encoding and handling video. */
     methodsCOLONVideo = "methods:Video",
-};
-/**
-* Fields, theories and subjects of neuroscience research.
-*/
-export enum NeuroscienceTag {
-    
     /** Mathematical and computational models of the nervous system. */
     neuroscienceCOLONComputational_Neuroscience = "neuroscience:Computational Neuroscience",
     /** Infrastructure for organizing, sharing and analyzing neuroscience data. */
@@ -105,12 +101,6 @@ export enum NeuroscienceTag {
     neuroscienceCOLONVisual_Cortex = "neuroscience:Visual Cortex",
     /** The non-neuronal cells of the nervous system. */
     neuroscienceCOLONGlia = "neuroscience:Glia",
-};
-/**
-* Ways of analyzing and presenting data.
-*/
-export enum AnalysisTag {
-    
     /** Assigning extracellularly recorded spikes to individual neurons. */
     analysisCOLONSpike_Sorting = "analysis:Spike Sorting",
     /** Plotting and interactive exploration of data. */
@@ -121,12 +111,6 @@ export enum AnalysisTag {
     analysisCOLONMachine_Learning = "analysis:Machine Learning",
     /** Learning structure from unlabeled data. */
     analysisCOLONUnsupervised_Learning = "analysis:Unsupervised Learning",
-};
-/**
-* How the software is built, tested and delivered.
-*/
-export enum EngineeringTag {
-    
     /** Designing programming interfaces for other developers. */
     engineeringCOLONAPI_Design = "engineering:API Design",
     /** Tools run from a terminal. */
@@ -149,12 +133,6 @@ export enum EngineeringTag {
     engineeringCOLONAutomation = "engineering:Automation",
     /** Measuring the time, CPU and memory that programs use. */
     engineeringCOLONResource_Monitoring = "engineering:Resource Monitoring",
-};
-/**
-* Where and at what scale the work runs.
-*/
-export enum ComputingTag {
-    
     /** Running or storing work on cloud services. */
     computingCOLONCloud_Computing = "computing:Cloud Computing",
     /** Amazon Web Services, including S3 storage. */
@@ -165,12 +143,6 @@ export enum ComputingTag {
     computingCOLONParallel_Computing = "computing:Parallel Computing",
     /** Multi-step processing workflows run over many datasets. */
     computingCOLONData_Pipelines = "computing:Data Pipelines",
-};
-/**
-* The main language of a software project.
-*/
-export enum LanguageTag {
-    
     /** The Python programming language. */
     languagesCOLONPython = "languages:Python",
     /** The JavaScript programming language. */
@@ -203,7 +175,7 @@ export interface BaseRecord {
     /** Display name of the record. */
     name: string,
     /** Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. "standards:NWB". */
-    tags: string[],
+    tags: string,
 }
 
 

@@ -2,12 +2,10 @@ id: https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/tags
 name: tags
 title: Tags
 description: >-
-  The tags a record may carry, grouped by theme. Each theme is one enum, and
-  the tags slot accepts a value from any of them. Every tag is written as a
-  flat theme:tag pair, e.g. "standards:NWB", whose key is shared by all the
-  tags of its theme. Themes are listed in the
-  order the site shows them, and tags within a theme likewise. This file is
-  part of the records schema (schemas/records.yaml imports it), so changing it
+  The tags a record may carry. Every tag is a flat theme:tag pair, e.g.
+  "standards:NWB", listed in one enum (Tag), theme by theme. The themes, and
+  the key each one gives its tags, are listed in TagTheme. This file is part
+  of the records schema (schemas/records.yaml imports it), so changing it
   bumps the version there. The tag table in docs/development.md is generated
   from it.
 
@@ -29,26 +27,53 @@ slots:
       theme:tag pair from the vocabulary in schemas/tags.yaml, e.g.
       "standards:NWB".
     slot_uri: schema:keywords
+    range: Tag
     multivalued: true
     list_elements_unique: true
     required: true
     minimum_cardinality: 1
-    any_of:
-      - range: StandardTag
-      - range: ArchiveTag
-      - range: DataManagementTag
-      - range: OrganismTag
-      - range: MethodTag
-      - range: NeuroscienceTag
-      - range: AnalysisTag
-      - range: EngineeringTag
-      - range: ComputingTag
-      - range: LanguageTag
 
 enums:
-  StandardTag:
-    title: Standards and formats
-    description: Data standards and the file formats they build on.
+  TagTheme:
+    description: >-
+      The themes tags are grouped by, in the order the site shows them. Each
+      value is the key that the theme's tags begin with.
+    permissible_values:
+      standards:
+        title: Standards and formats
+        description: Data standards and the file formats they build on.
+      archives:
+        title: Archives and initiatives
+        description: Data archives, and the initiatives and consortia behind them.
+      data:
+        title: Data management
+        description: Preparing, describing, checking and sharing data.
+      organisms:
+        title: Organisms
+        description: The species data was recorded from.
+      methods:
+        title: Experimental methods
+        description: How data is recorded, and the kinds of data recorded.
+      neuroscience:
+        title: Neuroscience
+        description: Fields, theories and subjects of neuroscience research.
+      analysis:
+        title: Analysis
+        description: Ways of analyzing and presenting data.
+      engineering:
+        title: Software engineering
+        description: How the software is built, tested and delivered.
+      computing:
+        title: Computing infrastructure
+        description: Where and at what scale the work runs.
+      languages:
+        title: Programming languages
+        description: The main language of a software project.
+
+  Tag:
+    description: >-
+      Every tag a record may carry, as a theme:tag pair, listed theme by theme
+      in the order of TagTheme.
     permissible_values:
       standards:NWB:
         description: Neurodata Without Borders, the data standard for neurophysiology.
@@ -59,10 +84,6 @@ enums:
       standards:Zarr:
         description: A chunked, compressed array format suited to cloud storage.
 
-  ArchiveTag:
-    title: Archives and initiatives
-    description: Data archives, and the initiatives and consortia behind them.
-    permissible_values:
       archives:DANDI:
         description: The DANDI Archive for neurophysiology and neuroimaging data.
       archives:EMBER:
@@ -72,10 +93,6 @@ enums:
       archives:BRAIN Initiative:
         description: The NIH BRAIN Initiative and its consortia.
 
-  DataManagementTag:
-    title: Data management
-    description: Preparing, describing, checking and sharing data.
-    permissible_values:
       data:Data Conversion:
         description: Converting data from acquisition or lab formats to a standard.
       data:Data Standards:
@@ -93,10 +110,6 @@ enums:
       data:Data Sharing:
         description: Publishing and distributing data to other researchers.
 
-  OrganismTag:
-    title: Organisms
-    description: The species data was recorded from.
-    permissible_values:
       organisms:Mouse:
         description: The house mouse, Mus musculus.
       organisms:Zebrafish:
@@ -104,10 +117,6 @@ enums:
       organisms:C. elegans:
         description: The nematode Caenorhabditis elegans.
 
-  MethodTag:
-    title: Experimental methods
-    description: How data is recorded, and the kinds of data recorded.
-    permissible_values:
       methods:Extracellular Electrophysiology:
         description: Recording neural activity with electrodes outside the cells.
       methods:Calcium Imaging:
@@ -125,10 +134,6 @@ enums:
       methods:Video:
         description: Recording, encoding and handling video.
 
-  NeuroscienceTag:
-    title: Neuroscience
-    description: Fields, theories and subjects of neuroscience research.
-    permissible_values:
       neuroscience:Computational Neuroscience:
         description: Mathematical and computational models of the nervous system.
       neuroscience:Neuroinformatics:
@@ -148,10 +153,6 @@ enums:
       neuroscience:Glia:
         description: The non-neuronal cells of the nervous system.
 
-  AnalysisTag:
-    title: Analysis
-    description: Ways of analyzing and presenting data.
-    permissible_values:
       analysis:Spike Sorting:
         description: Assigning extracellularly recorded spikes to individual neurons.
       analysis:Data Visualization:
@@ -163,10 +164,6 @@ enums:
       analysis:Unsupervised Learning:
         description: Learning structure from unlabeled data.
 
-  EngineeringTag:
-    title: Software engineering
-    description: How the software is built, tested and delivered.
-    permissible_values:
       engineering:API Design:
         description: Designing programming interfaces for other developers.
       engineering:Command Line:
@@ -190,10 +187,6 @@ enums:
       engineering:Resource Monitoring:
         description: Measuring the time, CPU and memory that programs use.
 
-  ComputingTag:
-    title: Computing infrastructure
-    description: Where and at what scale the work runs.
-    permissible_values:
       computing:Cloud Computing:
         description: Running or storing work on cloud services.
       computing:AWS:
@@ -205,10 +198,6 @@ enums:
       computing:Data Pipelines:
         description: Multi-step processing workflows run over many datasets.
 
-  LanguageTag:
-    title: Programming languages
-    description: The main language of a software project.
-    permissible_values:
       languages:Python:
         description: The Python programming language.
       languages:JavaScript:

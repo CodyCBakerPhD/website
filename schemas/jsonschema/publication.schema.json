@@ -1,28 +1,5 @@
 {
     "$defs": {
-        "AnalysisTag": {
-            "description": "Ways of analyzing and presenting data.",
-            "enum": [
-                "analysis:Spike Sorting",
-                "analysis:Data Visualization",
-                "analysis:Analytics",
-                "analysis:Machine Learning",
-                "analysis:Unsupervised Learning"
-            ],
-            "title": "AnalysisTag",
-            "type": "string"
-        },
-        "ArchiveTag": {
-            "description": "Data archives, and the initiatives and consortia behind them.",
-            "enum": [
-                "archives:DANDI",
-                "archives:EMBER",
-                "archives:BBQS",
-                "archives:BRAIN Initiative"
-            ],
-            "title": "ArchiveTag",
-            "type": "string"
-        },
         "BaseRecord": {
             "additionalProperties": false,
             "description": "The fields every record has.",
@@ -44,38 +21,7 @@
                 "tags": {
                     "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/StandardTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ArchiveTag"
-                            },
-                            {
-                                "$ref": "#/$defs/DataManagementTag"
-                            },
-                            {
-                                "$ref": "#/$defs/OrganismTag"
-                            },
-                            {
-                                "$ref": "#/$defs/MethodTag"
-                            },
-                            {
-                                "$ref": "#/$defs/NeuroscienceTag"
-                            },
-                            {
-                                "$ref": "#/$defs/AnalysisTag"
-                            },
-                            {
-                                "$ref": "#/$defs/EngineeringTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ComputingTag"
-                            },
-                            {
-                                "$ref": "#/$defs/LanguageTag"
-                            }
-                        ]
+                        "$ref": "#/$defs/Tag"
                     },
                     "minItems": 1,
                     "type": "array"
@@ -89,33 +35,6 @@
             ],
             "title": "BaseRecord",
             "type": "object"
-        },
-        "ComputingTag": {
-            "description": "Where and at what scale the work runs.",
-            "enum": [
-                "computing:Cloud Computing",
-                "computing:AWS",
-                "computing:HPC",
-                "computing:Parallel Computing",
-                "computing:Data Pipelines"
-            ],
-            "title": "ComputingTag",
-            "type": "string"
-        },
-        "DataManagementTag": {
-            "description": "Preparing, describing, checking and sharing data.",
-            "enum": [
-                "data:Data Conversion",
-                "data:Data Standards",
-                "data:Metadata",
-                "data:Validation",
-                "data:Provenance",
-                "data:FAIR Data",
-                "data:Open Data",
-                "data:Data Sharing"
-            ],
-            "title": "DataManagementTag",
-            "type": "string"
         },
         "Dataset": {
             "additionalProperties": false,
@@ -176,38 +95,7 @@
                 "tags": {
                     "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/StandardTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ArchiveTag"
-                            },
-                            {
-                                "$ref": "#/$defs/DataManagementTag"
-                            },
-                            {
-                                "$ref": "#/$defs/OrganismTag"
-                            },
-                            {
-                                "$ref": "#/$defs/MethodTag"
-                            },
-                            {
-                                "$ref": "#/$defs/NeuroscienceTag"
-                            },
-                            {
-                                "$ref": "#/$defs/AnalysisTag"
-                            },
-                            {
-                                "$ref": "#/$defs/EngineeringTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ComputingTag"
-                            },
-                            {
-                                "$ref": "#/$defs/LanguageTag"
-                            }
-                        ]
+                        "$ref": "#/$defs/Tag"
                     },
                     "minItems": 1,
                     "type": "array"
@@ -269,75 +157,6 @@
             },
             "title": "DatasetLinks",
             "type": "object"
-        },
-        "EngineeringTag": {
-            "description": "How the software is built, tested and delivered.",
-            "enum": [
-                "engineering:API Design",
-                "engineering:Command Line",
-                "engineering:Web Apps",
-                "engineering:User Interface",
-                "engineering:User Experience",
-                "engineering:Testing",
-                "engineering:Benchmarking",
-                "engineering:Continuous Integration",
-                "engineering:GitHub Actions",
-                "engineering:Automation",
-                "engineering:Resource Monitoring"
-            ],
-            "title": "EngineeringTag",
-            "type": "string"
-        },
-        "LanguageTag": {
-            "description": "The main language of a software project.",
-            "enum": [
-                "languages:Python",
-                "languages:JavaScript",
-                "languages:TypeScript"
-            ],
-            "title": "LanguageTag",
-            "type": "string"
-        },
-        "MethodTag": {
-            "description": "How data is recorded, and the kinds of data recorded.",
-            "enum": [
-                "methods:Extracellular Electrophysiology",
-                "methods:Calcium Imaging",
-                "methods:Volumetric Imaging",
-                "methods:Electron Microscopy",
-                "methods:Optogenetics",
-                "methods:Behavior",
-                "methods:Virtual Reality",
-                "methods:Video"
-            ],
-            "title": "MethodTag",
-            "type": "string"
-        },
-        "NeuroscienceTag": {
-            "description": "Fields, theories and subjects of neuroscience research.",
-            "enum": [
-                "neuroscience:Computational Neuroscience",
-                "neuroscience:Neuroinformatics",
-                "neuroscience:Spiking Neural Networks",
-                "neuroscience:Balanced Networks",
-                "neuroscience:Synaptic Connectivity",
-                "neuroscience:Synaptic Plasticity",
-                "neuroscience:Correlations",
-                "neuroscience:Visual Cortex",
-                "neuroscience:Glia"
-            ],
-            "title": "NeuroscienceTag",
-            "type": "string"
-        },
-        "OrganismTag": {
-            "description": "The species data was recorded from.",
-            "enum": [
-                "organisms:Mouse",
-                "organisms:Zebrafish",
-                "organisms:C. elegans"
-            ],
-            "title": "OrganismTag",
-            "type": "string"
         },
         "Project": {
             "additionalProperties": false,
@@ -410,38 +229,7 @@
                 "tags": {
                     "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/StandardTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ArchiveTag"
-                            },
-                            {
-                                "$ref": "#/$defs/DataManagementTag"
-                            },
-                            {
-                                "$ref": "#/$defs/OrganismTag"
-                            },
-                            {
-                                "$ref": "#/$defs/MethodTag"
-                            },
-                            {
-                                "$ref": "#/$defs/NeuroscienceTag"
-                            },
-                            {
-                                "$ref": "#/$defs/AnalysisTag"
-                            },
-                            {
-                                "$ref": "#/$defs/EngineeringTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ComputingTag"
-                            },
-                            {
-                                "$ref": "#/$defs/LanguageTag"
-                            }
-                        ]
+                        "$ref": "#/$defs/Tag"
                     },
                     "minItems": 1,
                     "type": "array"
@@ -546,38 +334,7 @@
                 "tags": {
                     "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/StandardTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ArchiveTag"
-                            },
-                            {
-                                "$ref": "#/$defs/DataManagementTag"
-                            },
-                            {
-                                "$ref": "#/$defs/OrganismTag"
-                            },
-                            {
-                                "$ref": "#/$defs/MethodTag"
-                            },
-                            {
-                                "$ref": "#/$defs/NeuroscienceTag"
-                            },
-                            {
-                                "$ref": "#/$defs/AnalysisTag"
-                            },
-                            {
-                                "$ref": "#/$defs/EngineeringTag"
-                            },
-                            {
-                                "$ref": "#/$defs/ComputingTag"
-                            },
-                            {
-                                "$ref": "#/$defs/LanguageTag"
-                            }
-                        ]
+                        "$ref": "#/$defs/Tag"
                     },
                     "minItems": 1,
                     "type": "array"
@@ -610,15 +367,88 @@
             "title": "PublicationKind",
             "type": "string"
         },
-        "StandardTag": {
-            "description": "Data standards and the file formats they build on.",
+        "Tag": {
+            "description": "Every tag a record may carry, as a theme:tag pair, listed theme by theme in the order of TagTheme.",
             "enum": [
                 "standards:NWB",
                 "standards:BIDS",
                 "standards:HDF5",
-                "standards:Zarr"
+                "standards:Zarr",
+                "archives:DANDI",
+                "archives:EMBER",
+                "archives:BBQS",
+                "archives:BRAIN Initiative",
+                "data:Data Conversion",
+                "data:Data Standards",
+                "data:Metadata",
+                "data:Validation",
+                "data:Provenance",
+                "data:FAIR Data",
+                "data:Open Data",
+                "data:Data Sharing",
+                "organisms:Mouse",
+                "organisms:Zebrafish",
+                "organisms:C. elegans",
+                "methods:Extracellular Electrophysiology",
+                "methods:Calcium Imaging",
+                "methods:Volumetric Imaging",
+                "methods:Electron Microscopy",
+                "methods:Optogenetics",
+                "methods:Behavior",
+                "methods:Virtual Reality",
+                "methods:Video",
+                "neuroscience:Computational Neuroscience",
+                "neuroscience:Neuroinformatics",
+                "neuroscience:Spiking Neural Networks",
+                "neuroscience:Balanced Networks",
+                "neuroscience:Synaptic Connectivity",
+                "neuroscience:Synaptic Plasticity",
+                "neuroscience:Correlations",
+                "neuroscience:Visual Cortex",
+                "neuroscience:Glia",
+                "analysis:Spike Sorting",
+                "analysis:Data Visualization",
+                "analysis:Analytics",
+                "analysis:Machine Learning",
+                "analysis:Unsupervised Learning",
+                "engineering:API Design",
+                "engineering:Command Line",
+                "engineering:Web Apps",
+                "engineering:User Interface",
+                "engineering:User Experience",
+                "engineering:Testing",
+                "engineering:Benchmarking",
+                "engineering:Continuous Integration",
+                "engineering:GitHub Actions",
+                "engineering:Automation",
+                "engineering:Resource Monitoring",
+                "computing:Cloud Computing",
+                "computing:AWS",
+                "computing:HPC",
+                "computing:Parallel Computing",
+                "computing:Data Pipelines",
+                "languages:Python",
+                "languages:JavaScript",
+                "languages:TypeScript"
             ],
-            "title": "StandardTag",
+            "title": "Tag",
+            "type": "string"
+        },
+        "TagTheme": {
+            "description": "The themes tags are grouped by, in the order the site shows them. Each value is the key that the theme's tags begin with.",
+            "enum": [
+                "standards",
+                "archives",
+                "data",
+                "organisms",
+                "methods",
+                "neuroscience",
+                "analysis",
+                "engineering",
+                "computing",
+                "languages"
+            ],
+            "title": "TagTheme",
             "type": "string"
         }
     },
@@ -696,38 +526,7 @@
         "tags": {
             "description": "Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. \"standards:NWB\".",
             "items": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/StandardTag"
-                    },
-                    {
-                        "$ref": "#/$defs/ArchiveTag"
-                    },
-                    {
-                        "$ref": "#/$defs/DataManagementTag"
-                    },
-                    {
-                        "$ref": "#/$defs/OrganismTag"
-                    },
-                    {
-                        "$ref": "#/$defs/MethodTag"
-                    },
-                    {
-                        "$ref": "#/$defs/NeuroscienceTag"
-                    },
-                    {
-                        "$ref": "#/$defs/AnalysisTag"
-                    },
-                    {
-                        "$ref": "#/$defs/EngineeringTag"
-                    },
-                    {
-                        "$ref": "#/$defs/ComputingTag"
-                    },
-                    {
-                        "$ref": "#/$defs/LanguageTag"
-                    }
-                ]
+                "$ref": "#/$defs/Tag"
             },
             "minItems": 1,
             "type": "array"

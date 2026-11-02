@@ -17,15 +17,17 @@ The Publications section groups its records under a heading per `kind` (article,
 
 ## Tags
 
-Every record carries `tags` from one central vocabulary, [`schemas/tags.yaml`](../schemas/tags.yaml), which groups them by theme (one LinkML enum per theme).
-Each tag is written as a flat `theme:tag` pair, such as `standards:NWB` or `languages:Python`, and every tag of a theme shares its key.
+Every record carries `tags` from one central vocabulary, [`schemas/tags.yaml`](../schemas/tags.yaml).
+Each tag is written as a flat `theme:tag` pair, such as `standards:NWB` or `languages:Python`.
+The vocabulary lists every tag in one LinkML enum, `Tag`, theme by theme, and names the themes (the keys before the `:`) in a second enum, `TagTheme`.
 `linkml-validate` and the site build both reject a tag that is not in the vocabulary, and the build also rejects a tag repeated within a record.
 
 The site shows each tag as a label reading `theme | tag`, colored by its theme, with themes in the order of the table below.
-The order of the themes is set in [`src/build/tags.ts`](../src/build/tags.ts), and their colors (steps of the colorblind-safe viridis palette) in [`src/public/css/custom.css`](../src/public/css/custom.css), keyed by each theme's key.
+Theme colors (steps of the colorblind-safe viridis palette) are set in [`src/public/css/custom.css`](../src/public/css/custom.css), keyed by each theme's key, and [`src/build/tags.ts`](../src/build/tags.ts) renders the labels.
 
-To add a tag, list it in `schemas/tags.yaml` under its theme with a one-line meaning, bump the schema version and regenerate (see [Schema](#schema)), which rewrites the table below.
-A new theme also needs a place in the order in `src/build/tags.ts` and a color in the stylesheet.
+To add a tag, list it in `Tag` among the other tags of its theme, with a one-line meaning, then bump the schema version and regenerate (see [Schema](#schema)), which rewrites the table below.
+Regenerating fails if a tag's key is not in `TagTheme`, or if `Tag` strays from listing its tags theme by theme in `TagTheme`'s order.
+A new theme needs an entry in `TagTheme` and a color in the stylesheet.
 Take each record's tags from a source you can name, such as the record's own text or the repository it links to.
 
 The table is generated from `schemas/tags.yaml`, so edit that file rather than the table.
