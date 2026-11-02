@@ -9,7 +9,6 @@ on:
       - "src/build/generated/**"
       - "scripts/generate-schemas.sh"
       - "scripts/generate_tag_table.py"
-      - "scripts/postprocess_typescript.py"
       - "docs/development.md"
       - ".github/workflows/validate_records.yml"
   workflow_dispatch:

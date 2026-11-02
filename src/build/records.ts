@@ -50,7 +50,7 @@ export function defineSection<T extends BaseRecord>(options: SectionOptions<T>):
 
 function describeError(error: ErrorObject): string {
   // The tag vocabulary is long, so name the file to look in instead of listing it.
-  if (error.keyword === "enum" && /^\/tags\/\d+$/.test(error.instancePath)) {
+  if (error.keyword === "anyOf" && /^\/tags\/\d+$/.test(error.instancePath)) {
     return `${error.instancePath} ${JSON.stringify(error.data)} is not one of the theme:tag pairs listed in schemas/tags.yaml`;
   }
   const detail =
@@ -94,8 +94,12 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
 
     if (!validate(record)) {
       // An unmet if/then also reports a generic "must match then schema"; the
-      // specific error beside it is the useful one.
-      for (const error of (validate.errors ?? []).filter((error) => error.keyword !== "if")) {
+      // specific error beside it is the useful one. An unmet anyOf is the
+      // reverse: it also reports why its alternative failed, and the anyOf
+      // error alone is the useful one.
+      const errors = (validate.errors ?? []).filter((error) => error.keyword !== "if");
+      const anyOfPaths = new Set(errors.filter((error) => error.keyword === "anyOf").map((error) => error.instancePath));
+      for (const error of errors.filter((error) => error.keyword === "anyOf" || !anyOfPaths.has(error.instancePath))) {
         problems.push(`${file}: ${describeError(error)}`);
       }
       continue;

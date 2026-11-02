@@ -27,7 +27,10 @@ slots:
       theme:tag pair from the vocabulary in schemas/tags.yaml, e.g.
       "standards:NWB".
     slot_uri: schema:keywords
-    range: Tag
+    # A one-item any_of rather than range: Tag, because gen-typescript types a
+    # slot whose range is an enum as a single string, even when multivalued.
+    any_of:
+      - range: Tag
     multivalued: true
     list_elements_unique: true
     required: true

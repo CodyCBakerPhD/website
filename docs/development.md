@@ -107,7 +107,7 @@ Its classes map onto [schema.org](https://schema.org/) terms (`Project` is a `sc
 Three kinds of files are generated from it and committed, so building the site needs no Python:
 
 - [`schemas/jsonschema/`](../schemas/jsonschema): one JSON Schema per record type, which the site build validates every record against.
-- [`src/build/generated/records.ts`](../src/build/generated/records.ts): the TypeScript types the renderers use. [`scripts/postprocess_typescript.py`](../scripts/postprocess_typescript.py) names their enum members in snake_case and types enum-ranged fields as their enum, which `gen-typescript` does not.
+- [`src/build/generated/records.ts`](../src/build/generated/records.ts): the TypeScript types the renderers use.
 - The [tag table](#tags) in this file.
 
 Never edit them by hand.
