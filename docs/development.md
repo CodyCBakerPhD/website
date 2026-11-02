@@ -13,6 +13,9 @@ Records hold only facts about the work.
 How the site presents them, such as the order each section lists them in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
 A record's file name is its ID.
 
+The same records are also rendered into the Highlighted Projects and Data Curation sections of the CV, in the private `CodyCBakerPhD/job-applications` repository (`scripts/sync_website.py` there), which turns each sentence of a description into one bullet.
+A new record must also be placed in that repository's `latex/website_records.toml`, either shown or omitted, and changes to the fields the CV reads (`name`, `role`, `url`, `contribution` and `description` of a project; `name`, `role`, `group`, `institution`, `modality`, `links` and `description` of a dataset) need a matching change to that script.
+
 ## Schema
 
 The [LinkML](https://linkml.io/) schema [`schemas/records.yaml`](../schemas/records.yaml) is the source of truth for the shape of every record.
