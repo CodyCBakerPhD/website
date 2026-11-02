@@ -4,7 +4,7 @@
   "name": "Hierarchical Data Modeling Framework (HDMF)",
   "url": "https://github.com/hdmf-dev/hdmf",
   "role": "Contributor",
-  "contribution": "Created the GenericDataChunkIterator for lazy, buffered writing of terabyte-scale datasets, later extending it with serialization and progress bar control, and exposed AWS region selection for HDF5 streaming.",
+  "contribution": "Created the GenericDataChunkIterator for more efficient lazy, buffered writing of terabyte-scale datasets (existing defaults overlapped chunks and had poor default chunking heuristics), later extending it with serialization and progress bar control, and exposed AWS region selection for HDF5 streaming.",
   "start_date": "2021-04",
   "end_date": "2025-09",
   "description": [
