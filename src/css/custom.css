@@ -891,13 +891,13 @@ a:hover {
     --accent-dark: #002120;
     --accent-soft: #a9c1bf;
     --accent-border: #23514f;
-    --page-bg: #939aa2;
-    --card-bg: #7f868f;
-    --card-border: #6b727b;
+    --page-bg: #9ba2a9;
+    --card-bg: #878e96;
+    --card-border: #727a83;
     --diff-added: #06350f;
     --diff-deleted: #650614;
-    --diff-neutral: #6b727b;
-    --diff-neutral-border: #6b727b;
+    --diff-neutral: #727a83;
+    --diff-neutral-border: #727a83;
     --state-open: #1f883d;
     --state-done: #8250df;
     --state-closed: #cf222e;
