@@ -9,9 +9,9 @@ const DEFAULT_NAV_OFFSET_PX = 80;
 
 /** Sections that moved off the home page onto pages of their own, by their old anchors. */
 const MOVED_SECTIONS: Readonly<Record<string, string>> = {
-  "#highlighted-projects": "projects.html",
-  "#data-curation": "data-curation.html",
-  "#publications": "publications.html",
+  "#highlighted-projects": "projects",
+  "#data-curation": "data-curation",
+  "#publications": "publications",
 };
 
 type Theme = "light" | "dark";
