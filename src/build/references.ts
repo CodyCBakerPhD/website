@@ -45,7 +45,7 @@ type LinkingRecord = BaseRecord &
 export interface RecordNode {
   /** The path of its file from the repository root without .json, e.g. "projects/neuroconv". */
   path: string;
-  /** Where its card is, e.g. "projects.html#neuroconv". */
+  /** Where its card is, e.g. "projects#neuroconv". */
   href: string;
   /** Text of a link to it. */
   label: string;

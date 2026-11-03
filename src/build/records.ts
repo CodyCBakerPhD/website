@@ -19,6 +19,7 @@ import type { Plugin } from "vite";
 import type { BaseRecord } from "./generated/records.ts";
 import { GITHUB_ACTIVITY_FILE, loadGitHubActivity } from "./github.ts";
 import { fillPlaceholder, hasPlaceholder } from "./html.ts";
+import { pageRoute } from "./layout.ts";
 import { linkRecords, type RecordNode } from "./references.ts";
 import { checkTags } from "./tags.ts";
 
@@ -79,7 +80,7 @@ export function defineSection<T extends BaseRecord>(options: SectionOptions<T>):
       const records = loadRecords(options, root, publicDir);
       const nodes = records.map(({ id, record }) => ({
         path: `${options.recordsDir}/${id}`,
-        href: `${options.page}#${id}`,
+        href: `${pageRoute(options.page)}#${id}`,
         label: label(record),
         icon: options.icon,
         related: options.related,

@@ -13,6 +13,15 @@ import { escapeHtml, fillPlaceholder } from "./html.ts";
 
 const HOME = "index.html";
 
+/**
+ * The address of a page, relative like every other URL on the site so that links work from a
+ * nested PR preview too: the home page is "./", and any other page drops ".html" ("projects"),
+ * which GitHub Pages and Vite's servers both resolve to the page's file.
+ */
+export function pageRoute(page: string): string {
+  return page === HOME ? "./" : page.replace(/\.html$/, "");
+}
+
 interface NavLink {
   label: string;
   /** The page's file under src/. */
@@ -35,8 +44,7 @@ const NAV: readonly NavLink[] = [
 function renderNavLink({ label, page, section }: NavLink, current: string): string {
   const text = escapeHtml(label);
   if (page !== current) {
-    // Relative, like every other URL on the site, so the links work from a nested PR preview too.
-    const href = (page === HOME ? "./" : page) + (section ? `#${section}` : "");
+    const href = pageRoute(page) + (section ? `#${section}` : "");
     return `<li><a href="${escapeHtml(href)}">${text}</a></li>`;
   }
   if (section) {
@@ -46,7 +54,7 @@ function renderNavLink({ label, page, section }: NavLink, current: string): stri
   if (page === HOME) {
     return `<li><a href="#" data-scroll-top>${text}</a></li>`;
   }
-  return `<li class="active"><a href="${escapeHtml(page)}" aria-current="page">${text}</a></li>`;
+  return `<li class="active"><a href="${escapeHtml(pageRoute(page))}" aria-current="page">${text}</a></li>`;
 }
 
 /** Vite plugin that fills in the shared parts of every page, in both `vite build` and the dev server. */
