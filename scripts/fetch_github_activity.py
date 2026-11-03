@@ -3,10 +3,12 @@
 src/build/generated/github.json, so building the site needs no network.
 
 For every pull request or issue a record cites as evidence, it records the
-title and state and, for a pull request, the lines added and deleted. For every
+title and, for a pull request, the lines added and deleted. For every
 repository a project lists, it records the repository's description. For every
 project whose code is on GitHub (its url, and its repositories), it counts the
-owner's merged pull requests and closed issues there.
+owner's pull requests merged and issues closed there (those they opened or were
+assigned), and the other pull requests they reviewed, each with the search
+query that lists them.
 
 Run it after citing a new pull request or issue, or adding a project, and now
 and then to refresh the counts. It needs only the standard library. GitHub
@@ -47,9 +49,12 @@ def get(path: str, params: dict[str, str | int] | None = None) -> dict:
         return json.load(response)
 
 
-def count(query: str) -> int:
+def count(query: str) -> dict:
+    """How many issues or pull requests a search finds, with the query, which GitHub's own search also takes."""
     time.sleep(SEARCH_INTERVAL_SECONDS)
-    return get("search/issues", {"q": query, "per_page": 1})["total_count"]
+    # Advanced search reads OR and parentheses, and joins any other qualifiers with AND.
+    found = get("search/issues", {"q": query, "per_page": 1, "advanced_search": "true"})["total_count"]
+    return {"count": found, "query": query}
 
 
 def fetch_contribution(repository: str, kind: str, number: str) -> dict:
@@ -58,12 +63,11 @@ def fetch_contribution(repository: str, kind: str, number: str) -> dict:
         return {
             "type": "pull_request",
             "title": pull["title"],
-            "state": "merged" if pull["merged_at"] else pull["state"],
             "additions": pull["additions"],
             "deletions": pull["deletions"],
         }
     issue = get(f"repos/{repository}/issues/{number}")
-    return {"type": "issue", "title": issue["title"], "state": issue["state"]}
+    return {"type": "issue", "title": issue["title"]}
 
 
 def fetch_repository(url: str) -> dict:
@@ -81,7 +85,9 @@ def code_query(project: dict) -> str | None:
     qualifiers = [f"org:{owner}" for owner in sorted(organizations)]
     # A repository in an organization the query already covers would only repeat it.
     qualifiers += [f"repo:{owner}/{name}" for owner, name in matches if name and owner not in organizations]
-    return " ".join(qualifiers) or None
+    if len(qualifiers) > 1:
+        return f"({' OR '.join(qualifiers)})"
+    return qualifiers[0] if qualifiers else None
 
 
 def main() -> None:
@@ -111,11 +117,12 @@ def main() -> None:
     for path, record in records.items():
         scope = code_query(record) if path.startswith("projects/") else None
         if scope:
-            query = f"{scope} author:{OWNER}"
+            # The owner's own work is what they opened or were assigned; reviews are of everyone else's.
+            own = f"(author:{OWNER} OR assignee:{OWNER})"
             projects[path] = {
-                "query": query,
-                "merged_pull_requests": count(f"{query} is:pr is:merged"),
-                "closed_issues": count(f"{query} is:issue is:closed"),
+                "merged_pull_requests": count(f"{scope} is:pr is:merged {own}"),
+                "reviewed_pull_requests": count(f"{scope} is:pr reviewed-by:{OWNER} -author:{OWNER} -assignee:{OWNER}"),
+                "closed_issues": count(f"{scope} is:issue is:closed {own}"),
             }
             print(f"{path}: {projects[path]}")
 
