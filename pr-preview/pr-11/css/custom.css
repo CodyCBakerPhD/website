@@ -470,6 +470,12 @@ a:hover {
     min-width: 0;
 }
 
+/* A source's address can be longer than the row. */
+.work .record-link span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
 /* Space between groups: on a label and the first link beside it, so they stay level. */
 .work .record-references div + div dt,
 .work .record-references div + div dt + dd {
