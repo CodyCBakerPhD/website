@@ -11,26 +11,11 @@
     "Tracks wall clock time, CPU time, RAM consumption, and more!"
   ],
   "evidence": [
-    {
-      "title": "Added Mac (M-series) support",
-      "url": "https://github.com/con/duct/pull/351"
-    },
-    {
-      "title": "Activate intel runner for mac CI",
-      "url": "https://github.com/con/duct/pull/364"
-    },
-    {
-      "title": "Added basic import structure for library usage",
-      "url": "https://github.com/con/duct/pull/390"
-    },
-    {
-      "title": "Try making standalone executable",
-      "url": "https://github.com/con/duct/issues/326"
-    },
-    {
-      "title": "Better error rendering on unsupported systems",
-      "url": "https://github.com/con/duct/pull/392"
-    }
+    "https://github.com/con/duct/pull/351",
+    "https://github.com/con/duct/pull/364",
+    "https://github.com/con/duct/pull/390",
+    "https://github.com/con/duct/issues/326",
+    "https://github.com/con/duct/pull/392"
   ],
   "tags": [
     "engineering:Command Line",

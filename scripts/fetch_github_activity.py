@@ -3,7 +3,7 @@
 src/build/generated/github.json, so building the site needs no network.
 
 For every pull request or issue a record cites as evidence, it records the
-state and, for a pull request, the lines added and deleted. For every project
+title and state and, for a pull request, the lines added and deleted. For every project
 whose code is on GitHub (its url, or its repositories), it counts the owner's
 merged pull requests and closed issues there.
 
@@ -56,12 +56,13 @@ def fetch_contribution(repository: str, kind: str, number: str) -> dict:
         pull = get(f"repos/{repository}/pulls/{number}")
         return {
             "type": "pull_request",
+            "title": pull["title"],
             "state": "merged" if pull["merged_at"] else pull["state"],
             "additions": pull["additions"],
             "deletions": pull["deletions"],
         }
     issue = get(f"repos/{repository}/issues/{number}")
-    return {"type": "issue", "state": issue["state"]}
+    return {"type": "issue", "title": issue["title"], "state": issue["state"]}
 
 
 def code_query(project: dict) -> str | None:
@@ -83,11 +84,11 @@ def main() -> None:
 
     contributions = {}
     for record in records.values():
-        for evidence in record.get("evidence", []):
-            match = CONTRIBUTION_URL.match(evidence["url"])
-            if match and evidence["url"] not in contributions:
-                contributions[evidence["url"]] = fetch_contribution(*match.groups())
-                print(f"{evidence['url']}: {contributions[evidence['url']]}")
+        for url in record.get("evidence", []):
+            match = CONTRIBUTION_URL.match(url)
+            if match and url not in contributions:
+                contributions[url] = fetch_contribution(*match.groups())
+                print(f"{url}: {contributions[url]}")
 
     projects = {}
     for path, record in records.items():

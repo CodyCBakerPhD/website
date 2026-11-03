@@ -1,12 +1,12 @@
 // GitHub activity shown on record cards: each pull request or issue a record
-// cites as evidence, with its state and a pull request's added and deleted
-// lines, and how many pull requests and issues the site's owner has had merged
-// and closed in each project's code. scripts/fetch_github_activity.py fetches
-// it into generated/github.json, so building the site needs no network.
+// cites as evidence, with its title, its state and a pull request's added and
+// deleted lines, and how many pull requests and issues the site's owner has
+// had merged and closed in each project's code. Records cite only the URL;
+// scripts/fetch_github_activity.py fetches the rest into generated/github.json,
+// so building the site needs no network.
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import type { Evidence } from "./generated/records.ts";
 import { escapeHtml, indent } from "./html.ts";
 
 /** Relative to the repository root. */
@@ -20,6 +20,7 @@ const DIFF_BLOCKS = 5;
 
 interface Contribution {
   type: "pull_request" | "issue";
+  title: string;
   state: "merged" | "open" | "closed";
   additions?: number;
   deletions?: number;
@@ -55,17 +56,17 @@ export function loadGitHubActivity(root: string): GitHubActivity {
 }
 
 /** Whether evidence is a pull request or issue on GitHub, which cards feature as a contribution. */
-export function isContribution(evidence: Evidence): boolean {
-  return CONTRIBUTION_URL.test(evidence.url);
+export function isContribution(url: string): boolean {
+  return CONTRIBUTION_URL.test(url);
 }
 
 /** Problems with a record's GitHub activity, each naming the slot. */
 export function checkGitHubActivity(path: string, record: object, activity: GitHubActivity): string[] {
   const problems: string[] = [];
-  const { evidence = [], url, repositories } = record as { evidence?: Evidence[]; url?: string; repositories?: string[] };
-  evidence.forEach((item, index) => {
-    if (isContribution(item) && !activity.contributions[item.url]) {
-      problems.push(`/evidence/${index} ${item.url} is missing from ${GITHUB_ACTIVITY_FILE}; run ${FETCH_COMMAND}`);
+  const { evidence = [], url, repositories } = record as { evidence?: string[]; url?: string; repositories?: string[] };
+  evidence.forEach((source, index) => {
+    if (isContribution(source) && !activity.contributions[source]) {
+      problems.push(`/evidence/${index} ${source} is missing from ${GITHUB_ACTIVITY_FILE}; run ${FETCH_COMMAND}`);
     }
   });
   const featured = evidence.filter(isContribution).length;
@@ -116,8 +117,8 @@ function renderDiff(additions: number, deletions: number): string {
   );
 }
 
-function renderContribution(evidence: Evidence, contribution: Contribution): string[] {
-  const [, repository, , number] = CONTRIBUTION_URL.exec(evidence.url)!;
+function renderContribution(url: string, contribution: Contribution): string[] {
+  const [, repository, , number] = CONTRIBUTION_URL.exec(url)!;
   const isPull = contribution.type === "pull_request";
   const kind = isPull ? "Pull request" : "Issue";
   return [
@@ -129,7 +130,7 @@ function renderContribution(evidence: Evidence, contribution: Contribution): str
         `<span class="contribution-repository" title="${escapeHtml(repository)}">${escapeHtml(repository)}</span>` +
         `<span class="contribution-number">#${number}</span>` +
         `<span class="contribution-state">${STATES[contribution.state]}</span></span>`,
-      `<a class="contribution-title" href="${escapeHtml(evidence.url)}">${escapeHtml(evidence.title)}</a>`,
+      `<a class="contribution-title" href="${escapeHtml(url)}">${escapeHtml(contribution.title)}</a>`,
       ...(isPull ? [renderDiff(contribution.additions ?? 0, contribution.deletions ?? 0)] : []),
     ]),
     "</div>",
@@ -137,12 +138,12 @@ function renderContribution(evidence: Evidence, contribution: Contribution): str
 }
 
 /** Subcards for the pull requests and issues a record features, or null if it features none. */
-export function renderFeaturedContributions(evidence: readonly Evidence[], activity: GitHubActivity): string | null {
+export function renderFeaturedContributions(evidence: readonly string[], activity: GitHubActivity): string | null {
   const featured = evidence.filter(isContribution);
   if (featured.length === 0) {
     return null;
   }
-  const cards = featured.flatMap((item) => renderContribution(item, activity.contributions[item.url]));
+  const cards = featured.flatMap((url) => renderContribution(url, activity.contributions[url]));
   return ['<div class="contributions">', ...indent(cards), "</div>"].join("\n");
 }
 

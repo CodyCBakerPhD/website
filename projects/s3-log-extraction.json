@@ -12,10 +12,7 @@
     "Extended it for the DANDI Archive's own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive."
   ],
   "evidence": [
-    {
-      "title": "The DANDI usage page",
-      "url": "https://usage.dandiarchive.org"
-    }
+    "https://usage.dandiarchive.org"
   ],
   "tags": [
     "archives:DANDI",

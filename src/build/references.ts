@@ -7,7 +7,7 @@
 // GitHub is featured as a contribution (see github.ts); the rest is listed as
 // sources.
 
-import type { BaseRecord, Evidence } from "./generated/records.ts";
+import type { BaseRecord } from "./generated/records.ts";
 import {
   checkGitHubActivity,
   isContribution,
@@ -65,8 +65,15 @@ function renderRecordLink(node: RecordNode): string {
   return `<i class="fa fa-fw ${node.icon}" aria-hidden="true"></i> <span><a href="${escapeHtml(node.href)}">${escapeHtml(node.label)}</a></span>`;
 }
 
-function renderSourceLink(evidence: Evidence): string {
-  return `<i class="fa fa-fw fa-external-link" aria-hidden="true"></i> <span><a href="${escapeHtml(evidence.url)}">${escapeHtml(evidence.title)}</a></span>`;
+/** "pypi.org/project/historia" for https://pypi.org/project/historia/. */
+function displayUrl(url: string): string {
+  const { host, pathname, search } = new URL(url);
+  return `${host.replace(/^www\./, "")}${pathname.replace(/\/$/, "")}${search}`;
+}
+
+// A source other than a pull request or issue is shown by its address: nothing about it is fetched.
+function renderSourceLink(url: string): string {
+  return `<i class="fa fa-fw fa-external-link" aria-hidden="true"></i> <span><a href="${escapeHtml(url)}">${escapeHtml(displayUrl(url))}</a></span>`;
 }
 
 /** Linked records under a heading each: the relation's label, or else each record's own heading. */
@@ -107,7 +114,7 @@ function checkNode(node: RecordNode, nodes: ReadonlyMap<string, RecordNode>): st
       }
     });
   }
-  const urls = (node.record.evidence ?? []).map((evidence) => evidence.url);
+  const urls = node.record.evidence ?? [];
   for (const url of new Set(urls.filter((url, index) => urls.indexOf(url) !== index))) {
     problems.push(`/evidence cites ${url} more than once`);
   }

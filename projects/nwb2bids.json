@@ -11,18 +11,9 @@
     "Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode neurophysiology data."
   ],
   "evidence": [
-    {
-      "title": "BEP032 formal review",
-      "url": "https://github.com/bids-standard/bids-specification/pull/2307"
-    },
-    {
-      "title": "BEP032 - Correcting validations against real data example",
-      "url": "https://github.com/bids-standard/bids-specification/pull/2132"
-    },
-    {
-      "title": "BEP032: Relax many levels to optional",
-      "url": "https://github.com/bids-standard/bids-specification/pull/2363"
-    }
+    "https://github.com/bids-standard/bids-specification/pull/2307",
+    "https://github.com/bids-standard/bids-specification/pull/2132",
+    "https://github.com/bids-standard/bids-specification/pull/2363"
   ],
   "tags": [
     "standards:NWB",

@@ -180,19 +180,8 @@ export interface BaseRecord {
     name: string,
     /** Keywords for the topics, methods and technologies of the work, each a theme:tag pair from the vocabulary in schemas/tags.yaml, e.g. "standards:NWB". */
     tags: string[],
-    /** Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions. */
-    evidence?: Evidence[],
-}
-
-
-/**
- * A source outside this site that backs up part of a record, such as a pull request, a package index or a page the record mentions.
- */
-export interface Evidence {
-    /** What the source is or shows, without a trailing period, e.g. the title of a pull request. */
-    title: string,
-    /** Where the source is. */
-    url: string,
+    /** Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. "https://github.com/hdmf-dev/hdmf/pull/672". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here. */
+    evidence?: string[],
 }
 
 

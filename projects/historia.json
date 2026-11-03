@@ -12,14 +12,8 @@
     "Distributed on PyPI and conda-forge."
   ],
   "evidence": [
-    {
-      "title": "historia on PyPI",
-      "url": "https://pypi.org/project/historia/"
-    },
-    {
-      "title": "The conda-forge feedstock for historia",
-      "url": "https://github.com/conda-forge/historia-feedstock"
-    }
+    "https://pypi.org/project/historia/",
+    "https://github.com/conda-forge/historia-feedstock"
   ],
   "tags": [
     "engineering:Command Line",

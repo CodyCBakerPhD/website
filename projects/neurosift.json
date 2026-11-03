@@ -14,14 +14,8 @@
     "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives."
   ],
   "evidence": [
-    {
-      "title": "On the fly spectrogram",
-      "url": "https://github.com/flatironinstitute/neurosift/pull/521"
-    },
-    {
-      "title": "Event Related Signals",
-      "url": "https://github.com/flatironinstitute/neurosift/pull/518"
-    }
+    "https://github.com/flatironinstitute/neurosift/pull/521",
+    "https://github.com/flatironinstitute/neurosift/pull/518"
   ],
   "tags": [
     "standards:NWB",

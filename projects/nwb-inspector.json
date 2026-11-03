@@ -12,10 +12,7 @@
     "Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff."
   ],
   "evidence": [
-    {
-      "title": "NWB file validation in the DANDI client, which runs the NWB Inspector",
-      "url": "https://github.com/dandi/dandi-cli/blob/master/dandi/files/bases.py"
-    }
+    "https://github.com/dandi/dandi-cli/blob/master/dandi/files/bases.py"
   ],
   "tags": [
     "standards:NWB",

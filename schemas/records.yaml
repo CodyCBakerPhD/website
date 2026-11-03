@@ -78,12 +78,15 @@ slots:
     minimum_cardinality: 1
   evidence:
     description: >-
-      Sources outside this site that back up what the record says, such as the
-      pull requests behind a contribution or a page its description mentions.
+      Links to sources outside this site that back up what the record says,
+      such as the pull requests behind a contribution or a page its
+      description mentions, e.g. "https://github.com/hdmf-dev/hdmf/pull/672".
+      What a GitHub pull request or issue is (its title and state) is fetched
+      from GitHub rather than written here.
     slot_uri: CiTO:citesAsEvidence
-    range: Evidence
+    range: HttpUrl
     multivalued: true
-    inlined_as_list: true
+    list_elements_unique: true
     minimum_cardinality: 1
   built_with:
     description: >-
@@ -107,24 +110,6 @@ classes:
       - name
       - tags
       - evidence
-
-  Evidence:
-    description: >-
-      A source outside this site that backs up part of a record, such as a
-      pull request, a package index or a page the record mentions.
-    class_uri: schema:CreativeWork
-    attributes:
-      title:
-        description: >-
-          What the source is or shows, without a trailing period, e.g. the
-          title of a pull request.
-        slot_uri: schema:name
-        required: true
-      url:
-        description: Where the source is.
-        slot_uri: schema:url
-        range: HttpUrl
-        required: true
 
   Project:
     is_a: BaseRecord

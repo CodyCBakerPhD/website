@@ -55,16 +55,18 @@ The build fails on a link to a record that does not exist, to the record itself,
 
 ## Evidence
 
-Any record can cite `evidence`: sources outside the site that back up what it says, each with a `title` saying what the source is and its `url`.
+Any record can cite `evidence`: links to sources outside the site that back up what it says.
 
 ```json
 "evidence": [
-  { "title": "GenericDataChunkIterator", "url": "https://github.com/hdmf-dev/hdmf/pull/672" }
+  "https://github.com/hdmf-dev/hdmf/pull/672",
+  "https://pypi.org/project/historia/"
 ]
 ```
 
 Good evidence is the pull requests behind a contribution, the package index a project says it is published on, or a page its description mentions.
-Cards show a pull request or issue on GitHub as a featured contribution, and list the rest under "Sources".
+Records hold only the URL.
+Cards show a pull request or issue on GitHub as a featured contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `pypi.org/project/historia`.
 The build fails if a record cites the same URL twice.
 
 Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
@@ -73,7 +75,7 @@ Like every other part of a record, links and evidence come from a source you can
 
 Cards show two kinds of activity on GitHub:
 
-- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its state and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title and state and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
   Feature fewer than 10; the build fails on more.
 - **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
   These show once either count reaches 10, when there are too many to feature one by one.

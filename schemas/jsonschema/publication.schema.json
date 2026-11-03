@@ -5,9 +5,11 @@
             "description": "The fields every record has, and the evidence any record may cite.",
             "properties": {
                 "evidence": {
-                    "description": "Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions.",
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
                     "items": {
-                        "$ref": "#/$defs/Evidence"
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
                     },
                     "minItems": 1,
                     "type": [
@@ -76,9 +78,11 @@
                     "type": "array"
                 },
                 "evidence": {
-                    "description": "Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions.",
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
                     "items": {
-                        "$ref": "#/$defs/Evidence"
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
                     },
                     "minItems": 1,
                     "type": [
@@ -200,28 +204,6 @@
             "title": "DatasetLinks",
             "type": "object"
         },
-        "Evidence": {
-            "additionalProperties": false,
-            "description": "A source outside this site that backs up part of a record, such as a pull request, a package index or a page the record mentions.",
-            "properties": {
-                "title": {
-                    "description": "What the source is or shows, without a trailing period, e.g. the title of a pull request.",
-                    "type": "string"
-                },
-                "url": {
-                    "description": "Where the source is.",
-                    "format": "uri",
-                    "pattern": "^https?://",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "title",
-                "url"
-            ],
-            "title": "Evidence",
-            "type": "object"
-        },
         "Project": {
             "additionalProperties": false,
             "description": "A software project and the role held on it. Each record is one JSON file under projects/.",
@@ -272,9 +254,11 @@
                     ]
                 },
                 "evidence": {
-                    "description": "Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions.",
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
                     "items": {
-                        "$ref": "#/$defs/Evidence"
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
                     },
                     "minItems": 1,
                     "type": [
@@ -463,9 +447,11 @@
                     ]
                 },
                 "evidence": {
-                    "description": "Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions.",
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
                     "items": {
-                        "$ref": "#/$defs/Evidence"
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
                     },
                     "minItems": 1,
                     "type": [
@@ -684,9 +670,11 @@
             ]
         },
         "evidence": {
-            "description": "Sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions.",
+            "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
             "items": {
-                "$ref": "#/$defs/Evidence"
+                "format": "uri",
+                "pattern": "^https?://",
+                "type": "string"
             },
             "minItems": 1,
             "type": [

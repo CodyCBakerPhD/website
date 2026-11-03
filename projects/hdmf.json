@@ -11,18 +11,9 @@
     "Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets."
   ],
   "evidence": [
-    {
-      "title": "GenericDataChunkIterator",
-      "url": "https://github.com/hdmf-dev/hdmf/pull/672"
-    },
-    {
-      "title": "Add base methods for iterator serialization",
-      "url": "https://github.com/hdmf-dev/hdmf/pull/924"
-    },
-    {
-      "title": "Expose progress bar class control",
-      "url": "https://github.com/hdmf-dev/hdmf/pull/1110"
-    }
+    "https://github.com/hdmf-dev/hdmf/pull/672",
+    "https://github.com/hdmf-dev/hdmf/pull/924",
+    "https://github.com/hdmf-dev/hdmf/pull/1110"
   ],
   "tags": [
     "format:HDF5",
