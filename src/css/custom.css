@@ -315,10 +315,17 @@ a:hover {
     color: var(--body-text);
 }
 
-/* Download button */
+/* Download buttons: the full CV, with the one-page resume under it */
+
+.download-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
 .download-btn {
     display: inline-block;
+    text-align: center;
     background: -webkit-linear-gradient(left, var(--accent), #12928f);
     background: linear-gradient(90deg, var(--accent), #12928f);
     color: #fff;
