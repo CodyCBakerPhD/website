@@ -510,7 +510,7 @@
             "description": "A GitHub repository that is part of a project.",
             "properties": {
                 "homepage": {
-                    "description": "Where what the repository builds is served, such as its web app, when that is what to link to rather than the code, e.g. \"https://dandi-compute.github.io/dandi-compute-page/\".",
+                    "description": "The website the repository serves, such as its web app, e.g. \"https://usage.dandiarchive.org\". A repository with a homepage is listed as that website rather than as code.",
                     "format": "uri",
                     "pattern": "^https?://",
                     "type": [

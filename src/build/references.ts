@@ -19,7 +19,7 @@ import {
   splitContributions,
   type GitHubActivity,
 } from "./github.ts";
-import { escapeHtml, indent } from "./html.ts";
+import { displayUrl, escapeHtml, indent } from "./html.ts";
 
 /**
  * The relation slots of schemas/records.yaml, in the order cards list them. A
@@ -72,12 +72,6 @@ function linkGroup(label: string, links: readonly string[]): Group {
 // Each link is wrapped, so it stays inline and is underlined line by line when it wraps.
 function renderRecordLink(node: RecordNode): string {
   return `<i class="fa fa-fw ${node.icon}" aria-hidden="true"></i> <span><a href="${escapeHtml(node.href)}">${escapeHtml(node.label)}</a></span>`;
-}
-
-/** "pypi.org/project/historia" for https://pypi.org/project/historia/. */
-function displayUrl(url: string): string {
-  const { host, pathname, search } = new URL(url);
-  return `${host.replace(/^www\./, "")}${pathname.replace(/\/$/, "")}${search}`;
 }
 
 // A source other than a pull request or issue is shown by its address: nothing about it is fetched.
@@ -158,9 +152,16 @@ export function linkRecords(
     if (distributions.length > 0) {
       groups.push(linkGroup("Distributed by", distributions.map(renderDistribution)));
     }
-    const repositories = renderRepositories(node.record.repositories, activity);
-    if (repositories) {
-      groups.push({ label: "Repositories", kind: "record-repositories", body: repositories });
+    // A repository serving a website is listed as that website.
+    const repositories = node.record.repositories ?? [];
+    for (const [label, listed] of [
+      ["Websites", repositories.filter((repository) => repository.homepage)],
+      ["Repositories", repositories.filter((repository) => !repository.homepage)],
+    ] as const) {
+      const cards = renderRepositories(listed, activity);
+      if (cards) {
+        groups.push({ label, kind: "record-repositories", body: cards });
+      }
     }
     const summary = renderActivitySummary(node.path, activity);
     if (summary) {

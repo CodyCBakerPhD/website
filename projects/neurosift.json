@@ -8,7 +8,6 @@
   "start_date": "2023-07",
   "logo": "img/neurosift_logo.png",
   "distributions": [
-    "https://neurosift.app",
     "https://pypi.org/project/neurosift/"
   ],
   "repositories": [

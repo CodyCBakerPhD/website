@@ -22,6 +22,12 @@ export function renderInline(text: string): string {
   return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 }
 
+/** "pypi.org/project/historia" for https://pypi.org/project/historia/. */
+export function displayUrl(url: string): string {
+  const { host, pathname, search } = new URL(url);
+  return `${host.replace(/^www\./, "")}${pathname.replace(/\/$/, "")}${search}`;
+}
+
 /** Renders paragraphs as one <p>, separated by blank lines as elsewhere on the page. */
 export function renderParagraphs(paragraphs: readonly string[]): string[] {
   return ["<p>", paragraphs.map((paragraph) => `\t${renderInline(paragraph)}`).join("\n\t<br><br>\n"), "</p>"];

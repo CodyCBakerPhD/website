@@ -8,7 +8,7 @@
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { escapeHtml, indent } from "./html.ts";
+import { displayUrl, escapeHtml, indent } from "./html.ts";
 import { renderIcon, type IconName } from "./icons.ts";
 
 /** Relative to the repository root. */
@@ -231,17 +231,18 @@ export function renderContributions(urls: readonly string[], activity: GitHubAct
 }
 
 /**
- * Subcards for the repositories a project is made of, each with its logo and
- * description, or null if it lists none. Each links to the repository, or to
- * its homepage when the record gives one, such as the web app it serves.
+ * Subcards for repositories a project is made of, each with its logo and
+ * description, or null if there are none. A repository is named by its own
+ * name and links to its code, unless it has a homepage, such as the web app it
+ * serves: then it is named by that website's address and links there.
  */
-export function renderRepositories(repositories: GitHubSlots["repositories"], activity: GitHubActivity): string | null {
-  if (!repositories?.length) {
+export function renderRepositories(repositories: NonNullable<GitHubSlots["repositories"]>, activity: GitHubActivity): string | null {
+  if (repositories.length === 0) {
     return null;
   }
   const cards = repositories.flatMap(({ url, logo, homepage }) => {
     const [, fullName] = CODE_URL.exec(url)!;
-    const name = fullName.split("/")[1];
+    const name = homepage ? displayUrl(homepage) : fullName.split("/")[1];
     const { description } = activity.repositories[url];
     const mark = logo
       ? `<img class="repository-logo" src="${escapeHtml(logo)}" alt="" />`
@@ -252,7 +253,7 @@ export function renderRepositories(repositories: GitHubSlots["repositories"], ac
         mark,
         '<span class="repository-text">',
         ...indent([
-          `<a class="repository-name" href="${escapeHtml(homepage ?? url)}" title="${escapeHtml(homepage ?? fullName)}">${escapeHtml(name)}</a>`,
+          `<a class="repository-name" href="${escapeHtml(homepage ?? url)}" title="${escapeHtml(fullName)}">${escapeHtml(name)}</a>`,
           ...(description ? [`<span class="repository-description">${escapeHtml(description)}</span>`] : []),
         ]),
         "</span>",
