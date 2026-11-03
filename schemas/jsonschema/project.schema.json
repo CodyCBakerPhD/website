@@ -322,6 +322,19 @@
                         "null"
                     ]
                 },
+                "repositories": {
+                    "description": "Where the project's code is on GitHub, as repository or organization URLs, when its url is not, e.g. \"https://github.com/flatironinstitute/neurosift\". Its pull requests and issues there are counted toward it.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https://github\\.com/[^/]+(/[^/]+)?$",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "role": {
                     "description": "Role held on the project, e.g. \"Lead Developer\" or \"Contributor\".",
                     "type": "string"
@@ -706,6 +719,19 @@
             "description": "Other records of the work that has largely replaced this project, e.g. \"projects/neurosift\".",
             "items": {
                 "pattern": "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$",
+                "type": "string"
+            },
+            "minItems": 1,
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "repositories": {
+            "description": "Where the project's code is on GitHub, as repository or organization URLs, when its url is not, e.g. \"https://github.com/flatironinstitute/neurosift\". Its pull requests and issues there are counted toward it.",
+            "items": {
+                "format": "uri",
+                "pattern": "^https://github\\.com/[^/]+(/[^/]+)?$",
                 "type": "string"
             },
             "minItems": 1,

@@ -218,6 +218,8 @@ export interface Project extends BaseRecord {
     logo?: string,
     /** Related resources. */
     links?: ProjectLinks,
+    /** Where the project's code is on GitHub, as repository or organization URLs, when its url is not, e.g. "https://github.com/flatironinstitute/neurosift". Its pull requests and issues there are counted toward it. */
+    repositories?: string[],
     /** Other records of the work that has largely replaced this project, e.g. "projects/neurosift". */
     replaced_by?: string[],
 }

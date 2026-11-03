@@ -36,7 +36,7 @@ A record can name other records, by the path of their file without `.json`, such
 
 | Slot          | On                    | Means                                              | Shown on its card | Shown on the named card |
 |---------------|-----------------------|----------------------------------------------------|-------------------|-------------------------|
-| `about`       | Publication           | the work the publication presents or teaches       | About             | Featured in             |
+| `about`       | Publication           | the work the publication presents or teaches       | About             | Presented in            |
 | `built_with`  | Project, Dataset      | the software it was built with, or converted with  | Built with        | Used by                 |
 | `replaced_by` | Project               | the work that has largely replaced it              | Replaced by       | Replaces                |
 
@@ -47,7 +47,7 @@ For example, `publications/neuroconv-2025.json` names the project it is about:
 ```
 
 Write each link once, on the record that makes it.
-The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Featured in" without its record saying so.
+The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Presented in" without its record saying so.
 The build fails on a link to a record that does not exist, to the record itself, or listed twice.
 [`src/build/references.ts`](../src/build/references.ts) checks and renders the links, and each section in `sections.ts` sets the icon and text of links to its records.
 
@@ -62,9 +62,32 @@ Any record can cite `evidence`: sources outside the site that back up what it sa
 ```
 
 Good evidence is the pull requests behind a contribution, the package index a project says it is published on, or a page its description mentions.
-Cards list it under "Evidence", after the links to other records, and the build fails if a record cites the same URL twice.
+Cards show a pull request or issue on GitHub as a featured contribution, and list the rest under "Sources".
+The build fails if a record cites the same URL twice.
 
 Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
+
+## GitHub activity
+
+Cards show two kinds of activity on GitHub:
+
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its state and, for a pull request, its added and deleted lines (as counts, and a bar split between them).
+  Feature fewer than 10; the build fails on more.
+- **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
+  These show once either count reaches 10, when there are too many to feature one by one.
+
+A project's code is its `url` when that is a GitHub repository or organization, or else the GitHub URLs in its `repositories` (such as Neurosift, whose `url` is its web app).
+
+The activity is fetched into [`src/build/generated/github.json`](../src/build/generated/github.json), so building the site needs no network.
+After citing a new pull request or issue, or adding a project, fetch it again, with a GitHub token for the higher rate limit:
+
+```bash
+GITHUB_TOKEN=$(gh auth token) python scripts/fetch_github_activity.py
+```
+
+Rerun it now and then to refresh the counts, which the cards date ("as of November 2026").
+The build fails on a cited pull request or issue, or a project with code on GitHub, that the file has nothing for.
+[`src/build/github.ts`](../src/build/github.ts) checks and renders the activity.
 
 ## Search
 

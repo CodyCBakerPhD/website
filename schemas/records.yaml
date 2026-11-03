@@ -176,6 +176,18 @@ classes:
         description: Related resources.
         range: ProjectLinks
         inlined: true
+      repositories:
+        description: >-
+          Where the project's code is on GitHub, as repository or organization
+          URLs, when its url is not, e.g.
+          "https://github.com/flatironinstitute/neurosift". Its pull requests
+          and issues there are counted toward it.
+        slot_uri: schema:codeRepository
+        range: HttpUrl
+        pattern: "^https://github\\.com/[^/]+(/[^/]+)?$"
+        multivalued: true
+        list_elements_unique: true
+        minimum_cardinality: 1
       replaced_by:
         description: >-
           Other records of the work that has largely replaced this project,

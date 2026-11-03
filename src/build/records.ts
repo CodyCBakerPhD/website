@@ -17,6 +17,7 @@ import Ajv2019 from "ajv/dist/2019.js";
 import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
 import type { BaseRecord } from "./generated/records.ts";
+import { GITHUB_ACTIVITY_FILE, loadGitHubActivity } from "./github.ts";
 import { fillPlaceholder, hasPlaceholder } from "./html.ts";
 import { linkRecords, type RecordNode } from "./references.ts";
 import { checkTags } from "./tags.ts";
@@ -209,7 +210,10 @@ function duplicateIds(html: string): string[] {
  * fails if a section's page does not exist or lacks its placeholder.
  */
 export function recordSections(sections: readonly Section[], { root }: { root: string }): Plugin {
-  const watched = sections.flatMap((section) => section.watchPaths.map((path) => resolve(root, path)));
+  const watched = [
+    ...sections.flatMap((section) => section.watchPaths.map((path) => resolve(root, path))),
+    resolve(root, GITHUB_ACTIVITY_FILE),
+  ];
   const placed = new Set<string>();
   let publicDir = "";
   let isBuild = false;
@@ -254,9 +258,12 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
         }
 
         const loaded = loadSections(sections, root, publicDir);
-        const { problems, references } = linkRecords([...loaded.values()].flatMap((section) => section.nodes));
+        const { problems, references } = linkRecords(
+          [...loaded.values()].flatMap((section) => section.nodes),
+          loadGitHubActivity(root),
+        );
         if (problems.length > 0) {
-          throw new Error(`Invalid links between records:\n${problems.map((problem) => `  - ${problem}`).join("\n")}`);
+          throw new Error(`Invalid links between records, or GitHub activity missing for them:\n${problems.map((problem) => `  - ${problem}`).join("\n")}`);
         }
 
         let page = html;

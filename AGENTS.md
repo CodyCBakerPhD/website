@@ -24,7 +24,8 @@ Three versions are bumped independently, each once per PR and following semantic
 
 - [`docs/development.md`](docs/development.md) explains how the records, schemas and build fit together. Keep `README.md` to the short project description.
 - Site content beyond the page structure lives in JSON records, one file per record, under `projects/`, `datasets/` and `publications/`. A record's file name is its ID: keep it when the record's wording changes.
-- The LinkML schema `schemas/records.yaml` is the source of truth for every record's shape. Never edit the files generated from it (`schemas/jsonschema/`, `src/build/generated/` and the tag table in `docs/development.md`); change the schema, then run `sh scripts/generate-schemas.sh`.
+- The LinkML schema `schemas/records.yaml` is the source of truth for every record's shape. Never edit the files generated from it (`schemas/jsonschema/`, `src/build/generated/records.ts` and the tag table in `docs/development.md`); change the schema, then run `sh scripts/generate-schemas.sh`.
+- Never edit `src/build/generated/github.json` by hand either. After citing a GitHub pull request or issue as evidence, or adding a project, run `python scripts/fetch_github_activity.py` (with `GITHUB_TOKEN` set) to fetch its activity.
 - Each record names the schema version it was written against in `schema_version`, and its own content version in `record_version`.
 - Records describe the work, not how this site shows it. Display order, sizing and other presentation choices belong in `src/build/` (the section lists in `sections.ts` and the renderers).
 - Record text is plain text, with `**double asterisks**` for emphasis. Renderers pass it through the helpers in `src/build/html.ts` and never concatenate it into HTML unescaped.
