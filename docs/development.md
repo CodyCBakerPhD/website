@@ -71,7 +71,7 @@ Like every other part of a record, links and evidence come from a source you can
 
 Cards show two kinds of activity on GitHub:
 
-- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its state and, for a pull request, its added and deleted lines (as counts, and a bar split between them).
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its state and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
   Feature fewer than 10; the build fails on more.
 - **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
   These show once either count reaches 10, when there are too many to feature one by one.
@@ -85,7 +85,7 @@ After citing a new pull request or issue, or adding a project, fetch it again, w
 GITHUB_TOKEN=$(gh auth token) python scripts/fetch_github_activity.py
 ```
 
-Rerun it now and then to refresh the counts, which the cards date ("as of November 2026").
+Rerun it now and then to refresh the counts; the file records when it was fetched.
 The build fails on a cited pull request or issue, or a project with code on GitHub, that the file has nothing for.
 [`src/build/github.ts`](../src/build/github.ts) checks and renders the activity.
 

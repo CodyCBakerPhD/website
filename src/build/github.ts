@@ -15,6 +15,9 @@ export const GITHUB_ACTIVITY_FILE = "src/build/generated/github.json";
 /** Fewer than this many are few enough to feature one by one; a project with more gets a summary. */
 const FEW = 10;
 
+/** Blocks in a pull request's diffstat, as on GitHub. */
+const DIFF_BLOCKS = 5;
+
 interface Contribution {
   type: "pull_request" | "issue";
   state: "merged" | "open" | "closed";
@@ -87,21 +90,28 @@ function searchUrl(query: string, type: "pullrequests" | "issues"): string {
   return `https://github.com/search?${new URLSearchParams({ q: query, type })}`;
 }
 
-/** The added and deleted lines, as counts beside a bar split between them. */
+/**
+ * GitHub's diffstat: each side takes its share of the blocks, rounded down, and
+ * the rest are neutral. Below that many lines, each line is a block.
+ */
+function diffBlocks(additions: number, deletions: number): string[] {
+  const total = additions + deletions;
+  const added = total < DIFF_BLOCKS ? additions : Math.floor((additions * DIFF_BLOCKS) / total);
+  const deleted = total < DIFF_BLOCKS ? deletions : Math.floor((deletions * DIFF_BLOCKS) / total);
+  return [
+    ...Array<string>(added).fill("diff-added"),
+    ...Array<string>(deleted).fill("diff-deleted"),
+    ...Array<string>(DIFF_BLOCKS - added - deleted).fill("diff-neutral"),
+  ];
+}
+
+/** The added and deleted lines, as counts beside GitHub's diffstat blocks. */
 function renderDiff(additions: number, deletions: number): string {
-  const parts = [
-    ["diff-added", additions],
-    ["diff-deleted", deletions],
-  ] as const;
-  // A part at zero draws nothing.
-  const bar = parts
-    .filter(([, lines]) => lines > 0)
-    .map(([part, lines]) => `<span class="${part}" style="flex-grow: ${lines}"></span>`)
-    .join("");
+  const blocks = diffBlocks(additions, deletions).map((block) => `<span class="${block}"></span>`);
   return (
     `<span class="contribution-diff" title="${additions} lines added, ${deletions} deleted">` +
-    `<span>+${formatCount(additions)}</span> <span>−${formatCount(deletions)}</span>` +
-    (bar ? `<span class="diff-bar" aria-hidden="true">${bar}</span>` : "") +
+    `<span class="diff-added-count">+${formatCount(additions)}</span> <span class="diff-deleted-count">−${formatCount(deletions)}</span>` +
+    `<span class="diff-blocks" aria-hidden="true">${blocks.join("")}</span>` +
     "</span>"
   );
 }
@@ -142,7 +152,6 @@ export function renderActivitySummary(path: string, activity: GitHubActivity): s
   if (!project || (project.merged_pull_requests < FEW && project.closed_issues < FEW)) {
     return null;
   }
-  const asOf = new Date(`${activity.fetched}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
   const tile = (count: number, label: string, href: string): string =>
     `<a class="activity-stat" href="${escapeHtml(href)}"><span class="activity-value">${formatCount(count)}</span>` +
     `<span class="activity-label">${label}</span></a>`;
@@ -153,6 +162,5 @@ export function renderActivitySummary(path: string, activity: GitHubActivity): s
       tile(project.closed_issues, "Issues closed", searchUrl(`${project.query} is:issue is:closed`, "issues")),
     ]),
     "</div>",
-    `<span class="activity-date">On GitHub, as of ${asOf}</span>`,
   ].join("\n");
 }
