@@ -486,16 +486,20 @@ a:hover {
 
 /* ---------- GitHub activity ---------- */
 
-/* Lines added and deleted, in blue and red: unlike green and red, a pair that
-   stays apart for color-blind readers (checked in each theme against its card). */
+/* Lines added and deleted in GitHub's own green and red, as readers know them
+   from its pull requests; the + and - signs say which is which without color. */
 .work {
-    --diff-added: #2a78d6;
-    --diff-deleted: #e34948;
+    --diff-added: #1a7f37;
+    --diff-deleted: #d1242f;
+    --diff-neutral: #d1d9e0;
+    --diff-neutral-border: #d1d9e0;
 }
 
 :root[data-theme="dark"] .work {
-    --diff-added: #3b86e0;
-    --diff-deleted: #e8504e;
+    --diff-added: #3fb950;
+    --diff-deleted: #f85149;
+    --diff-neutral: #1f262f;
+    --diff-neutral-border: #3d444d;
 }
 
 .visually-hidden {
@@ -550,14 +554,6 @@ a:hover {
 .work .activity-label {
     font-size: 0.85em;
     line-height: 1.4em;
-    color: var(--muted);
-}
-
-.work .activity-date {
-    display: block;
-    margin-top: 6px;
-    font-size: 0.8em;
-    line-height: 1.5em;
     color: var(--muted);
 }
 
@@ -643,18 +639,29 @@ a:hover {
     font-variant-numeric: tabular-nums;
 }
 
-/* One whole split into its added and deleted lines, a 2px gap between them. */
-.work .diff-bar {
-    display: flex;
-    gap: 2px;
-    width: 64px;
-    height: 4px;
-    margin-left: 4px;
+.work .diff-added-count,
+.work .diff-deleted-count {
+    font-weight: 700;
 }
 
-.work .diff-bar span {
-    min-width: 4px;
-    border-radius: 999px;
+.work .diff-added-count {
+    color: var(--diff-added);
+}
+
+.work .diff-deleted-count {
+    color: var(--diff-deleted);
+}
+
+.work .diff-blocks {
+    display: flex;
+    gap: 2px;
+    margin-left: 2px;
+}
+
+.work .diff-blocks span {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
 }
 
 .work .diff-added {
@@ -663,6 +670,11 @@ a:hover {
 
 .work .diff-deleted {
     background: var(--diff-deleted);
+}
+
+.work .diff-neutral {
+    background: var(--diff-neutral);
+    box-shadow: inset 0 0 0 1px var(--diff-neutral-border);
 }
 
 /* ---------- Tags ---------- */
