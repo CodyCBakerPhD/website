@@ -451,11 +451,23 @@ a:hover {
 
 .work .record-references dd {
     grid-column: 2;
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
     margin: 0;
     line-height: 1.6em;
+}
+
+/* A relation's links side by side, wrapping only when the row is full. */
+.work .record-references dd.record-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 26px;
+}
+
+.work .record-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
 }
 
 /* Space between groups: on a label and the first link beside it, so they stay level. */
@@ -464,7 +476,7 @@ a:hover {
     padding-top: 8px;
 }
 
-.work .record-references dd .fa {
+.work .record-link .fa {
     flex: 0 0 auto;
     color: var(--muted);
 }
@@ -514,11 +526,6 @@ a:hover {
     border: 0;
 }
 
-.work .record-references dd.record-activity,
-.work .record-references dd.record-contributions {
-    display: block;
-}
-
 /* A project's merged pull requests and closed issues, each a tile linking to them on GitHub. */
 .work .activity {
     display: flex;
@@ -529,7 +536,7 @@ a:hover {
 .work .work-list li a.activity-stat {
     display: flex;
     flex-direction: column;
-    min-width: 150px;
+    min-width: 130px;
     padding: 8px 14px;
     font-weight: 400;
     background: var(--page-bg);

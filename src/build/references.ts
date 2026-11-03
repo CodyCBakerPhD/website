@@ -49,10 +49,15 @@ export interface RecordNode {
 
 interface Group {
   label: string;
-  /** Each the HTML of one <dd>. */
-  items: string[];
-  /** Class of each <dd>, for items that are not single links. */
-  itemClass?: string;
+  /** HTML of the group's <dd>. */
+  body: string;
+  /** Class of its <dd>. */
+  kind: "record-links" | "record-activity" | "record-contributions";
+}
+
+/** Links laid side by side in one <dd>, wrapping when the row is full. */
+function linkGroup(label: string, links: readonly string[]): Group {
+  return { label, kind: "record-links", body: links.map((link) => `<span class="record-link">${link}</span>`).join("\n") };
 }
 
 // Each link is wrapped, so it stays inline and is underlined line by line when it wraps.
@@ -79,11 +84,11 @@ function renderGroups(groups: readonly Group[]): string[] {
   if (groups.length === 0) {
     return [];
   }
-  const rows = groups.flatMap(({ label, items, itemClass }) => {
-    const open = itemClass ? `<dd class="${itemClass}">` : "<dd>";
-    const dds = items.flatMap((item) => (item.includes("\n") ? [open, ...indent([item]), "</dd>"] : [`${open}${item}</dd>`]));
-    return ["<div>", ...indent([`<dt>${escapeHtml(label)}</dt>`, ...dds]), "</div>"];
-  });
+  const rows = groups.flatMap(({ label, body, kind }) => [
+    "<div>",
+    ...indent([`<dt>${escapeHtml(label)}</dt>`, `<dd class="${kind}">`, ...indent([body]), "</dd>"]),
+    "</div>",
+  ]);
   return ['<li class="record-references">', ...indent(["<dl>", ...indent(rows), "</dl>"]), "</li>"];
 }
 
@@ -135,22 +140,22 @@ export function linkRecords(
     const groups: Group[] = [];
     const summary = renderActivitySummary(node.path, activity);
     if (summary) {
-      groups.push({ label: "Contributions", items: [summary], itemClass: "record-activity" });
+      groups.push({ label: "Contributions", kind: "record-activity", body: summary });
     }
     const featured = renderFeaturedContributions(evidence, activity);
     if (featured) {
-      groups.push({ label: "Featured contributions", items: [featured], itemClass: "record-contributions" });
+      groups.push({ label: "Featured contributions", kind: "record-contributions", body: featured });
     }
     for (const { slot, label, reverse } of RELATIONS) {
       const targets = [...new Set(node.record[slot] ?? [])].flatMap((target) => byPath.get(target) ?? []);
       const sources = nodes.filter((source) => source.record[slot]?.includes(node.path) && source !== node);
       for (const [heading, linked] of [...headed(label, targets), ...headed(reverse, sources)]) {
-        groups.push({ label: heading, items: linked.map(renderRecordLink) });
+        groups.push(linkGroup(heading, linked.map(renderRecordLink)));
       }
     }
     const sources = evidence.filter((item) => !isContribution(item));
     if (sources.length > 0) {
-      groups.push({ label: "Sources", items: sources.map(renderSourceLink) });
+      groups.push(linkGroup("Sources", sources.map(renderSourceLink)));
     }
     references.set(node.path, renderGroups(groups));
   }
