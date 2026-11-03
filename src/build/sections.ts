@@ -27,7 +27,6 @@ export const sections = [
     check: checkProject,
     order: [
       "nwb-guide",
-      "nwb2bids",
       "neuroconv",
       "nwb-inspector",
       "dandi-compute",
@@ -37,6 +36,7 @@ export const sections = [
       "historia",
       "neurosift",
       "nwb-benchmarks",
+      "nwb2bids",
       "hdmf",
       "nwb-widgets",
       "duct",
