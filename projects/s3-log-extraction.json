@@ -10,13 +10,17 @@
     "https://pypi.org/project/s3-log-extraction/",
     "https://anaconda.org/conda-forge/s3-log-extraction"
   ],
+  "repositories": [
+    {
+      "url": "https://github.com/dandi/usage-page",
+      "logo": "img/dandi_usage_logo.svg",
+      "homepage": "https://usage.dandiarchive.org"
+    }
+  ],
   "description": [
     "Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive and steadily being rolled out to others.",
     "Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository.",
     "Extended it for the DANDI Archive's own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive."
-  ],
-  "evidence": [
-    "https://usage.dandiarchive.org"
   ],
   "tags": [
     "archives:DANDI",

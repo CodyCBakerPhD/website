@@ -258,6 +258,13 @@ classes:
           itself lives under src/public/), e.g. "img/bbqs_uploader_logo.svg".
         slot_uri: schema:logo
         pattern: "^[^/]"
+      homepage:
+        description: >-
+          Where what the repository builds is served, such as its web app,
+          when that is what to link to rather than the code, e.g.
+          "https://dandi-compute.github.io/dandi-compute-page/".
+        slot_uri: schema:url
+        range: HttpUrl
 
   DatasetLinks:
     description: Resources related to a dataset, keyed by type.

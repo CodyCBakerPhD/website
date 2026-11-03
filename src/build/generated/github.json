@@ -68,9 +68,9 @@
       "closed_issues": 45
     },
     "projects/s3-log-extraction": {
-      "query": "repo:dandi/s3-log-extraction author:CodyCBakerPhD",
-      "merged_pull_requests": 144,
-      "closed_issues": 85
+      "query": "repo:dandi/s3-log-extraction repo:dandi/usage-page author:CodyCBakerPhD",
+      "merged_pull_requests": 267,
+      "closed_issues": 160
     }
   },
   "repositories": {
@@ -116,8 +116,8 @@
     "https://github.com/dandi-compute/dandi-compute-page": {
       "description": "Simple webpage rendering the basic aspects of the DANDI Compute: AIND Ephys project."
     },
-    "https://github.com/dandi-compute/dandi-compute-runner": {
-      "description": "Submit jobs to DANDI Compute."
+    "https://github.com/dandi/usage-page": {
+      "description": "Visualizations of data usage across the archive."
     },
     "https://github.com/flatironinstitute/neurosift": {
       "description": "Browser-based NWB visualization and DANDI exploration"

@@ -243,6 +243,8 @@ export interface Repository {
     url: string,
     /** Path to the repository's logo relative to the website root (the file itself lives under src/public/), e.g. "img/bbqs_uploader_logo.svg". */
     logo?: string,
+    /** Where what the repository builds is served, such as its web app, when that is what to link to rather than the code, e.g. "https://dandi-compute.github.io/dandi-compute-page/". */
+    homepage?: string,
 }
 
 

@@ -15,10 +15,8 @@
       "url": "https://github.com/dandi-compute/dandi-compute-core"
     },
     {
-      "url": "https://github.com/dandi-compute/dandi-compute-runner"
-    },
-    {
-      "url": "https://github.com/dandi-compute/dandi-compute-page"
+      "url": "https://github.com/dandi-compute/dandi-compute-page",
+      "homepage": "https://dandi-compute.github.io/dandi-compute-page/"
     },
     {
       "url": "https://github.com/dandi-compute/dandi-compute-global-logs"

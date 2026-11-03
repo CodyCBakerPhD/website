@@ -13,7 +13,9 @@
   ],
   "repositories": [
     {
-      "url": "https://github.com/flatironinstitute/neurosift"
+      "url": "https://github.com/flatironinstitute/neurosift",
+      "logo": "img/neurosift_logo.png",
+      "homepage": "https://neurosift.app"
     }
   ],
   "description": [

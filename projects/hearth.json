@@ -7,25 +7,28 @@
   "start_date": "2026-07",
   "logo": "img/hearth_logo.svg",
   "distributions": [
-    "https://hearth.emberarchive.org",
     "https://www.npmjs.com/org/brain-bbqs"
   ],
   "repositories": [
     {
       "url": "https://github.com/brain-bbqs/hearth-landing-page",
-      "logo": "img/hearth_logo.svg"
+      "logo": "img/hearth_logo.svg",
+      "homepage": "https://hearth.emberarchive.org"
     },
     {
       "url": "https://github.com/brain-bbqs/bbqs-uploader",
-      "logo": "img/bbqs_uploader_logo.svg"
+      "logo": "img/bbqs_uploader_logo.svg",
+      "homepage": "https://upload.brain-bbqs.org"
     },
     {
       "url": "https://github.com/brain-bbqs/clip-extractor",
-      "logo": "img/clip_extractor_logo.svg"
+      "logo": "img/clip_extractor_logo.svg",
+      "homepage": "https://clip-extractor.brain-bbqs.org"
     },
     {
       "url": "https://github.com/brain-bbqs/encoding-helper",
-      "logo": "img/encoding_helper_logo.svg"
+      "logo": "img/encoding_helper_logo.svg",
+      "homepage": "https://encoding-helper.brain-bbqs.org"
     },
     {
       "url": "https://github.com/brain-bbqs/bbqs-web-app-template",

@@ -55,7 +55,7 @@ export interface GitHubActivity {
 interface GitHubSlots {
   evidence?: readonly string[];
   url?: string;
-  repositories?: readonly { url: string; logo?: string }[];
+  repositories?: readonly { url: string; logo?: string; homepage?: string }[];
 }
 
 // Keep these in step with scripts/fetch_github_activity.py.
@@ -230,12 +230,16 @@ export function renderContributions(urls: readonly string[], activity: GitHubAct
   return ['<div class="contributions">', ...indent(cards), "</div>"].join("\n");
 }
 
-/** Subcards for the repositories a project is made of, each with its logo and description, or null if it lists none. */
+/**
+ * Subcards for the repositories a project is made of, each with its logo and
+ * description, or null if it lists none. Each links to the repository, or to
+ * its homepage when the record gives one, such as the web app it serves.
+ */
 export function renderRepositories(repositories: GitHubSlots["repositories"], activity: GitHubActivity): string | null {
   if (!repositories?.length) {
     return null;
   }
-  const cards = repositories.flatMap(({ url, logo }) => {
+  const cards = repositories.flatMap(({ url, logo, homepage }) => {
     const [, fullName] = CODE_URL.exec(url)!;
     const name = fullName.split("/")[1];
     const { description } = activity.repositories[url];
@@ -248,7 +252,7 @@ export function renderRepositories(repositories: GitHubSlots["repositories"], ac
         mark,
         '<span class="repository-text">',
         ...indent([
-          `<a class="repository-name" href="${escapeHtml(url)}" title="${escapeHtml(fullName)}">${escapeHtml(name)}</a>`,
+          `<a class="repository-name" href="${escapeHtml(homepage ?? url)}" title="${escapeHtml(homepage ?? fullName)}">${escapeHtml(name)}</a>`,
           ...(description ? [`<span class="repository-description">${escapeHtml(description)}</span>`] : []),
         ]),
         "</span>",
