@@ -1,6 +1,6 @@
 // GitHub activity shown on record cards: each pull request or issue a record
-// cites as evidence, with its title, its state and a pull request's added and
-// deleted lines; the repositories a project is made of, with their
+// cites as evidence, with its title and a pull request's added and deleted
+// lines (each taken to have landed, as nearly all have); the repositories a project is made of, with their
 // descriptions; and, in each project's code, how many of the site owner's pull
 // requests were merged and issues closed (those they opened or were assigned),
 // and how many other pull requests they reviewed. Records cite only the URL;
@@ -10,7 +10,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { displayUrl, escapeHtml, indent } from "./html.ts";
-import { renderIcon, type IconName } from "./icons.ts";
+import { renderIcon } from "./icons.ts";
 
 /** Relative to the repository root. */
 export const GITHUB_ACTIVITY_FILE = "src/build/generated/github.json";
@@ -24,7 +24,6 @@ const DIFF_BLOCKS = 5;
 interface Contribution {
   type: "pull_request" | "issue";
   title: string;
-  state: "merged" | "open" | "closed";
   additions?: number;
   deletions?: number;
 }
@@ -71,30 +70,6 @@ interface GitHubSlots {
 // Keep these in step with scripts/fetch_github_activity.py.
 const CONTRIBUTION_URL = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(pull|issues)\/(\d+)$/;
 const CODE_URL = /^https:\/\/github\.com\/([^/]+(?:\/[^/]+)?)\/?$/;
-
-interface State {
-  label: string;
-  icon: IconName;
-  /** GitHub's color for it, named as the stylesheet names it: green, purple or red. */
-  color: "open" | "done" | "closed";
-}
-
-/**
- * GitHub's label for each state, with its icon and color. The activity does
- * not say why an issue was closed, so every closed issue is shown as completed,
- * which is how most are closed. Issues are never merged.
- */
-const STATES: Readonly<Record<Contribution["type"], Readonly<Partial<Record<Contribution["state"], State>>>>> = {
-  pull_request: {
-    open: { label: "Open", icon: "pull-request-open", color: "open" },
-    merged: { label: "Merged", icon: "pull-request-merged", color: "done" },
-    closed: { label: "Closed", icon: "pull-request-closed", color: "closed" },
-  },
-  issue: {
-    open: { label: "Open", icon: "issue-open", color: "open" },
-    closed: { label: "Closed", icon: "issue-closed", color: "done" },
-  },
-};
 
 const FETCH_COMMAND = "python scripts/fetch_github_activity.py";
 
@@ -203,16 +178,6 @@ function renderDiff(additions: number, deletions: number): string {
   );
 }
 
-/** GitHub's state label: a pill in the state's color, with its icon. */
-function renderState(contribution: Contribution): string {
-  const { label, icon, color } = STATES[contribution.type][contribution.state]!;
-  const kind = contribution.type === "pull_request" ? "pull request" : "issue";
-  return (
-    `<span class="contribution-state state-${color}">${renderIcon(icon, "state-icon")}` +
-    `${label}<span class="visually-hidden"> ${kind}</span></span>`
-  );
-}
-
 function renderContribution(url: string, contribution: Contribution): string[] {
   const [, repository, , number] = CONTRIBUTION_URL.exec(url)!;
   return [
@@ -220,9 +185,9 @@ function renderContribution(url: string, contribution: Contribution): string[] {
     ...indent([
       // A long repository name is cut short, rather than the number it precedes.
       `<span class="contribution-meta">` +
+        `<span class="visually-hidden">${contribution.type === "pull_request" ? "Pull request" : "Issue"} </span>` +
         `<span class="contribution-repository" title="${escapeHtml(repository)}">${escapeHtml(repository)}</span>` +
         `<span class="contribution-number">#${number}</span>` +
-        renderState(contribution) +
         "</span>",
       `<a class="contribution-title" href="${escapeHtml(url)}">${escapeHtml(contribution.title)}</a>`,
       ...(contribution.type === "pull_request" ? [renderDiff(contribution.additions ?? 0, contribution.deletions ?? 0)] : []),
@@ -285,10 +250,11 @@ export function renderActivitySummary(path: string, activity: GitHubActivity): s
   if (!project || (project.merged_pull_requests.count < FEW && project.closed_issues.count < FEW)) {
     return null;
   }
+  // Each with GitHub's icon for it, colored as the stylesheet colors its kind.
   const tiles = [
-    { label: "Pull requests merged", search: project.merged_pull_requests, type: "pullrequests" },
-    { label: "Pull requests reviewed", search: project.reviewed_pull_requests, type: "pullrequests" },
-    { label: "Issues closed", search: project.closed_issues, type: "issues" },
+    { kind: "merged", icon: "pull-request-merged", label: "Pull requests merged", search: project.merged_pull_requests, type: "pullrequests" },
+    { kind: "reviewed", icon: "code-review", label: "Pull requests reviewed", search: project.reviewed_pull_requests, type: "pullrequests" },
+    { kind: "closed", icon: "issue-closed", label: "Issues closed", search: project.closed_issues, type: "issues" },
   ] as const;
   return [
     '<div class="activity">',
@@ -296,9 +262,10 @@ export function renderActivitySummary(path: string, activity: GitHubActivity): s
       tiles
         .filter(({ search }) => search.count > 0)
         .map(
-          ({ label, search, type }) =>
-            `<a class="activity-stat" href="${escapeHtml(searchUrl(search.query, type))}">` +
-            `<span class="activity-value">${formatCount(search.count)}</span><span class="activity-label">${label}</span></a>`,
+          ({ kind, icon, label, search, type }) =>
+            `<a class="activity-stat activity-${kind}" href="${escapeHtml(searchUrl(search.query, type))}">` +
+            `<span class="activity-value"><span class="activity-icon">${renderIcon(icon)}</span>${formatCount(search.count)}</span>` +
+            `<span class="activity-label">${label}</span></a>`,
         ),
     ),
     "</div>",

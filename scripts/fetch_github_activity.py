@@ -3,7 +3,7 @@
 src/build/generated/github.json, so building the site needs no network.
 
 For every pull request or issue a record cites as evidence, it records the
-title and state and, for a pull request, the lines added and deleted. For every
+title and, for a pull request, the lines added and deleted. For every
 repository a project lists, it records the repository's description. For every
 project whose code is on GitHub (its url, and its repositories), it counts the
 owner's pull requests merged and issues closed there (those they opened or were
@@ -63,12 +63,11 @@ def fetch_contribution(repository: str, kind: str, number: str) -> dict:
         return {
             "type": "pull_request",
             "title": pull["title"],
-            "state": "merged" if pull["merged_at"] else pull["state"],
             "additions": pull["additions"],
             "deletions": pull["deletions"],
         }
     issue = get(f"repos/{repository}/issues/{number}")
-    return {"type": "issue", "title": issue["title"], "state": issue["state"]}
+    return {"type": "issue", "title": issue["title"]}
 
 
 def fetch_repository(url: str) -> dict:

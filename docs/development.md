@@ -70,7 +70,7 @@ Any record can cite `evidence`: links to sources outside the site that back up w
 
 Good evidence is the pull requests behind a contribution, or a page a record's description mentions.
 Records hold only the URL.
-Cards show a pull request or issue on GitHub as a featured or related contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `usage.dandiarchive.org`.
+Cards show a pull request or issue on GitHub as a featured or related contribution, with its title fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `usage.dandiarchive.org`.
 The build fails if a record cites the same URL twice.
 
 Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
@@ -122,7 +122,8 @@ A project whose `url` is not on GitHub, such as Neurosift's web app, names its c
 
 Cards show three kinds of activity on GitHub:
 
-- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title, its state as a label in GitHub's colors (green when open, purple when merged or completed, red when closed unmerged) and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
+  Each is taken to have landed, as nearly all have, so a card does not show whether it was merged, closed or is still open.
   Feature fewer than 10; the build fails on more.
 - **Related contributions**: on a project, the pull requests and issues it cites from outside its own code, such as a change to a standard it follows, shown the same way.
 - **Contributions**: on a project whose code is on GitHub, three counts there, each a tile linking to the GitHub search that lists them:
