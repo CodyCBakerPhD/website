@@ -8,8 +8,8 @@ Each HTML file directly under [`src/`](../src) is one page of the site:
 |----------------------|-----------------------------------------|
 | `index.html`         | About, Education, Skills and Experience |
 | `projects.html`      | Highlighted Projects                    |
-| `data-curation.html` | Data Curation                           |
 | `publications.html`  | Publications                            |
+| `data-curation.html` | Data Curation                           |
 
 The parts every page shares live in [`src/partials/`](../src/partials) and are filled in at build time where a page marks them: `<!-- build:head -->` at the top of `<head>`, then `<!-- build:header -->` and `<!-- build:footer -->` in `<body>`.
 The navigation links are listed in [`src/build/layout.ts`](../src/build/layout.ts), which renders them for each page, in both the navigation bar and the footer, marking the page that is open.
