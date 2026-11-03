@@ -36,7 +36,7 @@ A record can name other records, by the path of their file without `.json`, such
 
 | Slot          | On                    | Means                                              | Shown on its card | Shown on the named card |
 |---------------|-----------------------|----------------------------------------------------|-------------------|-------------------------|
-| `about`       | Publication           | the work the publication presents or teaches       | About             | Presented in            |
+| `about`       | Publication           | the work the publication presents or teaches       | Featured software | Presented in            |
 | `built_with`  | Project, Dataset      | the software it was built with, or converted with  | Built with        | Used by                 |
 | `replaced_by` | Project               | the work that has largely replaced it              | Replaced by       | Replaces                |
 
@@ -45,6 +45,8 @@ For example, `publications/neuroconv-2025.json` names the project it is about:
 ```json
 "about": ["projects/neuroconv"]
 ```
+
+A publication's `about` links are headed by the type of record they name: "Featured software" for projects, "Featured data" for datasets.
 
 Write each link once, on the record that makes it.
 The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Presented in" without its record saying so.

@@ -44,6 +44,8 @@ export interface SectionOptions<T extends BaseRecord> {
   order: readonly string[];
   /** Font Awesome icon marking links to the section's records from other cards. */
   icon: string;
+  /** Heading over links to the section's records from a record about them, e.g. "Featured software". */
+  related: string;
   /** Text of a link to a record from another card. Defaults to its name. */
   label?: (record: T) => string;
   /** Renders the section's records, in display order, as lines of HTML. */
@@ -80,6 +82,7 @@ export function defineSection<T extends BaseRecord>(options: SectionOptions<T>):
         href: `${options.page}#${id}`,
         label: label(record),
         icon: options.icon,
+        related: options.related,
         record,
       }));
       return {

@@ -19,7 +19,8 @@ export const sections = [
   defineSection<Project>({
     name: "projects",
     page: "projects.html",
-    icon: "fa-code",
+    icon: "fa-cube",
+    related: "Featured software",
     recordsDir: "projects",
     schemaFile: "schemas/jsonschema/project.schema.json",
     render: (projects) => renderSearchable(projectSearch, projects.flatMap(renderProject)),
@@ -44,6 +45,7 @@ export const sections = [
     name: "datasets",
     page: "data-curation.html",
     icon: "fa-database",
+    related: "Featured data",
     recordsDir: "datasets",
     schemaFile: "schemas/jsonschema/dataset.schema.json",
     render: (datasets) => renderSearchable(datasetSearch, datasets.flatMap(renderDataset)),
@@ -60,6 +62,7 @@ export const sections = [
     name: "publications",
     page: "publications.html",
     icon: "fa-file-text-o",
+    related: "Featured publications",
     // Two workshops share a title, so links to publications also name the year.
     label: (publication) => `${publication.name} (${publication.date.slice(0, 4)})`,
     recordsDir: "publications",

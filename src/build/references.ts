@@ -17,9 +17,12 @@ import {
 } from "./github.ts";
 import { escapeHtml, indent } from "./html.ts";
 
-/** The relation slots of schemas/records.yaml, in the order cards list them. */
+/**
+ * The relation slots of schemas/records.yaml, in the order cards list them. A
+ * null label heads each named record by its type instead, e.g. "Featured software".
+ */
 const RELATIONS = [
-  { slot: "about", label: "About", reverse: "Presented in" },
+  { slot: "about", label: null, reverse: "Presented in" },
   { slot: "built_with", label: "Built with", reverse: "Used by" },
   { slot: "replaced_by", label: "Replaced by", reverse: "Replaces" },
 ] as const;
@@ -39,6 +42,8 @@ export interface RecordNode {
   label: string;
   /** Font Awesome icon marking links to records of its type. */
   icon: string;
+  /** Heading over links to it from a record about it, e.g. "Featured software". */
+  related: string;
   record: LinkingRecord;
 }
 
@@ -57,6 +62,16 @@ function renderRecordLink(node: RecordNode): string {
 
 function renderSourceLink(evidence: Evidence): string {
   return `<i class="fa fa-fw fa-external-link" aria-hidden="true"></i> <span><a href="${escapeHtml(evidence.url)}">${escapeHtml(evidence.title)}</a></span>`;
+}
+
+/** Linked records under a heading each: the relation's label, or else each record's own heading. */
+function headed(label: string | null, linked: readonly RecordNode[]): [string, RecordNode[]][] {
+  const groups = new Map<string, RecordNode[]>();
+  for (const node of linked) {
+    const heading = label ?? node.related;
+    groups.set(heading, [...(groups.get(heading) ?? []), node]);
+  }
+  return [...groups];
 }
 
 /** One block per card listing its links under their labels, or nothing if it has none. */
@@ -129,13 +144,8 @@ export function linkRecords(
     for (const { slot, label, reverse } of RELATIONS) {
       const targets = [...new Set(node.record[slot] ?? [])].flatMap((target) => byPath.get(target) ?? []);
       const sources = nodes.filter((source) => source.record[slot]?.includes(node.path) && source !== node);
-      for (const [heading, linked] of [
-        [label, targets],
-        [reverse, sources],
-      ] as const) {
-        if (linked.length > 0) {
-          groups.push({ label: heading, items: linked.map(renderRecordLink) });
-        }
+      for (const [heading, linked] of [...headed(label, targets), ...headed(reverse, sources)]) {
+        groups.push({ label: heading, items: linked.map(renderRecordLink) });
       }
     }
     const sources = evidence.filter((item) => !isContribution(item));
