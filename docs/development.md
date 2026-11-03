@@ -26,9 +26,72 @@ Parts of the site are generated from machine-readable JSON records, one file per
 | [`publications/`](../publications) | `Publication` | Publications (`publications.html`)     |
 
 Records hold only facts about the work.
-How the site presents them, such as the order each section lists them in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
-A record's file name is its ID.
+How the site presents them, such as the page each section is on and the order it lists its records in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
+A record's file name is its ID, and its card on the page takes the same ID, so `projects.html#neuroconv` opens the NeuroConv card.
 The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+
+## Links between records
+
+A record can name other records, by the path of their file without `.json`, such as `projects/neuroconv`:
+
+| Slot          | On                    | Means                                              | Shown on its card | Shown on the named card |
+|---------------|-----------------------|----------------------------------------------------|-------------------|-------------------------|
+| `about`       | Publication           | the work the publication presents or teaches       | Featured software | Presented in            |
+| `built_with`  | Project, Dataset      | the software it was built with, or converted with  | Related software  | Used by                 |
+| `replaced_by` | Project               | the work that has largely replaced it              | Replaced by       | Replaces                |
+
+For example, `publications/neuroconv-2025.json` names the project it is about:
+
+```json
+"about": ["projects/neuroconv"]
+```
+
+A publication's `about` links are headed by the type of record they name: "Featured software" for projects, "Featured data" for datasets.
+
+Write each link once, on the record that makes it.
+The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Presented in" without its record saying so.
+The build fails on a link to a record that does not exist, to the record itself, or listed twice.
+[`src/build/references.ts`](../src/build/references.ts) checks and renders the links, and each section in `sections.ts` sets the icon and text of links to its records.
+
+## Evidence
+
+Any record can cite `evidence`: links to sources outside the site that back up what it says.
+
+```json
+"evidence": [
+  "https://github.com/hdmf-dev/hdmf/pull/672",
+  "https://pypi.org/project/historia/"
+]
+```
+
+Good evidence is the pull requests behind a contribution, the package index a project says it is published on, or a page its description mentions.
+Records hold only the URL.
+Cards show a pull request or issue on GitHub as a featured contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `pypi.org/project/historia`.
+The build fails if a record cites the same URL twice.
+
+Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
+
+## GitHub activity
+
+Cards show two kinds of activity on GitHub:
+
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title and state and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
+  Feature fewer than 10; the build fails on more.
+- **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
+  These show once either count reaches 10, when there are too many to feature one by one.
+
+A project's code is its `url` when that is a GitHub repository or organization, or else the GitHub URLs in its `repositories` (such as Neurosift, whose `url` is its web app).
+
+The activity is fetched into [`src/build/generated/github.json`](../src/build/generated/github.json), so building the site needs no network.
+After citing a new pull request or issue, or adding a project, fetch it again, with a GitHub token for the higher rate limit:
+
+```bash
+GITHUB_TOKEN=$(gh auth token) python scripts/fetch_github_activity.py
+```
+
+Rerun it now and then to refresh the counts; the file records when it was fetched.
+The build fails on a cited pull request or issue, or a project with code on GitHub, that the file has nothing for.
+[`src/build/github.ts`](../src/build/github.ts) checks and renders the activity.
 
 ## Search
 

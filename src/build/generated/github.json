@@ -1,0 +1,162 @@
+{
+  "owner": "CodyCBakerPhD",
+  "fetched": "2026-11-03",
+  "projects": {
+    "projects/dandi-compute": {
+      "query": "org:dandi-compute author:CodyCBakerPhD",
+      "merged_pull_requests": 363,
+      "closed_issues": 239
+    },
+    "projects/duct": {
+      "query": "repo:con/duct author:CodyCBakerPhD",
+      "merged_pull_requests": 7,
+      "closed_issues": 6
+    },
+    "projects/hdmf": {
+      "query": "repo:hdmf-dev/hdmf author:CodyCBakerPhD",
+      "merged_pull_requests": 10,
+      "closed_issues": 8
+    },
+    "projects/hearth": {
+      "query": "repo:brain-bbqs/hearth-landing-page repo:brain-bbqs/bbqs-uploader repo:brain-bbqs/clip-extractor repo:brain-bbqs/encoding-helper repo:brain-bbqs/bbqs-web-app-template repo:brain-bbqs/bbqs-web-components author:CodyCBakerPhD",
+      "merged_pull_requests": 250,
+      "closed_issues": 3
+    },
+    "projects/historia": {
+      "query": "repo:CodyCBakerPhD/historia author:CodyCBakerPhD",
+      "merged_pull_requests": 114,
+      "closed_issues": 70
+    },
+    "projects/neuroconv": {
+      "query": "repo:catalystneuro/neuroconv author:CodyCBakerPhD",
+      "merged_pull_requests": 232,
+      "closed_issues": 45
+    },
+    "projects/neurosift": {
+      "query": "repo:flatironinstitute/neurosift author:CodyCBakerPhD",
+      "merged_pull_requests": 17,
+      "closed_issues": 21
+    },
+    "projects/nwb-benchmarks": {
+      "query": "repo:NeurodataWithoutBorders/nwb-benchmarks author:CodyCBakerPhD",
+      "merged_pull_requests": 41,
+      "closed_issues": 23
+    },
+    "projects/nwb-guide": {
+      "query": "repo:NeurodataWithoutBorders/nwb-guide author:CodyCBakerPhD",
+      "merged_pull_requests": 99,
+      "closed_issues": 119
+    },
+    "projects/nwb-inspector": {
+      "query": "repo:NeurodataWithoutBorders/nwbinspector author:CodyCBakerPhD",
+      "merged_pull_requests": 172,
+      "closed_issues": 41
+    },
+    "projects/nwb-widgets": {
+      "query": "repo:NeurodataWithoutBorders/nwbwidgets author:CodyCBakerPhD",
+      "merged_pull_requests": 12,
+      "closed_issues": 19
+    },
+    "projects/nwb2bids": {
+      "query": "repo:con/nwb2bids author:CodyCBakerPhD",
+      "merged_pull_requests": 128,
+      "closed_issues": 45
+    },
+    "projects/s3-log-extraction": {
+      "query": "repo:dandi/s3-log-extraction author:CodyCBakerPhD",
+      "merged_pull_requests": 144,
+      "closed_issues": 85
+    }
+  },
+  "contributions": {
+    "https://github.com/bids-standard/bids-specification/pull/2132": {
+      "type": "pull_request",
+      "title": "[FIX] BEP032 - Correcting validations against real data example",
+      "state": "merged",
+      "additions": 11,
+      "deletions": 0
+    },
+    "https://github.com/bids-standard/bids-specification/pull/2307": {
+      "type": "pull_request",
+      "title": "[ENH]: BEP032 formal review",
+      "state": "open",
+      "additions": 2481,
+      "deletions": 21
+    },
+    "https://github.com/bids-standard/bids-specification/pull/2363": {
+      "type": "pull_request",
+      "title": "BEP032: Relax many levels to optional",
+      "state": "merged",
+      "additions": 24,
+      "deletions": 24
+    },
+    "https://github.com/con/duct/issues/326": {
+      "type": "issue",
+      "title": "Try making standalone executable",
+      "state": "closed"
+    },
+    "https://github.com/con/duct/pull/351": {
+      "type": "pull_request",
+      "title": "Added Mac (M-series) support",
+      "state": "merged",
+      "additions": 175,
+      "deletions": 38
+    },
+    "https://github.com/con/duct/pull/364": {
+      "type": "pull_request",
+      "title": "Activate intel runner for mac CI",
+      "state": "merged",
+      "additions": 1,
+      "deletions": 29
+    },
+    "https://github.com/con/duct/pull/390": {
+      "type": "pull_request",
+      "title": "Added basic import structure for library usage",
+      "state": "merged",
+      "additions": 50,
+      "deletions": 44
+    },
+    "https://github.com/con/duct/pull/392": {
+      "type": "pull_request",
+      "title": "Better error rendering on unsupported systems",
+      "state": "merged",
+      "additions": 39,
+      "deletions": 0
+    },
+    "https://github.com/flatironinstitute/neurosift/pull/518": {
+      "type": "pull_request",
+      "title": "Event Related Signals",
+      "state": "merged",
+      "additions": 1979,
+      "deletions": 102
+    },
+    "https://github.com/flatironinstitute/neurosift/pull/521": {
+      "type": "pull_request",
+      "title": "On the fly spectrogram",
+      "state": "merged",
+      "additions": 4677,
+      "deletions": 20
+    },
+    "https://github.com/hdmf-dev/hdmf/pull/1110": {
+      "type": "pull_request",
+      "title": "Expose progress bar class control",
+      "state": "merged",
+      "additions": 58,
+      "deletions": 7
+    },
+    "https://github.com/hdmf-dev/hdmf/pull/672": {
+      "type": "pull_request",
+      "title": "GenericDataChunkIterator",
+      "state": "merged",
+      "additions": 842,
+      "deletions": 23
+    },
+    "https://github.com/hdmf-dev/hdmf/pull/924": {
+      "type": "pull_request",
+      "title": "Add base methods for iterator serialization",
+      "state": "merged",
+      "additions": 96,
+      "deletions": 22
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.2.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.3.0",
   "name": "duct",
   "url": "https://github.com/con/duct",
   "role": "Contributor",
@@ -9,6 +9,13 @@
   "description": [
     "Maintained a simple command line tool for monitoring and maintaining records of process-specific system resource utilization of any other command line invocation.",
     "Tracks wall clock time, CPU time, RAM consumption, and more!"
+  ],
+  "evidence": [
+    "https://github.com/con/duct/pull/351",
+    "https://github.com/con/duct/pull/364",
+    "https://github.com/con/duct/pull/390",
+    "https://github.com/con/duct/issues/326",
+    "https://github.com/con/duct/pull/392"
   ],
   "tags": [
     "engineering:Command Line",

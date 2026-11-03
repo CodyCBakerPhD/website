@@ -3,6 +3,7 @@
 import type { Publication } from "./generated/records.ts";
 import { PublicationKind } from "./generated/records.ts";
 import { escapeHtml, indent, renderCard, renderParagraphs } from "./html.ts";
+import type { RecordEntry } from "./records.ts";
 import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
 
@@ -50,7 +51,7 @@ export const publicationSearch: SearchConfig<Publication> = {
   ],
 };
 
-function renderPublication(publication: Publication): string[] {
+function renderPublication({ id, record: publication, references }: RecordEntry<Publication>): string[] {
   const citation = [
     `${formatAuthors(publication.authors, publication.et_al ?? false)} (${escapeHtml(publication.date.slice(0, 4))}).`,
     `<em>${escapeHtml(sentence(publication.name))}</em>`,
@@ -61,17 +62,17 @@ function renderPublication(publication: Publication): string[] {
   if (publication.description) {
     lines.push("<br>", ...renderParagraphs(publication.description));
   }
-  lines.push(...renderTags(publication.tags));
-  return renderCard(lines, searchAttribute(publicationSearch, publication));
+  lines.push(...references, ...renderTags(publication.tags));
+  return renderCard(lines, searchAttribute(publicationSearch, publication), id);
 }
 
 /**
  * Groups publications under a heading per kind, keeping the display order within each group.
  * Each group is its own element so the search can hide a heading whose publications are all filtered out.
  */
-export function renderPublications(publications: readonly Publication[]): string[] {
+export function renderPublications(publications: readonly RecordEntry<Publication>[]): string[] {
   const groups = Object.entries(KIND_HEADINGS)
-    .map(([kind, heading]) => ({ heading, members: publications.filter((publication) => publication.kind === kind) }))
+    .map(([kind, heading]) => ({ heading, members: publications.filter(({ record }) => record.kind === kind) }))
     .filter(({ members }) => members.length > 0);
   return groups.flatMap(({ heading, members }) => [
     '<div class="record-group" data-search-group>',

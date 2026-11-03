@@ -6,13 +6,16 @@ description: >-
   Cody C. Baker is built from: software projects, curated datasets and
   publications. Each record is one JSON file under projects/, datasets/ or
   publications/, and carries its own version as well as the version of this
-  schema it was written against. The vocabulary of tags is in tags.yaml,
-  which this schema imports.
-version: 0.2.0
+  schema it was written against. Records can cite evidence from outside the
+  site and name one another, such as a publication naming the project it is
+  about. The vocabulary of tags is in tags.yaml, which this schema imports.
+version: 0.3.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
+  CiTO: http://purl.org/spar/cito/
+  dcterms: http://purl.org/dc/terms/
   records: https://raw.githubusercontent.com/CodyCBakerPhD/website/main/schemas/records/
 
 default_prefix: records
@@ -37,6 +40,13 @@ types:
     typeof: uri
     description: An absolute http or https URL.
     pattern: "^https?://"
+  RecordReference:
+    typeof: string
+    description: >-
+      Another record, named by the path of its file from the repository root
+      without ".json", e.g. "projects/neuroconv". The site build checks that
+      the record exists.
+    pattern: "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$"
 
 slots:
   schema_version:
@@ -66,16 +76,40 @@ slots:
     slot_uri: schema:description
     multivalued: true
     minimum_cardinality: 1
+  evidence:
+    description: >-
+      Links to sources outside this site that back up what the record says,
+      such as the pull requests behind a contribution or a page its
+      description mentions, e.g. "https://github.com/hdmf-dev/hdmf/pull/672".
+      What a GitHub pull request or issue is (its title and state) is fetched
+      from GitHub rather than written here.
+    slot_uri: CiTO:citesAsEvidence
+    range: HttpUrl
+    multivalued: true
+    list_elements_unique: true
+    minimum_cardinality: 1
+  built_with:
+    description: >-
+      Other records of the software this work was built with, such as a
+      project it depends on directly or the one that converted a dataset,
+      e.g. "projects/neuroconv".
+    slot_uri: schema:isBasedOn
+    range: RecordReference
+    multivalued: true
+    list_elements_unique: true
+    minimum_cardinality: 1
 
 classes:
   BaseRecord:
     abstract: true
-    description: The fields every record has.
+    description: >-
+      The fields every record has, and the evidence any record may cite.
     slots:
       - schema_version
       - record_version
       - name
       - tags
+      - evidence
 
   Project:
     is_a: BaseRecord
@@ -86,6 +120,7 @@ classes:
     slots:
       - role
       - description
+      - built_with
     slot_usage:
       name:
         description: Display name of the project.
@@ -126,6 +161,27 @@ classes:
         description: Related resources.
         range: ProjectLinks
         inlined: true
+      repositories:
+        description: >-
+          Where the project's code is on GitHub, as repository or organization
+          URLs, when its url is not, e.g.
+          "https://github.com/flatironinstitute/neurosift". Its pull requests
+          and issues there are counted toward it.
+        slot_uri: schema:codeRepository
+        range: HttpUrl
+        pattern: "^https://github\\.com/[^/]+(/[^/]+)?$"
+        multivalued: true
+        list_elements_unique: true
+        minimum_cardinality: 1
+      replaced_by:
+        description: >-
+          Other records of the work that has largely replaced this project,
+          e.g. "projects/neurosift".
+        slot_uri: dcterms:isReplacedBy
+        range: RecordReference
+        multivalued: true
+        list_elements_unique: true
+        minimum_cardinality: 1
     rules:
       - description: A contributor's record summarizes what they contributed.
         preconditions:
@@ -146,6 +202,7 @@ classes:
     slots:
       - role
       - description
+      - built_with
     slot_usage:
       name:
         description: Title of the dataset or collection.
@@ -260,6 +317,15 @@ classes:
         slot_uri: schema:sameAs
         range: HttpUrl
         pattern: "^https://doi\\.org/10\\."
+      about:
+        description: >-
+          Other records of the work this one presents, describes or teaches,
+          e.g. "projects/neuroconv".
+        slot_uri: schema:about
+        range: RecordReference
+        multivalued: true
+        list_elements_unique: true
+        minimum_cardinality: 1
 
 enums:
   PublicationKind:

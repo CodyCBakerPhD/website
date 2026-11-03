@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.2.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.3.0",
   "name": "MICrONS",
   "group": "Tolias Lab",
   "institution": "Baylor College of Medicine",
@@ -15,6 +15,9 @@
   "description": [
     "Supervised the conversion and publication of a high-value dataset which combined large-scale two-photon calcium imaging with associated electron microscopy reconstructions of the same tissue.",
     "Resulted in the publication of a total **1.2 TB** of functional imaging data on the NIH data archive, with region IDs coregistered with the associated electron microscopy datasets."
+  ],
+  "built_with": [
+    "projects/nwb-inspector"
   ],
   "tags": [
     "standards:NWB",

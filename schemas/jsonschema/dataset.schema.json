@@ -2,8 +2,21 @@
     "$defs": {
         "BaseRecord": {
             "additionalProperties": false,
-            "description": "The fields every record has.",
+            "description": "The fields every record has, and the evidence any record may cite.",
             "properties": {
+                "evidence": {
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "name": {
                     "description": "Display name of the record.",
                     "type": "string"
@@ -44,6 +57,18 @@
             "additionalProperties": false,
             "description": "A dataset, or collection of datasets, curated for publication and the role held in curating it. Each record is one JSON file under datasets/.",
             "properties": {
+                "built_with": {
+                    "description": "Other records of the software this work was built with, such as a project it depends on directly or the one that converted a dataset, e.g. \"projects/neuroconv\".",
+                    "items": {
+                        "pattern": "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "description": {
                     "description": "Paragraphs of plain text describing the curation work, in which **double asterisks** mark emphasis.",
                     "items": {
@@ -51,6 +76,19 @@
                     },
                     "minItems": 1,
                     "type": "array"
+                },
+                "evidence": {
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "group": {
                     "description": "Research group that produced the data, e.g. \"Leifer Lab\".",
@@ -180,6 +218,18 @@
                 ]
             },
             "properties": {
+                "built_with": {
+                    "description": "Other records of the software this work was built with, such as a project it depends on directly or the one that converted a dataset, e.g. \"projects/neuroconv\".",
+                    "items": {
+                        "pattern": "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "contribution": {
                     "description": "Summary of the contributions made to the project. Required when the role is \"Contributor\".",
                     "type": [
@@ -200,6 +250,19 @@
                     "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -230,6 +293,31 @@
                     "description": "Version of the record's own content, bumped whenever the record changes.",
                     "pattern": "^\\d+\\.\\d+\\.\\d+$",
                     "type": "string"
+                },
+                "replaced_by": {
+                    "description": "Other records of the work that has largely replaced this project, e.g. \"projects/neurosift\".",
+                    "items": {
+                        "pattern": "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "repositories": {
+                    "description": "Where the project's code is on GitHub, as repository or organization URLs, when its url is not, e.g. \"https://github.com/flatironinstitute/neurosift\". Its pull requests and issues there are counted toward it.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https://github\\.com/[^/]+(/[^/]+)?$",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "role": {
                     "description": "Role held on the project, e.g. \"Lead Developer\" or \"Contributor\".",
@@ -306,6 +394,18 @@
             "additionalProperties": false,
             "description": "A scholarly work: an article, a conference presentation or a workshop. Each record is one JSON file under publications/.",
             "properties": {
+                "about": {
+                    "description": "Other records of the work this one presents, describes or teaches, e.g. \"projects/neuroconv\".",
+                    "items": {
+                        "pattern": "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "authors": {
                     "description": "Authors in citation order, as initials and surname, e.g. \"C. J. Gillon\". Lists only the leading authors when et_al is true.",
                     "items": {
@@ -343,6 +443,19 @@
                     "description": "Whether further authors follow those listed. Set only for works with more than 10 authors; otherwise list every author.",
                     "type": [
                         "boolean",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -504,6 +617,18 @@
     "description": "A dataset, or collection of datasets, curated for publication and the role held in curating it. Each record is one JSON file under datasets/.",
     "metamodel_version": "1.12.0",
     "properties": {
+        "built_with": {
+            "description": "Other records of the software this work was built with, such as a project it depends on directly or the one that converted a dataset, e.g. \"projects/neuroconv\".",
+            "items": {
+                "pattern": "^(projects|datasets|publications)/[a-z0-9]+(-[a-z0-9]+)*$",
+                "type": "string"
+            },
+            "minItems": 1,
+            "type": [
+                "array",
+                "null"
+            ]
+        },
         "description": {
             "description": "Paragraphs of plain text describing the curation work, in which **double asterisks** mark emphasis.",
             "items": {
@@ -511,6 +636,19 @@
             },
             "minItems": 1,
             "type": "array"
+        },
+        "evidence": {
+            "description": "Links to sources outside this site that back up what the record says, such as the pull requests behind a contribution or a page its description mentions, e.g. \"https://github.com/hdmf-dev/hdmf/pull/672\". What a GitHub pull request or issue is (its title and state) is fetched from GitHub rather than written here.",
+            "items": {
+                "format": "uri",
+                "pattern": "^https?://",
+                "type": "string"
+            },
+            "minItems": 1,
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "group": {
             "description": "Research group that produced the data, e.g. \"Leifer Lab\".",
@@ -581,6 +719,6 @@
     ],
     "title": "records",
     "type": "object",
-    "version": "0.2.0"
+    "version": "0.3.0"
 }
 

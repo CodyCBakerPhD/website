@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.2.0",
+  "schema_version": "0.3.0",
+  "record_version": "0.3.0",
   "name": "HEARTH",
   "url": "https://hearth.emberarchive.org",
   "role": "Lead Developer",
@@ -9,6 +9,14 @@
   "links": {
     "packages": "https://www.npmjs.com/org/brain-bbqs"
   },
+  "repositories": [
+    "https://github.com/brain-bbqs/hearth-landing-page",
+    "https://github.com/brain-bbqs/bbqs-uploader",
+    "https://github.com/brain-bbqs/clip-extractor",
+    "https://github.com/brain-bbqs/encoding-helper",
+    "https://github.com/brain-bbqs/bbqs-web-app-template",
+    "https://github.com/brain-bbqs/bbqs-web-components"
+  ],
   "description": [
     "Built the Hub for Exploratory Analysis, Resource-sharing, Testing, and Hypothesis-generation (HEARTH), a suite of web apps for the Brain Behavior Quantification and Synchronization (BBQS) consortium and its data on the EMBER Archive.",
     "Includes an uploader for adding files to a Dandiset on the EMBER Archive through a simple drag-and-drop interface, a clip extractor for saving a snippet or single frame of a video, and an encoding helper for the education and comparison of video encodings. The latter two grew from prototypes created in collaboration with the Talmo Lab.",
