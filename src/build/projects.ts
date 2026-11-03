@@ -79,6 +79,11 @@ export function checkProject(project: Project, { publicDir }: { publicDir: strin
       problems.push(`${slot} "${logo}" does not exist in ${publicDir}`);
     }
   }
+  (project.repositories ?? []).forEach(({ homepage, title }, index) => {
+    if (homepage && !title) {
+      problems.push(`/repositories/${index} has a homepage, so it is listed as a website and needs a title`);
+    }
+  });
   // ISO 8601 dates compare correctly as strings, even at mixed precision.
   if (project.end_date && project.end_date < project.start_date) {
     problems.push(`/end_date ${project.end_date} is before /start_date ${project.start_date}`);

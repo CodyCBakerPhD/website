@@ -512,7 +512,7 @@
             "description": "A GitHub repository that is part of a project.",
             "properties": {
                 "homepage": {
-                    "description": "The website the repository serves, such as its web app, e.g. \"https://usage.dandiarchive.org\". A repository with a homepage is listed as that website rather than as code.",
+                    "description": "The website the repository serves, such as its web app, e.g. \"https://usage.dandiarchive.org\". A repository with a homepage is listed as that website rather than as code, by its title.",
                     "format": "uri",
                     "pattern": "^https?://",
                     "type": [
@@ -523,6 +523,13 @@
                 "logo": {
                     "description": "Path to the repository's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/bbqs_uploader_logo.svg\".",
                     "pattern": "^[^/]",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "Display name of the website the repository serves, such as the site's own page title, e.g. \"Dandiset Usage Summaries\". Required with a homepage; a repository without one is named by its own name.",
                     "type": [
                         "string",
                         "null"

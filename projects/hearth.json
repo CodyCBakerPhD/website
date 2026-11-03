@@ -12,21 +12,25 @@
   "repositories": [
     {
       "url": "https://github.com/brain-bbqs/hearth-landing-page",
+      "title": "HEARTH Apps",
       "logo": "img/hearth_logo.svg",
       "homepage": "https://hearth.emberarchive.org"
     },
     {
       "url": "https://github.com/brain-bbqs/bbqs-uploader",
+      "title": "BBQS Uploader",
       "logo": "img/bbqs_uploader_logo.svg",
       "homepage": "https://upload.brain-bbqs.org"
     },
     {
       "url": "https://github.com/brain-bbqs/clip-extractor",
+      "title": "Clip Extractor",
       "logo": "img/clip_extractor_logo.svg",
       "homepage": "https://clip-extractor.brain-bbqs.org"
     },
     {
       "url": "https://github.com/brain-bbqs/encoding-helper",
+      "title": "Encoding Helper",
       "logo": "img/encoding_helper_logo.svg",
       "homepage": "https://encoding-helper.brain-bbqs.org"
     },

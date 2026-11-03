@@ -55,7 +55,7 @@ export interface GitHubActivity {
 interface GitHubSlots {
   evidence?: readonly string[];
   url?: string;
-  repositories?: readonly { url: string; logo?: string; homepage?: string }[];
+  repositories?: readonly { url: string; logo?: string; homepage?: string; title?: string }[];
 }
 
 // Keep these in step with scripts/fetch_github_activity.py.
@@ -234,15 +234,15 @@ export function renderContributions(urls: readonly string[], activity: GitHubAct
  * Subcards for repositories a project is made of, each with its logo and
  * description, or null if there are none. A repository is named by its own
  * name and links to its code, unless it has a homepage, such as the web app it
- * serves: then it is named by that website's address and links there.
+ * serves: then it is named by that website's title and links there.
  */
 export function renderRepositories(repositories: NonNullable<GitHubSlots["repositories"]>, activity: GitHubActivity): string | null {
   if (repositories.length === 0) {
     return null;
   }
-  const cards = repositories.flatMap(({ url, logo, homepage }) => {
+  const cards = repositories.flatMap(({ url, logo, homepage, title }) => {
     const [, fullName] = CODE_URL.exec(url)!;
-    const name = homepage ? displayUrl(homepage) : fullName.split("/")[1];
+    const name = title ?? fullName.split("/")[1];
     const { description } = activity.repositories[url];
     const mark = logo
       ? `<img class="repository-logo" src="${escapeHtml(logo)}" alt="" />`
@@ -253,7 +253,7 @@ export function renderRepositories(repositories: NonNullable<GitHubSlots["reposi
         mark,
         '<span class="repository-text">',
         ...indent([
-          `<a class="repository-name" href="${escapeHtml(homepage ?? url)}" title="${escapeHtml(fullName)}">${escapeHtml(name)}</a>`,
+          `<a class="repository-name" href="${escapeHtml(homepage ?? url)}" title="${escapeHtml(homepage ? displayUrl(homepage) : fullName)}">${escapeHtml(name)}</a>`,
           ...(description ? [`<span class="repository-description">${escapeHtml(description)}</span>`] : []),
         ]),
         "</span>",

@@ -13,6 +13,7 @@
   "repositories": [
     {
       "url": "https://github.com/flatironinstitute/neurosift",
+      "title": "Neurosift",
       "logo": "img/neurosift_logo.png",
       "homepage": "https://neurosift.app"
     }

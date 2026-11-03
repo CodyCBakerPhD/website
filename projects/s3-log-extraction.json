@@ -13,6 +13,7 @@
   "repositories": [
     {
       "url": "https://github.com/dandi/usage-page",
+      "title": "Dandiset Usage Summaries",
       "logo": "img/dandi_usage_logo.svg",
       "homepage": "https://usage.dandiarchive.org"
     }

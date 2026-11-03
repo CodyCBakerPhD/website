@@ -103,11 +103,18 @@ A project made of several GitHub repositories lists them in `repositories`, each
 ```
 
 Its card shows each as a small card with its logo (or GitHub's repository icon) and its description, which is fetched from GitHub (see [GitHub activity](#github-activity)).
-A repository that serves a web app or site names it as its `homepage`, and the card lists it under "Websites" instead, by that site's address and linking there:
+A repository that serves a web app or site names it as its `homepage`, with a `title` for the site (such as its own page title), and the card lists it under "Websites" instead, by that title and linking there:
 
 ```json
-{ "url": "https://github.com/dandi/usage-page", "logo": "img/dandi_usage_logo.svg", "homepage": "https://usage.dandiarchive.org" }
+{
+  "url": "https://github.com/dandi/usage-page",
+  "title": "Dandiset Usage Summaries",
+  "logo": "img/dandi_usage_logo.svg",
+  "homepage": "https://usage.dandiarchive.org"
+}
 ```
+
+The build fails on a repository with a `homepage` but no `title`.
 
 A project whose `url` is not on GitHub, such as Neurosift's web app, names its code here too.
 

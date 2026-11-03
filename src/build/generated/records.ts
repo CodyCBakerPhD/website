@@ -243,8 +243,10 @@ export interface Repository {
     url: string,
     /** Path to the repository's logo relative to the website root (the file itself lives under src/public/), e.g. "img/bbqs_uploader_logo.svg". */
     logo?: string,
-    /** The website the repository serves, such as its web app, e.g. "https://usage.dandiarchive.org". A repository with a homepage is listed as that website rather than as code. */
+    /** The website the repository serves, such as its web app, e.g. "https://usage.dandiarchive.org". A repository with a homepage is listed as that website rather than as code, by its title. */
     homepage?: string,
+    /** Display name of the website the repository serves, such as the site's own page title, e.g. "Dandiset Usage Summaries". Required with a homepage; a repository without one is named by its own name. */
+    title?: string,
 }
 
 
