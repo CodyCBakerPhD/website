@@ -1278,7 +1278,7 @@ a:hover {
 /* Stretched rather than covered: the SVG has no fixed aspect ratio and pins its neuron clusters
    to the banner's edges at any size (see scripts/generate_banner.py). */
 .quote {
-    background: #0a4450 url(../img/banner.svg) center / 100% 100% no-repeat;
+    background: #0a4450 url(/img/banner.svg) center / 100% 100% no-repeat;
     padding: 20px 0px;
     margin-top: 120px;
 }

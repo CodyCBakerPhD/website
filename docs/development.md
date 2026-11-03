@@ -15,6 +15,10 @@ The parts every page shares live in [`src/partials/`](../src/partials) and are f
 The navigation links are listed in [`src/build/layout.ts`](../src/build/layout.ts), which renders them for each page, in both the navigation bar and the footer, marking the page that is open.
 A new page needs those three placeholders and, to be reachable, a link there.
 
+The site's own styles are in [`src/css/custom.css`](../src/css/custom.css), which the shared `<head>` links, so Vite bundles and minifies it at build time.
+Edit it directly; there is no minified copy to keep in step.
+Everything under [`src/public/`](../src/public), such as images and the vendored Kube and Font Awesome stylesheets, is copied into the site as it is.
+
 ## Records
 
 Parts of the site are generated from machine-readable JSON records, one file per record:
@@ -151,7 +155,7 @@ The vocabulary lists every tag in one LinkML enum, `Tag`, theme by theme, and na
 `linkml-validate` and the site build both reject a tag that is not in the vocabulary, and the build also rejects a tag repeated within a record.
 
 The site shows each tag as a label reading `theme | tag`, colored by its theme, with themes in the order of the table below.
-Theme colors (steps of the colorblind-safe viridis palette) are set in [`src/public/css/custom.css`](../src/public/css/custom.css), keyed by each theme's key, and [`src/build/tags.ts`](../src/build/tags.ts) renders the labels.
+Theme colors (steps of the colorblind-safe viridis palette) are set in [`src/css/custom.css`](../src/css/custom.css), keyed by each theme's key, and [`src/build/tags.ts`](../src/build/tags.ts) renders the labels.
 
 To add a tag, list it in `Tag` among the other tags of its theme, with a one-line meaning, then bump the schema version and regenerate (see [Schema](#schema)), which rewrites the table below.
 Regenerating fails if a tag's key is not in `TagTheme`, or if `Tag` strays from listing its tags theme by theme in `TagTheme`'s order.
