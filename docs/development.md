@@ -37,7 +37,7 @@ A record can name other records, by the path of their file without `.json`, such
 | Slot          | On                    | Means                                              | Shown on its card | Shown on the named card |
 |---------------|-----------------------|----------------------------------------------------|-------------------|-------------------------|
 | `about`       | Publication           | the work the publication presents or teaches       | Featured software | Presented in            |
-| `built_with`  | Project, Dataset      | the software it was built with, or converted with  | Built with        | Used by                 |
+| `built_with`  | Project, Dataset      | the software it was built with, or converted with  | Related software  | Used by                 |
 | `replaced_by` | Project               | the work that has largely replaced it              | Replaced by       | Replaces                |
 
 For example, `publications/neuroconv-2025.json` names the project it is about:

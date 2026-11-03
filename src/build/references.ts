@@ -23,7 +23,7 @@ import { escapeHtml, indent } from "./html.ts";
  */
 const RELATIONS = [
   { slot: "about", label: null, reverse: "Presented in" },
-  { slot: "built_with", label: "Built with", reverse: "Used by" },
+  { slot: "built_with", label: "Related software", reverse: "Used by" },
   { slot: "replaced_by", label: "Replaced by", reverse: "Replaces" },
 ] as const;
 
