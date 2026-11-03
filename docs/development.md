@@ -77,7 +77,7 @@ Like every other part of a record, links and evidence come from a source you can
 
 ## Distribution
 
-Every project lists where it is `distributed`, for others to install or use, by the URL of each place:
+A project that others install or use lists where it is `distributed`, by the URL of each place, and a project that is not distributed (such as one run only from its source) omits it:
 
 ```json
 "distributions": [

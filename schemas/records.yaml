@@ -162,10 +162,10 @@ classes:
           Where the project is distributed for others to install or use, as
           the page of each package index, container registry, release or web
           app, e.g. "https://pypi.org/project/hdmf/". The site names each by
-          its address.
+          its address. Omitted for a project that is not distributed, such as
+          one run only from its source.
         slot_uri: schema:installUrl
         range: HttpUrl
-        required: true
         multivalued: true
         list_elements_unique: true
         minimum_cardinality: 1

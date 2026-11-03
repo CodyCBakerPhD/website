@@ -246,14 +246,17 @@
                     "type": "array"
                 },
                 "distributions": {
-                    "description": "Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. \"https://pypi.org/project/hdmf/\". The site names each by its address.",
+                    "description": "Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. \"https://pypi.org/project/hdmf/\". The site names each by its address. Omitted for a project that is not distributed, such as one run only from its source.",
                     "items": {
                         "format": "uri",
                         "pattern": "^https?://",
                         "type": "string"
                     },
                     "minItems": 1,
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "end_date": {
                     "description": "When involvement in the project ended. Omitted while it is ongoing.",
@@ -354,7 +357,6 @@
                 "description",
                 "url",
                 "start_date",
-                "distributions",
                 "schema_version",
                 "record_version",
                 "name",
@@ -670,14 +672,17 @@
             "type": "array"
         },
         "distributions": {
-            "description": "Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. \"https://pypi.org/project/hdmf/\". The site names each by its address.",
+            "description": "Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. \"https://pypi.org/project/hdmf/\". The site names each by its address. Omitted for a project that is not distributed, such as one run only from its source.",
             "items": {
                 "format": "uri",
                 "pattern": "^https?://",
                 "type": "string"
             },
             "minItems": 1,
-            "type": "array"
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "end_date": {
             "description": "When involvement in the project ended. Omitted while it is ongoing.",
@@ -778,7 +783,6 @@
         "description",
         "url",
         "start_date",
-        "distributions",
         "schema_version",
         "record_version",
         "name",

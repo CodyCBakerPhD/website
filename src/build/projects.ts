@@ -35,7 +35,7 @@ export const projectSearch: SearchConfig<Project> = {
   filters: [
     { key: "name", description: "Name of the project", values: (project) => [project.name] },
     { key: "role", description: "Role on the project", values: (project) => [project.role] },
-    { key: "distributed", description: "Where the project is distributed", values: (project) => project.distributions.map(distributionName) },
+    { key: "distributed", description: "Where the project is distributed", values: (project) => (project.distributions ?? []).map(distributionName) },
   ],
   years: (project) => [yearOf(project.start_date), project.end_date ? yearOf(project.end_date) : null],
   sorts: [
