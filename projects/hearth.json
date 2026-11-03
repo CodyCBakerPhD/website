@@ -1,21 +1,39 @@
 {
-  "schema_version": "0.3.0",
-  "record_version": "0.3.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.4.0",
   "name": "HEARTH",
   "url": "https://hearth.emberarchive.org",
   "role": "Lead Developer",
   "start_date": "2026-07",
   "logo": "img/hearth_logo.svg",
-  "links": {
-    "packages": "https://www.npmjs.com/org/brain-bbqs"
-  },
+  "distributions": [
+    "https://hearth.emberarchive.org",
+    "https://www.npmjs.com/org/brain-bbqs"
+  ],
   "repositories": [
-    "https://github.com/brain-bbqs/hearth-landing-page",
-    "https://github.com/brain-bbqs/bbqs-uploader",
-    "https://github.com/brain-bbqs/clip-extractor",
-    "https://github.com/brain-bbqs/encoding-helper",
-    "https://github.com/brain-bbqs/bbqs-web-app-template",
-    "https://github.com/brain-bbqs/bbqs-web-components"
+    {
+      "url": "https://github.com/brain-bbqs/hearth-landing-page",
+      "logo": "img/hearth_logo.svg"
+    },
+    {
+      "url": "https://github.com/brain-bbqs/bbqs-uploader",
+      "logo": "img/bbqs_uploader_logo.svg"
+    },
+    {
+      "url": "https://github.com/brain-bbqs/clip-extractor",
+      "logo": "img/clip_extractor_logo.svg"
+    },
+    {
+      "url": "https://github.com/brain-bbqs/encoding-helper",
+      "logo": "img/encoding_helper_logo.svg"
+    },
+    {
+      "url": "https://github.com/brain-bbqs/bbqs-web-app-template",
+      "logo": "img/bbqs_web_app_template_logo.svg"
+    },
+    {
+      "url": "https://github.com/brain-bbqs/bbqs-web-components"
+    }
   ],
   "description": [
     "Built the Hub for Exploratory Analysis, Resource-sharing, Testing, and Hypothesis-generation (HEARTH), a suite of web apps for the Brain Behavior Quantification and Synchronization (BBQS) consortium and its data on the EMBER Archive.",

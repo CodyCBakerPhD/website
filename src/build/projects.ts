@@ -2,23 +2,21 @@
 
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
+import { distributionName } from "./distributions.ts";
 import type { Project } from "./generated/records.ts";
-import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, renderCard, renderParagraphs, SEPARATOR } from "./html.ts";
 import type { RecordEntry } from "./records.ts";
 import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
-
-/** Link labels, in the order the links are shown. */
-const LINK_LABELS = {
-  packages: "Packages",
-} as const;
 
 /** Displayed logo width as a percentage of the content column. */
 const LOGO_WIDTH_PERCENT = 50;
 
 /** Logos near-square in shape, which look oversized at the default width. */
 const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
+  "img/dandi_cache_logo.svg": 25,
   "img/dandi_compute_logo.png": 25,
+  "img/hdmf_logo.png": 25,
   "img/hearth_logo.svg": 25,
   "img/historia_logo.svg": 25,
   "img/neurosift_logo.png": 25,
@@ -37,6 +35,7 @@ export const projectSearch: SearchConfig<Project> = {
   filters: [
     { key: "name", description: "Name of the project", values: (project) => [project.name] },
     { key: "role", description: "Role on the project", values: (project) => [project.role] },
+    { key: "distributed", description: "Where the project is distributed", values: (project) => project.distributions.map(distributionName) },
   ],
   years: (project) => [yearOf(project.start_date), project.end_date ? yearOf(project.end_date) : null],
   sorts: [
@@ -64,10 +63,6 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
   if (project.contribution) {
     lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
   }
-  const links = renderLinks(project.links, LINK_LABELS);
-  if (links.length > 0) {
-    lines.push(...links, "<br>");
-  }
   lines.push("<br>", ...renderParagraphs(project.description), ...references, ...renderTags(project.tags));
 
   return renderCard(lines, searchAttribute(projectSearch, project), id);
@@ -75,8 +70,14 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
 
 export function checkProject(project: Project, { publicDir }: { publicDir: string }): string[] {
   const problems: string[] = [];
-  if (project.logo && !existsSync(resolve(publicDir, project.logo))) {
-    problems.push(`/logo "${project.logo}" does not exist in ${publicDir}`);
+  const logos = [
+    { slot: "/logo", logo: project.logo },
+    ...(project.repositories ?? []).map(({ logo }, index) => ({ slot: `/repositories/${index}/logo`, logo })),
+  ];
+  for (const { slot, logo } of logos) {
+    if (logo && !existsSync(resolve(publicDir, logo))) {
+      problems.push(`${slot} "${logo}" does not exist in ${publicDir}`);
+    }
   }
   // ISO 8601 dates compare correctly as strings, even at mixed precision.
   if (project.end_date && project.end_date < project.start_date) {

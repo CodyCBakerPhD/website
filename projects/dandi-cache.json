@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.4.0",
+  "record_version": "0.1.0",
+  "name": "DANDI Cache",
+  "url": "https://github.com/dandi-cache",
+  "role": "Lead Developer",
+  "start_date": "2026-02",
+  "logo": "img/dandi_cache_logo.svg",
+  "distributions": [
+    "https://github.com/dandi-cache",
+    "https://ghcr.io/dandi-cache/dandi-cache-utils"
+  ],
+  "repositories": [
+    {
+      "url": "https://github.com/dandi-cache/dandi-cache-utils"
+    },
+    {
+      "url": "https://github.com/dandi-cache/cache-template"
+    },
+    {
+      "url": "https://github.com/dandi-cache/dandi-cache-action"
+    },
+    {
+      "url": "https://github.com/dandi-cache/dandi-cache-dashboard"
+    },
+    {
+      "url": "https://github.com/dandi-cache/superset"
+    }
+  ],
+  "description": [
+    "Created a living collection of up-to-date, pre-computed mappings commonly used by developers working with the DANDI Archive, such as which assets are NWB files, which of those are valid according to the NWB Inspector, and measures of their internal structure.",
+    "Each cache is the same pipeline around a different operation: read one or more upstream caches, work out what is not yet recorded, process each new item, and publish JSON Lines with full DataLad provenance.",
+    "Every cache shares a central library, container images, GitHub Actions, and a template, gathered into one DataLad superdataset with a dashboard of the current state of each."
+  ],
+  "built_with": [
+    "projects/nwb-inspector"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "data:Provenance",
+    "engineering:GitHub Actions",
+    "engineering:Automation",
+    "computing:Data Pipelines",
+    "languages:Python"
+  ]
+}

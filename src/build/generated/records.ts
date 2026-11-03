@@ -205,10 +205,10 @@ export interface Project extends BaseRecord {
     end_date?: string,
     /** Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. "img/guide_logo.png". */
     logo?: string,
-    /** Related resources. */
-    links?: ProjectLinks,
-    /** Where the project's code is on GitHub, as repository or organization URLs, when its url is not, e.g. "https://github.com/flatironinstitute/neurosift". Its pull requests and issues there are counted toward it. */
-    repositories?: string[],
+    /** Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. "https://pypi.org/project/hdmf/". The site names each by its address. */
+    distributions: string[],
+    /** The GitHub repositories the project is made of, each with its own logo if it has one. Its pull requests and issues there are counted toward it, as well as those under its url when that is on GitHub. */
+    repositories?: Repository[],
     /** Other records of the work that has largely replaced this project, e.g. "projects/neurosift". */
     replaced_by?: string[],
 }
@@ -236,11 +236,13 @@ export interface Dataset extends BaseRecord {
 
 
 /**
- * Resources related to a project, keyed by type.
+ * A GitHub repository that is part of a project.
  */
-export interface ProjectLinks {
-    /** Where the project's packages are published, e.g. an npm organization or a PyPI project. */
-    packages?: string,
+export interface Repository {
+    /** The repository on GitHub, e.g. "https://github.com/brain-bbqs/bbqs-uploader". What it is (its description) is fetched from GitHub rather than written here. */
+    url: string,
+    /** Path to the repository's logo relative to the website root (the file itself lives under src/public/), e.g. "img/bbqs_uploader_logo.svg". */
+    logo?: string,
 }
 
 

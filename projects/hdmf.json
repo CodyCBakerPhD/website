@@ -1,12 +1,17 @@
 {
-  "schema_version": "0.3.0",
-  "record_version": "0.3.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.4.0",
   "name": "Hierarchical Data Modeling Framework (HDMF)",
   "url": "https://github.com/hdmf-dev/hdmf",
   "role": "Contributor",
   "contribution": "Created the GenericDataChunkIterator for more efficient lazy, buffered writing of terabyte-scale datasets (existing defaults overlapped chunks and had poor default chunking heuristics), later extending it with serialization, parallel orchestration, and progress bar control.",
   "start_date": "2021-04",
   "end_date": "2025-09",
+  "logo": "img/hdmf_logo.png",
+  "distributions": [
+    "https://pypi.org/project/hdmf/",
+    "https://anaconda.org/conda-forge/hdmf"
+  ],
   "description": [
     "Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets."
   ],

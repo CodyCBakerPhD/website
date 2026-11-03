@@ -1,19 +1,22 @@
 {
-  "schema_version": "0.3.0",
-  "record_version": "0.3.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.4.0",
   "name": "nwb2bids",
   "url": "https://github.com/con/nwb2bids",
   "role": "Lead Developer",
-  "start_date": "2024-03",
+  "start_date": "2025",
   "logo": "img/nwb2bids_logo.svg",
+  "distributions": [
+    "https://pypi.org/project/nwb2bids/",
+    "https://anaconda.org/conda-forge/nwb2bids",
+    "https://ghcr.io/con/nwb2bids"
+  ],
   "description": [
     "Created a metadata extraction tool for organizing datasets of NeurodataWithoutBorders (NWB) files following the Brain Imaging Data Structure (BIDS) structure. Encourages best practices in data curation, such as self-describing entities, FAIR principles, and rich Hierarchical Event Descriptor (HED) annotations.",
     "Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode neurophysiology data."
   ],
   "evidence": [
-    "https://github.com/bids-standard/bids-specification/pull/2307",
-    "https://github.com/bids-standard/bids-specification/pull/2132",
-    "https://github.com/bids-standard/bids-specification/pull/2363"
+    "https://github.com/bids-standard/bids-specification/pull/2307"
   ],
   "tags": [
     "standards:NWB",

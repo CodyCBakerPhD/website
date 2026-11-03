@@ -60,37 +60,68 @@ Any record can cite `evidence`: links to sources outside the site that back up w
 ```json
 "evidence": [
   "https://github.com/hdmf-dev/hdmf/pull/672",
-  "https://pypi.org/project/historia/"
+  "https://usage.dandiarchive.org"
 ]
 ```
 
-Good evidence is the pull requests behind a contribution, the package index a project says it is published on, or a page its description mentions.
+Good evidence is the pull requests behind a contribution, or a page a record's description mentions.
 Records hold only the URL.
-Cards show a pull request or issue on GitHub as a featured contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `pypi.org/project/historia`.
+Cards show a pull request or issue on GitHub as a featured or related contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `usage.dandiarchive.org`.
 The build fails if a record cites the same URL twice.
 
 Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
 
+## Distribution
+
+Every project lists where it is `distributed`, for others to install or use, by the URL of each place:
+
+```json
+"distributions": [
+  "https://pypi.org/project/hdmf/",
+  "https://anaconda.org/conda-forge/hdmf"
+]
+```
+
+Its card lists them under "Distributed by", named by the package index or registry each URL is on: PyPI, conda-forge, npm, GitHub Container Registry (`https://ghcr.io/owner/image`), GitHub Releases or GitHub.
+Any other URL, such as a web app, is named by its host.
+[`src/build/distributions.ts`](../src/build/distributions.ts) recognizes them, and the Projects search filters on them with `distributed:`.
+Take each from a source you can name, such as the package index itself or the project's installation instructions.
+
+## Repositories
+
+A project made of several GitHub repositories lists them in `repositories`, each with its logo if it has one:
+
+```json
+"repositories": [
+  { "url": "https://github.com/brain-bbqs/bbqs-uploader", "logo": "img/bbqs_uploader_logo.svg" },
+  { "url": "https://github.com/brain-bbqs/bbqs-web-components" }
+]
+```
+
+Its card shows each as a small card with its logo (or GitHub's repository icon) and its description, which is fetched from GitHub (see [GitHub activity](#github-activity)).
+A project whose `url` is not on GitHub, such as Neurosift's web app, names its code here too.
+
 ## GitHub activity
 
-Cards show two kinds of activity on GitHub:
+Cards show three kinds of activity on GitHub:
 
-- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title and state and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title, its state as a label in GitHub's colors (green when open, purple when merged or completed, red when closed unmerged) and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
   Feature fewer than 10; the build fails on more.
+- **Related contributions**: on a project, the pull requests and issues it cites from outside its own code, such as a change to a standard it follows, shown the same way.
 - **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
   These show once either count reaches 10, when there are too many to feature one by one.
 
-A project's code is its `url` when that is a GitHub repository or organization, or else the GitHub URLs in its `repositories` (such as Neurosift, whose `url` is its web app).
+A project's code is its `url`, when that is a GitHub repository or organization, together with its `repositories`.
 
-The activity is fetched into [`src/build/generated/github.json`](../src/build/generated/github.json), so building the site needs no network.
-After citing a new pull request or issue, or adding a project, fetch it again, with a GitHub token for the higher rate limit:
+The activity, and the description of each repository a project lists, is fetched into [`src/build/generated/github.json`](../src/build/generated/github.json), so building the site needs no network.
+After citing a new pull request or issue, listing a repository, or adding a project, fetch it again, with a GitHub token for the higher rate limit:
 
 ```bash
 GITHUB_TOKEN=$(gh auth token) python scripts/fetch_github_activity.py
 ```
 
 Rerun it now and then to refresh the counts; the file records when it was fetched.
-The build fails on a cited pull request or issue, or a project with code on GitHub, that the file has nothing for.
+The build fails on a cited pull request or issue, a listed repository, or a project with code on GitHub, that the file has nothing for.
 [`src/build/github.ts`](../src/build/github.ts) checks and renders the activity.
 
 ## Search

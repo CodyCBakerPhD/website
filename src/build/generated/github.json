@@ -2,6 +2,11 @@
   "owner": "CodyCBakerPhD",
   "fetched": "2026-11-03",
   "projects": {
+    "projects/dandi-cache": {
+      "query": "org:dandi-cache author:CodyCBakerPhD",
+      "merged_pull_requests": 421,
+      "closed_issues": 24
+    },
     "projects/dandi-compute": {
       "query": "org:dandi-compute author:CodyCBakerPhD",
       "merged_pull_requests": 363,
@@ -68,27 +73,63 @@
       "closed_issues": 85
     }
   },
-  "contributions": {
-    "https://github.com/bids-standard/bids-specification/pull/2132": {
-      "type": "pull_request",
-      "title": "[FIX] BEP032 - Correcting validations against real data example",
-      "state": "merged",
-      "additions": 11,
-      "deletions": 0
+  "repositories": {
+    "https://github.com/brain-bbqs/bbqs-uploader": {
+      "description": "A web app for BBQS teams to easily upload files to an existing Dandiset on the EMBER Archive through a simple drag-and-drop interface."
     },
+    "https://github.com/brain-bbqs/bbqs-web-app-template": {
+      "description": "A generic template for recommend static web apps."
+    },
+    "https://github.com/brain-bbqs/bbqs-web-components": {
+      "description": "Common components shared across web apps for this organization."
+    },
+    "https://github.com/brain-bbqs/clip-extractor": {
+      "description": "A web app for selecting a clip (a snippet range or a single frame) from a video and saving it locally or uploading directly to the EMBER Archive."
+    },
+    "https://github.com/brain-bbqs/encoding-helper": {
+      "description": "A web app for education and comparison of video encodings."
+    },
+    "https://github.com/brain-bbqs/hearth-landing-page": {
+      "description": "The main landing page for the HEARTH data ecosystem."
+    },
+    "https://github.com/dandi-cache/cache-template": {
+      "description": "A common template with suggested structure, layout, and mechanisms for a typical DANDI Cache."
+    },
+    "https://github.com/dandi-cache/dandi-cache-action": {
+      "description": "Vendored GitHub actions for DANDI Cache."
+    },
+    "https://github.com/dandi-cache/dandi-cache-dashboard": {
+      "description": "A quick reference for the current state of all cache repositories."
+    },
+    "https://github.com/dandi-cache/dandi-cache-utils": {
+      "description": "A centralized codebase of operations used across the DANDI Cache."
+    },
+    "https://github.com/dandi-cache/superset": {
+      "description": "DataLad superset of all the DANDI caches."
+    },
+    "https://github.com/dandi-compute/dandi-compute-core": {
+      "description": "Contains essential code for orchestrating computation submission and queue management for processing pipelines acting on DANDI assets."
+    },
+    "https://github.com/dandi-compute/dandi-compute-global-logs": {
+      "description": "Global logs of runtime activity for DANDI Compute."
+    },
+    "https://github.com/dandi-compute/dandi-compute-page": {
+      "description": "Simple webpage rendering the basic aspects of the DANDI Compute: AIND Ephys project."
+    },
+    "https://github.com/dandi-compute/dandi-compute-runner": {
+      "description": "Submit jobs to DANDI Compute."
+    },
+    "https://github.com/flatironinstitute/neurosift": {
+      "description": "Browser-based NWB visualization and DANDI exploration"
+    }
+  },
+  "contributions": {
     "https://github.com/bids-standard/bids-specification/pull/2307": {
       "type": "pull_request",
       "title": "[ENH]: BEP032 formal review",
       "state": "open",
       "additions": 2481,
       "deletions": 21
-    },
-    "https://github.com/bids-standard/bids-specification/pull/2363": {
-      "type": "pull_request",
-      "title": "BEP032: Relax many levels to optional",
-      "state": "merged",
-      "additions": 24,
-      "deletions": 24
     },
     "https://github.com/con/duct/issues/326": {
       "type": "issue",

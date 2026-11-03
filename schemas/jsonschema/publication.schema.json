@@ -245,6 +245,16 @@
                     "minItems": 1,
                     "type": "array"
                 },
+                "distributions": {
+                    "description": "Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. \"https://pypi.org/project/hdmf/\". The site names each by its address.",
+                    "items": {
+                        "format": "uri",
+                        "pattern": "^https?://",
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
                 "end_date": {
                     "description": "When involvement in the project ended. Omitted while it is ongoing.",
                     "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
@@ -265,17 +275,6 @@
                         "array",
                         "null"
                     ]
-                },
-                "links": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/ProjectLinks"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Related resources."
                 },
                 "logo": {
                     "description": "Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/guide_logo.png\".",
@@ -307,11 +306,9 @@
                     ]
                 },
                 "repositories": {
-                    "description": "Where the project's code is on GitHub, as repository or organization URLs, when its url is not, e.g. \"https://github.com/flatironinstitute/neurosift\". Its pull requests and issues there are counted toward it.",
+                    "description": "The GitHub repositories the project is made of, each with its own logo if it has one. Its pull requests and issues there are counted toward it, as well as those under its url when that is on GitHub.",
                     "items": {
-                        "format": "uri",
-                        "pattern": "^https://github\\.com/[^/]+(/[^/]+)?$",
-                        "type": "string"
+                        "$ref": "#/$defs/Repository"
                     },
                     "minItems": 1,
                     "type": [
@@ -357,6 +354,7 @@
                 "description",
                 "url",
                 "start_date",
+                "distributions",
                 "schema_version",
                 "record_version",
                 "name",
@@ -371,23 +369,6 @@
                 ]
             },
             "title": "Project",
-            "type": "object"
-        },
-        "ProjectLinks": {
-            "additionalProperties": false,
-            "description": "Resources related to a project, keyed by type.",
-            "properties": {
-                "packages": {
-                    "description": "Where the project's packages are published, e.g. an npm organization or a PyPI project.",
-                    "format": "uri",
-                    "pattern": "^https?://",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ProjectLinks",
             "type": "object"
         },
         "Publication": {
@@ -523,6 +504,31 @@
             ],
             "title": "PublicationKind",
             "type": "string"
+        },
+        "Repository": {
+            "additionalProperties": false,
+            "description": "A GitHub repository that is part of a project.",
+            "properties": {
+                "logo": {
+                    "description": "Path to the repository's logo relative to the website root (the file itself lives under src/public/), e.g. \"img/bbqs_uploader_logo.svg\".",
+                    "pattern": "^[^/]",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "url": {
+                    "description": "The repository on GitHub, e.g. \"https://github.com/brain-bbqs/bbqs-uploader\". What it is (its description) is fetched from GitHub rather than written here.",
+                    "format": "uri",
+                    "pattern": "^https://github\\.com/[^/]+/[^/]+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "title": "Repository",
+            "type": "object"
         },
         "Tag": {
             "description": "Every tag a record may carry, as a theme:tag pair, listed theme by theme in the order of TagTheme.",
@@ -736,6 +742,6 @@
     ],
     "title": "records",
     "type": "object",
-    "version": "0.3.0"
+    "version": "0.4.0"
 }
 

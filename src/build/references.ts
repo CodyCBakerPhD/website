@@ -1,18 +1,22 @@
-// Links between records, and the evidence a record cites from outside the
-// site. A record names another by the path of its file without .json, such as
-// "projects/neuroconv", in one of the relation slots of schemas/records.yaml.
-// Only the record making a link names it: its card lists the link under the
-// relation's label, and the card of the record it names lists it in reverse,
-// so the two cards always agree. Evidence that is a pull request or issue on
-// GitHub is featured as a contribution (see github.ts); the rest is listed as
-// sources.
+// Links between records, and the links a record makes to outside the site:
+// where a project is distributed, the repositories it is made of, and the
+// evidence a record cites. A record names another by the path of its file
+// without .json, such as "projects/neuroconv", in one of the relation slots of
+// schemas/records.yaml. Only the record making a link names it: its card lists
+// the link under the relation's label, and the card of the record it names
+// lists it in reverse, so the two cards always agree. Evidence that is a pull
+// request or issue on GitHub is featured as a contribution (see github.ts);
+// the rest is listed as sources.
 
-import type { BaseRecord } from "./generated/records.ts";
+import { renderDistribution } from "./distributions.ts";
+import type { BaseRecord, Repository } from "./generated/records.ts";
 import {
   checkGitHubActivity,
   isContribution,
   renderActivitySummary,
-  renderFeaturedContributions,
+  renderContributions,
+  renderRepositories,
+  splitContributions,
   type GitHubActivity,
 } from "./github.ts";
 import { escapeHtml, indent } from "./html.ts";
@@ -29,8 +33,13 @@ const RELATIONS = [
 
 type RelationSlot = (typeof RELATIONS)[number]["slot"];
 
-/** A record as any record type has it: the relation slots are on some types only. */
-type LinkingRecord = BaseRecord & Partial<Record<RelationSlot, readonly string[]>>;
+/** A record as any record type has it: the relation slots, and a project's slots that link outside, are on some types only. */
+type LinkingRecord = BaseRecord &
+  Partial<Record<RelationSlot, readonly string[]>> & {
+    url?: string;
+    distributions?: readonly string[];
+    repositories?: readonly Repository[];
+  };
 
 /** A record as the other records see it. */
 export interface RecordNode {
@@ -52,7 +61,7 @@ interface Group {
   /** HTML of the group's <dd>. */
   body: string;
   /** Class of its <dd>. */
-  kind: "record-links" | "record-activity" | "record-contributions";
+  kind: "record-links" | "record-activity" | "record-contributions" | "record-repositories";
 }
 
 /** Links laid side by side in one <dd>, wrapping when the row is full. */
@@ -145,13 +154,24 @@ export function linkRecords(
   for (const node of nodes) {
     const evidence = node.record.evidence ?? [];
     const groups: Group[] = [];
+    const distributions = node.record.distributions ?? [];
+    if (distributions.length > 0) {
+      groups.push(linkGroup("Distributed by", distributions.map(renderDistribution)));
+    }
+    const repositories = renderRepositories(node.record.repositories, activity);
+    if (repositories) {
+      groups.push({ label: "Repositories", kind: "record-repositories", body: repositories });
+    }
     const summary = renderActivitySummary(node.path, activity);
     if (summary) {
       groups.push({ label: "Contributions", kind: "record-activity", body: summary });
     }
-    const featured = renderFeaturedContributions(evidence, activity);
-    if (featured) {
-      groups.push({ label: "Featured contributions", kind: "record-contributions", body: featured });
+    const { own, related } = splitContributions(node.path, node.record);
+    for (const [label, urls] of [["Featured contributions", own], ["Related contributions", related]] as const) {
+      const cards = renderContributions(urls, activity);
+      if (cards) {
+        groups.push({ label, kind: "record-contributions", body: cards });
+      }
     }
     for (const { slot, label, reverse } of RELATIONS) {
       const targets = [...new Set(node.record[slot] ?? [])].flatMap((target) => byPath.get(target) ?? []);
