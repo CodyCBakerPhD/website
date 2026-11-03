@@ -28,10 +28,10 @@ export const sections = [
     order: [
       "hearth",
       "s3-log-extraction",
+      "nwb-guide",
       "dandi-compute",
       "dandi-cache",
       "nwb-benchmarks",
-      "nwb-guide",
       "neuroconv",
       "nwb-inspector",
       "historia",

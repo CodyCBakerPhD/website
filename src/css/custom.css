@@ -884,20 +884,20 @@ a:hover {
    project cards are a mid grey, light enough for those logos, with dark text
    and colors darkened to keep at least 4.5:1 contrast on it. */
 :root[data-theme="dark"] #highlighted-projects .work-list {
-    --ink: #0a0f14;
-    --body-text: #121a22;
-    --muted: #222b35;
-    --accent: #0a5f5e;
-    --accent-dark: #033332;
-    --accent-soft: #b0c8c6;
-    --accent-border: #3f716f;
-    --page-bg: #a5abb3;
-    --card-bg: #9198a1;
-    --card-border: #7a828c;
-    --diff-added: #0b461d;
-    --diff-deleted: #7d0b1d;
-    --diff-neutral: #7a828c;
-    --diff-neutral-border: #7a828c;
+    --ink: #000000;
+    --body-text: #05080b;
+    --muted: #121820;
+    --accent: #003b3a;
+    --accent-dark: #002120;
+    --accent-soft: #a9c1bf;
+    --accent-border: #23514f;
+    --page-bg: #939aa2;
+    --card-bg: #7f868f;
+    --card-border: #6b727b;
+    --diff-added: #06350f;
+    --diff-deleted: #650614;
+    --diff-neutral: #6b727b;
+    --diff-neutral-border: #6b727b;
     --state-open: #1f883d;
     --state-done: #8250df;
     --state-closed: #cf222e;
