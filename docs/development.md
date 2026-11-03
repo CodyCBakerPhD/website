@@ -125,8 +125,13 @@ Cards show three kinds of activity on GitHub:
 - **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title, its state as a label in GitHub's colors (green when open, purple when merged or completed, red when closed unmerged) and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
   Feature fewer than 10; the build fails on more.
 - **Related contributions**: on a project, the pull requests and issues it cites from outside its own code, such as a change to a standard it follows, shown the same way.
-- **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
-  These show once either count reaches 10, when there are too many to feature one by one.
+- **Contributions**: on a project whose code is on GitHub, three counts there, each a tile linking to the GitHub search that lists them:
+  - **Pull requests merged**: the owner's pull requests that were merged, counting those they opened or were assigned.
+  - **Pull requests reviewed**: other pull requests the owner reviewed, that they neither opened nor were assigned.
+  - **Issues closed**: the owner's issues that were closed, counting those they opened or were assigned.
+
+  These show once the owner's own merged pull requests or closed issues reach 10, when there are too many to feature one by one; reviews do not count toward that, and a count of zero gets no tile.
+  The searches use GitHub's advanced search syntax (`OR` and parentheses), which the file records with each count.
 
 A project's code is its `url`, when that is a GitHub repository or organization, together with its `repositories`.
 

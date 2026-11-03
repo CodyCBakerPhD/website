@@ -556,10 +556,13 @@ a:hover {
     gap: 10px;
 }
 
+/* Equal tiles that share one row even on a phone, their labels wrapping there. */
 .work .work-list li a.activity-stat {
     display: flex;
+    flex: 1 1 0;
     flex-direction: column;
-    min-width: 130px;
+    min-width: 0;
+    max-width: 175px;
     padding: 8px 14px;
     font-weight: 400;
     background: var(--page-bg);

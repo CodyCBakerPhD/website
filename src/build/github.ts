@@ -1,8 +1,9 @@
 // GitHub activity shown on record cards: each pull request or issue a record
 // cites as evidence, with its title, its state and a pull request's added and
 // deleted lines; the repositories a project is made of, with their
-// descriptions; and how many pull requests and issues the site's owner has had
-// merged and closed in each project's code. Records cite only the URL;
+// descriptions; and, in each project's code, how many of the site owner's pull
+// requests were merged and issues closed (those they opened or were assigned),
+// and how many other pull requests they reviewed. Records cite only the URL;
 // scripts/fetch_github_activity.py fetches the rest into generated/github.json,
 // so building the site needs no network.
 
@@ -32,11 +33,20 @@ interface Repository {
   description: string | null;
 }
 
-interface ProjectActivity {
-  /** GitHub search qualifiers for the project's code and its author, e.g. "repo:con/duct author:CodyCBakerPhD". */
+/** How many pull requests or issues a GitHub search finds, and the search, which links to them. */
+interface SearchCount {
+  count: number;
+  /** In GitHub's advanced search syntax, e.g. "repo:con/duct is:pr is:merged (author:CodyCBakerPhD OR assignee:CodyCBakerPhD)". */
   query: string;
-  merged_pull_requests: number;
-  closed_issues: number;
+}
+
+interface ProjectActivity {
+  /** The owner's pull requests (opened or assigned) that were merged. */
+  merged_pull_requests: SearchCount;
+  /** Other pull requests the owner reviewed. */
+  reviewed_pull_requests: SearchCount;
+  /** The owner's issues (opened or assigned) that were closed. */
+  closed_issues: SearchCount;
 }
 
 export interface GitHubActivity {
@@ -264,21 +274,33 @@ export function renderRepositories(repositories: NonNullable<GitHubSlots["reposi
   return ['<div class="repositories">', ...indent(cards), "</div>"].join("\n");
 }
 
-/** Tiles counting a project's merged pull requests and closed issues, or null if few enough to feature instead. */
+/**
+ * Tiles counting a project's merged pull requests, reviewed pull requests and
+ * closed issues, each linking to the search that lists them, or null while
+ * the owner's own work there is few enough to feature one by one instead.
+ * Reviews of others' work do not count toward that, and a count of zero gets no tile.
+ */
 export function renderActivitySummary(path: string, activity: GitHubActivity): string | null {
   const project = activity.projects[path];
-  if (!project || (project.merged_pull_requests < FEW && project.closed_issues < FEW)) {
+  if (!project || (project.merged_pull_requests.count < FEW && project.closed_issues.count < FEW)) {
     return null;
   }
-  const tile = (count: number, label: string, href: string): string =>
-    `<a class="activity-stat" href="${escapeHtml(href)}"><span class="activity-value">${formatCount(count)}</span>` +
-    `<span class="activity-label">${label}</span></a>`;
+  const tiles = [
+    { label: "Pull requests merged", search: project.merged_pull_requests, type: "pullrequests" },
+    { label: "Pull requests reviewed", search: project.reviewed_pull_requests, type: "pullrequests" },
+    { label: "Issues closed", search: project.closed_issues, type: "issues" },
+  ] as const;
   return [
     '<div class="activity">',
-    ...indent([
-      tile(project.merged_pull_requests, "Pull requests merged", searchUrl(`${project.query} is:pr is:merged`, "pullrequests")),
-      tile(project.closed_issues, "Issues closed", searchUrl(`${project.query} is:issue is:closed`, "issues")),
-    ]),
+    ...indent(
+      tiles
+        .filter(({ search }) => search.count > 0)
+        .map(
+          ({ label, search, type }) =>
+            `<a class="activity-stat" href="${escapeHtml(searchUrl(search.query, type))}">` +
+            `<span class="activity-value">${formatCount(search.count)}</span><span class="activity-label">${label}</span></a>`,
+        ),
+    ),
     "</div>",
   ].join("\n");
 }
