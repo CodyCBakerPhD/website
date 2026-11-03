@@ -28,8 +28,8 @@ const NAV: readonly NavLink[] = [
   { label: "Skills", page: HOME, section: "skills" },
   { label: "Experience", page: HOME, section: "experience" },
   { label: "Projects", page: "projects.html" },
-  { label: "Data Curation", page: "data-curation.html" },
   { label: "Publications", page: "publications.html" },
+  { label: "Data Curation", page: "data-curation.html" },
 ];
 
 function renderNavLink({ label, page, section }: NavLink, current: string): string {

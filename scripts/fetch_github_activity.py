@@ -3,9 +3,10 @@
 src/build/generated/github.json, so building the site needs no network.
 
 For every pull request or issue a record cites as evidence, it records the
-title and state and, for a pull request, the lines added and deleted. For every project
-whose code is on GitHub (its url, or its repositories), it counts the owner's
-merged pull requests and closed issues there.
+title and state and, for a pull request, the lines added and deleted. For every
+repository a project lists, it records the repository's description. For every
+project whose code is on GitHub (its url, and its repositories), it counts the
+owner's merged pull requests and closed issues there.
 
 Run it after citing a new pull request or issue, or adding a project, and now
 and then to refresh the counts. It needs only the standard library. GitHub
@@ -65,13 +66,21 @@ def fetch_contribution(repository: str, kind: str, number: str) -> dict:
     return {"type": "issue", "title": issue["title"], "state": issue["state"]}
 
 
+def fetch_repository(url: str) -> dict:
+    owner, name = CODE_URL.match(url).groups()
+    time.sleep(SEARCH_INTERVAL_SECONDS)
+    (repository,) = get("search/repositories", {"q": f"repo:{owner}/{name}"})["items"]
+    return {"description": repository["description"]}
+
+
 def code_query(project: dict) -> str | None:
     """Search qualifiers for where the project's code is on GitHub, or None if it is not."""
-    qualifiers = []
-    for url in project.get("repositories") or [project["url"]]:
-        match = CODE_URL.match(url)
-        if match:
-            qualifiers.append(f"repo:{match[1]}/{match[2]}" if match[2] else f"org:{match[1]}")
+    urls = [project["url"], *(repository["url"] for repository in project.get("repositories", []))]
+    matches = [match.groups() for match in map(CODE_URL.match, urls) if match]
+    organizations = {owner for owner, name in matches if not name}
+    qualifiers = [f"org:{owner}" for owner in sorted(organizations)]
+    # A repository in an organization the query already covers would only repeat it.
+    qualifiers += [f"repo:{owner}/{name}" for owner, name in matches if name and owner not in organizations]
     return " ".join(qualifiers) or None
 
 
@@ -90,6 +99,14 @@ def main() -> None:
                 contributions[url] = fetch_contribution(*match.groups())
                 print(f"{url}: {contributions[url]}")
 
+    repositories = {}
+    for record in records.values():
+        for repository in record.get("repositories", []):
+            url = repository["url"]
+            if url not in repositories:
+                repositories[url] = fetch_repository(url)
+                print(f"{url}: {repositories[url]}")
+
     projects = {}
     for path, record in records.items():
         scope = code_query(record) if path.startswith("projects/") else None
@@ -106,6 +123,7 @@ def main() -> None:
         "owner": OWNER,
         "fetched": datetime.date.today().isoformat(),
         "projects": projects,
+        "repositories": dict(sorted(repositories.items())),
         "contributions": dict(sorted(contributions.items())),
     }
     OUTPUT.write_text(json.dumps(activity, indent=2) + "\n", encoding="utf-8")

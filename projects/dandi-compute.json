@@ -1,15 +1,36 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.2.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.3.0",
   "name": "DANDI Compute",
   "url": "https://github.com/dandi-compute",
   "role": "Lead Developer",
   "start_date": "2025-11",
   "logo": "img/dandi_compute_logo.png",
+  "distributions": [
+    "https://github.com/dandi-compute",
+    "https://ghcr.io/dandi-compute/dandi-compute-lfp"
+  ],
+  "repositories": [
+    {
+      "url": "https://github.com/dandi-compute/dandi-compute-core"
+    },
+    {
+      "url": "https://github.com/dandi-compute/dandi-compute-page",
+      "title": "DANDI Compute: AIND Pipeline Results",
+      "homepage": "https://dandi-compute.github.io/dandi-compute-page/"
+    },
+    {
+      "url": "https://github.com/dandi-compute/dandi-compute-global-logs"
+    }
+  ],
   "description": [
     "Built an orchestration system that runs processing pipelines over assets already published on the DANDI Archive and uploads the results back to the archive, such as spike sorting through the AIND ephys pipeline and LFP extraction from raw electrophysiology.",
     "Packages each unit of work as a self-describing job capsule carrying its own submission script, parameters, and provenance, runs it as part of a SLURM array job on the MIT Engaging cluster, and tracks every capsule through its lifecycle using nothing but the archive's own metadata.",
     "Automated job submission through a self-hosted runner on the cluster, and published a results page for reviewing, comparing, and curating the pipeline runs."
+  ],
+  "built_with": [
+    "projects/dandi-cache",
+    "projects/duct"
   ],
   "tags": [
     "archives:DANDI",

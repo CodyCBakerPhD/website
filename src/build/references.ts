@@ -1,21 +1,25 @@
-// Links between records, and the evidence a record cites from outside the
-// site. A record names another by the path of its file without .json, such as
-// "projects/neuroconv", in one of the relation slots of schemas/records.yaml.
-// Only the record making a link names it: its card lists the link under the
-// relation's label, and the card of the record it names lists it in reverse,
-// so the two cards always agree. Evidence that is a pull request or issue on
-// GitHub is featured as a contribution (see github.ts); the rest is listed as
-// sources.
+// Links between records, and the links a record makes to outside the site:
+// where a project is distributed, the repositories it is made of, and the
+// evidence a record cites. A record names another by the path of its file
+// without .json, such as "projects/neuroconv", in one of the relation slots of
+// schemas/records.yaml. Only the record making a link names it: its card lists
+// the link under the relation's label, and the card of the record it names
+// lists it in reverse, so the two cards always agree. Evidence that is a pull
+// request or issue on GitHub is featured as a contribution (see github.ts);
+// the rest is listed as sources.
 
-import type { BaseRecord } from "./generated/records.ts";
+import { renderDistribution } from "./distributions.ts";
+import type { BaseRecord, Repository } from "./generated/records.ts";
 import {
   checkGitHubActivity,
   isContribution,
   renderActivitySummary,
-  renderFeaturedContributions,
+  renderContributions,
+  renderRepositories,
+  splitContributions,
   type GitHubActivity,
 } from "./github.ts";
-import { escapeHtml, indent } from "./html.ts";
+import { displayUrl, escapeHtml, indent } from "./html.ts";
 
 /**
  * The relation slots of schemas/records.yaml, in the order cards list them. A
@@ -29,8 +33,13 @@ const RELATIONS = [
 
 type RelationSlot = (typeof RELATIONS)[number]["slot"];
 
-/** A record as any record type has it: the relation slots are on some types only. */
-type LinkingRecord = BaseRecord & Partial<Record<RelationSlot, readonly string[]>>;
+/** A record as any record type has it: the relation slots, and a project's slots that link outside, are on some types only. */
+type LinkingRecord = BaseRecord &
+  Partial<Record<RelationSlot, readonly string[]>> & {
+    url?: string;
+    distributions?: readonly string[];
+    repositories?: readonly Repository[];
+  };
 
 /** A record as the other records see it. */
 export interface RecordNode {
@@ -52,7 +61,7 @@ interface Group {
   /** HTML of the group's <dd>. */
   body: string;
   /** Class of its <dd>. */
-  kind: "record-links" | "record-activity" | "record-contributions";
+  kind: "record-links" | "record-activity" | "record-contributions" | "record-repositories";
 }
 
 /** Links laid side by side in one <dd>, wrapping when the row is full. */
@@ -63,12 +72,6 @@ function linkGroup(label: string, links: readonly string[]): Group {
 // Each link is wrapped, so it stays inline and is underlined line by line when it wraps.
 function renderRecordLink(node: RecordNode): string {
   return `<i class="fa fa-fw ${node.icon}" aria-hidden="true"></i> <span><a href="${escapeHtml(node.href)}">${escapeHtml(node.label)}</a></span>`;
-}
-
-/** "pypi.org/project/historia" for https://pypi.org/project/historia/. */
-function displayUrl(url: string): string {
-  const { host, pathname, search } = new URL(url);
-  return `${host.replace(/^www\./, "")}${pathname.replace(/\/$/, "")}${search}`;
 }
 
 // A source other than a pull request or issue is shown by its address: nothing about it is fetched.
@@ -145,13 +148,31 @@ export function linkRecords(
   for (const node of nodes) {
     const evidence = node.record.evidence ?? [];
     const groups: Group[] = [];
+    const distributions = node.record.distributions ?? [];
+    if (distributions.length > 0) {
+      groups.push(linkGroup("Distributed by", distributions.map(renderDistribution)));
+    }
+    // A repository serving a website is listed as that website.
+    const repositories = node.record.repositories ?? [];
+    for (const [label, listed] of [
+      ["Websites", repositories.filter((repository) => repository.homepage)],
+      ["Repositories", repositories.filter((repository) => !repository.homepage)],
+    ] as const) {
+      const cards = renderRepositories(listed, activity);
+      if (cards) {
+        groups.push({ label, kind: "record-repositories", body: cards });
+      }
+    }
     const summary = renderActivitySummary(node.path, activity);
     if (summary) {
       groups.push({ label: "Contributions", kind: "record-activity", body: summary });
     }
-    const featured = renderFeaturedContributions(evidence, activity);
-    if (featured) {
-      groups.push({ label: "Featured contributions", kind: "record-contributions", body: featured });
+    const { own, related } = splitContributions(node.path, node.record);
+    for (const [label, urls] of [["Featured contributions", own], ["Related contributions", related]] as const) {
+      const cards = renderContributions(urls, activity);
+      if (cards) {
+        groups.push({ label, kind: "record-contributions", body: cards });
+      }
     }
     for (const { slot, label, reverse } of RELATIONS) {
       const targets = [...new Set(node.record[slot] ?? [])].flatMap((target) => byPath.get(target) ?? []);

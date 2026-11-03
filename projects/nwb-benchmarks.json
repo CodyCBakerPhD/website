@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.3.0",
-  "record_version": "0.3.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.4.0",
   "name": "NWB Benchmarks",
   "url": "https://github.com/NeurodataWithoutBorders/nwb-benchmarks",
   "role": "Core Developer",

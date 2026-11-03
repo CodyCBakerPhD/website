@@ -9,7 +9,7 @@ description: >-
   schema it was written against. Records can cite evidence from outside the
   site and name one another, such as a publication naming the project it is
   about. The vocabulary of tags is in tags.yaml, which this schema imports.
-version: 0.3.0
+version: 0.4.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -157,21 +157,27 @@ classes:
           itself lives under src/public/), e.g. "img/guide_logo.png".
         slot_uri: schema:logo
         pattern: "^[^/]"
-      links:
-        description: Related resources.
-        range: ProjectLinks
-        inlined: true
-      repositories:
+      distributions:
         description: >-
-          Where the project's code is on GitHub, as repository or organization
-          URLs, when its url is not, e.g.
-          "https://github.com/flatironinstitute/neurosift". Its pull requests
-          and issues there are counted toward it.
-        slot_uri: schema:codeRepository
+          Where the project is distributed for others to install or use, as
+          the page of each package index, container registry, release or web
+          app, e.g. "https://pypi.org/project/hdmf/". The site names each by
+          its address. Omitted for a project that is not distributed, such as
+          one run only from its source.
+        slot_uri: schema:installUrl
         range: HttpUrl
-        pattern: "^https://github\\.com/[^/]+(/[^/]+)?$"
         multivalued: true
         list_elements_unique: true
+        minimum_cardinality: 1
+      repositories:
+        description: >-
+          The GitHub repositories the project is made of, each with its own
+          logo if it has one. Its pull requests and issues there are counted
+          toward it, as well as those under its url when that is on GitHub.
+        slot_uri: schema:codeRepository
+        range: Repository
+        multivalued: true
+        inlined_as_list: true
         minimum_cardinality: 1
       replaced_by:
         description: >-
@@ -233,14 +239,38 @@ classes:
         range: DatasetLinks
         inlined: true
 
-  ProjectLinks:
-    description: Resources related to a project, keyed by type.
+  Repository:
+    description: A GitHub repository that is part of a project.
+    class_uri: schema:SoftwareSourceCode
     attributes:
-      packages:
+      url:
         description: >-
-          Where the project's packages are published, e.g. an npm organization
-          or a PyPI project.
+          The repository on GitHub, e.g.
+          "https://github.com/brain-bbqs/bbqs-uploader". What it is (its
+          description) is fetched from GitHub rather than written here.
+        slot_uri: schema:codeRepository
         range: HttpUrl
+        pattern: "^https://github\\.com/[^/]+/[^/]+$"
+        required: true
+      logo:
+        description: >-
+          Path to the repository's logo relative to the website root (the file
+          itself lives under src/public/), e.g. "img/bbqs_uploader_logo.svg".
+        slot_uri: schema:logo
+        pattern: "^[^/]"
+      homepage:
+        description: >-
+          The website the repository serves, such as its web app, e.g.
+          "https://usage.dandiarchive.org". A repository with a homepage is
+          listed as that website rather than as code, by its title.
+        slot_uri: schema:url
+        range: HttpUrl
+      title:
+        description: >-
+          Display name of the website the repository serves, such as the
+          site's own page title, e.g. "Dandiset Usage Summaries". Required
+          with a homepage; a repository without one is named by its own name.
+        slot_uri: schema:name
 
   DatasetLinks:
     description: Resources related to a dataset, keyed by type.

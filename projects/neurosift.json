@@ -1,14 +1,22 @@
 {
-  "schema_version": "0.3.0",
-  "record_version": "0.4.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.5.0",
   "name": "Neurosift",
   "url": "https://neurosift.app",
   "role": "UX Consultant and Contributor",
   "contribution": "Added on-the-fly analyses computed in the browser: spectrograms of LFP streams with adjustable hyperparameters, and event-related signals that align any time series to a table of intervals.",
   "start_date": "2023-07",
   "logo": "img/neurosift_logo.png",
+  "distributions": [
+    "https://pypi.org/project/neurosift/"
+  ],
   "repositories": [
-    "https://github.com/flatironinstitute/neurosift"
+    {
+      "url": "https://github.com/flatironinstitute/neurosift",
+      "title": "Neurosift",
+      "logo": "img/neurosift_logo.png",
+      "homepage": "https://neurosift.app"
+    }
   ],
   "description": [
     "Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives."

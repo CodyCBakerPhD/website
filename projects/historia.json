@@ -1,19 +1,18 @@
 {
-  "schema_version": "0.3.0",
-  "record_version": "0.3.0",
+  "schema_version": "0.4.0",
+  "record_version": "0.4.0",
   "name": "Historia",
   "url": "https://github.com/CodyCBakerPhD/historia",
   "role": "Lead Developer",
   "start_date": "2026-04",
   "logo": "img/historia_logo.svg",
+  "distributions": [
+    "https://pypi.org/project/historia/",
+    "https://anaconda.org/conda-forge/historia"
+  ],
   "description": [
     "Created a command line tool for backing up records of GitHub activity (the pull requests and issues a person opened, was assigned, or reviewed) for use in creating dashboard reports of work history.",
-    "Paired with a GitHub Action that runs the whole scheduled update of a work history data repository: fetching recent activity, committing it, populating a GitHub Projects board, and publishing a compressed archive of the data.",
-    "Distributed on PyPI and conda-forge."
-  ],
-  "evidence": [
-    "https://pypi.org/project/historia/",
-    "https://github.com/conda-forge/historia-feedstock"
+    "Paired with a GitHub Action that runs the whole scheduled update of a work history data repository: fetching recent activity, committing it, populating a GitHub Projects board, and publishing a compressed archive of the data."
   ],
   "tags": [
     "engineering:Command Line",

@@ -487,6 +487,15 @@ a:hover {
     color: var(--muted);
 }
 
+/* Inline SVG icons (see src/build/icons.ts) have no baseline to sit on. */
+.work .record-link .icon {
+    flex: 0 0 auto;
+    align-self: center;
+    width: 1.15em;
+    height: 1.15em;
+    color: var(--muted);
+}
+
 @media only screen and (max-width: 600px) {
     .work .record-references dl {
         grid-template-columns: minmax(0, 1fr);
@@ -505,12 +514,17 @@ a:hover {
 /* ---------- GitHub activity ---------- */
 
 /* Lines added and deleted in GitHub's own green and red, as readers know them
-   from its pull requests; the + and - signs say which is which without color. */
+   from its pull requests; the + and - signs say which is which without color.
+   States are in GitHub's colors too: open in green, merged pull requests and
+   completed issues in purple, and closed pull requests in red, each labeled. */
 .work {
     --diff-added: #1a7f37;
     --diff-deleted: #d1242f;
     --diff-neutral: #d1d9e0;
     --diff-neutral-border: #d1d9e0;
+    --state-open: #1f883d;
+    --state-done: #8250df;
+    --state-closed: #cf222e;
 }
 
 :root[data-theme="dark"] .work {
@@ -518,6 +532,9 @@ a:hover {
     --diff-deleted: #f85149;
     --diff-neutral: #1f262f;
     --diff-neutral-border: #3d444d;
+    --state-open: #238636;
+    --state-done: #8957e5;
+    --state-closed: #da3633;
 }
 
 .visually-hidden {
@@ -596,7 +613,7 @@ a:hover {
 
 .work .contribution-meta {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 6px;
     font-size: 0.8em;
     line-height: 1.5em;
@@ -610,20 +627,34 @@ a:hover {
     white-space: nowrap;
 }
 
-.work .contribution-meta .fa,
 .work .contribution-number {
     flex: none;
 }
 
+/* GitHub's state label: a pill in the state's color, with its icon. */
 .work .contribution-state {
+    display: inline-flex;
     flex: none;
+    align-items: center;
+    gap: 4px;
     margin-left: auto;
-    padding-left: 6px;
-    font-size: 0.9em;
+    padding: 0 8px;
     font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    line-height: 1.75em;
+    color: #ffffff;
+    background: var(--state-color);
+    border-radius: 2em;
 }
+
+.work .state-icon {
+    flex: none;
+    width: 1em;
+    height: 1em;
+}
+
+.work .state-open { --state-color: var(--state-open); }
+.work .state-done { --state-color: var(--state-done); }
+.work .state-closed { --state-color: var(--state-closed); }
 
 .work .work-list li a.contribution-title {
     padding: 0;
@@ -688,6 +719,79 @@ a:hover {
 .work .diff-neutral {
     background: var(--diff-neutral);
     box-shadow: inset 0 0 0 1px var(--diff-neutral-border);
+}
+
+/* The repositories a project is made of, each a subcard with its logo. */
+.work .repositories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+}
+
+.work .repository {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--page-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    -webkit-transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease;
+}
+
+.work .repository:hover {
+    border-color: var(--accent);
+}
+
+.work .repository-logo,
+.work .work-list img.repository-logo {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    object-fit: contain;
+    color: var(--muted);
+}
+
+.work .repository-logo .icon {
+    width: 22px;
+    height: 22px;
+}
+
+.work .repository-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.work .work-list li a.repository-name {
+    padding: 0;
+    line-height: 1.45em;
+    border: none;
+    overflow-wrap: anywhere;
+}
+
+/* The whole subcard follows its name's link. */
+.work .repository-name:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+}
+
+.work .repository-description {
+    font-size: 0.85em;
+    line-height: 1.45em;
+    color: var(--muted);
 }
 
 /* ---------- Tags ---------- */
@@ -773,6 +877,44 @@ a:hover {
 .tag-engineering { --tag-color: #7ad151; --tag-on-color: #0b0f14; }
 .tag-computing { --tag-color: #bddf26; --tag-on-color: #0b0f14; }
 .tag-languages { --tag-color: #fde725; --tag-on-color: #0b0f14; }
+
+/* ---------- Project cards in the dark theme ---------- */
+
+/* Most project logos are drawn for a light background, so in the dark theme
+   project cards are a mid grey, light enough for those logos, with dark text
+   and colors darkened to keep at least 4.5:1 contrast on it. */
+:root[data-theme="dark"] #highlighted-projects .work-list {
+    --ink: #000000;
+    --body-text: #05080b;
+    --muted: #121820;
+    --accent: #003b3a;
+    --accent-dark: #002120;
+    --accent-soft: #a9c1bf;
+    --accent-border: #23514f;
+    --page-bg: #9ba2a9;
+    --card-bg: #878e96;
+    --card-border: #727a83;
+    --diff-added: #06350f;
+    --diff-deleted: #650614;
+    --diff-neutral: #727a83;
+    --diff-neutral-border: #727a83;
+    --state-open: #1f883d;
+    --state-done: #8250df;
+    --state-closed: #cf222e;
+    color: var(--body-text);
+}
+
+:root[data-theme="dark"] #highlighted-projects .tag {
+    border-color: var(--tag-color);
+}
+
+:root[data-theme="dark"] #highlighted-projects .tag[aria-pressed="false"] .tag-name {
+    background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
+}
+
+:root[data-theme="dark"] #highlighted-projects .tag[aria-pressed="false"]:hover .tag-name {
+    background: color-mix(in srgb, var(--tag-color) 32%, var(--card-bg));
+}
 
 /* ---------- Pages ---------- */
 
@@ -1137,7 +1279,7 @@ a:hover {
 /* Stretched rather than covered: the SVG has no fixed aspect ratio and pins its neuron clusters
    to the banner's edges at any size (see scripts/generate_banner.py). */
 .quote {
-    background: #0a4450 url(../img/banner.svg) center / 100% 100% no-repeat;
+    background: #0a4450 url(/img/banner.svg) center / 100% 100% no-repeat;
     padding: 20px 0px;
     margin-top: 120px;
 }

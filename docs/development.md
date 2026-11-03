@@ -8,12 +8,16 @@ Each HTML file directly under [`src/`](../src) is one page of the site:
 |----------------------|-----------------------------------------|
 | `index.html`         | About, Education, Skills and Experience |
 | `projects.html`      | Highlighted Projects                    |
-| `data-curation.html` | Data Curation                           |
 | `publications.html`  | Publications                            |
+| `data-curation.html` | Data Curation                           |
 
 The parts every page shares live in [`src/partials/`](../src/partials) and are filled in at build time where a page marks them: `<!-- build:head -->` at the top of `<head>`, then `<!-- build:header -->` and `<!-- build:footer -->` in `<body>`.
 The navigation links are listed in [`src/build/layout.ts`](../src/build/layout.ts), which renders them for each page, in both the navigation bar and the footer, marking the page that is open.
 A new page needs those three placeholders and, to be reachable, a link there.
+
+The site's own styles are in [`src/css/custom.css`](../src/css/custom.css), which the shared `<head>` links, so Vite bundles and minifies it at build time.
+Edit it directly; there is no minified copy to keep in step.
+Everything under [`src/public/`](../src/public), such as images and the vendored Kube and Font Awesome stylesheets, is copied into the site as it is.
 
 ## Records
 
@@ -60,37 +64,81 @@ Any record can cite `evidence`: links to sources outside the site that back up w
 ```json
 "evidence": [
   "https://github.com/hdmf-dev/hdmf/pull/672",
-  "https://pypi.org/project/historia/"
+  "https://usage.dandiarchive.org"
 ]
 ```
 
-Good evidence is the pull requests behind a contribution, the package index a project says it is published on, or a page its description mentions.
+Good evidence is the pull requests behind a contribution, or a page a record's description mentions.
 Records hold only the URL.
-Cards show a pull request or issue on GitHub as a featured contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `pypi.org/project/historia`.
+Cards show a pull request or issue on GitHub as a featured or related contribution, with its title and state fetched from GitHub (see [GitHub activity](#github-activity)), and list the rest under "Sources" by their address, such as `usage.dandiarchive.org`.
 The build fails if a record cites the same URL twice.
 
 Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
 
+## Distribution
+
+A project that others install or use lists where it is `distributed`, by the URL of each place, and a project that is not distributed (such as one run only from its source) omits it:
+
+```json
+"distributions": [
+  "https://pypi.org/project/hdmf/",
+  "https://anaconda.org/conda-forge/hdmf"
+]
+```
+
+Its card lists them under "Distributed by", named by the package index or registry each URL is on: PyPI, conda-forge, npm, GitHub Container Registry (`https://ghcr.io/owner/image`), GitHub Releases or GitHub.
+Any other URL, such as a web app, is named by its host.
+[`src/build/distributions.ts`](../src/build/distributions.ts) recognizes them, and the Projects search filters on them with `distributed:`.
+Take each from a source you can name, such as the package index itself or the project's installation instructions.
+
+## Repositories
+
+A project made of several GitHub repositories lists them in `repositories`, each with its logo if it has one:
+
+```json
+"repositories": [
+  { "url": "https://github.com/brain-bbqs/bbqs-uploader", "logo": "img/bbqs_uploader_logo.svg" },
+  { "url": "https://github.com/brain-bbqs/bbqs-web-components" }
+]
+```
+
+Its card shows each as a small card with its logo (or GitHub's repository icon) and its description, which is fetched from GitHub (see [GitHub activity](#github-activity)).
+A repository that serves a web app or site names it as its `homepage`, with a `title` for the site (such as its own page title), and the card lists it under "Websites" instead, by that title and linking there:
+
+```json
+{
+  "url": "https://github.com/dandi/usage-page",
+  "title": "Dandiset Usage Summaries",
+  "logo": "img/dandi_usage_logo.svg",
+  "homepage": "https://usage.dandiarchive.org"
+}
+```
+
+The build fails on a repository with a `homepage` but no `title`.
+
+A project whose `url` is not on GitHub, such as Neurosift's web app, names its code here too.
+
 ## GitHub activity
 
-Cards show two kinds of activity on GitHub:
+Cards show three kinds of activity on GitHub:
 
-- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title and state and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
+- **Featured contributions**: each pull request or issue a record cites as evidence, as a small card with its title, its state as a label in GitHub's colors (green when open, purple when merged or completed, red when closed unmerged) and, for a pull request, its added and deleted lines, in GitHub's green and red with its five-block diffstat.
   Feature fewer than 10; the build fails on more.
+- **Related contributions**: on a project, the pull requests and issues it cites from outside its own code, such as a change to a standard it follows, shown the same way.
 - **Contributions**: on a project whose code is on GitHub, the owner's merged pull requests and closed issues there, each linking to the search that lists them.
   These show once either count reaches 10, when there are too many to feature one by one.
 
-A project's code is its `url` when that is a GitHub repository or organization, or else the GitHub URLs in its `repositories` (such as Neurosift, whose `url` is its web app).
+A project's code is its `url`, when that is a GitHub repository or organization, together with its `repositories`.
 
-The activity is fetched into [`src/build/generated/github.json`](../src/build/generated/github.json), so building the site needs no network.
-After citing a new pull request or issue, or adding a project, fetch it again, with a GitHub token for the higher rate limit:
+The activity, and the description of each repository a project lists, is fetched into [`src/build/generated/github.json`](../src/build/generated/github.json), so building the site needs no network.
+After citing a new pull request or issue, listing a repository, or adding a project, fetch it again, with a GitHub token for the higher rate limit:
 
 ```bash
 GITHUB_TOKEN=$(gh auth token) python scripts/fetch_github_activity.py
 ```
 
 Rerun it now and then to refresh the counts; the file records when it was fetched.
-The build fails on a cited pull request or issue, or a project with code on GitHub, that the file has nothing for.
+The build fails on a cited pull request or issue, a listed repository, or a project with code on GitHub, that the file has nothing for.
 [`src/build/github.ts`](../src/build/github.ts) checks and renders the activity.
 
 ## Search
@@ -120,7 +168,7 @@ The vocabulary lists every tag in one LinkML enum, `Tag`, theme by theme, and na
 `linkml-validate` and the site build both reject a tag that is not in the vocabulary, and the build also rejects a tag repeated within a record.
 
 The site shows each tag as a label reading `theme | tag`, colored by its theme, with themes in the order of the table below.
-Theme colors (steps of the colorblind-safe viridis palette) are set in [`src/public/css/custom.css`](../src/public/css/custom.css), keyed by each theme's key, and [`src/build/tags.ts`](../src/build/tags.ts) renders the labels.
+Theme colors (steps of the colorblind-safe viridis palette) are set in [`src/css/custom.css`](../src/css/custom.css), keyed by each theme's key, and [`src/build/tags.ts`](../src/build/tags.ts) renders the labels.
 
 To add a tag, list it in `Tag` among the other tags of its theme, with a one-line meaning, then bump the schema version and regenerate (see [Schema](#schema)), which rewrites the table below.
 Regenerating fails if a tag's key is not in `TagTheme`, or if `Tag` strays from listing its tags theme by theme in `TagTheme`'s order.

@@ -1,13 +1,15 @@
 // GitHub activity shown on record cards: each pull request or issue a record
 // cites as evidence, with its title, its state and a pull request's added and
-// deleted lines, and how many pull requests and issues the site's owner has
-// had merged and closed in each project's code. Records cite only the URL;
+// deleted lines; the repositories a project is made of, with their
+// descriptions; and how many pull requests and issues the site's owner has had
+// merged and closed in each project's code. Records cite only the URL;
 // scripts/fetch_github_activity.py fetches the rest into generated/github.json,
 // so building the site needs no network.
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { escapeHtml, indent } from "./html.ts";
+import { displayUrl, escapeHtml, indent } from "./html.ts";
+import { renderIcon, type IconName } from "./icons.ts";
 
 /** Relative to the repository root. */
 export const GITHUB_ACTIVITY_FILE = "src/build/generated/github.json";
@@ -26,6 +28,10 @@ interface Contribution {
   deletions?: number;
 }
 
+interface Repository {
+  description: string | null;
+}
+
 interface ProjectActivity {
   /** GitHub search qualifiers for the project's code and its author, e.g. "repo:con/duct author:CodyCBakerPhD". */
   query: string;
@@ -39,15 +45,46 @@ export interface GitHubActivity {
   fetched: string;
   /** Keyed by record path, e.g. "projects/neuroconv". */
   projects: Record<string, ProjectActivity>;
+  /** Keyed by the URL of the repository, e.g. "https://github.com/con/duct". */
+  repositories: Record<string, Repository>;
   /** Keyed by the URL of the pull request or issue. */
   contributions: Record<string, Contribution>;
 }
 
+/** A record's slots that point at GitHub, as any record type has them. */
+interface GitHubSlots {
+  evidence?: readonly string[];
+  url?: string;
+  repositories?: readonly { url: string; logo?: string; homepage?: string; title?: string }[];
+}
+
 // Keep these in step with scripts/fetch_github_activity.py.
 const CONTRIBUTION_URL = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/(pull|issues)\/(\d+)$/;
-const CODE_URL = /^https:\/\/github\.com\/[^/]+(\/[^/]+)?\/?$/;
+const CODE_URL = /^https:\/\/github\.com\/([^/]+(?:\/[^/]+)?)\/?$/;
 
-const STATES: Readonly<Record<Contribution["state"], string>> = { merged: "Merged", open: "Open", closed: "Closed" };
+interface State {
+  label: string;
+  icon: IconName;
+  /** GitHub's color for it, named as the stylesheet names it: green, purple or red. */
+  color: "open" | "done" | "closed";
+}
+
+/**
+ * GitHub's label for each state, with its icon and color. The activity does
+ * not say why an issue was closed, so every closed issue is shown as completed,
+ * which is how most are closed. Issues are never merged.
+ */
+const STATES: Readonly<Record<Contribution["type"], Readonly<Partial<Record<Contribution["state"], State>>>>> = {
+  pull_request: {
+    open: { label: "Open", icon: "pull-request-open", color: "open" },
+    merged: { label: "Merged", icon: "pull-request-merged", color: "done" },
+    closed: { label: "Closed", icon: "pull-request-closed", color: "closed" },
+  },
+  issue: {
+    open: { label: "Open", icon: "issue-open", color: "open" },
+    closed: { label: "Closed", icon: "issue-closed", color: "done" },
+  },
+};
 
 const FETCH_COMMAND = "python scripts/fetch_github_activity.py";
 
@@ -60,10 +97,45 @@ export function isContribution(url: string): boolean {
   return CONTRIBUTION_URL.test(url);
 }
 
+/**
+ * Where a project's code is on GitHub, as lowercase "owner" or "owner/name":
+ * its url, when that is on GitHub, and its repositories. Only a project has code.
+ */
+function codeScopes(path: string, record: GitHubSlots): string[] {
+  if (!path.startsWith("projects/")) {
+    return [];
+  }
+  const urls = [record.url ?? "", ...(record.repositories ?? []).map((repository) => repository.url)];
+  return urls.flatMap((url) => CODE_URL.exec(url)?.[1].toLowerCase() ?? []);
+}
+
+/** The "owner/name" a contribution was made in. */
+function repositoryOf(url: string): string {
+  return CONTRIBUTION_URL.exec(url)![1];
+}
+
+/**
+ * The pull requests and issues a record cites, split into those in its own
+ * code and those elsewhere that relate to it, such as a change to a standard
+ * the project follows. A record without code of its own has only the former.
+ */
+export function splitContributions(path: string, record: GitHubSlots): { own: string[]; related: string[] } {
+  const contributions = (record.evidence ?? []).filter(isContribution);
+  const scopes = codeScopes(path, record);
+  if (scopes.length === 0) {
+    return { own: contributions, related: [] };
+  }
+  const isOwn = (url: string): boolean => {
+    const repository = repositoryOf(url).toLowerCase();
+    return scopes.includes(repository) || scopes.includes(repository.split("/")[0]);
+  };
+  return { own: contributions.filter(isOwn), related: contributions.filter((url) => !isOwn(url)) };
+}
+
 /** Problems with a record's GitHub activity, each naming the slot. */
-export function checkGitHubActivity(path: string, record: object, activity: GitHubActivity): string[] {
+export function checkGitHubActivity(path: string, record: GitHubSlots, activity: GitHubActivity): string[] {
   const problems: string[] = [];
-  const { evidence = [], url, repositories } = record as { evidence?: string[]; url?: string; repositories?: string[] };
+  const { evidence = [], repositories = [] } = record;
   evidence.forEach((source, index) => {
     if (isContribution(source) && !activity.contributions[source]) {
       problems.push(`/evidence/${index} ${source} is missing from ${GITHUB_ACTIVITY_FILE}; run ${FETCH_COMMAND}`);
@@ -73,8 +145,12 @@ export function checkGitHubActivity(path: string, record: object, activity: GitH
   if (featured >= FEW) {
     problems.push(`/evidence features ${featured} pull requests and issues; feature fewer than ${FEW}`);
   }
-  const codeOnGitHub = Boolean(repositories?.length) || (path.startsWith("projects/") && CODE_URL.test(url ?? ""));
-  if (codeOnGitHub && !activity.projects[path]) {
+  repositories.forEach(({ url }, index) => {
+    if (!activity.repositories[url]) {
+      problems.push(`/repositories/${index}/url ${url} is missing from ${GITHUB_ACTIVITY_FILE}; run ${FETCH_COMMAND}`);
+    }
+  });
+  if (codeScopes(path, record).length > 0 && !activity.projects[path]) {
     problems.push(`its code is on GitHub, but ${GITHUB_ACTIVITY_FILE} has no counts for it; run ${FETCH_COMMAND}`);
   }
   return problems;
@@ -117,34 +193,75 @@ function renderDiff(additions: number, deletions: number): string {
   );
 }
 
+/** GitHub's state label: a pill in the state's color, with its icon. */
+function renderState(contribution: Contribution): string {
+  const { label, icon, color } = STATES[contribution.type][contribution.state]!;
+  const kind = contribution.type === "pull_request" ? "pull request" : "issue";
+  return (
+    `<span class="contribution-state state-${color}">${renderIcon(icon, "state-icon")}` +
+    `${label}<span class="visually-hidden"> ${kind}</span></span>`
+  );
+}
+
 function renderContribution(url: string, contribution: Contribution): string[] {
   const [, repository, , number] = CONTRIBUTION_URL.exec(url)!;
-  const isPull = contribution.type === "pull_request";
-  const kind = isPull ? "Pull request" : "Issue";
   return [
     '<div class="contribution">',
     ...indent([
       // A long repository name is cut short, rather than the number it precedes.
-      `<span class="contribution-meta"><i class="fa ${isPull ? "fa-code-fork" : "fa-dot-circle-o"}" aria-hidden="true"></i>` +
-        `<span class="visually-hidden">${kind}</span>` +
+      `<span class="contribution-meta">` +
         `<span class="contribution-repository" title="${escapeHtml(repository)}">${escapeHtml(repository)}</span>` +
         `<span class="contribution-number">#${number}</span>` +
-        `<span class="contribution-state">${STATES[contribution.state]}</span></span>`,
+        renderState(contribution) +
+        "</span>",
       `<a class="contribution-title" href="${escapeHtml(url)}">${escapeHtml(contribution.title)}</a>`,
-      ...(isPull ? [renderDiff(contribution.additions ?? 0, contribution.deletions ?? 0)] : []),
+      ...(contribution.type === "pull_request" ? [renderDiff(contribution.additions ?? 0, contribution.deletions ?? 0)] : []),
     ]),
     "</div>",
   ];
 }
 
-/** Subcards for the pull requests and issues a record features, or null if it features none. */
-export function renderFeaturedContributions(evidence: readonly string[], activity: GitHubActivity): string | null {
-  const featured = evidence.filter(isContribution);
-  if (featured.length === 0) {
+/** Subcards for pull requests and issues a record cites, or null if there are none. */
+export function renderContributions(urls: readonly string[], activity: GitHubActivity): string | null {
+  if (urls.length === 0) {
     return null;
   }
-  const cards = featured.flatMap((url) => renderContribution(url, activity.contributions[url]));
+  const cards = urls.flatMap((url) => renderContribution(url, activity.contributions[url]));
   return ['<div class="contributions">', ...indent(cards), "</div>"].join("\n");
+}
+
+/**
+ * Subcards for repositories a project is made of, each with its logo and
+ * description, or null if there are none. A repository is named by its own
+ * name and links to its code, unless it has a homepage, such as the web app it
+ * serves: then it is named by that website's title and links there.
+ */
+export function renderRepositories(repositories: NonNullable<GitHubSlots["repositories"]>, activity: GitHubActivity): string | null {
+  if (repositories.length === 0) {
+    return null;
+  }
+  const cards = repositories.flatMap(({ url, logo, homepage, title }) => {
+    const [, fullName] = CODE_URL.exec(url)!;
+    const name = title ?? fullName.split("/")[1];
+    const { description } = activity.repositories[url];
+    const mark = logo
+      ? `<img class="repository-logo" src="${escapeHtml(logo)}" alt="" />`
+      : `<span class="repository-logo">${renderIcon("repository")}</span>`;
+    return [
+      '<div class="repository">',
+      ...indent([
+        mark,
+        '<span class="repository-text">',
+        ...indent([
+          `<a class="repository-name" href="${escapeHtml(homepage ?? url)}" title="${escapeHtml(homepage ? displayUrl(homepage) : fullName)}">${escapeHtml(name)}</a>`,
+          ...(description ? [`<span class="repository-description">${escapeHtml(description)}</span>`] : []),
+        ]),
+        "</span>",
+      ]),
+      "</div>",
+    ];
+  });
+  return ['<div class="repositories">', ...indent(cards), "</div>"].join("\n");
 }
 
 /** Tiles counting a project's merged pull requests and closed issues, or null if few enough to feature instead. */
