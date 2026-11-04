@@ -26,6 +26,7 @@ Parts of the site are generated from machine-readable JSON records, one file per
 
 | Records                            | LinkML class  | Section (page)                         |
 |------------------------------------|---------------|----------------------------------------|
+| [`summaries/`](../summaries)       | `Summary`     | About (`index.html`)                   |
 | [`projects/`](../projects)         | `Project`     | Highlighted Projects (`projects.html`) |
 | [`datasets/`](../datasets)         | `Dataset`     | Data Curation (`data-curation.html`)   |
 | [`publications/`](../publications) | `Publication` | Publications (`publications.html`)     |
@@ -34,6 +35,10 @@ Records hold only facts about the work.
 How the site presents them, such as the page each section is on and the order it lists its records in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
 A record's file name is its ID, and its card on the page takes the same ID, so `projects#neuroconv` opens the NeuroConv card.
 The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+
+A summary is the few paragraphs that introduce the site's owner, written in implied first person.
+The About section shows one of them, named by `show` in `sections.ts`, rather than a card for each.
+The CVs in [CodyCBakerPhD/job-applications](https://github.com/CodyCBakerPhD/job-applications) render their Summary from these records too, each choosing its own, and a one-page resume shows only the first sentence of each paragraph.
 
 ## Links between records
 
@@ -298,6 +303,10 @@ linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.
 
 ```bash
 linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
+```
+
+```bash
+linkml-validate --schema schemas/records.yaml --target-class Summary summaries/*.json
 ```
 
 `npm run build` (and `npm run dev`) also validates every record and renders each section into its page as static HTML.

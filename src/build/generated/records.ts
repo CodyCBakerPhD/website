@@ -292,4 +292,17 @@ export interface Publication extends BaseRecord {
 }
 
 
+/**
+ * A professional summary: the few paragraphs that introduce Cody C. Baker as a whole, such as the About section of the website or the Summary of a CV. Each record is one JSON file under summaries/.
+ */
+export interface Summary {
+    /** Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written. */
+    schema_version: string,
+    /** Version of the record's own content, bumped whenever the record changes. */
+    record_version: string,
+    /** Paragraphs of plain text in implied first person, in which **double asterisks** mark emphasis. A one-page resume shows only the first sentence of each paragraph, so each should lead with its main point. */
+    description: string[],
+}
+
+
 

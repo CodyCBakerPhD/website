@@ -1,12 +1,13 @@
-// The sections of the site that are rendered from JSON records, each on its
+// The sections of the site that are rendered from JSON records: the summary in
+// the About section of the home page, then the sections of cards, each on its
 // own page under src/ with a search bar above its records.
 //
 // Each section names the JSON Schema its records are validated against
-// (generated from schemas/records.yaml) and lists its records in display
-// order. Order is the site's choice rather than a property of the records, so
-// it lives here instead of in them. Adding a record file means adding its ID
-// to the matching list below. Its page, icon and label are how cards on any
-// page link to its records (see references.ts).
+// (generated from schemas/records.yaml). A section of cards lists its records
+// in display order. Order is the site's choice rather than a property of the
+// records, so it lives here instead of in them. Adding a record file means
+// adding its ID to the matching list below. Its page, icon and label are how
+// cards on any page link to its records (see references.ts).
 
 import { datasetSearch, renderDataset } from "./datasets.ts";
 import type { Dataset, Project, Publication } from "./generated/records.ts";
@@ -14,8 +15,17 @@ import { checkProject, projectSearch, renderProject } from "./projects.ts";
 import { publicationSearch, renderPublications } from "./publications.ts";
 import { defineSection } from "./records.ts";
 import { renderSearchable } from "./search.ts";
+import { defineSummarySection } from "./summary.ts";
 
 export const sections = [
+  // The CVs choose their own summaries from summaries/ (see the job-applications repository).
+  defineSummarySection({
+    name: "summary",
+    page: "index.html",
+    recordsDir: "summaries",
+    schemaFile: "schemas/jsonschema/summary.schema.json",
+    show: "general",
+  }),
   defineSection<Project>({
     name: "projects",
     page: "projects.html",

@@ -556,6 +556,37 @@
             "title": "Repository",
             "type": "object"
         },
+        "Summary": {
+            "additionalProperties": false,
+            "description": "A professional summary: the few paragraphs that introduce Cody C. Baker as a whole, such as the About section of the website or the Summary of a CV. Each record is one JSON file under summaries/.",
+            "properties": {
+                "description": {
+                    "description": "Paragraphs of plain text in implied first person, in which **double asterisks** mark emphasis. A one-page resume shows only the first sentence of each paragraph, so each should lead with its main point.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "schema_version",
+                "record_version",
+                "description"
+            ],
+            "title": "Summary",
+            "type": "object"
+        },
         "Tag": {
             "description": "Every tag a record may carry, as a theme:tag pair, listed theme by theme in the order of TagTheme.",
             "enum": [
@@ -751,6 +782,6 @@
     ],
     "title": "records",
     "type": "object",
-    "version": "0.5.0"
+    "version": "0.6.0"
 }
 

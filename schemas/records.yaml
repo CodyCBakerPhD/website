@@ -3,13 +3,14 @@ name: records
 title: Records Schema
 description: >-
   LinkML schema for the machine-readable records that the personal website of
-  Cody C. Baker is built from: software projects, curated datasets and
-  publications. Each record is one JSON file under projects/, datasets/ or
-  publications/, and carries its own version as well as the version of this
-  schema it was written against. Records can cite evidence from outside the
-  site and name one another, such as a publication naming the project it is
-  about. The vocabulary of tags is in tags.yaml, which this schema imports.
-version: 0.5.0
+  Cody C. Baker is built from: software projects, curated datasets,
+  publications and professional summaries. Each record is one JSON file under
+  projects/, datasets/, publications/ or summaries/, and carries its own
+  version as well as the version of this schema it was written against.
+  Records can cite evidence from outside the site and name one another, such
+  as a publication naming the project it is about. The vocabulary of tags is
+  in tags.yaml, which this schema imports.
+version: 0.6.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -363,6 +364,23 @@ classes:
         multivalued: true
         list_elements_unique: true
         minimum_cardinality: 1
+
+  Summary:
+    description: >-
+      A professional summary: the few paragraphs that introduce Cody C. Baker
+      as a whole, such as the About section of the website or the Summary of a
+      CV. Each record is one JSON file under summaries/.
+    slots:
+      - schema_version
+      - record_version
+      - description
+    slot_usage:
+      description:
+        description: >-
+          Paragraphs of plain text in implied first person, in which **double
+          asterisks** mark emphasis. A one-page resume shows only the first
+          sentence of each paragraph, so each should lead with its main point.
+        required: true
 
 enums:
   PublicationKind:
