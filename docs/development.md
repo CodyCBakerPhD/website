@@ -76,6 +76,19 @@ The build fails if a record cites the same URL twice.
 
 Like every other part of a record, links and evidence come from a source you can name, such as a project's dependency list, a publication's title, or the pull request itself.
 
+## Logos
+
+A project's `logo` is shown at the top of its card, from a file under [`src/public/img/`](../src/public/img).
+A project that publishes its own version of its logo for dark backgrounds, such as the `prefers-color-scheme: dark` source in its README, names it in `logo_dark`, and the dark theme shows that one instead:
+
+```json
+"logo": "img/historia_logo.svg",
+"logo_dark": "img/historia_logo_dark.svg"
+```
+
+In the dark theme each project card also takes its project's own colors, set in [`src/css/custom.css`](../src/css/custom.css): the dark theme of the project's site where it has one, and otherwise the colors of its logo.
+A logo drawn in dark blues for light backgrounds, with no dark version, sits on a light tile there instead, listed in [`src/build/projects.ts`](../src/build/projects.ts).
+
 ## Distribution
 
 A project that others install or use lists where it is `distributed`, by the URL of each place, and a project that is not distributed (such as one run only from its source) omits it:

@@ -1,11 +1,12 @@
 {
-  "schema_version": "0.4.0",
-  "record_version": "0.4.0",
+  "schema_version": "0.5.0",
+  "record_version": "0.5.0",
   "name": "nwb2bids",
   "url": "https://github.com/con/nwb2bids",
   "role": "Lead Developer",
   "start_date": "2025",
   "logo": "img/nwb2bids_logo.svg",
+  "logo_dark": "img/nwb2bids_logo_dark.svg",
   "distributions": [
     "https://pypi.org/project/nwb2bids/",
     "https://anaconda.org/conda-forge/nwb2bids",

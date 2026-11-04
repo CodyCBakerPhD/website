@@ -287,6 +287,14 @@
                         "null"
                     ]
                 },
+                "logo_dark": {
+                    "description": "Path to the version of the project's logo it publishes for dark backgrounds, in place of logo there, relative to the website root like logo, e.g. \"img/historia_logo_dark.svg\". Omitted when the project has no such version.",
+                    "pattern": "^[^/]",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "name": {
                     "description": "Display name of the project.",
                     "type": "string"
@@ -760,6 +768,6 @@
     ],
     "title": "records",
     "type": "object",
-    "version": "0.4.0"
+    "version": "0.5.0"
 }
 

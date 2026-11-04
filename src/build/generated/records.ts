@@ -205,6 +205,8 @@ export interface Project extends BaseRecord {
     end_date?: string,
     /** Path to the project's logo relative to the website root (the file itself lives under src/public/), e.g. "img/guide_logo.png". */
     logo?: string,
+    /** Path to the version of the project's logo it publishes for dark backgrounds, in place of logo there, relative to the website root like logo, e.g. "img/historia_logo_dark.svg". Omitted when the project has no such version. */
+    logo_dark?: string,
     /** Where the project is distributed for others to install or use, as the page of each package index, container registry, release or web app, e.g. "https://pypi.org/project/hdmf/". The site names each by its address. Omitted for a project that is not distributed, such as one run only from its source. */
     distributions?: string[],
     /** The GitHub repositories the project is made of, each with its own logo if it has one. Its pull requests and issues there are counted toward it, as well as those under its url when that is on GitHub. */
