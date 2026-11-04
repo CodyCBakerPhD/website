@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<meta charset="utf-8" />
+	<script>
+	    (function () {
+	        try {
+	            var stored = localStorage.getItem("theme");
+	            var theme = stored === "light" || stored === "dark"
+	                ? stored
+	                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+	            document.documentElement.setAttribute("data-theme", theme);
+	        } catch (e) {}
+	    })();
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="css/kube.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="shortcut icon" href="img/como_favicon.ico" />
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<title>Cody C. Baker, Ph.D.</title>
+	<meta name="description" content="Personal website of Cody C. Baker, Ph.D.">
+	<style>
+		.intro h1:before {
+			content: 'DATA';
+		}
+	</style>
+  <script type="module" crossorigin src="./assets/main-C5Lh9cFQ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-BhgcAr_5.css">
+</head>
+
+
+
+<body>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<!-- Fixed top-right controls -->
+	<div class="nav-actions">
+		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+			<i class="fa fa-moon-o theme-toggle-icon theme-toggle-icon-dark" aria-hidden="true"></i>
+			<i class="fa fa-sun-o theme-toggle-icon theme-toggle-icon-light" aria-hidden="true"></i>
+		</button>
+		<a class="icon-btn" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+			<i class="fa fa-github" aria-hidden="true"></i>
+		</a>
+	</div>
+
+	<!-- Navigation -->
+	<div class="main-nav">
+		<div class="container">
+			<header class="group top-nav">
+				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+				    <span class="logo">Cody C. Baker</span>
+				</div>
+			    <nav id="navbar-1" class="navbar item-nav">
+				    <ul>
+						<li><a href="#" data-scroll-top>About</a></li>
+						<li><a href="#education">Education</a></li>
+						<li><a href="#skills">Skills</a></li>
+						<li><a href="#experience">Experience</a></li>
+						<li><a href="projects">Projects</a></li>
+						<li><a href="publications">Publications</a></li>
+						<li><a href="data-curation">Data Curation</a></li>
+				    </ul>
+				</nav>
+			</header>
+		</div>
+	</div>
+
+	<!-- Introduction -->
+	<div class="hero-name">
+		<h1>Cody C. Baker, Ph.D.</h1>
+	</div>
+	<div class="intro section" id="about">
+		<div class="container">
+			<div class="units-row units-split wrap">
+				<div class="unit-20">
+					<img src="img/avatar.jpg" alt="Avatar">
+				</div>
+				<div class="unit-80">
+					<h1>expertise in<br><span id="typed"></span></h1>
+				</div>
+
+				<div class="contact-block">
+					<ul class="contact-list list-flat">
+						<li>
+							<i class="fa fa-envelope"></i>
+							<a href="mailto:cody.c.baker.phd@gmail.com">cody.c.baker.phd@gmail.com</a>
+						</li>
+						<li>
+							<i class="fa fa-linkedin-square"></i>
+							<a href="https://www.linkedin.com/in/cody-c-baker/">linkedin.com/in/cody-c-baker</a>
+						</li>
+						<li>
+							<i class="fa fa-github"></i>
+							<a href="https://github.com/CodyCBakerPhD/">github.com/CodyCBakerPhD</a>
+						</li>
+					</ul>
+					<div class="download-buttons">
+						<a class="download-btn" href="assets/resume/cody_c_baker_full_cv.pdf">Download CV</a>
+						<a class="download-btn" href="assets/resume/cody_c_baker_resume.pdf">One-Page Resume</a>
+					</div>
+				</div>
+				<p>
+					Experienced data scientist and software engineer with 12 years spent designing, conducting, and
+					sharing results of complex research. Worked with faculty, staff, and students from dozens of top
+					universities to achieve excellence in the preparation and performance of research-related tasks,
+					including data management, hypothesis formulation, and both mathematical and statistical modeling.
+					<br>
+					<br>
+					Possesses a diverse set of software skills, including DevOps, full-stack app development,
+					performance benchmarking, ETL, and cloud deployments. Enjoys hosting workshops and hackathons to
+					train users in state-of-the-art technologies and best practices. Familiar with a large number of
+					data formats, with a strong concentration on updating local file standards to more cloud-performant
+					ones. Knowledgeable about various mathematical and statistical applications, including
+					high-dimensional time series analysis, nonlinear dynamics, and machine learning.
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Education -->
+	<div class="work section second" id="education">
+		<div class="container">
+			<h1>Education</h1>
+			<ul class="work-list">
+				<h4>
+					Ph.D. &nbsp; | &nbsp;
+					<a href="https://acms.nd.edu/"> Applied and Computational Mathematics and
+					Statistics (ACMS)</a>
+				</h4>
+				<li>University of Notre Dame &nbsp; | &nbsp; 2020</li>
+				<br>
+				<li>
+					Doctoral thesis: <a href="https://curate.nd.edu/articles/thesis/Second-Order_Moments_of_Activity_in_Large_Neural_Network_Models/24778350">
+					"Second-order moments of activity in large neural network models"</a>
+				</li>
+				<br>
+				<p>
+					Relevant coursework: machine learning, Bayesian statistics, network science, stochastic analysis,
+					time series analysis, partial differential equations, nonlinear dynamics
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h4>
+					B.S. &nbsp; | &nbsp;
+					<a href="https://www.evansville.edu/majors/mathematics/degrees-applied-mathematics.cfm">Applied Mathematics</a>
+					& <a href="https://www.evansville.edu/majors/cognitivescience/index.cfm">Cognitive Science</a>
+				</h4>
+				<li>Minors: Computer Science, Philosophy, Psychology, and Neuroscience</li>
+				<li>University of Evansville &nbsp; | &nbsp; 2015</li>
+				<br>
+				<li>Senior thesis: "Crime prediction models applied to the city of Evansville"</li>
+				<li>Honors thesis: "Goodness of fit metrics for joint probability distributions"</li>
+				<br>
+				<p>
+					Relevant coursework: calculus, linear algebra, probability, statistics, discrete & combinatorics,
+					numerical analysis, real analysis, mathematical physics, algorithms & data structures,
+					cryptography, machine learning, symbolic logic, cognitive psychology, neurophysiology,
+					advanced neuroscience, philosophy of mind, philosophy of science
+				</p>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<!-- Technical Skills -->
+	<div class="skills section second" id="skills">
+		<div class="container">
+			<h1>Technical Skills</h1>
+			<div class="skill-group">
+				<h5>Coding <span>(in order of experience)</span></h5>
+				<span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">LaTeX</span><span class="tag">R</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">CSS</span>
+			</div>
+			<div class="skill-group">
+				<h5>Mathematical / Statistical / Machine Learning Techniques</h5>
+				<span class="tag">multivariate regression</span><span class="tag">classification</span><span class="tag">cross-validation</span><span class="tag">clustering</span><span class="tag">mixture models</span><span class="tag">dimensionality reduction</span><span class="tag">ensemble methods</span><span class="tag">deep learning</span><span class="tag">reinforcement learning</span><span class="tag">time series analysis</span><span class="tag">anomaly detection</span><span class="tag">computer vision</span>
+			</div>
+			<div class="skill-group">
+				<h5>DevOps</h5>
+				<span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">Singularity</span><span class="tag">unit & integration testing</span><span class="tag">user & quality testing</span><span class="tag">Storybook</span><span class="tag">Chromatic</span><span class="tag">Puppeteer</span><span class="tag">Codecov</span>
+			</div>
+			<div class="skill-group">
+				<h5>Libraries and Tools</h5>
+				<span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">pandas</span><span class="tag">polars</span><span class="tag">sklearn</span><span class="tag">OpenCV</span><span class="tag">FFmpeg</span><span class="tag">timeit</span><span class="tag">airspeed velocity</span><span class="tag">Matplotlib</span><span class="tag">Plotly</span><span class="tag">Pydantic</span><span class="tag">Boto3</span><span class="tag">concurrents</span><span class="tag">joblib</span><span class="tag">tqdm</span><span class="tag">requests</span><span class="tag">pytest</span><span class="tag">Flask</span><span class="tag">PyInstaller</span>
+			</div>
+			<div class="skill-group">
+				<h5>Frameworks</h5>
+				<div class="skill-row">
+					<span class="skill-sub">Cloud & services</span><span class="skill-tags"><span class="tag">AWS (IAM, S3, EC2, Batch, ECR, Route 53)</span><span class="tag">Terraform</span><span class="tag">IPInfo</span><span class="tag">OpenCage</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Streaming</span><span class="skill-tags"><span class="tag">fsspec</span><span class="tag">HDF5 ROS3</span><span class="tag">remfile</span><span class="tag">h5wasm</span><span class="tag">obstore</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Databases</span><span class="skill-tags"><span class="tag">REDIS</span><span class="tag">DynamoDB</span><span class="tag">MongoDB</span><span class="tag">PostgreSQL</span><span class="tag">SQLite</span><span class="tag">NoSQL</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">UI</span><span class="skill-tags"><span class="tag">Electron</span><span class="tag">Tk</span><span class="tag">Qt</span><span class="tag">React</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Linting</span><span class="skill-tags"><span class="tag">pre-commit</span><span class="tag">Ruff</span><span class="tag">Black</span><span class="tag">flake8</span><span class="tag">pydocstyle</span><span class="tag">Mypy</span><span class="tag">Prettier</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Parallelization</span><span class="skill-tags"><span class="tag">multiprocessing</span><span class="tag">threading</span><span class="tag">high-performance computing (HPC)</span></span>
+				</div>
+				<div class="skill-row">
+					<span class="skill-sub">Packaging & distribution</span><span class="skill-tags"><span class="tag">Setuptools</span><span class="tag">Hatch</span><span class="tag">Twine</span><span class="tag">conda-forge</span><span class="tag">Vite</span><span class="tag">Node.js</span><span class="tag">Yarn</span></span>
+				</div>
+			</div>
+			<div class="skill-group">
+				<h5>Strong Familiarity with Data Formats</h5>
+				<span class="tag">HDF5</span><span class="tag">Zarr</span><span class="tag">JSON</span><span class="tag">YAML</span><span class="tag">XML</span><span class="tag">Markdown</span><span class="tag">RST</span><span class="tag">MP4</span><span class="tag">AVI</span><span class="tag">TIFF</span><span class="tag">Parquet</span><span class="tag">TSV</span><span class="tag">XLSX</span><span class="tag">SVG</span><span class="tag">PNG</span><span class="tag">JPEG</span><span class="tag">MP3</span><span class="tag">WAV</span><span class="tag">PKL</span><span class="tag">MAT</span>
+			</div>
+			<div class="skill-group">
+				<h5>Administration</h5>
+				<span class="tag">GitHub</span><span class="tag">AWS</span><span class="tag">PyPI</span><span class="tag">conda-forge</span><span class="tag">DockerHub</span><span class="tag">ReadTheDocs</span>
+			</div>
+			<div class="skill-group">
+				<h5>Business & Team Skills</h5>
+				<span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">research</span><span class="tag">mentoring</span><span class="tag">training</span><span class="tag">client consultations</span><span class="tag">drafting scopes of work</span><span class="tag">budgeting</span><span class="tag">grant writing</span>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Experience -->
+	<div class="work section second" id="experience">
+		<div class="container">
+			<h1>Experience</h1>
+			<ul class="work-list">
+				<h3>Research Software Engineer</h3>
+				<li><a href="https://centerforopenneuroscience.org/">Center for Open Neuroscience (CON)</a>
+					&nbsp; | &nbsp; 2025-Present
+					<br>
+					<a href="https://www.dartmouth.edu/ccn/"> Center for Cognitive Neurosciences (CCN)</a>
+					&nbsp; | &nbsp;	<a href="https://pbs.dartmouth.edu/"> Psychological and Brain Sciences (PBS)</a>
+					&nbsp; | &nbsp; Dartmouth College
+				</li>
+				<br>
+				<p>
+					Maintaining and enhancing several NIH data archives that store neuroscientific data by
+					standardizing dataset organization across multiple modalities and providing usage analytics,
+					including geolocation, through parsing terabytes of raw S3 log files.
+					<br><br>
+					Assisting with user support tickets and feature requests to ensure smooth operation of data submission
+					and retrieval processes.
+					<br><br>
+					Developing open source software for use in neurophysiology research with an emphasis on achieving
+					reproducibility of scientific findings.
+					<br><br>
+					Researching options for stable, cost-effective, long-term backup of petabyte-scale data
+					storage. Working with a range of institutions and services to provide
+					solutions and cost estimates to that effect.
+					<br><br>
+					Providing software, consultation, and computing support for the Brain Behavior Quantification and
+					Synchronization consortium (BBQS).
+				</p>
+			</ul>
+			<ul class="work-list">
+				<h3>Research Software Engineer</h3>
+				<li><a href="https://catalystneuro.com/">CatalystNeuro</a> &nbsp; | &nbsp; 2020-2024</li>
+				<br>
+				<p>
+					Developed and maintained 5 repositories of open-source software by ensuring proper functionality of
+					automated testing suites, documentation, tutorials, and demos.
+					<br><br>
+					Created and maintained 12+ data processing pipelines for neuroscience
+					labs, allowing their data to flow from acquisition to sharing in a seamless fashion.
+					<br><br>
+					Curated a total of 256 TB of high-value datasets to NIH data archives on behalf of various
+					research groups.
+					<br><br>
+					Managed the company's cloud resources (Amazon Web Services; AWS), including storage,
+					compute resources, and identity access management (IAM).
+					<br><br>
+					Handled user interactions within the research community by offering technical support and
+					resolving issues or feature requests in a timely manner.
+					<br><br>
+					Facilitated user education across various platforms by running sessions at multiple conferences
+					and workshops, increasing user adoption and effective system utilization.
+					<br><br>
+					All software related in some way to the facilitation of terabyte-scale data management, analysis,
+					and visualization for the field of neurophysiology.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Research Assistant</h3>
+				<li>
+					<a href="https://www3.nd.edu/~rrosenb1/ndcnd.html" >Neural Dynamics and
+						Computing
+						Group	at
+						University
+						of Notre Dame</a> &nbsp; | &nbsp; 2016-2020
+				</li>
+				<br>
+				<p>
+					Reconciled the computational properties of biologically realistic neural networks with artificial
+					machine learning models (such as those used across computer vision) through complex mathematical
+					theory and stochastic biophysical simulations, with results communicated through 3 journal
+					publications and a presentation at the high-impact COSYNE conference
+					(top 4% of abstracts accepted).
+					<br><br>
+					Collaborated with several top experimentalists in neuroscience as a trainee in the NeuroNex
+					program, which focused on understanding how neural function emerges from underlying structure.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Teaching Assistant</h3>
+				<li>
+					<a href="https://acms.nd.edu/" > Applied and Computational Mathematics and Statistics (ACMS)
+					</a> &nbsp; | &nbsp; 2015-2017
+				</li>
+				<br>
+				<p>
+					Ran 4 tutorial sections for 112 students, aiding their study of course concepts to
+					achieve a 96% satisfaction rate.
+
+					Graded homework assignments and exams. Filled in main lectures for the professor as needed.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Data Analyst</h3>
+				<li>JRM Environmental Inc  &nbsp; | &nbsp; 2015</li>
+				<br>
+				<p>
+					Analyzed geological data from water samples in conjunction with the Indiana Department of
+					Environmental Management to issue compliance permits for Indianapolis regulation standards.
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Technical Editor</h3>
+				<li><a href="https://www.penguinrandomhouse.com/books/361139/algebra-ii-by-carolyn-wheater/">Penguin Random House</a> &nbsp; | &nbsp; 2015</li>
+				<br>
+				<p>
+					Reviewed and corrected over 300 pages of "An Idiot's Guide to Algebra II".
+				</p>
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Research Intern</h3>
+				<li>BITLab  &nbsp; | &nbsp; Michigan State University  &nbsp; | &nbsp; 2014</li>
+				<br>
+				<p>
+					Explored statistical effects of algorithmic curation (the use of automated filtering mechanisms
+					in the delivery and display of information) by measuring properties of simulated models of social
+					networks, with results presented at the MIDSURE conference.
+
+			</ul>
+			<br>
+			<ul class="work-list">
+				<h3>Research Intern</h3>
+				<li>Bioinformatics   |   University of Kansas   |   2013</li>
+				<br>
+				<p>
+					Examined information diffusion through large-scale simulations of G-protein signaling mechanisms
+					using a high-performance super-computing cluster (HPC), then presented results at an undergraduate
+					symposium.
+				</p>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<!-- Quote -->
+	<div class="quote">
+		<div class="container text-centered">
+			<h1>never stop learning</h1>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<!-- The same links as the navigation bar, for readers who reach the bottom of a page. -->
+			<nav class="footer-nav" aria-label="Footer">
+				<ul class="list-flat">
+					<li><a href="#" data-scroll-top>About</a></li>
+					<li><a href="#education">Education</a></li>
+					<li><a href="#skills">Skills</a></li>
+					<li><a href="#experience">Experience</a></li>
+					<li><a href="projects">Projects</a></li>
+					<li><a href="publications">Publications</a></li>
+					<li><a href="data-curation">Data Curation</a></li>
+				</ul>
+			</nav>
+			<div class="units-row">
+			    <div class="unit-50">
+					<ul class="social list-flat right">
+						<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
+					</ul>
+			    </div>
+			</div>
+			<div class="footer-version">
+				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.9.1</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/typed.min.js"></script>
+	<script src="js/kube.min.js"></script>
+</body>
+
+
+
+</html>
