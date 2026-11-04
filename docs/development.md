@@ -214,6 +214,7 @@ The table is generated from `schemas/tags.yaml`, so edit that file rather than t
 |                          | `data:Metadata`                           | Describing data so that it can be found, understood and reused.                       |
 |                          | `data:Validation`                         | Checking data and metadata against a standard and its best practices.                 |
 |                          | `data:Provenance`                         | Recording how results were produced and from what.                                    |
+|                          | `data:Reproducibility`                    | Keeping a result's data, code and environment together so that it can be rerun.       |
 |                          | `data:FAIR Data`                          | Making data findable, accessible, interoperable and reusable.                         |
 |                          | `data:Open Data`                          | Data released publicly for anyone to use.                                             |
 |                          | `data:Data Sharing`                       | Publishing and distributing data to other researchers.                                |

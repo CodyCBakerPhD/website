@@ -59,6 +59,8 @@ export enum Tag {
     dataCOLONValidation = "data:Validation",
     /** Recording how results were produced and from what. */
     dataCOLONProvenance = "data:Provenance",
+    /** Keeping a result's data, code and environment together so that it can be rerun. */
+    dataCOLONReproducibility = "data:Reproducibility",
     /** Making data findable, accessible, interoperable and reusable. */
     dataCOLONFAIR_Data = "data:FAIR Data",
     /** Data released publicly for anyone to use. */

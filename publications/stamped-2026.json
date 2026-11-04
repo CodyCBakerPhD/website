@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.6.0",
+  "record_version": "0.1.0",
+  "name": "STAMPED principles for reproducible research objects",
+  "kind": "article",
+  "authors": [
+    "A. Macdonald",
+    "C. Baker",
+    "I. To",
+    "Y. O. Halchenko"
+  ],
+  "date": "2026",
+  "venue": "OSF Preprints",
+  "doi": "https://doi.org/10.31222/osf.io/f3h82_v1",
+  "description": [
+    "Preprint formalizing seven principles for building and assessing research objects that others can trust, rerun and build upon: Self-containment, Tracking, Actionability, Modularity, Portability, Ephemerality and Distributability (STAMPED). Each principle is framed as a spectrum, so that adoption can be incremental, and is supported by normative requirements, an interactive checklist and a map of enabling tools."
+  ],
+  "about": [
+    "projects/stamped"
+  ],
+  "tags": [
+    "data:Provenance",
+    "data:Reproducibility"
+  ]
+}
