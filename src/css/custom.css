@@ -329,7 +329,7 @@ a:hover {
     color: var(--body-text);
 }
 
-/* Download buttons: the full CV, with the one-page resume under it. They are
+/* Download buttons: the one-page resume, with the full CV under it. They are
    links styled as buttons, so a middle click or "Open in new tab" works. */
 
 .download-buttons {
