@@ -241,8 +241,14 @@ a:hover {
 }
 
 .intro {
-    padding: 40px 0px 70px 0px;
+    padding: 40px 0px 50px 0px;
     overflow-x: hidden;
+}
+
+/* The summary, under the contact block. A bare paragraph has no card edge to
+   close the section, so it keeps no margin below and gets its room above. */
+.intro p {
+    margin: 32px 0 0 0;
 }
 
 .intro img {
@@ -279,9 +285,12 @@ a:hover {
 
 /* Contact block */
 
+/* The contact list at the left edge and the download buttons at the right, in
+   line with the summary under them. Once they wrap, both start at the left. */
 .contact-block {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     gap: 26px;
     margin: 26px 0 6px 0;
