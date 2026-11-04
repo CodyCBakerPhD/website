@@ -35,7 +35,7 @@ jobs:
       # dist/ is gitignored, which lychee would otherwise skip. The site links
       # to its pages without '.html', which the fallback extension resolves.
       # GitHub search links are generated from queries rather than written,
-      # and LinkedIn refuses automated requests.
+      # and LinkedIn and npm refuse automated requests.
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
@@ -50,6 +50,7 @@ jobs:
             --fallback-extensions html
             --exclude '^https://github\.com/search\?'
             --exclude '^https://www\.linkedin\.com/'
+            --exclude '^https://www\.npmjs\.com/'
             'dist/*.html'
             '*.md'
             'docs/*.md'
