@@ -604,6 +604,7 @@
                 "data:Metadata",
                 "data:Validation",
                 "data:Provenance",
+                "data:Reproducibility",
                 "data:FAIR Data",
                 "data:Open Data",
                 "data:Data Sharing",
@@ -852,6 +853,6 @@
     },
     "title": "records",
     "type": "object",
-    "version": "0.6.0"
+    "version": "0.7.0"
 }
 

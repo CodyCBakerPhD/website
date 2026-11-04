@@ -197,6 +197,20 @@
         "count": 170,
         "query": "(repo:dandi/s3-log-extraction OR repo:dandi/usage-page) is:issue is:closed (author:CodyCBakerPhD OR assignee:CodyCBakerPhD)"
       }
+    },
+    "projects/stamped": {
+      "merged_pull_requests": {
+        "count": 137,
+        "query": "org:stamped-principles is:pr is:merged (author:CodyCBakerPhD OR assignee:CodyCBakerPhD)"
+      },
+      "reviewed_pull_requests": {
+        "count": 65,
+        "query": "org:stamped-principles is:pr reviewed-by:CodyCBakerPhD -author:CodyCBakerPhD -assignee:CodyCBakerPhD"
+      },
+      "closed_issues": {
+        "count": 88,
+        "query": "org:stamped-principles is:issue is:closed (author:CodyCBakerPhD OR assignee:CodyCBakerPhD)"
+      }
     }
   },
   "repositories": {
@@ -247,6 +261,21 @@
     },
     "https://github.com/flatironinstitute/neurosift": {
       "description": "Browser-based NWB visualization and DANDI exploration"
+    },
+    "https://github.com/stamped-principles/.github": {
+      "description": "GitHub landing page for STAMPED organization."
+    },
+    "https://github.com/stamped-principles/stamped-branding": {
+      "description": "Collection of formal logos for the STAMPED principles."
+    },
+    "https://github.com/stamped-principles/stamped-checklist": {
+      "description": "An interactive checklist for compliance to STAMPED principles."
+    },
+    "https://github.com/stamped-principles/stamped-checklist-schema": {
+      "description": "The formal LinkML schema and instance for the STAMPED checklist."
+    },
+    "https://github.com/stamped-principles/stamped-principles-schema": {
+      "description": "The formal LinkML schema and instance for the STAMPED principles."
     }
   },
   "contributions": {

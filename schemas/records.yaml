@@ -10,7 +10,7 @@ description: >-
   Records can cite evidence from outside the site and name one another, such
   as a publication naming the project it is about. The vocabulary of tags is
   in tags.yaml, which this schema imports.
-version: 0.6.0
+version: 0.7.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
