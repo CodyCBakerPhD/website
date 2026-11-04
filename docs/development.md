@@ -86,7 +86,7 @@ A project that publishes its own version of its logo for dark backgrounds, such 
 "logo_dark": "img/historia_logo_dark.svg"
 ```
 
-In the dark theme each project card also takes its project's own colors, set in [`src/css/custom.css`](../src/css/custom.css): the dark theme of the project's site where it has one, and otherwise the colors of its logo on a dark background that suits it.
+In the dark theme the project cards share one navy background, set in [`src/css/custom.css`](../src/css/custom.css), except HEARTH's, which takes the dark theme of its own site. Links keep the site's colors on every card.
 A logo drawn in dark blues for light backgrounds, with no dark version, sits on a light tile there instead, listed in [`src/build/projects.ts`](../src/build/projects.ts).
 
 ## Distribution

@@ -14,8 +14,8 @@
     --nav-bg: rgba(255, 255, 255, 0.88);
     --watermark: #eef4f4;
     --avatar-ring: #ffffff;
-    /* Resolved here, so the accents project cards take in the dark theme do
-       not reach their links, whose colors the cards set on their own. */
+    /* Resolved here, so links keep the site's colors on the HEARTH card, whose
+       own accent is orange in the dark theme. */
     --link: var(--accent-dark);
     --link-hover: var(--accent);
     --link-underline: var(--accent-border);
@@ -928,102 +928,24 @@ a:hover {
     box-shadow: 0 0 0 16px #dfe5eb;
 }
 
-/* In the dark theme each project card takes its project's own colors: the
-   dark theme of its site where it has one, and otherwise its logo's colors on
-   a dark background of the same hue, every text color at 4.5:1 or more. */
-
-/* Links on every card share NWB's orange, from the NWB cards below, so they
-   look alike down the page; only HEARTH keeps its own. */
+/* In the dark theme every project card shares the navy of the NWB tools'
+   logos, except HEARTH's, which takes its own landing page's palette. */
 :root[data-theme="dark"] #highlighted-projects .work-list {
-    --link: #e3833a;
-    --link-hover: #f0a066;
-    --link-underline: rgba(209, 113, 40, 0.45);
+    --page-bg: #09192a;
+    --card-bg: #0d2033;
+    --card-border: #1d3d5c;
 }
 
 /* The HEARTH landing page's palette (brain-bbqs/hearth-landing-page, src/style.css). */
 :root[data-theme="dark"] #highlighted-projects #hearth {
     --ink: #f5f5f5;
     --muted: #a3a7ad;
-    --link: #ff6b35;
-    --link-hover: #ff6b35;
-    --link-underline: rgba(255, 107, 53, 0.35);
     --accent: #ff6b35;
     --accent-soft: rgba(255, 107, 53, 0.12);
     --accent-border: rgba(255, 107, 53, 0.35);
     --page-bg: #0f1115;
     --card-bg: #171a20;
     --card-border: #262a33;
-}
-
-/* The dark theme that the DANDI Compute page (dandi-compute/dandi-compute-page)
-   and the DANDI usage page S3 Log Extraction feeds (dandi/usage-page) share. */
-:root[data-theme="dark"] #highlighted-projects #dandi-compute,
-:root[data-theme="dark"] #highlighted-projects #s3-log-extraction {
-    --ink: #e0e0e0;
-    --muted: #a0a0b0;
-    --accent: #79c7d4;
-    --accent-soft: rgba(83, 168, 182, 0.08);
-    --accent-border: rgba(83, 168, 182, 0.35);
-    --page-bg: #1a1a2e;
-    --card-bg: #16213e;
-    --card-border: #2a2a4a;
-}
-
-/* NWB's navy and orange, from the logos of the NWB tools, which duct (with
-   no logo of its own) shares to match the cards around it. */
-:root[data-theme="dark"] #highlighted-projects #duct,
-:root[data-theme="dark"] #highlighted-projects #nwb-guide,
-:root[data-theme="dark"] #highlighted-projects #nwb-inspector,
-:root[data-theme="dark"] #highlighted-projects #nwb-benchmarks,
-:root[data-theme="dark"] #highlighted-projects #nwb-widgets,
-:root[data-theme="dark"] #highlighted-projects #nwb2bids,
-:root[data-theme="dark"] #highlighted-projects #hdmf {
-    --accent: #f0a066;
-    --accent-soft: rgba(209, 113, 40, 0.14);
-    --accent-border: rgba(209, 113, 40, 0.45);
-    --page-bg: #09192a;
-    --card-bg: #0d2033;
-    --card-border: #1d3d5c;
-}
-
-/* NeuroConv's blue, from its logo. */
-:root[data-theme="dark"] #highlighted-projects #neuroconv {
-    --accent: #8ab8ea;
-    --accent-soft: rgba(21, 101, 167, 0.18);
-    --accent-border: rgba(21, 101, 167, 0.6);
-    --page-bg: #0b1428;
-    --card-bg: #0f1a33;
-    --card-border: #1f3156;
-}
-
-/* Neurosift's periwinkle, from its logo. */
-:root[data-theme="dark"] #highlighted-projects #neurosift {
-    --accent: #aebbff;
-    --accent-soft: rgba(80, 112, 240, 0.14);
-    --accent-border: rgba(80, 112, 240, 0.5);
-    --page-bg: #10142a;
-    --card-bg: #151a35;
-    --card-border: #29315c;
-}
-
-/* DANDI Cache's slate and pink, from its logo. */
-:root[data-theme="dark"] #highlighted-projects #dandi-cache {
-    --accent: #f6c4c8;
-    --accent-soft: rgba(240, 165, 172, 0.1);
-    --accent-border: rgba(240, 165, 172, 0.35);
-    --page-bg: #141b22;
-    --card-bg: #1b232c;
-    --card-border: #344453;
-}
-
-/* Historia's gold, from its logo, on the navy of the NWB cards around it. */
-:root[data-theme="dark"] #highlighted-projects #historia {
-    --accent: #f3e2bd;
-    --accent-soft: rgba(200, 150, 46, 0.12);
-    --accent-border: rgba(200, 150, 46, 0.4);
-    --page-bg: #09192a;
-    --card-bg: #0d2033;
-    --card-border: #1d3d5c;
 }
 
 /* ---------- Pages ---------- */
