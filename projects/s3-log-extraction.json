@@ -1,7 +1,7 @@
 {
   "schema_version": "0.4.0",
-  "record_version": "0.4.0",
-  "name": "S3 Log Extraction",
+  "record_version": "0.5.0",
+  "name": "S3 Log Analytics",
   "url": "https://github.com/dandi/s3-log-extraction",
   "role": "Lead Developer",
   "start_date": "2024-07",
@@ -20,7 +20,7 @@
   ],
   "description": [
     "Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive and steadily being rolled out to others.",
-    "Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository.",
+    "Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository. The package has also been used to monitor for security threats.",
     "Extended it for the DANDI Archive's own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive."
   ],
   "tags": [
