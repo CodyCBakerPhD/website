@@ -9,7 +9,7 @@ description: >-
   schema it was written against. Records can cite evidence from outside the
   site and name one another, such as a publication naming the project it is
   about. The vocabulary of tags is in tags.yaml, which this schema imports.
-version: 0.4.0
+version: 0.5.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -156,6 +156,13 @@ classes:
           Path to the project's logo relative to the website root (the file
           itself lives under src/public/), e.g. "img/guide_logo.png".
         slot_uri: schema:logo
+        pattern: "^[^/]"
+      logo_dark:
+        description: >-
+          Path to the version of the project's logo it publishes for dark
+          backgrounds, in place of logo there, relative to the website root
+          like logo, e.g. "img/historia_logo_dark.svg". Omitted when the
+          project has no such version.
         pattern: "^[^/]"
       distributions:
         description: >-

@@ -895,41 +895,126 @@ a:hover {
 .tag-computing { --tag-color: #bddf26; --tag-on-color: #0b0f14; }
 .tag-languages { --tag-color: #fde725; --tag-on-color: #0b0f14; }
 
-/* ---------- Project cards in the dark theme ---------- */
+/* ---------- Project logos and colors ---------- */
 
-/* Most project logos are drawn for a light background, so in the dark theme
-   project cards are a mid grey, light enough for those logos, with dark text
-   and colors darkened to keep at least 4.5:1 contrast on it. */
-:root[data-theme="dark"] #highlighted-projects .work-list {
-    --ink: #000000;
-    --body-text: #05080b;
-    --muted: #121820;
-    --accent: #003b3a;
-    --accent-dark: #002120;
-    --accent-soft: #a9c1bf;
-    --accent-border: #23514f;
-    --page-bg: #9ba2a9;
-    --card-bg: #878e96;
-    --card-border: #727a83;
-    --diff-added: #06350f;
-    --diff-deleted: #650614;
-    --diff-neutral: #727a83;
-    --diff-neutral-border: #727a83;
-    --activity-done: #3b1782;
-    --activity-review: #032f62;
-    color: var(--body-text);
+.project-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-:root[data-theme="dark"] #highlighted-projects .tag {
-    border-color: var(--tag-color);
+/* A project with its own logo for dark backgrounds shows it in the dark theme. */
+.project-logo.logo-dark,
+:root[data-theme="dark"] .project-logo.logo-light {
+    display: none;
 }
 
-:root[data-theme="dark"] #highlighted-projects .tag[aria-pressed="false"] .tag-name {
-    background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
+:root[data-theme="dark"] .project-logo.logo-dark {
+    display: block;
 }
 
-:root[data-theme="dark"] #highlighted-projects .tag[aria-pressed="false"]:hover .tag-name {
-    background: color-mix(in srgb, var(--tag-color) 32%, var(--card-bg));
+/* Logos drawn in dark blues for light backgrounds sit on a light tile in the
+   dark theme. The tile's margin around the logo is a spread shadow rather than
+   padding, so it takes no room and switching theme does not move the page.
+   The small radius rounds the spread shadow's corners to about 13px. */
+:root[data-theme="dark"] .project-logo.logo-on-tile {
+    background: #dfe5eb;
+    border-radius: 4px;
+    box-shadow: 0 0 0 16px #dfe5eb;
+}
+
+/* In the dark theme each project card takes its project's own colors: the
+   dark theme of its site where it has one, and otherwise its logo's colors on
+   a dark background of the same hue, every text color at 4.5:1 or more. */
+
+/* The HEARTH landing page's palette (brain-bbqs/hearth-landing-page, src/style.css). */
+:root[data-theme="dark"] #highlighted-projects #hearth {
+    --ink: #f5f5f5;
+    --muted: #a3a7ad;
+    --accent: #ff6b35;
+    --accent-dark: #ff6b35;
+    --accent-soft: rgba(255, 107, 53, 0.12);
+    --accent-border: rgba(255, 107, 53, 0.35);
+    --page-bg: #0f1115;
+    --card-bg: #171a20;
+    --card-border: #262a33;
+}
+
+/* The dark theme that the DANDI Compute page (dandi-compute/dandi-compute-page)
+   and the DANDI usage page S3 Log Extraction feeds (dandi/usage-page) share. */
+:root[data-theme="dark"] #highlighted-projects #dandi-compute,
+:root[data-theme="dark"] #highlighted-projects #s3-log-extraction {
+    --ink: #e0e0e0;
+    --muted: #a0a0b0;
+    --accent: #79c7d4;
+    --accent-dark: #53a8b6;
+    --accent-soft: rgba(83, 168, 182, 0.08);
+    --accent-border: rgba(83, 168, 182, 0.35);
+    --page-bg: #1a1a2e;
+    --card-bg: #16213e;
+    --card-border: #2a2a4a;
+}
+
+/* NWB's navy and orange, from the logos of the NWB tools, which duct (with
+   no logo of its own) shares to match the cards around it. */
+:root[data-theme="dark"] #highlighted-projects #duct,
+:root[data-theme="dark"] #highlighted-projects #nwb-guide,
+:root[data-theme="dark"] #highlighted-projects #nwb-inspector,
+:root[data-theme="dark"] #highlighted-projects #nwb-benchmarks,
+:root[data-theme="dark"] #highlighted-projects #nwb-widgets,
+:root[data-theme="dark"] #highlighted-projects #nwb2bids,
+:root[data-theme="dark"] #highlighted-projects #hdmf {
+    --accent: #f0a066;
+    --accent-dark: #e3833a;
+    --accent-soft: rgba(209, 113, 40, 0.14);
+    --accent-border: rgba(209, 113, 40, 0.45);
+    --page-bg: #09192a;
+    --card-bg: #0d2033;
+    --card-border: #1d3d5c;
+}
+
+/* NeuroConv's blue, from its logo. */
+:root[data-theme="dark"] #highlighted-projects #neuroconv {
+    --accent: #8ab8ea;
+    --accent-dark: #5c9ee0;
+    --accent-soft: rgba(21, 101, 167, 0.18);
+    --accent-border: rgba(21, 101, 167, 0.6);
+    --page-bg: #0b1428;
+    --card-bg: #0f1a33;
+    --card-border: #1f3156;
+}
+
+/* Neurosift's periwinkle, from its logo. */
+:root[data-theme="dark"] #highlighted-projects #neurosift {
+    --accent: #aebbff;
+    --accent-dark: #8c9eff;
+    --accent-soft: rgba(80, 112, 240, 0.14);
+    --accent-border: rgba(80, 112, 240, 0.5);
+    --page-bg: #10142a;
+    --card-bg: #151a35;
+    --card-border: #29315c;
+}
+
+/* DANDI Cache's slate and pink, from its logo. */
+:root[data-theme="dark"] #highlighted-projects #dandi-cache {
+    --accent: #f6c4c8;
+    --accent-dark: #f0a5ac;
+    --accent-soft: rgba(240, 165, 172, 0.1);
+    --accent-border: rgba(240, 165, 172, 0.35);
+    --page-bg: #141b22;
+    --card-bg: #1b232c;
+    --card-border: #344453;
+}
+
+/* Historia's gold, from its logo, on the navy of the NWB cards around it. */
+:root[data-theme="dark"] #highlighted-projects #historia {
+    --accent: #f3e2bd;
+    --accent-dark: #dfc58c;
+    --accent-soft: rgba(200, 150, 46, 0.12);
+    --accent-border: rgba(200, 150, 46, 0.4);
+    --page-bg: #09192a;
+    --card-bg: #0d2033;
+    --card-border: #1d3d5c;
 }
 
 /* ---------- Pages ---------- */

@@ -23,6 +23,19 @@ const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
   "img/nwbwidgets_logo.png": 25,
 };
 
+/**
+ * Logos drawn in dark blues for light backgrounds, with no dark version of
+ * their own, so they sit on a light tile in the dark theme.
+ */
+const LOGOS_ON_LIGHT_TILE: ReadonlySet<string> = new Set([
+  "img/guide_logo.png",
+  "img/hdmf_logo.png",
+  "img/inspector_logo.png",
+  "img/neuroconv_logo.png",
+  "img/nwb_benchmarks_logo.png",
+  "img/nwbwidgets_logo.png",
+]);
+
 /** Years of involvement in the style of the Experience section: "2020-2024", "2025-Present" or "2015". */
 function formatYears(startDate: string, endDate?: string): string {
   const start = startDate.slice(0, 4);
@@ -51,11 +64,16 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
 
   if (project.logo) {
     const width = LOGO_WIDTH_PERCENT_OVERRIDES[project.logo] ?? LOGO_WIDTH_PERCENT;
-    lines.push(
-      `<img src="${escapeHtml(project.logo)}" alt="${escapeHtml(project.name)} logo"` +
-        ` style="display: block; margin-left: auto; margin-right: auto; width: ${width}%;" />`,
-      "<br>",
-    );
+    const logo = (src: string, classes: string[]) =>
+      `<img class="${["project-logo", ...classes].join(" ")}" src="${escapeHtml(src)}"` +
+      ` alt="${escapeHtml(project.name)} logo" style="width: ${width}%;" />`;
+    if (project.logo_dark) {
+      // Both are in the page, and the theme shows one, so switching theme needs no reload.
+      lines.push(logo(project.logo, ["logo-light"]), logo(project.logo_dark, ["logo-dark"]));
+    } else {
+      lines.push(logo(project.logo, LOGOS_ON_LIGHT_TILE.has(project.logo) ? ["logo-on-tile"] : []));
+    }
+    lines.push("<br>");
   }
 
   const details = [project.role, formatYears(project.start_date, project.end_date)].map(escapeHtml);
@@ -72,12 +90,16 @@ export function checkProject(project: Project, { publicDir }: { publicDir: strin
   const problems: string[] = [];
   const logos = [
     { slot: "/logo", logo: project.logo },
+    { slot: "/logo_dark", logo: project.logo_dark },
     ...(project.repositories ?? []).map(({ logo }, index) => ({ slot: `/repositories/${index}/logo`, logo })),
   ];
   for (const { slot, logo } of logos) {
     if (logo && !existsSync(resolve(publicDir, logo))) {
       problems.push(`${slot} "${logo}" does not exist in ${publicDir}`);
     }
+  }
+  if (project.logo_dark && !project.logo) {
+    problems.push("/logo_dark is set without /logo, which the light theme needs");
   }
   (project.repositories ?? []).forEach(({ homepage, title }, index) => {
     if (homepage && !title) {

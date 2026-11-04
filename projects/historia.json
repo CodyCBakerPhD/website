@@ -1,11 +1,12 @@
 {
-  "schema_version": "0.4.0",
-  "record_version": "0.4.0",
+  "schema_version": "0.5.0",
+  "record_version": "0.5.0",
   "name": "Historia",
   "url": "https://github.com/CodyCBakerPhD/historia",
   "role": "Lead Developer",
   "start_date": "2026-04",
   "logo": "img/historia_logo.svg",
+  "logo_dark": "img/historia_logo_dark.svg",
   "distributions": [
     "https://pypi.org/project/historia/",
     "https://anaconda.org/conda-forge/historia"
