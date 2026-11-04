@@ -895,42 +895,25 @@ a:hover {
 .tag-computing { --tag-color: #bddf26; --tag-on-color: #0b0f14; }
 .tag-languages { --tag-color: #fde725; --tag-on-color: #0b0f14; }
 
-/* ---------- Project cards in the dark theme ---------- */
+/* ---------- Project logos in the dark theme ---------- */
 
 /* Most project logos are drawn for a light background, so in the dark theme
-   project cards are a muted steel blue, light enough for those logos without
-   glaring against the dark page, with dark text and colors keeping at least
-   4.5:1 contrast on it. */
-:root[data-theme="dark"] #highlighted-projects .work-list {
-    --ink: #0b1218;
-    --body-text: #18212b;
-    --muted: #2f3a46;
-    --accent: #08494a;
-    --accent-dark: #063f3e;
-    --accent-soft: #97b5b6;
-    --accent-border: #2f6f6d;
-    --page-bg: #b4c1cd;
-    --card-bg: #a8b6c4;
-    --card-border: #92a0ae;
-    --diff-added: #0a4a1c;
-    --diff-deleted: #7d0a1c;
-    --diff-neutral: #92a0ae;
-    --diff-neutral-border: #92a0ae;
-    --activity-done: #4b2589;
-    --activity-review: #033d82;
-    color: var(--body-text);
+   each sits on a light tile while the card around it stays dark. */
+:root[data-theme="dark"] #highlighted-projects .work-list > img,
+:root[data-theme="dark"] .work img.repository-logo {
+    background: #dfe5eb;
 }
 
-:root[data-theme="dark"] #highlighted-projects .tag {
-    border-color: var(--tag-color);
+:root[data-theme="dark"] #highlighted-projects .work-list > img {
+    box-sizing: content-box;
+    padding: 20px 32px;
+    border-radius: 14px;
 }
 
-:root[data-theme="dark"] #highlighted-projects .tag[aria-pressed="false"] .tag-name {
-    background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
-}
-
-:root[data-theme="dark"] #highlighted-projects .tag[aria-pressed="false"]:hover .tag-name {
-    background: color-mix(in srgb, var(--tag-color) 32%, var(--card-bg));
+:root[data-theme="dark"] .work img.repository-logo {
+    box-sizing: border-box;
+    padding: 4px;
+    border-radius: 8px;
 }
 
 /* ---------- Pages ---------- */
