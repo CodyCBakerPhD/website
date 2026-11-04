@@ -112,6 +112,8 @@ enums:
         description: Checking data and metadata against a standard and its best practices.
       data:Provenance:
         description: Recording how results were produced and from what.
+      data:Reproducibility:
+        description: Keeping a result's data, code and environment together so that it can be rerun.
       data:FAIR Data:
         description: Making data findable, accessible, interoperable and reusable.
       data:Open Data:

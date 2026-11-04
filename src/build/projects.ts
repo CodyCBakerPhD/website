@@ -34,6 +34,7 @@ const LOGOS_ON_LIGHT_TILE: ReadonlySet<string> = new Set([
   "img/neuroconv_logo.png",
   "img/nwb_benchmarks_logo.png",
   "img/nwbwidgets_logo.png",
+  "img/stamped_logo.svg",
 ]);
 
 /** Years of involvement in the style of the Experience section: "2020-2024", "2025-Present" or "2015". */

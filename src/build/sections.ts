@@ -34,6 +34,7 @@ export const sections = [
       "nwb-benchmarks",
       "dandi-compute",
       "dandi-cache",
+      "stamped",
       "nwb-inspector",
       "historia",
       "nwb2bids",
@@ -71,6 +72,7 @@ export const sections = [
     // Grouped by kind under a heading each; this order applies within a group.
     render: (publications) => renderSearchable(publicationSearch, renderPublications(publications)),
     order: [
+      "stamped-2026",
       "open-data-in-neurophysiology-2025",
       "dandi-2025",
       "remote-access-methods-2025",

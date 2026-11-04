@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.6.0",
+  "record_version": "0.1.0",
+  "name": "STAMPED Principles",
+  "url": "https://github.com/stamped-principles",
+  "role": "Core Developer",
+  "start_date": "2026-02",
+  "logo": "img/stamped_logo.svg",
+  "repositories": [
+    {
+      "url": "https://github.com/stamped-principles/stamped-checklist",
+      "title": "STAMPED Compliance Checklist",
+      "homepage": "https://checklist.stamped-principles.org"
+    },
+    {
+      "url": "https://github.com/stamped-principles/.github",
+      "title": "STAMPED Principles",
+      "homepage": "https://stamped-principles.org"
+    },
+    {
+      "url": "https://github.com/stamped-principles/stamped-principles-schema"
+    },
+    {
+      "url": "https://github.com/stamped-principles/stamped-checklist-schema"
+    },
+    {
+      "url": "https://github.com/stamped-principles/stamped-branding"
+    }
+  ],
+  "description": [
+    "Co-developed seven principles for structuring and managing research objects (the data, code and computational environments behind a result, kept together as one unit) so that others can trust, rerun and build upon them: **S**elf-containment, **T**racking, **A**ctionability, **M**odularity, **P**ortability, **E**phemerality and **D**istributability.",
+    "Created the interactive compliance checklist, a web app for assessing a research object against the requirements of each principle with a yes or no and a reason for each, which keeps its answers in the page's URL for sharing and prints as a report.",
+    "Formalized the principles and the checklist as LinkML schemas, each released with its own DOI, from which the checklist loads the version it shows, and designed the project's logos and website."
+  ],
+  "tags": [
+    "data:Data Standards",
+    "data:Provenance",
+    "data:Reproducibility",
+    "engineering:Web Apps",
+    "engineering:Testing",
+    "languages:JavaScript"
+  ]
+}
