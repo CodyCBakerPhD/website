@@ -1,9 +1,9 @@
 {
   "schema_version": "0.4.0",
-  "record_version": "0.5.0",
+  "record_version": "0.6.0",
   "name": "Neurosift",
   "url": "https://neurosift.app",
-  "role": "UX Consultant and Contributor",
+  "role": "UX Design",
   "contribution": "Added on-the-fly analyses computed in the browser: spectrograms of LFP streams with adjustable hyperparameters, and event-related signals that align any time series to a table of intervals.",
   "start_date": "2023-07",
   "logo": "img/neurosift_logo.png",
