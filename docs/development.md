@@ -33,9 +33,11 @@ Parts of the site are generated from machine-readable JSON records, one file per
 
 Records hold only facts about the work.
 How the site presents them, such as the page each section is on and the order it lists its records in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
+Each section's `grid` lays its cards out in up to `columns` equal columns, in display order, row by row, dropping columns where a card would get narrower than `minCardWidth` pixels, so a phone shows one ([`src/build/grid.ts`](../src/build/grid.ts)).
+Cards in a row share its height.
 A record's file name is its ID, and its card on the page takes the same ID, so `projects#neuroconv` opens the NeuroConv card.
 Selecting a card, anywhere but on its links and tags, or the link icon in its top right corner, puts its ID in the page's URL and highlights it, without scrolling, so the address bar holds a link to that card ([`src/ts/cards.ts`](../src/ts/cards.ts)).
-The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group, which has a grid of its own.
 
 A summary is the few paragraphs that introduce the site's owner, written in implied first person.
 The About section shows one of them, named by `show` in `sections.ts`, rather than a card for each.

@@ -435,6 +435,26 @@ a:hover {
     margin-top: 6px;
 }
 
+/* A section's cards, in up to --grid-columns equal columns, each at least
+   --grid-min-card-width wide, so narrower screens drop columns (both set per
+   section, see src/build/grid.ts). Cards in a row share its height. */
+.card-grid {
+    --grid-gap: 22px;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(
+            max(min(var(--grid-min-card-width), 100%), (100% - (var(--grid-columns) - 1) * var(--grid-gap)) / var(--grid-columns)),
+            1fr
+        )
+    );
+    gap: var(--grid-gap);
+}
+
+.work .card-grid > .work-list {
+    margin: 0;
+}
+
 /* A card that a link has opened, or that was selected to link to it. */
 .work .work-list:target {
     border-color: var(--accent);
