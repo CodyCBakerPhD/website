@@ -953,7 +953,9 @@ a:hover {
     --card-border: #2a2a4a;
 }
 
-/* NWB's navy and orange, from the logos of the NWB tools. */
+/* NWB's navy and orange, from the logos of the NWB tools, which duct (with
+   no logo of its own) shares to match the cards around it. */
+:root[data-theme="dark"] #highlighted-projects #duct,
 :root[data-theme="dark"] #highlighted-projects #nwb-guide,
 :root[data-theme="dark"] #highlighted-projects #nwb-inspector,
 :root[data-theme="dark"] #highlighted-projects #nwb-benchmarks,
@@ -1002,15 +1004,15 @@ a:hover {
     --card-border: #344453;
 }
 
-/* Historia's leather and gold, from its logo. */
+/* Historia's gold, from its logo, on a slate gray its leather and parchment stand out against. */
 :root[data-theme="dark"] #highlighted-projects #historia {
     --accent: #f3e2bd;
     --accent-dark: #dfc58c;
     --accent-soft: rgba(200, 150, 46, 0.12);
     --accent-border: rgba(200, 150, 46, 0.4);
-    --page-bg: #1b0d13;
-    --card-bg: #24121a;
-    --card-border: #4a121b;
+    --page-bg: #141b22;
+    --card-bg: #1b232c;
+    --card-border: #344453;
 }
 
 /* ---------- Pages ---------- */
