@@ -315,3 +315,10 @@ It may still be valid under later schema versions, so `schema_version` only need
 
 The site version is stamped at the bottom left of every page at build time.
 The `Check version bumps` workflow fails a pull request that changes any of these without increasing its version.
+
+## Link checking
+
+The `Daily link checker` workflow builds the site every day and checks every link on its pages, and in the Markdown documentation, with [lychee](https://github.com/lycheeverse/lychee).
+When a link is broken, it emails the failure from the Gmail account in the `MAIL_USERNAME` and `MAIL_PASSWORD` repository secrets (an [app password](https://support.google.com/accounts/answer/185833)).
+It also runs, without emailing, on pull requests that change the workflow itself.
+To skip a link that cannot be checked automatically, add an `--exclude` pattern for it to the workflow.
