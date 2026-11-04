@@ -435,10 +435,60 @@ a:hover {
     margin-top: 6px;
 }
 
-/* A card that a link from another card has opened. */
+/* A card that a link has opened, or that was selected to link to it. */
 .work .work-list:target {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-border), var(--card-shadow-hover);
+}
+
+/* A record's card, which selecting links to (see src/ts/cards.ts). */
+.work .work-list[data-card] {
+    position: relative;
+    cursor: pointer;
+}
+
+/* The link to a record's card, in its top right corner, inside its padding. */
+.work .work-list li.card-permalink {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    line-height: 1;
+}
+
+.work .work-list li.card-permalink a,
+.work .work-list li.card-permalink a:hover {
+    display: block;
+    padding: 6px;
+    border-bottom: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: var(--muted);
+}
+
+.work .work-list li.card-permalink a {
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.work .work-list[data-card]:hover li.card-permalink a,
+.work .work-list[data-card]:target li.card-permalink a,
+.work .work-list li.card-permalink a:focus-visible {
+    opacity: 1;
+}
+
+.work .work-list li.card-permalink a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-border);
+}
+
+/* Touch screens have no hover to reveal it. */
+@media (hover: none) {
+    .work .work-list li.card-permalink a {
+        opacity: 1;
+    }
 }
 
 /* ---------- Links between records ---------- */

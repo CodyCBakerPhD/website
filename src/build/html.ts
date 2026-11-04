@@ -52,10 +52,14 @@ export function indent(lines: readonly string[]): string[] {
 
 /**
  * Renders a record as one card, which its page's search filters by `searchAttribute` (see search.ts).
- * The card's `id` is the record's, so other cards can link to it.
+ * The card's `id` is the record's, so other cards, and links shared from elsewhere, can open it.
+ * Its corner links to that ID, as does selecting the card itself (see src/ts/cards.ts).
  */
-export function renderCard(lines: readonly string[], searchAttribute: string, id: string): string[] {
-  return [`<ul class="work-list" id="${escapeHtml(id)}" data-search-item ${searchAttribute}>`, ...indent(lines), "</ul>"];
+export function renderCard(lines: readonly string[], searchAttribute: string, id: string, name: string): string[] {
+  const permalink =
+    `<li class="card-permalink"><a href="#${escapeHtml(id)}" aria-label="Link to ${escapeHtml(name)}" title="Link to this card">` +
+    '<i class="fa fa-link" aria-hidden="true"></i></a></li>';
+  return [`<ul class="work-list" id="${escapeHtml(id)}" data-card data-search-item ${searchAttribute}>`, ...indent([permalink, ...lines]), "</ul>"];
 }
 
 /** Matches a line holding only the <!-- build:NAME --> placeholder, capturing its indentation. */

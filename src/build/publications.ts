@@ -63,7 +63,7 @@ function renderPublication({ id, record: publication, references }: RecordEntry<
     lines.push("<br>", ...renderParagraphs(publication.description));
   }
   lines.push(...references, ...renderTags(publication.tags));
-  return renderCard(lines, searchAttribute(publicationSearch, publication), id);
+  return renderCard(lines, searchAttribute(publicationSearch, publication), id, publication.name);
 }
 
 /**

@@ -84,7 +84,7 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
   }
   lines.push("<br>", ...renderParagraphs(project.description), ...references, ...renderTags(project.tags));
 
-  return renderCard(lines, searchAttribute(projectSearch, project), id);
+  return renderCard(lines, searchAttribute(projectSearch, project), id, project.name);
 }
 
 export function checkProject(project: Project, { publicDir }: { publicDir: string }): string[] {
