@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.2.0",
-  "record_version": "0.1.0",
+  "schema_version": "0.7.0",
+  "record_version": "0.2.0",
   "name": "DANDI: Shaping the future of neurophysiology and neuroimage data publishing and exploration through collaboration with the community, standards, and analytic platforms",
   "kind": "article",
   "authors": [
@@ -12,6 +12,9 @@
   "venue": "In preparation",
   "description": [
     "An in-progress manuscript detailing the cloud architecture, core features, and future plans for the DANDI archive for neurophysiology and neuroimaging data. Includes contributions from the entire extended DANDI team (10+ authors)."
+  ],
+  "about": [
+    "projects/dandi-archive"
   ],
   "tags": [
     "archives:DANDI",
