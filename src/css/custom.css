@@ -14,8 +14,8 @@
     --nav-bg: rgba(255, 255, 255, 0.88);
     --watermark: #eef4f4;
     --avatar-ring: #ffffff;
-    /* Resolved here, so links keep the site's colors inside project cards that
-       take their own accents in the dark theme. */
+    /* Resolved here, so the accents project cards take in the dark theme do
+       not reach their links, whose colors the cards set on their own. */
     --link: var(--accent-dark);
     --link-hover: var(--accent);
     --link-underline: var(--accent-border);
@@ -930,13 +930,23 @@ a:hover {
 
 /* In the dark theme each project card takes its project's own colors: the
    dark theme of its site where it has one, and otherwise its logo's colors on
-   a dark background of the same hue, every text color at 4.5:1 or more.
-   Links keep the site's own colors, so they look alike on every card. */
+   a dark background of the same hue, every text color at 4.5:1 or more. */
+
+/* Links on every card share NWB's orange, from the NWB cards below, so they
+   look alike down the page; only HEARTH keeps its own. */
+:root[data-theme="dark"] #highlighted-projects .work-list {
+    --link: #e3833a;
+    --link-hover: #f0a066;
+    --link-underline: rgba(209, 113, 40, 0.45);
+}
 
 /* The HEARTH landing page's palette (brain-bbqs/hearth-landing-page, src/style.css). */
 :root[data-theme="dark"] #highlighted-projects #hearth {
     --ink: #f5f5f5;
     --muted: #a3a7ad;
+    --link: #ff6b35;
+    --link-hover: #ff6b35;
+    --link-underline: rgba(255, 107, 53, 0.35);
     --accent: #ff6b35;
     --accent-soft: rgba(255, 107, 53, 0.12);
     --accent-border: rgba(255, 107, 53, 0.35);
