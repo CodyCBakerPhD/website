@@ -1004,15 +1004,15 @@ a:hover {
     --card-border: #344453;
 }
 
-/* Historia's gold, from its logo, on a slate gray its leather and parchment stand out against. */
+/* Historia's gold, from its logo, on the navy of the NWB cards around it. */
 :root[data-theme="dark"] #highlighted-projects #historia {
     --accent: #f3e2bd;
     --accent-dark: #dfc58c;
     --accent-soft: rgba(200, 150, 46, 0.12);
     --accent-border: rgba(200, 150, 46, 0.4);
-    --page-bg: #141b22;
-    --card-bg: #1b232c;
-    --card-border: #344453;
+    --page-bg: #09192a;
+    --card-bg: #0d2033;
+    --card-border: #1d3d5c;
 }
 
 /* ---------- Pages ---------- */
