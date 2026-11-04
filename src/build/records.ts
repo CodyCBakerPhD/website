@@ -109,11 +109,12 @@ function describeError(error: ErrorObject): string {
   return `${error.instancePath || "(root)"} ${error.message}${detail}`;
 }
 
-/** Reads, validates and orders a section's records, or throws listing every problem. */
-function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): { id: string; record: T }[] {
-  const recordsDir = resolve(root, options.recordsDir);
-  const schemaFile = resolve(root, options.schemaFile);
-
+/**
+ * Reads every record in `recordsDir` and validates it against the JSON Schema
+ * in `schemaFile`. Returns the valid records by ID, and a description of each
+ * problem found in the others.
+ */
+export function readRecords<T>(recordsDir: string, schemaFile: string): { files: string[]; records: Map<string, T>; problems: string[] } {
   // A fresh Ajv per load: the dev server reloads on every request, and Ajv
   // refuses to compile a second schema with the same $id.
   // LinkML's JSON Schema generator targets draft 2019-09 and adds its own
@@ -151,11 +152,21 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
       }
       continue;
     }
+    records.set(basename(file, ".json"), record);
+  }
+  return { files, records, problems };
+}
 
+/** Reads, validates and orders a section's records, or throws listing every problem. */
+function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): { id: string; record: T }[] {
+  const { files, records: valid, problems } = readRecords<T>(resolve(root, options.recordsDir), resolve(root, options.schemaFile));
+  const records = new Map<string, T>();
+
+  for (const [id, record] of valid) {
     const checkProblems = [...checkTags(record.tags), ...(options.check?.(record, { publicDir }) ?? [])];
-    problems.push(...checkProblems.map((problem) => `${file}: ${problem}`));
+    problems.push(...checkProblems.map((problem) => `${id}.json: ${problem}`));
     if (checkProblems.length === 0) {
-      records.set(basename(file, ".json"), record);
+      records.set(id, record);
     }
   }
 

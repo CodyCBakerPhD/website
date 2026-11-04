@@ -23,7 +23,7 @@ Three versions are bumped independently, each once per PR and following semantic
 ## Records and schemas
 
 - [`docs/development.md`](docs/development.md) explains how the records, schemas and build fit together. Keep `README.md` to the short project description.
-- Site content beyond the page structure lives in JSON records, one file per record, under `projects/`, `datasets/` and `publications/`. A record's file name is its ID: keep it when the record's wording changes.
+- Site content beyond the page structure lives in JSON records, one file per record, under `summaries/`, `projects/`, `datasets/` and `publications/`. A record's file name is its ID: keep it when the record's wording changes. The CVs of CodyCBakerPhD/job-applications are rendered from the same records.
 - The LinkML schema `schemas/records.yaml` is the source of truth for every record's shape. Never edit the files generated from it (`schemas/jsonschema/`, `src/build/generated/records.ts` and the tag table in `docs/development.md`); change the schema, then run `sh scripts/generate-schemas.sh`.
 - Never edit `src/build/generated/github.json` by hand either. After citing a GitHub pull request or issue as evidence, or adding a project, run `python scripts/fetch_github_activity.py` (with `GITHUB_TOKEN` set) to fetch its activity.
 - Each record names the schema version it was written against in `schema_version`, and its own content version in `record_version`.
@@ -49,5 +49,6 @@ linkml-lint --config schemas/.linkmllint.yaml schemas/
 linkml-validate --schema schemas/records.yaml --target-class Project projects/*.json
 linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
 linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
+linkml-validate --schema schemas/records.yaml --target-class Summary summaries/*.json
 sh scripts/generate-schemas.sh
 ```
