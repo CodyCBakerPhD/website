@@ -898,26 +898,26 @@ a:hover {
 /* ---------- Project cards in the dark theme ---------- */
 
 /* Most project logos are drawn for a light background, so in the dark theme
-   project cards are a soft blue-gray, light enough for those logos but dimmer
-   than the light theme's white, with dark text and colors keeping at least
+   project cards are a muted steel blue, light enough for those logos without
+   glaring against the dark page, with dark text and colors keeping at least
    4.5:1 contrast on it. */
 :root[data-theme="dark"] #highlighted-projects .work-list {
-    --ink: #142029;
-    --body-text: #2a3542;
-    --muted: #4f5b67;
-    --accent: #0a5f5e;
-    --accent-dark: #084d4c;
-    --accent-soft: #c9dedd;
-    --accent-border: #7fb0ae;
-    --page-bg: #e8edf1;
-    --card-bg: #d9e1e7;
-    --card-border: #c3ccd4;
-    --diff-added: #116329;
-    --diff-deleted: #a40e26;
-    --diff-neutral: #c3ccd4;
-    --diff-neutral-border: #aeb8c1;
-    --activity-done: #6639ba;
-    --activity-review: #0550ae;
+    --ink: #0b1218;
+    --body-text: #18212b;
+    --muted: #2f3a46;
+    --accent: #08494a;
+    --accent-dark: #063f3e;
+    --accent-soft: #97b5b6;
+    --accent-border: #2f6f6d;
+    --page-bg: #b4c1cd;
+    --card-bg: #a8b6c4;
+    --card-border: #92a0ae;
+    --diff-added: #0a4a1c;
+    --diff-deleted: #7d0a1c;
+    --diff-neutral: #92a0ae;
+    --diff-neutral-border: #92a0ae;
+    --activity-done: #4b2589;
+    --activity-review: #033d82;
     color: var(--body-text);
 }
 
