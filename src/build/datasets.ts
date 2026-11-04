@@ -45,5 +45,5 @@ export function renderDataset({ id, record: dataset, references }: RecordEntry<D
   }
 
   lines.push(...renderParagraphs(dataset.description), ...references, ...renderTags(dataset.tags));
-  return renderCard(lines, searchAttribute(datasetSearch, dataset), id);
+  return renderCard(lines, searchAttribute(datasetSearch, dataset), id, dataset.name);
 }
