@@ -913,12 +913,14 @@ a:hover {
     display: block;
 }
 
-/* Logos drawn in dark blues for light backgrounds sit on a light tile in the dark theme. */
+/* Logos drawn in dark blues for light backgrounds sit on a light tile in the
+   dark theme. The tile's margin around the logo is a spread shadow rather than
+   padding, so it takes no room and switching theme does not move the page.
+   The small radius rounds the spread shadow's corners to about 13px. */
 :root[data-theme="dark"] .project-logo.logo-on-tile {
-    box-sizing: content-box;
-    padding: 20px 32px;
     background: #dfe5eb;
-    border-radius: 14px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 16px #dfe5eb;
 }
 
 /* In the dark theme each project card takes its project's own colors: the
