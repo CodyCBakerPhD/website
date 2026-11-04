@@ -166,6 +166,24 @@ Rerun it now and then to refresh the counts; the file records when it was fetche
 The build fails on a cited pull request or issue, a listed repository, or a project with code on GitHub, that the file has nothing for.
 [`src/build/github.ts`](../src/build/github.ts) checks and renders the activity.
 
+## Data sizes
+
+The sizes of published data that Data Curation records give are counted by [`scripts/count_published_data.py`](../scripts/count_published_data.py), from the dandisets the owner has published on the DANDI Archive.
+The build does not read its output, so when a total changes, update the record by hand.
+A run reads every NWB file, so it takes a while, and needs a DANDI API key in `DANDI_API_KEY`:
+
+```bash
+pip install dandi h5py remfile
+```
+
+```bash
+read -rs DANDI_API_KEY && export DANDI_API_KEY
+```
+
+```bash
+python scripts/count_published_data.py
+```
+
 ## Search
 
 Each record section has a search bar above its records, which filters them as you type, and a menu to sort them.
