@@ -21,7 +21,7 @@
     }
   ],
   "description": [
-    "The NIH-funded Ecosystem for Multi-modal Brain-behavior Experimentation and Research (EMBER), the data archive of the Brain Behavior Quantification and Synchronization (BBQS) consortium.",
+    "The BRAIN Initiative-funded Ecosystem for Multi-modal Brain-behavior Experimentation and Research (EMBER), the data archive of the Brain Behavior Quantification and Synchronization (BBQS) consortium.",
     "Established OAuth 2.0 protocols and managed CORS permissions for external web applications."
   ],
   "built_with": [
