@@ -1,9 +1,10 @@
 // Site behavior shared by every page: the animated "typed" headline and
 // smooth scrolling on the home page, the light/dark theme toggle, and the
-// search and links to single cards on the pages listing records. Bundled by
-// Vite into dist/assets/.
+// search, column choice and links to single cards on the pages listing
+// records. Bundled by Vite into dist/assets/.
 
 import { initCardLinks } from "./cards";
+import { initGridControls } from "./grid";
 import { initRecordSearch } from "./search";
 
 /** Fallback when the nav bar has not rendered yet (matches its CSS height). */
@@ -139,5 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothNavigation();
   initThemeToggle();
   initRecordSearch();
+  initGridControls();
   initCardLinks();
 });

@@ -73,7 +73,8 @@ def fetch_contribution(repository: str, kind: str, number: str) -> dict:
 def fetch_repository(url: str) -> dict:
     owner, name = CODE_URL.match(url).groups()
     time.sleep(SEARCH_INTERVAL_SECONDS)
-    (repository,) = get("search/repositories", {"q": f"repo:{owner}/{name}"})["items"]
+    # Repository search leaves forks out unless asked, and a project can be made of one.
+    (repository,) = get("search/repositories", {"q": f"repo:{owner}/{name} fork:true"})["items"]
     return {"description": repository["description"]}
 
 

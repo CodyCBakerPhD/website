@@ -19,12 +19,21 @@ import {
   splitContributions,
   type GitHubActivity,
 } from "./github.ts";
+import type { CardGrid } from "./grid.ts";
 import { displayUrl, escapeHtml, indent } from "./html.ts";
 
 /**
  * The relation slots of schemas/records.yaml, in the order cards list them. A
  * null label heads each named record by its type instead, e.g. "Featured software".
  */
+/**
+ * The mini grids a card lays out its websites and its repositories in (see grid.ts): up to
+ * `columns` side by side, each subcard at least `minCardWidth` pixels wide, so that even a card
+ * of four columns fits two. Websites carry longer descriptions, so they take fewer columns.
+ */
+const WEBSITE_GRID: CardGrid = { columns: 2, minCardWidth: 160 };
+const REPOSITORY_GRID: CardGrid = { columns: 3, minCardWidth: 160 };
+
 const RELATIONS = [
   { slot: "about", label: null, reverse: "Presented in" },
   { slot: "built_with", label: "Related software", reverse: "Used by" },
@@ -154,11 +163,11 @@ export function linkRecords(
     }
     // A repository serving a website is listed as that website.
     const repositories = node.record.repositories ?? [];
-    for (const [label, listed] of [
-      ["Websites", repositories.filter((repository) => repository.homepage)],
-      ["Repositories", repositories.filter((repository) => !repository.homepage)],
+    for (const [label, listed, grid] of [
+      ["Websites", repositories.filter((repository) => repository.homepage), WEBSITE_GRID],
+      ["Repositories", repositories.filter((repository) => !repository.homepage), REPOSITORY_GRID],
     ] as const) {
-      const cards = renderRepositories(listed, activity);
+      const cards = renderRepositories(listed, activity, grid);
       if (cards) {
         groups.push({ label, kind: "record-repositories", body: cards });
       }

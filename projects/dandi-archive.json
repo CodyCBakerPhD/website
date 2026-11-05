@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.7.0",
+  "record_version": "0.1.0",
+  "name": "DANDI Archive",
+  "url": "https://dandiarchive.org",
+  "role": "Contributor",
+  "contribution": "Integrated the NWB Inspector into the validation of every upload, designed the options for backing up the archive's petabyte-scale storage along with their cost estimates, and improved navigation of user interface.",
+  "start_date": "2022-03",
+  "logo": "img/dandi_logo.svg",
+  "repositories": [
+    {
+      "url": "https://github.com/dandi/dandi-archive"
+    },
+    {
+      "url": "https://github.com/dandi/dandi-cli"
+    },
+    {
+      "url": "https://github.com/dandi/dandi-docs"
+    },
+    {
+      "url": "https://github.com/dandi/simple-s3-backup"
+    },
+    {
+      "url": "https://github.com/dandi/backup-status"
+    }
+  ],
+  "description": [
+    "The Distributed Archives for Neurophysiology Data Integration (DANDI), a platform funded by the BRAIN Initiative for publishing, sharing, and processing neurophysiology data, such as electrophysiology, optophysiology, and behavioral time series."
+  ],
+  "built_with": [
+    "projects/nwb-inspector"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "data:Validation",
+    "engineering:Web Apps",
+    "engineering:Command Line",
+    "computing:AWS",
+    "languages:Python"
+  ]
+}

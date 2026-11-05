@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.7.0",
+  "record_version": "0.1.0",
+  "name": "EMBER Archive",
+  "url": "https://emberarchive.org",
+  "role": "Maintainer",
+  "start_date": "2025-11",
+  "logo": "img/ember_logo.png",
+  "repositories": [
+    {
+      "url": "https://github.com/aplbrain/BBQS-EMBER-web"
+    },
+    {
+      "url": "https://github.com/aplbrain/BBQS-EMBER-docs"
+    },
+    {
+      "url": "https://github.com/aplbrain/dandi-infrastructure"
+    },
+    {
+      "url": "https://github.com/aplbrain/ember-dandi-access-summaries"
+    }
+  ],
+  "description": [
+    "The BRAIN Initiative-funded Ecosystem for Multi-modal Brain-behavior Experimentation and Research (EMBER), the data archive of the Brain Behavior Quantification and Synchronization (BBQS) consortium.",
+    "Established OAuth 2.0 protocols and managed CORS permissions for external web applications."
+  ],
+  "built_with": [
+    "projects/s3-log-extraction"
+  ],
+  "tags": [
+    "archives:EMBER",
+    "archives:BBQS",
+    "analysis:Analytics",
+    "engineering:Web Apps",
+    "engineering:GitHub Actions",
+    "computing:AWS"
+  ]
+}

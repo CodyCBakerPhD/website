@@ -16,6 +16,8 @@ const LOGO_WIDTH_PERCENT = 50;
 const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
   "img/dandi_cache_logo.svg": 25,
   "img/dandi_compute_logo.png": 25,
+  "img/dandi_logo.svg": 25,
+  "img/ember_logo.png": 25,
   "img/hdmf_logo.png": 25,
   "img/hearth_logo.svg": 25,
   "img/historia_logo.svg": 25,

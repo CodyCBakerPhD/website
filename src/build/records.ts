@@ -18,6 +18,7 @@ import addFormats from "ajv-formats";
 import type { Plugin } from "vite";
 import type { BaseRecord } from "./generated/records.ts";
 import { GITHUB_ACTIVITY_FILE, loadGitHubActivity } from "./github.ts";
+import type { CardGrid } from "./grid.ts";
 import { fillPlaceholder, hasPlaceholder } from "./html.ts";
 import { pageRoute } from "./layout.ts";
 import { linkRecords, type RecordNode } from "./references.ts";
@@ -49,8 +50,10 @@ export interface SectionOptions<T extends BaseRecord> {
   related: string;
   /** Text of a link to a record from another card. Defaults to its name. */
   label?: (record: T) => string;
-  /** Renders the section's records, in display order, as lines of HTML. */
-  render: (entries: readonly RecordEntry<T>[]) => string[];
+  /** The grid the section lays its cards out in (see grid.ts). */
+  grid: CardGrid;
+  /** Renders the section's records, in display order, as lines of HTML, laying their cards out in its grid. */
+  render: (entries: readonly RecordEntry<T>[], grid: CardGrid) => string[];
   /** Checks a schema cannot express. Returns a description of each problem found. */
   check?: (record: T, context: { publicDir: string }) => string[];
 }
@@ -89,7 +92,10 @@ export function defineSection<T extends BaseRecord>(options: SectionOptions<T>):
       return {
         nodes,
         render: (references) =>
-          options.render(records.map(({ id, record }) => ({ id, record, references: references.get(`${options.recordsDir}/${id}`) ?? [] }))),
+          options.render(
+            records.map(({ id, record }) => ({ id, record, references: references.get(`${options.recordsDir}/${id}`) ?? [] })),
+            options.grid,
+          ),
       };
     },
   };

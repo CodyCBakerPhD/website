@@ -4,17 +4,22 @@
 //
 // Each section names the JSON Schema its records are validated against
 // (generated from schemas/records.yaml). A section of cards lists its records
-// in display order. Order is the site's choice rather than a property of the
-// records, so it lives here instead of in them. Adding a record file means
+// in display order, and lays its cards out in a grid of up to `columns`
+// columns, dropping columns where a card would get narrower than
+// `minCardWidth` pixels, with a control on the page for choosing between the
+// column counts in `choices` (see grid.ts). Order and layout are the site's choice
+// rather than properties of the records, so they live here instead of in
+// them. Adding a record file means
 // adding its ID to the matching list below. Its page, icon and label are how
 // cards on any page link to its records (see references.ts).
 
 import { datasetSearch, renderDataset } from "./datasets.ts";
 import type { Dataset, Project, Publication } from "./generated/records.ts";
+import { renderGrid, renderGridControl } from "./grid.ts";
 import { checkProject, projectSearch, renderProject } from "./projects.ts";
 import { publicationSearch, renderPublications } from "./publications.ts";
 import { defineSection } from "./records.ts";
-import { renderSearchable } from "./search.ts";
+import { renderSearchable, searchId } from "./search.ts";
 import { defineSummarySection } from "./summary.ts";
 
 export const sections = [
@@ -33,10 +38,14 @@ export const sections = [
     related: "Featured software",
     recordsDir: "projects",
     schemaFile: "schemas/jsonschema/project.schema.json",
-    render: (projects) => renderSearchable(projectSearch, projects.flatMap(renderProject)),
+    grid: { columns: 3, minCardWidth: 420, choices: [1, 2, 3, 4] },
+    render: (projects, grid) =>
+      renderSearchable(projectSearch, renderGrid(grid, projects.flatMap(renderProject)), renderGridControl(grid, searchId(projectSearch))),
     check: checkProject,
     order: [
       "hearth",
+      "ember-archive",
+      "dandi-archive",
       "s3-log-extraction",
       "nwb-guide",
       "neuroconv",
@@ -60,7 +69,9 @@ export const sections = [
     related: "Featured data",
     recordsDir: "datasets",
     schemaFile: "schemas/jsonschema/dataset.schema.json",
-    render: (datasets) => renderSearchable(datasetSearch, datasets.flatMap(renderDataset)),
+    grid: { columns: 3, minCardWidth: 420, choices: [1, 2, 3, 4] },
+    render: (datasets, grid) =>
+      renderSearchable(datasetSearch, renderGrid(grid, datasets.flatMap(renderDataset)), renderGridControl(grid, searchId(datasetSearch))),
     order: [
       "visual-coding-ophys",
       "ibl-brain-wide-map",
@@ -79,8 +90,10 @@ export const sections = [
     label: (publication) => `${publication.name} (${publication.date.slice(0, 4)})`,
     recordsDir: "publications",
     schemaFile: "schemas/jsonschema/publication.schema.json",
-    // Grouped by kind under a heading each; this order applies within a group.
-    render: (publications) => renderSearchable(publicationSearch, renderPublications(publications)),
+    grid: { columns: 2, minCardWidth: 420, choices: [1, 2, 3, 4] },
+    // Grouped by kind under a heading each, with a grid each; this order applies within a group.
+    render: (publications, grid) =>
+      renderSearchable(publicationSearch, renderPublications(publications, grid), renderGridControl(grid, searchId(publicationSearch))),
     order: [
       "stamped-2026",
       "open-data-in-neurophysiology-2025",

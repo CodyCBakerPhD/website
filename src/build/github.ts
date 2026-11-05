@@ -9,6 +9,7 @@
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { renderGrid, type CardGrid } from "./grid.ts";
 import { displayUrl, escapeHtml, indent } from "./html.ts";
 import { renderIcon } from "./icons.ts";
 
@@ -207,11 +208,15 @@ export function renderContributions(urls: readonly string[], activity: GitHubAct
 
 /**
  * Subcards for repositories a project is made of, each with its logo and
- * description, or null if there are none. A repository is named by its own
+ * description, laid out in the mini grid `grid`, or null if there are none. A repository is named by its own
  * name and links to its code, unless it has a homepage, such as the web app it
  * serves: then it is named by that website's title and links there.
  */
-export function renderRepositories(repositories: NonNullable<GitHubSlots["repositories"]>, activity: GitHubActivity): string | null {
+export function renderRepositories(
+  repositories: NonNullable<GitHubSlots["repositories"]>,
+  activity: GitHubActivity,
+  grid: CardGrid,
+): string | null {
   if (repositories.length === 0) {
     return null;
   }
@@ -236,7 +241,7 @@ export function renderRepositories(repositories: NonNullable<GitHubSlots["reposi
       "</div>",
     ];
   });
-  return ['<div class="repositories">', ...indent(cards), "</div>"].join("\n");
+  return renderGrid(grid, cards, "subcards").join("\n");
 }
 
 /**

@@ -2,6 +2,7 @@
 
 import type { Publication } from "./generated/records.ts";
 import { PublicationKind } from "./generated/records.ts";
+import { renderGrid, type CardGrid } from "./grid.ts";
 import { escapeHtml, indent, renderCard, renderParagraphs } from "./html.ts";
 import type { RecordEntry } from "./records.ts";
 import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
@@ -67,16 +68,16 @@ function renderPublication({ id, record: publication, references }: RecordEntry<
 }
 
 /**
- * Groups publications under a heading per kind, keeping the display order within each group.
+ * Groups publications under a heading per kind, keeping the display order within each group, which lays out its cards in `grid`.
  * Each group is its own element so the search can hide a heading whose publications are all filtered out.
  */
-export function renderPublications(publications: readonly RecordEntry<Publication>[]): string[] {
+export function renderPublications(publications: readonly RecordEntry<Publication>[], grid: CardGrid): string[] {
   const groups = Object.entries(KIND_HEADINGS)
     .map(([kind, heading]) => ({ heading, members: publications.filter(({ record }) => record.kind === kind) }))
     .filter(({ members }) => members.length > 0);
   return groups.flatMap(({ heading, members }) => [
     '<div class="record-group" data-search-group>',
-    ...indent([`<h2>${heading}</h2>`, ...members.flatMap(renderPublication)]),
+    ...indent([`<h2>${heading}</h2>`, ...renderGrid(grid, members.flatMap(renderPublication))]),
     "</div>",
   ]);
 }

@@ -33,9 +33,13 @@ Parts of the site are generated from machine-readable JSON records, one file per
 
 Records hold only facts about the work.
 How the site presents them, such as the page each section is on and the order it lists its records in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
+Each section's `grid` lays its cards out in up to `columns` equal columns, in display order, row by row, dropping columns where a card would get narrower than `minCardWidth` pixels, so a phone shows one ([`src/build/grid.ts`](../src/build/grid.ts)).
+Cards in a row share its height, and pages of cards in a grid run wider than the home page.
+A section with `choices` also gets a Columns control beside its search bar, for choosing between those column counts ([`src/ts/grid.ts`](../src/ts/grid.ts)).
+It disables the counts the window is too narrow for, hides itself where only one column fits, and keeps a choice other than `columns` in the page's URL, such as `projects?columns=4`.
 A record's file name is its ID, and its card on the page takes the same ID, so `projects#neuroconv` opens the NeuroConv card.
 Selecting a card, anywhere but on its links and tags, or the link icon in its top right corner, puts its ID in the page's URL and highlights it, without scrolling, so the address bar holds a link to that card ([`src/ts/cards.ts`](../src/ts/cards.ts)).
-The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group.
+The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group, which has a grid of its own.
 
 A summary is the few paragraphs that introduce the site's owner, written in implied first person.
 The About section shows one of them, named by `show` in `sections.ts`, rather than a card for each.
@@ -123,6 +127,8 @@ A project made of several GitHub repositories lists them in `repositories`, each
 ```
 
 Its card shows each as a small card with its logo (or GitHub's repository icon) and its description, which is fetched from GitHub (see [GitHub activity](#github-activity)).
+The small cards sit in a mini grid of the same kind as the cards' own, set in [`src/build/references.ts`](../src/build/references.ts): up to two websites or three repositories side by side, each at least 160 pixels wide, with its text under its logo when there is no room beside it.
+On a card narrower than 600 pixels, such as one of three or four columns, its labels sit above what they label rather than beside it, which leaves the mini grids more room.
 A repository that serves a web app or site names it as its `homepage`, with a `title` for the site (such as its own page title), and the card lists it under "Websites" instead, by that title and linking there:
 
 ```json
