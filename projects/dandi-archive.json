@@ -25,7 +25,7 @@
     }
   ],
   "description": [
-    "Maintains the scripts and status dashboard of the archive's backup, and fixes and extends its command line client."
+    "The Distributed Archives for Neurophysiology Data Integration (DANDI), a platform funded by the BRAIN Initiative for publishing, sharing, and processing neurophysiology data, such as electrophysiology, optophysiology, and behavioral time series."
   ],
   "built_with": [
     "projects/nwb-inspector"
