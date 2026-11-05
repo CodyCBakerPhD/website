@@ -56,14 +56,22 @@ export function searchAttribute<T>(config: SearchConfig<T>, record: T): string {
   return `data-search-record="${escapeHtml(JSON.stringify(data))}"`;
 }
 
-/** Wraps a section's rendered records with a search bar that searches and sorts them. */
-export function renderSearchable<T>(config: SearchConfig<T>, records: readonly string[]): string[] {
+/** The ID the search bar's elements derive their own IDs from. */
+export function searchId<T>(config: SearchConfig<T>): string {
+  return config.noun.replace(/\W+/g, "-");
+}
+
+/**
+ * Wraps a section's rendered records with a search bar that searches and sorts them, followed by
+ * any `controls` of the section's own, such as how many columns to show.
+ */
+export function renderSearchable<T>(config: SearchConfig<T>, records: readonly string[], controls: readonly string[] = []): string[] {
   const clash = config.filters.find((filter) => RESERVED_KEYS.has(filter.key));
   if (clash) {
     throw new Error(`The "${clash.key}:" filter of the ${config.noun} search clashes with a tag theme or built-in filter`);
   }
 
-  const id = config.noun.replace(/\W+/g, "-");
+  const id = searchId(config);
   const label = escapeHtml(`Search ${config.noun}`);
   const settings = {
     noun: config.noun,
@@ -99,6 +107,7 @@ export function renderSearchable<T>(config: SearchConfig<T>, records: readonly s
           "</span>",
         ]),
         "</label>",
+        ...controls,
       ]),
       "</div>",
       '<div class="record-search-summary">',
