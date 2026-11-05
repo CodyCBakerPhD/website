@@ -21,7 +21,7 @@
     }
   ],
   "description": [
-    "Opened the API of the BBQS consortium's data archive to its web apps, listed the HEARTH apps on its website, and extended the DANDI Archive's usage analytics to it."
+    "Established OAuth 2.0 protocols and managed CORS permissions for external web applications, and extended the DANDI Archive's usage analytics to EMBER."
   ],
   "built_with": [
     "projects/s3-log-extraction"
