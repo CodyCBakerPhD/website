@@ -21,10 +21,7 @@
     }
   ],
   "description": [
-    "Contributed to the EMBER Archive, which holds the Brain Behavior Quantification and Synchronization (BBQS) consortium's data in Dandisets on its own deployment of the DANDI Archive.",
-    "Added the consortium's web apps to the archive's CORS permissions, so that they can call its API from the browser, and listed the HEARTH apps on the Tools page of its website.",
-    "Brought the usage analytics built for the DANDI Archive to EMBER, publishing summaries of the full downloads and streaming of each of its Dandisets.",
-    "Wrote user stories for the Clip Extractor in the archive's documentation, and a strategy for previewing pull requests to it, including those from forks."
+    "Opened the API of the BBQS consortium's data archive to its web apps, listed the HEARTH apps on its website, and extended the DANDI Archive's usage analytics to it."
   ],
   "built_with": [
     "projects/s3-log-extraction"

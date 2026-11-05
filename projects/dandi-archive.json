@@ -25,9 +25,7 @@
     }
   ],
   "description": [
-    "Integrated the NWB Inspector into the validation the DANDI command line client runs before every upload, so that each NWB file submitted to the archive is checked against best practices, and documented it for uploaders.",
-    "Researched options for stable, cost-effective, long-term backup of the archive's **petabyte-scale** S3 storage, written up as design documents with cost estimates, and maintains the scripts and status dashboard of its backup.",
-    "Enhanced the web app with a table viewer for TSV assets, file browser rows that are real links, and end-to-end tests, and stopped it from exposing the URLs for managing OAuth applications. Fixed and extended the command line client, such as accepting a DataLad dataset's not-yet-downloaded files as paths to validate and recording which NWB Inspector version validated each file."
+    "Maintains the scripts and status dashboard of the archive's backup, and fixes and extends its command line client."
   ],
   "built_with": [
     "projects/nwb-inspector"
