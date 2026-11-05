@@ -18,5 +18,6 @@ cv/*/*.fls
 cv/*/*.out
 cv/*/*.run.xml
 cv/*/*.synctex.gz
+cv/*/comment.cut
 cv/*/*.pdf
 src/public/assets/resume/
