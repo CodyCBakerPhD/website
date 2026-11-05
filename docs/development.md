@@ -43,7 +43,7 @@ The Publications section groups its records under a heading per `kind` (article,
 
 A summary is the few paragraphs that introduce the site's owner, written in implied first person.
 The About section shows one of them, named by `show` in `sections.ts`, rather than a card for each.
-The CVs in [CodyCBakerPhD/job-applications](https://github.com/CodyCBakerPhD/job-applications) render their Summary from these records too, each choosing its own, and a one-page resume shows only the first sentence of each paragraph.
+The full CV and the one-page resume render their Summary from these records too, each choosing its own in `cv/records.toml`, and the one-page resume shows only the first sentence of each paragraph (see [CV and resume](#cv-and-resume)).
 
 ## Links between records
 
