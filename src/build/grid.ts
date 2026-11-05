@@ -2,9 +2,10 @@
 // The settings reach the stylesheet as custom properties on the grid's
 // element, so src/css/custom.css holds the one rule that lays out every grid.
 // Each card stays a direct child of its grid, since the search sorts and
-// hides the cards in place (src/ts/search.ts). A section that offers choices
-// of column count gets a control beside its search bar, which src/ts/grid.ts
-// drives.
+// hides the cards in place (src/ts/search.ts). Subcards within a card, such
+// as a project's repositories, take a mini grid of the same kind, set where
+// they are rendered (references.ts). A section that offers choices of column
+// count gets a control beside its search bar, which src/ts/grid.ts drives.
 
 import { escapeHtml, indent } from "./html.ts";
 
@@ -35,11 +36,15 @@ function checkGrid({ columns, minCardWidth, choices }: CardGrid): void {
   }
 }
 
-/** Lays out rendered cards in `grid`. */
-export function renderGrid(grid: CardGrid, cards: readonly string[]): string[] {
+/**
+ * Lays out rendered cards in `grid`, or, as a mini grid, the subcards within a card (such as its
+ * repositories), which sit closer together and which the page's Columns control leaves alone.
+ */
+export function renderGrid(grid: CardGrid, cards: readonly string[], kind: "cards" | "subcards" = "cards"): string[] {
   checkGrid(grid);
   const style = `--grid-columns: ${grid.columns}; --grid-min-card-width: ${grid.minCardWidth}px;`;
-  return [`<div class="card-grid" style="${style}" data-card-grid>`, ...indent(cards), "</div>"];
+  const open = kind === "cards" ? `<div class="card-grid" style="${style}" data-card-grid>` : `<div class="subcard-grid" style="${style}">`;
+  return [open, ...indent(cards), "</div>"];
 }
 
 /**

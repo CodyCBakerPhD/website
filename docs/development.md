@@ -127,6 +127,8 @@ A project made of several GitHub repositories lists them in `repositories`, each
 ```
 
 Its card shows each as a small card with its logo (or GitHub's repository icon) and its description, which is fetched from GitHub (see [GitHub activity](#github-activity)).
+The small cards sit in a mini grid of the same kind as the cards' own, set in [`src/build/references.ts`](../src/build/references.ts): up to two websites or three repositories side by side, each at least 240 or 200 pixels wide.
+On a card narrower than 600 pixels, such as one of three or four columns, its labels sit above what they label rather than beside it, which leaves the mini grids more room.
 A repository that serves a web app or site names it as its `homepage`, with a `title` for the site (such as its own page title), and the card lists it under "Websites" instead, by that title and linking there:
 
 ```json

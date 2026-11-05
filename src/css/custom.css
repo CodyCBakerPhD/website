@@ -443,8 +443,10 @@ body:has(.card-grid) {
 
 /* A section's cards, in up to --grid-columns equal columns, each at least
    --grid-min-card-width wide, so narrower screens drop columns (both set per
-   section, see src/build/grid.ts). Cards in a row share its height. */
-.card-grid {
+   section, see src/build/grid.ts). Cards in a row share its height. A card's
+   subcards, such as its repositories, take a mini grid of the same kind. */
+.card-grid,
+.subcard-grid {
     --grid-gap: 22px;
     display: grid;
     grid-template-columns: repeat(
@@ -455,6 +457,10 @@ body:has(.card-grid) {
         )
     );
     gap: var(--grid-gap);
+}
+
+.subcard-grid {
+    --grid-gap: 10px;
 }
 
 .work .card-grid > .work-list {
@@ -471,6 +477,8 @@ body:has(.card-grid) {
 .work .work-list[data-card] {
     position: relative;
     cursor: pointer;
+    /* Its references stack under their labels when it is narrow, wherever the grid puts it. */
+    container-type: inline-size;
 }
 
 /* The link to a record's card, in its top right corner, inside its padding. */
@@ -597,7 +605,7 @@ body:has(.card-grid) {
     color: var(--muted);
 }
 
-@media only screen and (max-width: 600px) {
+@container (max-width: 600px) {
     .work .record-references dl {
         grid-template-columns: minmax(0, 1fr);
     }
@@ -829,12 +837,6 @@ body:has(.card-grid) {
 }
 
 /* The repositories a project is made of, each a subcard with its logo. */
-.work .repositories {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 10px;
-}
-
 .work .repository {
     position: relative;
     display: flex;
