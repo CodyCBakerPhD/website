@@ -44,8 +44,8 @@ export const sections = [
     check: checkProject,
     order: [
       "hearth",
-      "dandi-archive",
       "ember-archive",
+      "dandi-archive",
       "s3-log-extraction",
       "nwb-guide",
       "neuroconv",

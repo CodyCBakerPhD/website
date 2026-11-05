@@ -4,7 +4,7 @@
   "name": "DANDI Archive",
   "url": "https://dandiarchive.org",
   "role": "Contributor",
-  "contribution": "Integrated the NWB Inspector into the validation of every upload, designed the options for backing up the archive's petabyte-scale storage along with their cost estimates, and added a table viewer for TSV assets to its web app.",
+  "contribution": "Integrated the NWB Inspector into the validation of every upload, designed the options for backing up the archive's petabyte-scale storage along with their cost estimates, and improved navigation of user interface.",
   "start_date": "2022-03",
   "logo": "img/dandi_logo.svg",
   "repositories": [
@@ -25,7 +25,6 @@
     }
   ],
   "description": [
-    "Contributed to the DANDI Archive for neurophysiology and neuroimaging data, from its command line client to its web app, its documentation, and the backup of its storage.",
     "Integrated the NWB Inspector into the validation the DANDI command line client runs before every upload, so that each NWB file submitted to the archive is checked against best practices, and documented it for uploaders.",
     "Researched options for stable, cost-effective, long-term backup of the archive's **petabyte-scale** S3 storage, written up as design documents with cost estimates, and maintains the scripts and status dashboard of its backup.",
     "Enhanced the web app with a table viewer for TSV assets, file browser rows that are real links, and end-to-end tests, and stopped it from exposing the URLs for managing OAuth applications. Fixed and extended the command line client, such as accepting a DataLad dataset's not-yet-downloaded files as paths to validate and recording which NWB Inspector version validated each file."
