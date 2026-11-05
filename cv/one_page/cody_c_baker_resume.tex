@@ -1,0 +1,51 @@
+% A one-page resume, condensed from the full CV (cv/full_styled/).
+% Its summary, projects and publications are rendered from the records by
+% scripts/render_cv.py; the rest is condensed by hand from the full CV.
+
+\documentclass[letterpaper,10pt,english]{curve}
+
+\usepackage{../resume_settings}
+\geometry{hmargin=1.15cm,vmargin=0.95cm}
+
+% Tighter than the full CV, to fit one page.
+\fixedkeywidth{2.45cm}
+\setlength{\cvitemsafter}{0.2ex}
+\renewcommand{\arraystretch}{1.06}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{6pt}
+\rubricfont{\normalsize\bfseries\sffamily}
+\setlength{\rubricspace}{2pt}
+
+% Stops the build if the resume no longer fits on one page.
+\AtEndDocument{%
+  \ifnum\value{page}>1
+    \PackageError{one_page}{The resume runs onto a second page}{Shorten it, e.g. show fewer records in cv/records.toml.}%
+  \fi
+}
+
+
+
+\leftheader{
+  \begin{tabular}{@{}l@{}}
+    {\fontsize{20}{24}\selectfont\bfseries\sffamily\color{CVInk}Cody C. Baker, Ph.D.} \\[0.5em]
+    \makefield{\faGlobe}{\href{https://codycbakerphd.com}{\texttt{codycbakerphd.com}}}
+    \makefield{\faEnvelope}{\href{mailto:cody.c.baker.phd@gmail.com}{\texttt{cody.c.baker.phd@gmail.com}}}
+    \makefield{\faLinkedin}{\href{https://www.linkedin.com/in/cody-c-baker/}{\texttt{cody-c-baker}}}
+    \makefield{\faGithubSquare}{\href{https://github.com/CodyCBakerPhD}{\texttt{github.com/CodyCBakerPhD}}}
+  \end{tabular}
+}
+\rightheader{~}
+
+
+
+\begin{document}
+\makeheaders[c]
+
+\makerubric{summary}
+\makerubric{education}
+\makerubric{experience}
+\makerubric{projects}
+\makerubric{skills}
+\makerubric{publications}
+
+\end{document}

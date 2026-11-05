@@ -1,0 +1,247 @@
+\RequirePackage{silence}
+\WarningsOff[longtable]
+\WarningsOff[array]
+
+% Bibliography settings
+% Make bibs show up to two authors before "et al."
+\PassOptionsToPackage{
+  style=ieee,
+  sorting=ydnt,
+  uniquename=init,
+  defernumbers=true,
+  maxbibnames=2,
+  minbibnames=2,
+  giveninits=true,
+  uniquename=init,
+}{biblatex}
+
+
+
+% Basic packages and settings
+\RequirePackage{graphicx}
+\RequirePackage[hyphens]{url}
+\RequirePackage{babel}
+\raggedright
+
+\RequirePackage{fontawesome5}
+
+\newcommand{\smallcaps}[1]{\textsc{\lowercase{#1}}}
+
+% The paper size comes from each document's class options (a4paper or letterpaper).
+\RequirePackage[nohead,nofoot,hmargin=1.2cm,vmargin=1.1cm]{geometry}
+\RequirePackage{relsize}
+\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes,shadows}
+
+\RequirePackage{comment}
+
+
+
+% Palette, shared with the website (https://www.codycbakerphd.com): its ink,
+% teal accent and muted text, darkened slightly where print needs the contrast.
+\definecolor{CVInk}{HTML}{1C2733}
+\definecolor{CVText}{HTML}{2B3542}
+\definecolor{CVMuted}{HTML}{5D6876}
+\definecolor{CVAccent}{HTML}{0E7C7B}
+\definecolor{CVAccentDark}{HTML}{0A5F5E}
+\definecolor{CVAccentLight}{HTML}{3AA9A0}
+\definecolor{CVRule}{HTML}{CFE6E5}
+
+% The names of the previous palette, kept for documents that use them directly.
+\colorlet{SwishLineColour}{CVAccentLight}
+\colorlet{MarkerColour}{CVAccent}
+
+\AtBeginDocument{\color{CVText}}
+
+\RequirePackage{biblatex}
+\RequirePackage{csquotes}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+   \node[shape=circle,text=white,fill=CVAccent,font=\sffamily\scriptsize\bfseries,inner sep=1pt,text height=1.35ex,minimum width=1.5em,text centered] (char) {#1};}}
+
+\newcounter{bibitem}
+\AtBeginBibliography{\setcounter{bibitem}{1}}
+\iffieldformatundef{labelnumberwidth}{%
+  % if author-year style
+  \AtEveryBibitem{\makebox[2.5em][l]{\circled{\thebibitem}\stepcounter{bibitem}}}%
+}{%
+  % if numeric style
+  \DeclareFieldFormat{labelnumberwidth}{\makebox[2.5em][l]{\circled{\thebibitem}}}%
+  \setlength{\biblabelsep}{0pt}%
+  \AtEveryBibitem{\stepcounter{bibitem}}%
+}
+\AtEveryBibitem{\iffieldundef{doi}{}{\clearfield{url}}}
+
+\setlength{\bibitemsep}{1.5ex}
+\setlength{\bibhang}{2.5em}
+\RequirePackage{xpatch}
+\xpretofieldformat{doi}
+  {\textcolor{CVAccent}{\scriptsize\faLink}}
+  {}{}
+\xpretofieldformat{url}
+  {\textcolor{CVAccent}{\scriptsize\faLink}}
+  {}{}
+
+
+
+% Rubrics (sections): an uppercase, letterspaced heading over a hairline, with
+% a short teal bar at its start like the section headings of the website.
+\headerscale{1}
+\rubricfont{\large\bfseries\sffamily}
+\setlength{\rubricspace}{3pt}
+\setlength{\rubricafterspace}{2pt}
+\setlength{\subrubricspace}{2pt}
+\setlength{\subrubricbeforespace}{19pt}  % The height of a strut, so only what exceeds a line's own height shows
+\continuedname{\ {\mdseries\small\color{CVMuted}(continued)}}
+
+\def\@@rubrichead#1{%
+  \begin{tikzpicture}[baseline]%
+  \fill[CVRule] (0,0) rectangle (\@almosttextwidth,0.6pt);
+  \fill[left color=CVAccent,right color=CVAccentLight,rounded corners=0.6pt] (0,-0.5pt) rectangle (1.5cm,1.6pt);
+  \node[font={\@rubricfont},text=CVInk,inner sep=0pt,text ragged,anchor=south west,text depth=.5ex,text height=1.5ex] at (0pt,4pt) {#1};
+  \end{tikzpicture}%
+  \vspace\rubricspace%
+}
+
+% The title of a rubric: its icon in the accent color, then its name in
+% letterspaced capitals.
+\newcommand{\cvrubric}[2]{{\color{CVAccent}#1}\hspace{0.6em}\textls[60]{\MakeUppercase{#2}}}
+
+\subrubricfont{\normalsize\bfseries\sffamily\color{CVAccentDark}}
+\subrubricalignment{l}
+
+\newcommand{\makefield}[2]{\makebox[1.5em]{\color{CVAccent}#1} #2\hspace{2em}}
+
+\keyalignment{r}
+\keyfont{\sffamily\small\color{CVMuted}}
+\rubricalignment{l}
+\renewcommand{\arraystretch}{1.25}
+\urlstyle{tt}
+
+% Gives the key column (dates, skill areas) a fixed width, so that the entries
+% of every rubric start at the same place. Without it, each rubric's key column
+% is as wide as its widest key.
+\newlength{\cvkeywidth}
+\newcommand{\fixedkeywidth}[1]{%
+  \setlength{\cvkeywidth}{#1}%
+  % \leavevmode first: a color change before any text would hang the key a line below its entry.
+  \newcolumntype{k}{>{\raggedleft\arraybackslash\leavevmode\@keyfont}p{\cvkeywidth}}%
+}
+
+% The marker before each entry: none, as the bold title and the key column
+% already set each entry apart. Pass one to \prefixmarker to bring it back.
+\newcommand{\prefixmarker}[1]{\def\@prefixmarker{#1}}
+\def\@prefixmarker{}
+
+\prefix{\@prefixmarker}
+
+\newcommand{\makerubrichead}[1]{\vskip\baselineskip\@@rubrichead{#1}}
+
+% Starts a short rubric on the next page unless it fits whole on this one,
+% e.g. \keeprubric{14}{achievements} for one about 14 lines long.
+\RequirePackage{needspace}
+% \Needspace breaks the page outright when the rubric does not fit, leaving no
+% penalty behind for longtable to break at after its first heading.
+\newcommand{\keeprubric}[2]{\Needspace{#1\baselineskip}\makerubric{#2}}
+
+\defbibheading{subbibliography}{\vskip 6pt{\@subrubricfont\hspace{3pt}#1}\par}
+
+\defbibfilter{booksandchapters}{%
+( type=book or type=incollection )
+}
+
+\RequirePackage{pgffor}
+\newcommand{\mynames}[1]{\def\my@namelist{#1}}
+\newtoggle{boldname}
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \global\togglefalse{boldname}%
+  \foreach \my@fname / \my@gname in \my@namelist {%
+    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                 and
+                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+      {\global\toggletrue{boldname}}{}%
+  }%
+  \iftoggle{boldname}{\textbf{#1}}{#1}%
+}
+
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \global\togglefalse{boldname}%
+  \foreach \my@fname / \my@gname in \my@namelist{%
+    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                 and
+                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+      {\global\toggletrue{boldname}\breakforeach}{}%
+  }%
+  \iftoggle{boldname}{\textbf{#1}}{#1}%
+}
+
+
+
+% Links are colored, so that they read as links on screen.
+\RequirePackage[colorlinks=true,linkcolor=CVInk,citecolor=CVInk,urlcolor=CVAccentDark,breaklinks=true]{hyperref}
+
+
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[p,osf,swashQ]{cochineal}
+\RequirePackage{cabin}
+\RequirePackage[varqu,varl,scale=0.9]{zi4}
+\RequirePackage{microtype}  % After the fonts; also provides \textls for letterspacing
+
+\includecomment{fullonly}
+
+\DefineBibliographyStrings{english}{url={\textsc{url}}}
+
+
+% For tight enumeration
+\newcommand{\description}{}  % For some reason this works... (from stackoverflow)
+\RequirePackage[shortlabels]{enumitem}
+
+\RequirePackage{changepage}  % For custom margin on itemizations within entries
+
+
+
+% Building blocks of the entries, most of them written by scripts/render_cv.py.
+
+% The points under an entry, each behind a small accent-colored bullet.
+% The list ends with a line holding only a strut \cvitemsafter tall, rather
+% than with space, which newer releases of LaTeX drop at the end of a table
+% cell. Ending the cell on a line also keeps older releases from adding an
+% empty line there, so the spacing is the same in both.
+\newlength{\cvitemsafter}
+\setlength{\cvitemsafter}{0.6ex}
+\newenvironment{cvitems}{%
+  \begin{itemize}[
+    label={\textcolor{CVAccent}{\raisebox{0.12ex}{\scriptsize\textbullet}}},
+    leftmargin=1.05em,
+    labelsep=0.45em,
+    itemsep=0.25ex,
+    parsep=0pt,
+    topsep=0.35ex,
+    partopsep=0pt,
+  ]%
+}{%
+  \end{itemize}%
+  \par\nointerlineskip\noindent\rule{0pt}{\cvitemsafter}%
+  \ignorespacesafterend
+}
+
+% A muted bar between the parts of a line, such as a degree and its field.
+\newcommand{\cvbar}{\ {\color{CVMuted}\textbar}\ }
+
+% The first line of an entry: what it is, then the role held in it.
+\newcommand{\cvtitle}[2]{\textbf{#1}\cvbar\emph{#2}}
+
+% A line of detail under an entry's title, such as where a dataset came from.
+\newcommand{\cvdetail}[1]{\par{\small\color{CVMuted}#1}}
+
+% Keywords of an entry, set apart by middle dots.
+\newcommand{\cvsep}{\ {\color{CVAccentLight}\textperiodcentered}\ }
+\newcommand{\cvkeywords}[1]{\par{\sffamily\footnotesize\color{CVMuted}#1}}
+
+% The resume owner's name in an author list.
+\newcommand{\cvowner}[1]{\textbf{\color{CVInk}#1}}
+
+% A DOI, as a link.
+\newcommand{\cvdoi}[2]{{\color{CVAccent}\scriptsize\faLink}\,\href{#1}{\texttt{\small doi:#2}}}

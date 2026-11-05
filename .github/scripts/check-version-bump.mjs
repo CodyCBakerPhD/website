@@ -15,7 +15,7 @@ import { existsSync, readFileSync } from "node:fs";
 const SCHEMA_FILE = "schemas/records.yaml";
 const SCHEMA_PARTS = [SCHEMA_FILE, "schemas/tags.yaml"];
 const RECORD_FILE = /^(projects|datasets|publications|summaries)\/[^/]+\.json$/;
-const SITE_PATHS = ["src/", "configs/", "projects/", "datasets/", "publications/", "summaries/", "schemas/", "package.json", "package-lock.json"];
+const SITE_PATHS = ["src/", "configs/", "cv/", "scripts/render_cv.py", "projects/", "datasets/", "publications/", "summaries/", "schemas/", "package.json", "package-lock.json"];
 
 const base = `origin/${process.env.BASE_REF || "main"}`;
 

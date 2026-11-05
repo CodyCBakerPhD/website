@@ -35,6 +35,10 @@ jobs:
         if: github.event.action != 'closed'
         run: npm ci
 
+      - name: Build the CV and resume
+        if: github.event.action != 'closed'
+        uses: ./.github/actions/build-cv
+
       - name: Build site
         if: github.event.action != 'closed'
         run: npm run build

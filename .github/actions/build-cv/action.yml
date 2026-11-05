@@ -1,0 +1,28 @@
+name: Build the CV and resume
+description: >-
+  Renders the full CV and the one-page resume from the records, compiles them,
+  and places the PDFs under src/public/assets/resume/ for the site build to
+  publish. Fails if a record is not placed in cv/records.toml or the one-page
+  resume runs onto a second page.
+runs:
+  using: composite
+  steps:
+    - name: Render the CV's rubrics from the records
+      shell: bash
+      run: python3 scripts/render_cv.py
+
+    # The same TeX Live as CodyCBakerPhD/job-applications builds its other CVs with.
+    - name: Compile the CV and resume
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: |
+          cv/full_styled/cody_c_baker_full_cv.tex
+          cv/one_page/cody_c_baker_resume.tex
+        work_in_root_file_dir: true
+        docker_image: ghcr.io/xu-cheng/texlive-full:20250301
+
+    - name: Place the PDFs for the site build
+      shell: bash
+      run: |
+        mkdir -p src/public/assets/resume
+        cp cv/full_styled/cody_c_baker_full_cv.pdf cv/one_page/cody_c_baker_resume.pdf src/public/assets/resume/
