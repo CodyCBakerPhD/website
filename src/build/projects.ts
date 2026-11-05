@@ -16,6 +16,7 @@ const LOGO_WIDTH_PERCENT = 50;
 const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
   "img/dandi_cache_logo.svg": 25,
   "img/dandi_compute_logo.png": 25,
+  "img/ember_logo.png": 25,
   "img/hdmf_logo.png": 25,
   "img/hearth_logo.svg": 25,
   "img/historia_logo.svg": 25,
@@ -28,6 +29,7 @@ const LOGO_WIDTH_PERCENT_OVERRIDES: Readonly<Record<string, number>> = {
  * their own, so they sit on a light tile in the dark theme.
  */
 const LOGOS_ON_LIGHT_TILE: ReadonlySet<string> = new Set([
+  "img/dandi_logo.svg",
   "img/guide_logo.png",
   "img/hdmf_logo.png",
   "img/inspector_logo.png",

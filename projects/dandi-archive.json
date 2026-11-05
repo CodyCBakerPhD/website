@@ -6,6 +6,7 @@
   "role": "Contributor",
   "contribution": "Integrated the NWB Inspector into the validation of every upload, designed the options for backing up the archive's petabyte-scale storage along with their cost estimates, and added a table viewer for TSV assets to its web app.",
   "start_date": "2022-03",
+  "logo": "img/dandi_logo.svg",
   "repositories": [
     {
       "url": "https://github.com/dandi/dandi-archive"

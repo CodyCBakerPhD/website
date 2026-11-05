@@ -6,6 +6,7 @@
   "role": "Maintainer",
   "contribution": "Opened the archive's API to the consortium's web apps, listed the HEARTH apps among its tools, and brought the DANDI Archive's usage analytics to it.",
   "start_date": "2025-11",
+  "logo": "img/ember_logo.png",
   "repositories": [
     {
       "url": "https://github.com/aplbrain/BBQS-EMBER-web"
