@@ -3,7 +3,7 @@
   "record_version": "0.1.0",
   "name": "EMBER Archive",
   "url": "https://emberarchive.org",
-  "role": "Contributor",
+  "role": "Maintainer",
   "contribution": "Opened the archive's API to the consortium's web apps, listed the HEARTH apps among its tools, and brought the DANDI Archive's usage analytics to it.",
   "start_date": "2025-11",
   "repositories": [
