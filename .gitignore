@@ -2,3 +2,22 @@ node_modules/
 dist/
 *.log
 .DS_Store
+
+# The CV and resume are built from the records rather than committed (see
+# docs/development.md): their rendered rubrics, LaTeX build files and PDFs.
+cv/*/summary.tex
+cv/*/projects.tex
+cv/*/datasets.tex
+cv/*/publications.tex
+cv/*/*.aux
+cv/*/*.bbl
+cv/*/*.bcf
+cv/*/*.blg
+cv/*/*.fdb_latexmk
+cv/*/*.fls
+cv/*/*.out
+cv/*/*.run.xml
+cv/*/*.synctex.gz
+cv/*/comment.cut
+cv/*/*.pdf
+src/public/assets/resume/

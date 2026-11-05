@@ -28,7 +28,11 @@ jobs:
         run: npm ci
 
       # The pages are checked as built, so the links the build assembles from
-      # records, and those between pages, are covered as well.
+      # records, and those between pages, are covered as well. The CV and
+      # resume are built first, since the home page links to their PDFs.
+      - name: Build the CV and resume
+        uses: ./.github/actions/build-cv
+
       - name: Build site
         run: npm run build
 

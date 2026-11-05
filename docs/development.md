@@ -43,7 +43,7 @@ The Publications section groups its records under a heading per `kind` (article,
 
 A summary is the few paragraphs that introduce the site's owner, written in implied first person.
 The About section shows one of them, named by `show` in `sections.ts`, rather than a card for each.
-The CVs in [CodyCBakerPhD/job-applications](https://github.com/CodyCBakerPhD/job-applications) render their Summary from these records too, each choosing its own, and a one-page resume shows only the first sentence of each paragraph.
+The full CV and the one-page resume render their Summary from these records too, each choosing its own in `cv/records.toml`, and the one-page resume shows only the first sentence of each paragraph (see [CV and resume](#cv-and-resume)).
 
 ## Links between records
 
@@ -337,6 +337,35 @@ linkml-validate --schema schemas/records.yaml --target-class Summary summaries/*
 
 `npm run build` (and `npm run dev`) also validates every record and renders each section into its page as static HTML.
 An invalid record fails the build with a message naming the file and the problem.
+
+## CV and resume
+
+The home page offers a full CV and a one-page resume for download, built from the same records as the pages, so the three always say the same thing.
+Their LaTeX sources live under [`cv/`](../cv):
+
+| Path                                                          | What                                                                                    |
+|---------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| [`cv/full_styled/`](../cv/full_styled)                        | The full CV (A4): its document, and its hand-written education, experience, achievements and skills |
+| [`cv/one_page/`](../cv/one_page)                              | The one-page resume (Letter), condensed from the full CV                                |
+| [`cv/resume_settings.sty`](../cv/resume_settings.sty)         | The macros both use (`\cvtitle`, `cvitems` and the like), which set how they look       |
+| [`cv/records.toml`](../cv/records.toml)                       | Which records each rubric shows, in what order, and which it leaves out                 |
+
+Their Summary, Highlighted Projects, Data Curation and Publications rubrics are rendered from the records by [`scripts/render_cv.py`](../scripts/render_cv.py), next to the hand-written ones, and are not committed.
+Every record must be shown or left out in each section of `cv/records.toml`, so adding a record means placing it there too; until then, rendering fails and names it.
+The one-page resume shows only the first sentence of each description, and its build fails if it runs onto a second page.
+
+The `Build the CV and resume` action ([`.github/actions/build-cv/`](../.github/actions/build-cv/action.yml)) renders the rubrics, compiles both with TeX Live, and places the PDFs under `src/public/assets/resume/` (also not committed) for the site build to publish.
+The deploy, every pull request preview and the daily link check run it before building the site, so a record that breaks either document fails its pull request.
+To build them locally, with Python 3.11 or later and TeX Live with `latexmk`:
+
+```bash
+python3 scripts/render_cv.py
+(cd cv/full_styled && latexmk -pdf -interaction=nonstopmode cody_c_baker_full_cv.tex)
+(cd cv/one_page && latexmk -pdf -interaction=nonstopmode cody_c_baker_resume.tex)
+```
+
+Copy the two PDFs into `src/public/assets/resume/` for the dev server to offer them.
+The resumes tailored to particular applications, and the plain-text ATS resume, are kept in CodyCBakerPhD/job-applications.
 
 ## Banner
 

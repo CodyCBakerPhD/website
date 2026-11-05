@@ -1,0 +1,154 @@
+# The rubrics of the full CV and the one-page resume under cv/ that
+# scripts/render_cv.py renders from this repository's records.
+#
+# Each [[section]] writes one LaTeX rubric, `output` (relative to cv/), from
+# one directory of records, `records` ("summaries", "projects", "datasets" or
+# "publications"). `show` lists the record IDs (file names without .json) in
+# the order the resume shows them; `omit` lists those it deliberately leaves
+# out. Every record must appear in exactly one of the two, so adding a record
+# means placing it here too. A section of summaries shows exactly one.
+#
+# `compact = true` renders the short form of a one-page resume: no intro, only
+# the first sentence of each description (of each paragraph, for a summary),
+# and publications without the headings for their kinds.
+#
+# The full CV shows every record, in the order the website lists them (the
+# section lists in src/build/sections.ts), and the summary its About section
+# shows.
+
+[[section]]
+output = "full_styled/summary.tex"
+records = "summaries"
+show = ["general"]
+omit = []
+
+[[section]]
+output = "one_page/summary.tex"
+records = "summaries"
+compact = true
+show = ["general"]
+omit = []
+
+[[section]]
+output = "full_styled/projects.tex"
+records = "projects"
+show = [
+    "hearth",
+    "ember-archive",
+    "dandi-archive",
+    "s3-log-extraction",
+    "nwb-guide",
+    "neuroconv",
+    "neurosift",
+    "nwb-benchmarks",
+    "dandi-compute",
+    "dandi-cache",
+    "stamped",
+    "nwb-inspector",
+    "historia",
+    "nwb2bids",
+    "hdmf",
+    "nwb-widgets",
+    "duct",
+]
+omit = []
+
+[[section]]
+output = "full_styled/datasets.tex"
+records = "datasets"
+show = [
+    "visual-coding-ophys",
+    "ibl-brain-wide-map",
+    "c-elegans-signal-propagation",
+    "glia-futility",
+    "microns",
+    "buzsaki-lab",
+]
+omit = []
+
+[[section]]
+output = "full_styled/publications.tex"
+records = "publications"
+# Grouped by kind (articles, then presentations, then workshops); this order
+# applies within each group.
+show = [
+    "stamped-2026",
+    "open-data-in-neurophysiology-2025",
+    "dandi-2025",
+    "remote-access-methods-2025",
+    "neuroconv-2025",
+    "neurosift-2024",
+    "biccn-data-ecosystem-2023",
+    "synaptic-connectivity-inference-2020",
+    "nonlinear-stimulus-representations-2020",
+    "correlated-states-2019",
+    "nwb-guide-sfn-2024",
+    "neuroconv-sfn-2023",
+    "semi-balanced-networks-cosyne-2020",
+    "connectivity-inference-cosyne-2018",
+    "nwb-dandi-tutorial-baylor-2024",
+    "neuroconv-nwb-guide-tutorial-janelia-2023",
+    "nwb-dandi-tutorial-cosyne-2023",
+    "nwb-dandi-hackathon-swc-2023",
+    "neuroinformatics-odin-2023",
+    "neuroconv-tutorial-janelia-2022",
+]
+omit = []
+
+# The one-page resume: a few lead-developer projects from the top of the
+# website's order, and three published articles. Its build fails if it no
+# longer fits on one page, e.g. after a description grows.
+[[section]]
+output = "one_page/projects.tex"
+records = "projects"
+compact = true
+show = [
+    "hearth",
+    "s3-log-extraction",
+    "nwb-guide",
+    "neuroconv",
+]
+omit = [
+    "dandi-archive",
+    "ember-archive",
+    "dandi-compute",
+    "nwb-benchmarks",
+    "dandi-cache",
+    "stamped",
+    "nwb-inspector",
+    "historia",
+    "neurosift",
+    "nwb2bids",
+    "hdmf",
+    "nwb-widgets",
+    "duct",
+]
+
+[[section]]
+output = "one_page/publications.tex"
+records = "publications"
+compact = true
+show = [
+    "open-data-in-neurophysiology-2025",
+    "neuroconv-2025",
+    "nonlinear-stimulus-representations-2020",
+]
+omit = [
+    "stamped-2026",
+    "synaptic-connectivity-inference-2020",
+    "neurosift-2024",
+    "dandi-2025",
+    "remote-access-methods-2025",
+    "biccn-data-ecosystem-2023",
+    "correlated-states-2019",
+    "nwb-guide-sfn-2024",
+    "neuroconv-sfn-2023",
+    "semi-balanced-networks-cosyne-2020",
+    "connectivity-inference-cosyne-2018",
+    "nwb-dandi-tutorial-baylor-2024",
+    "neuroconv-nwb-guide-tutorial-janelia-2023",
+    "nwb-dandi-tutorial-cosyne-2023",
+    "nwb-dandi-hackathon-swc-2023",
+    "neuroinformatics-odin-2023",
+    "neuroconv-tutorial-janelia-2022",
+]
