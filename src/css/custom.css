@@ -840,8 +840,10 @@ body:has(.card-grid) {
 .work .repository {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px 12px;
     padding: 10px 14px;
     background: var(--page-bg);
     border: 1px solid var(--card-border);
@@ -872,8 +874,10 @@ body:has(.card-grid) {
     height: 22px;
 }
 
+/* Too narrow for its text beside its logo, a subcard puts the text under it. */
 .work .repository-text {
     display: flex;
+    flex: 1 1 120px;
     flex-direction: column;
     gap: 2px;
     min-width: 0;

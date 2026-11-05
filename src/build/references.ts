@@ -28,11 +28,11 @@ import { displayUrl, escapeHtml, indent } from "./html.ts";
  */
 /**
  * The mini grids a card lays out its websites and its repositories in (see grid.ts): up to
- * `columns` side by side, each subcard at least `minCardWidth` pixels wide. Websites carry
- * longer descriptions, so they take fewer, wider columns.
+ * `columns` side by side, each subcard at least `minCardWidth` pixels wide, so that even a card
+ * of four columns fits two. Websites carry longer descriptions, so they take fewer columns.
  */
-const WEBSITE_GRID: CardGrid = { columns: 2, minCardWidth: 240 };
-const REPOSITORY_GRID: CardGrid = { columns: 3, minCardWidth: 200 };
+const WEBSITE_GRID: CardGrid = { columns: 2, minCardWidth: 160 };
+const REPOSITORY_GRID: CardGrid = { columns: 3, minCardWidth: 160 };
 
 const RELATIONS = [
   { slot: "about", label: null, reverse: "Presented in" },
