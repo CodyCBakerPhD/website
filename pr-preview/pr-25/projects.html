@@ -25,8 +25,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 	<title>Highlighted Projects | Cody C. Baker, Ph.D.</title>
 	<meta name="description" content="Highlighted projects of Cody C. Baker, Ph.D.">
-  <script type="module" crossorigin src="./assets/main-CWwwsYHq.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/main-QhJtmbRs.css">
+  <script type="module" crossorigin src="./assets/main-BMNkFDgI.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-B7pExRJS.css">
 </head>
 
 <body>
@@ -87,13 +87,22 @@
 								</select>
 							</span>
 						</label>
+						<div class="record-grid-control" role="radiogroup" aria-labelledby="projects-columns-label" data-grid-control data-grid-default="3" hidden>
+							<span id="projects-columns-label">Columns</span>
+							<span class="record-grid-choices">
+								<label><input type="radio" name="columns" value="1"><span>1</span></label>
+								<label><input type="radio" name="columns" value="2"><span>2</span></label>
+								<label><input type="radio" name="columns" value="3"><span>3</span></label>
+								<label><input type="radio" name="columns" value="4"><span>4</span></label>
+							</span>
+						</div>
 					</div>
 					<div class="record-search-summary">
 						<p class="record-search-status" role="status" data-search-status></p>
 						<button type="button" class="record-search-clear" data-search-clear hidden>Clear search</button>
 					</div>
 				</form>
-				<div class="card-grid" style="--grid-columns: 2; --grid-min-card-width: 420px;">
+				<div class="card-grid" style="--grid-columns: 3; --grid-min-card-width: 420px;" data-card-grid>
 					<ul class="work-list" id="hearth" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;HEARTH&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;npm&quot;]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-07&quot;,&quot;oldest&quot;:&quot;2026-07&quot;,&quot;name&quot;:&quot;HEARTH&quot;}}">
 						<li class="card-permalink"><a href="#hearth" aria-label="Link to HEARTH" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
 						<img class="project-logo" src="img/hearth_logo.svg" alt="HEARTH logo" style="width: 25%;" />
@@ -194,6 +203,8 @@
 					</ul>
 					<ul class="work-list" id="dandi-archive" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;DANDI Archive&quot;],&quot;role&quot;:[&quot;Contributor&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2022,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2022-03&quot;,&quot;oldest&quot;:&quot;2022-03&quot;,&quot;name&quot;:&quot;DANDI Archive&quot;}}">
 						<li class="card-permalink"><a href="#dandi-archive" aria-label="Link to DANDI Archive" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/dandi_logo.svg" alt="DANDI Archive logo" style="width: 50%;" />
+						<br>
 						<li><a href="https://dandiarchive.org">DANDI Archive</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2022-Present</li>
 						<li>Contribution: Integrated the NWB Inspector into the validation of every upload, designed the options for backing up the archive&#39;s petabyte-scale storage along with their cost estimates, and added a table viewer for TSV assets to its web app.</li>
 						<br>
@@ -286,6 +297,8 @@
 					</ul>
 					<ul class="work-list" id="ember-archive" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;EMBER Archive&quot;],&quot;role&quot;:[&quot;Maintainer&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025-11&quot;,&quot;oldest&quot;:&quot;2025-11&quot;,&quot;name&quot;:&quot;EMBER Archive&quot;}}">
 						<li class="card-permalink"><a href="#ember-archive" aria-label="Link to EMBER Archive" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/ember_logo.png" alt="EMBER Archive logo" style="width: 25%;" />
+						<br>
 						<li><a href="https://emberarchive.org">EMBER Archive</a> &nbsp; | &nbsp; Maintainer &nbsp; | &nbsp; 2025-Present</li>
 						<li>Contribution: Opened the archive&#39;s API to the consortium&#39;s web apps, listed the HEARTH apps among its tools, and brought the DANDI Archive&#39;s usage analytics to it.</li>
 						<br>
