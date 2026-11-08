@@ -110,14 +110,11 @@ export function renderSearchable<T>(config: SearchConfig<T>, records: readonly s
         ...controls,
       ]),
       "</div>",
-      '<div class="record-search-summary">',
-      ...indent([
-        '<p class="record-search-status" role="status" data-search-status></p>',
-        '<button type="button" class="record-search-clear" data-search-clear hidden>Clear search</button>',
-      ]),
-      "</div>",
+      // Announces the result count to screen readers; sighted readers see the cards themselves.
+      '<p class="visually-hidden" role="status" data-search-status></p>',
     ]),
     "</form>",
   ];
-  return [`<div class="record-search-scope" data-search>`, ...indent([...form, ...records]), "</div>"];
+  const empty = '<p class="record-search-empty" data-search-empty hidden></p>';
+  return [`<div class="record-search-scope" data-search>`, ...indent([...form, empty, ...records]), "</div>"];
 }
