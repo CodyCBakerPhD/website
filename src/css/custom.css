@@ -1322,42 +1322,14 @@ body:has(.card-grid) {
     box-shadow: 0 0 0 3px var(--accent-border);
 }
 
-.record-search-summary {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 8px 14px;
-    margin-top: 12px;
-    padding: 0 8px;
-}
-
-.record-search-status {
+/* Stands in for the cards when the search matches none of them. */
+.record-search-empty {
     margin: 0;
-    font-size: 0.9375em;
+    padding: 36px 30px;
+    text-align: center;
     color: var(--muted);
-}
-
-.record-search-clear {
-    padding: 0 0 2px 0;
-    font-family: "Lato", Arial, sans-serif;
-    font-size: 0.9375em;
-    font-weight: 700;
-    line-height: 1.75em;
-    color: var(--link);
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--link-underline);
-    cursor: pointer;
-}
-
-.record-search-clear:hover {
-    color: var(--link-hover);
-    border-bottom-color: var(--link-hover);
-}
-
-.record-search-clear:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    border: 1px dashed var(--card-border);
+    border-radius: 12px;
 }
 
 /* ---------- Skills ---------- */

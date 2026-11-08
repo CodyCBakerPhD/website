@@ -193,7 +193,7 @@ interface SearchBar {
   list: HTMLUListElement;
   sortSelect: HTMLSelectElement;
   status: HTMLElement;
-  clear: HTMLButtonElement;
+  empty: HTMLElement;
 }
 
 function findSearchBar(scope: HTMLElement): SearchBar | null {
@@ -202,8 +202,8 @@ function findSearchBar(scope: HTMLElement): SearchBar | null {
   const list = scope.querySelector<HTMLUListElement>("[data-search-suggestions]");
   const sortSelect = scope.querySelector<HTMLSelectElement>("[data-search-sort]");
   const status = scope.querySelector<HTMLElement>("[data-search-status]");
-  const clear = scope.querySelector<HTMLButtonElement>("[data-search-clear]");
-  return form && input && list && sortSelect && status && clear ? { form, input, list, sortSelect, status, clear } : null;
+  const empty = scope.querySelector<HTMLElement>("[data-search-empty]");
+  return form && input && list && sortSelect && status && empty ? { form, input, list, sortSelect, status, empty } : null;
 }
 
 function initSearch(scope: HTMLElement): void {
@@ -212,7 +212,7 @@ function initSearch(scope: HTMLElement): void {
   if (!bar || !settings) {
     return;
   }
-  const { form, input, list, sortSelect, status, clear } = bar;
+  const { form, input, list, sortSelect, status, empty } = bar;
   const { noun, sorts } = settings;
 
   const items = Array.from(scope.querySelectorAll<HTMLElement>("[data-search-item]"), readItem);
@@ -346,7 +346,6 @@ function initSearch(scope: HTMLElement): void {
       button.setAttribute("aria-pressed", String(isTagActive(terms, tag.slice(0, separator), tag.slice(separator + 1))));
     }
 
-    clear.hidden = !input.value.trim();
     const summary =
       tests.length === 0
         ? `${items.length} ${noun}. Select any tag to filter by it.`
@@ -354,6 +353,8 @@ function initSearch(scope: HTMLElement): void {
           ? `No ${noun} match.`
           : `Showing ${shown} of ${items.length} ${noun}.`;
     status.textContent = [summary, ...problems].join(" ");
+    empty.hidden = shown > 0;
+    empty.textContent = shown > 0 ? "" : [`No ${noun} match.`, ...problems].join(" ");
   }
 
   /** The term the caret is in, or an empty one where a new term would start. */
@@ -590,12 +591,6 @@ function initSearch(scope: HTMLElement): void {
   sortSelect.addEventListener("change", () => {
     applySort();
     writeUrl();
-  });
-  clear.addEventListener("click", () => {
-    input.value = "";
-    render();
-    writeUrl();
-    input.focus();
   });
 
   scope.addEventListener("click", (event) => {
