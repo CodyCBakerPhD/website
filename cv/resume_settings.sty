@@ -2,39 +2,17 @@
 \WarningsOff[longtable]
 \WarningsOff[array]
 
-% Bibliography settings
-% Make bibs show up to two authors before "et al."
-\PassOptionsToPackage{
-  style=ieee,
-  sorting=ydnt,
-  uniquename=init,
-  defernumbers=true,
-  maxbibnames=2,
-  minbibnames=2,
-  giveninits=true,
-  uniquename=init,
-}{biblatex}
-
-
-
 % Basic packages and settings
 \RequirePackage{graphicx}
-\RequirePackage[hyphens]{url}
 \RequirePackage{babel}
 \raggedright
 
 \RequirePackage{fontawesome5}
 
-\newcommand{\smallcaps}[1]{\textsc{\lowercase{#1}}}
-
 % The paper size comes from each document's class options (a4paper or letterpaper).
 \RequirePackage[nohead,nofoot,hmargin=1.2cm,vmargin=1.1cm]{geometry}
-\RequirePackage{relsize}
-\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage{xcolor}
 \RequirePackage{tikz}
-\usetikzlibrary{shapes,shadows}
-
-\RequirePackage{comment}
 
 
 
@@ -48,42 +26,7 @@
 \definecolor{CVAccentLight}{HTML}{3AA9A0}
 \definecolor{CVRule}{HTML}{CFE6E5}
 
-% The names of the previous palette, kept for documents that use them directly.
-\colorlet{SwishLineColour}{CVAccentLight}
-\colorlet{MarkerColour}{CVAccent}
-
 \AtBeginDocument{\color{CVText}}
-
-\RequirePackage{biblatex}
-\RequirePackage{csquotes}
-
-\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-   \node[shape=circle,text=white,fill=CVAccent,font=\sffamily\scriptsize\bfseries,inner sep=1pt,text height=1.35ex,minimum width=1.5em,text centered] (char) {#1};}}
-
-\newcounter{bibitem}
-\AtBeginBibliography{\setcounter{bibitem}{1}}
-\iffieldformatundef{labelnumberwidth}{%
-  % if author-year style
-  \AtEveryBibitem{\makebox[2.5em][l]{\circled{\thebibitem}\stepcounter{bibitem}}}%
-}{%
-  % if numeric style
-  \DeclareFieldFormat{labelnumberwidth}{\makebox[2.5em][l]{\circled{\thebibitem}}}%
-  \setlength{\biblabelsep}{0pt}%
-  \AtEveryBibitem{\stepcounter{bibitem}}%
-}
-\AtEveryBibitem{\iffieldundef{doi}{}{\clearfield{url}}}
-
-\setlength{\bibitemsep}{1.5ex}
-\setlength{\bibhang}{2.5em}
-\RequirePackage{xpatch}
-\xpretofieldformat{doi}
-  {\textcolor{CVAccent}{\scriptsize\faLink}}
-  {}{}
-\xpretofieldformat{url}
-  {\textcolor{CVAccent}{\scriptsize\faLink}}
-  {}{}
-
-
 
 % Rubrics (sections): an uppercase, letterspaced heading over a hairline, with
 % a short teal bar at its start like the section headings of the website.
@@ -117,7 +60,6 @@
 \keyfont{\sffamily\small\color{CVMuted}}
 \rubricalignment{l}
 \renewcommand{\arraystretch}{1.25}
-\urlstyle{tt}
 
 % Gives the key column (dates, skill areas) a fixed width, so that the entries
 % of every rubric start at the same place. Without it, each rubric's key column
@@ -136,8 +78,6 @@
 
 \prefix{\@prefixmarker}
 
-\newcommand{\makerubrichead}[1]{\vskip\baselineskip\@@rubrichead{#1}}
-
 % Starts a short rubric on the next page unless it fits whole on this one,
 % e.g. \keeprubric{14}{achievements} for one about 14 lines long.
 \RequirePackage{needspace}
@@ -145,41 +85,8 @@
 % penalty behind for longtable to break at after its first heading.
 \newcommand{\keeprubric}[2]{\Needspace{#1\baselineskip}\makerubric{#2}}
 
-\defbibheading{subbibliography}{\vskip 6pt{\@subrubricfont\hspace{3pt}#1}\par}
-
-\defbibfilter{booksandchapters}{%
-( type=book or type=incollection )
-}
-
-\RequirePackage{pgffor}
-\newcommand{\mynames}[1]{\def\my@namelist{#1}}
-\newtoggle{boldname}
-\renewcommand*{\mkbibnamefamily}[1]{%
-  \global\togglefalse{boldname}%
-  \foreach \my@fname / \my@gname in \my@namelist {%
-    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
-                 and
-                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
-      {\global\toggletrue{boldname}}{}%
-  }%
-  \iftoggle{boldname}{\textbf{#1}}{#1}%
-}
-
-\renewcommand*{\mkbibnamegiven}[1]{%
-  \global\togglefalse{boldname}%
-  \foreach \my@fname / \my@gname in \my@namelist{%
-    \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
-                 and
-                 test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
-      {\global\toggletrue{boldname}\breakforeach}{}%
-  }%
-  \iftoggle{boldname}{\textbf{#1}}{#1}%
-}
-
-
-
 % Links are colored, so that they read as links on screen.
-\RequirePackage[colorlinks=true,linkcolor=CVInk,citecolor=CVInk,urlcolor=CVAccentDark,breaklinks=true]{hyperref}
+\RequirePackage[colorlinks=true,linkcolor=CVInk,urlcolor=CVAccentDark,breaklinks=true]{hyperref}
 
 
 
@@ -189,16 +96,10 @@
 \RequirePackage[varqu,varl,scale=0.9]{zi4}
 \RequirePackage{microtype}  % After the fonts; also provides \textls for letterspacing
 
-\includecomment{fullonly}
-
-\DefineBibliographyStrings{english}{url={\textsc{url}}}
-
 
 % For tight enumeration
 \newcommand{\description}{}  % For some reason this works... (from stackoverflow)
 \RequirePackage[shortlabels]{enumitem}
-
-\RequirePackage{changepage}  % For custom margin on itemizations within entries
 
 
 

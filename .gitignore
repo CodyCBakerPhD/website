@@ -10,14 +10,9 @@ cv/*/projects.tex
 cv/*/datasets.tex
 cv/*/publications.tex
 cv/*/*.aux
-cv/*/*.bbl
-cv/*/*.bcf
-cv/*/*.blg
 cv/*/*.fdb_latexmk
 cv/*/*.fls
 cv/*/*.out
-cv/*/*.run.xml
 cv/*/*.synctex.gz
-cv/*/comment.cut
 cv/*/*.pdf
 src/public/assets/resume/

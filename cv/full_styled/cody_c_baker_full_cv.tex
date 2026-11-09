@@ -3,6 +3,7 @@
 \documentclass[a4paper,11pt,english]{curve}
 
 \usepackage{../resume_settings}
+\input{../contact}
 
 % The dates and skill areas in the left column, so every rubric lines up.
 \fixedkeywidth{2.55cm}
@@ -13,10 +14,8 @@
   \begin{tabular}{@{}l@{}}
     {\fontsize{24}{28}\selectfont\bfseries\sffamily\color{CVInk}Cody C. Baker, Ph.D.} \\[0.6em]
     \begin{tabular}{@{}ll@{}}
-      \makefield{\faGlobe}{\href{https://codycbakerphd.com}{\texttt{codycbakerphd.com}}} &
-      \makefield{\faEnvelope}{\href{mailto:cody.c.baker.phd@gmail.com}{\texttt{cody.c.baker.phd@gmail.com}}} \\[0.2em]
-      \makefield{\faLinkedin}{\href{https://www.linkedin.com/in/cody-c-baker/}{\texttt{cody-c-baker}}} &
-      \makefield{\faGithubSquare}{\href{https://github.com/CodyCBakerPhD}{\texttt{github.com/CodyCBakerPhD}}}
+      \cvwebsite{} & \cvemail{} \\[0.2em]
+      \cvlinkedin{} & \cvgithub{}
     \end{tabular}
   \end{tabular}
 }
@@ -26,10 +25,8 @@
 
 
 \rightheader{~}
-\begin{fullonly}
 \photo[r]{../photo}
 \photoscale{0.13}
-\end{fullonly}
 
 
 
