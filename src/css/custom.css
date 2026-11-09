@@ -1058,7 +1058,7 @@ body:has(.card-grid) {
     min-width: 0;
 }
 
-/* Above the input, which kube.css gives z-index 2. */
+/* Above the input, which kube.min.css gives z-index 2. */
 .record-search-field .fa-search {
     position: absolute;
     top: 50%;
