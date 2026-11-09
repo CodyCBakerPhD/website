@@ -22,6 +22,8 @@
     /* The sticky navigation bar's height, which anchors scroll clear of. Its
        rules set no height, so check this after changing its padding or font. */
     --nav-offset: 80px;
+    /* Form controls do not inherit the page's font, so each names it. */
+    --font-body: "Lato", Arial, sans-serif;
 }
 
 :root[data-theme="dark"] {
@@ -64,7 +66,7 @@ h6 {
 a,
 p,
 li {
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     color: var(--body-text);
     font-size: 1em;
     line-height: 1.75em;
@@ -195,15 +197,20 @@ body:has(.card-grid) {
     letter-spacing: 0.02em;
 }
 
-.section .container h1:after {
+/* The accent bar under section headings and under the name at the top of the home page. */
+.section .container h1:after,
+.hero-name:after {
     content: "";
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), #3aa9a0);
+}
+
+.section .container h1:after {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 56px;
-    height: 4px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--accent), #3aa9a0);
 }
 
 .section .container h2 {
@@ -225,13 +232,9 @@ body:has(.card-grid) {
 }
 
 .hero-name:after {
-    content: "";
     display: block;
     width: 72px;
-    height: 4px;
-    border-radius: 2px;
     margin: 18px auto 0;
-    background: linear-gradient(90deg, var(--accent), #3aa9a0);
 }
 
 .intro {
@@ -291,13 +294,19 @@ body:has(.card-grid) {
     clear: both;
 }
 
-.contact-list {
-    margin: 0;
-    padding: 18px 22px;
+/* The card surface the contact block, the cards and the skill groups share. */
+.contact-list,
+.work .work-list,
+.skills .skill-group {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
+}
+
+.contact-list {
+    margin: 0;
+    padding: 18px 22px;
     display: inline-block;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
@@ -340,7 +349,7 @@ body:has(.card-grid) {
     color: #fff;
     border: none;
     padding: 12px 26px;
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -369,10 +378,6 @@ body:has(.card-grid) {
 .work .work-list {
     margin: 0 0 22px;
     padding: 26px 30px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
     transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
@@ -696,6 +701,16 @@ body:has(.card-grid) {
     gap: 10px;
 }
 
+/* The subcards within a card (activity tiles, contributions, repositories) share one tile look. */
+.work .work-list li a.activity-stat,
+.work .contribution,
+.work .repository {
+    background: var(--page-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    transition: border-color 0.2s ease;
+}
+
 /* Equal tiles that share one row even on a phone, their labels wrapping there. */
 .work .work-list li a.activity-stat {
     display: flex;
@@ -705,10 +720,6 @@ body:has(.card-grid) {
     max-width: 175px;
     padding: 8px 14px;
     font-weight: 400;
-    background: var(--page-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    transition: border-color 0.2s ease;
 }
 
 .work .work-list li a.activity-stat:hover {
@@ -772,13 +783,10 @@ body:has(.card-grid) {
     flex-direction: column;
     gap: 4px;
     padding: 9px 14px 11px;
-    background: var(--page-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    transition: border-color 0.2s ease;
 }
 
-.work .contribution:hover {
+.work .contribution:hover,
+.work .repository:hover {
     border-color: var(--link-hover);
 }
 
@@ -802,14 +810,16 @@ body:has(.card-grid) {
     flex: none;
 }
 
-.work .work-list li a.contribution-title {
+.work .work-list li a.contribution-title,
+.work .work-list li a.repository-name {
     padding: 0;
     line-height: 1.45em;
     border: none;
 }
 
-/* The whole subcard follows its title's link. */
-.work .contribution-title:after {
+/* The whole subcard follows its link. */
+.work .contribution-title:after,
+.work .repository-name:after {
     content: "";
     position: absolute;
     top: 0;
@@ -876,14 +886,6 @@ body:has(.card-grid) {
     align-items: flex-start;
     gap: 8px 12px;
     padding: 10px 14px;
-    background: var(--page-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    transition: border-color 0.2s ease;
-}
-
-.work .repository:hover {
-    border-color: var(--link-hover);
 }
 
 .work .repository-logo,
@@ -914,21 +916,7 @@ body:has(.card-grid) {
 }
 
 .work .work-list li a.repository-name {
-    padding: 0;
-    line-height: 1.45em;
-    border: none;
     overflow-wrap: anywhere;
-}
-
-/* The whole subcard follows its name's link. */
-.work .repository-name:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: inherit;
 }
 
 .work .repository-description {
@@ -951,7 +939,7 @@ body:has(.card-grid) {
     display: inline-flex;
     margin: 0;
     padding: 0;
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.8em;
     font-weight: 400;
     line-height: 1.9em;
@@ -1109,17 +1097,23 @@ body:has(.card-grid) {
     transform: translateY(-50%);
 }
 
-.record-search-field input[type="search"] {
-    width: 100%;
-    padding: 12px 20px 12px 48px;
-    font-family: "Lato", Arial, sans-serif;
-    font-size: 1em;
-    line-height: 1.5em;
-    color: var(--ink);
+/* The search bar's controls are pills: the search box, the sort's select and the column choices. */
+.record-search-field input[type="search"],
+.record-search-select select,
+.record-grid-choices {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 999px;
     box-shadow: var(--card-shadow);
+}
+
+.record-search-field input[type="search"] {
+    width: 100%;
+    padding: 12px 20px 12px 48px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    line-height: 1.5em;
+    color: var(--ink);
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
@@ -1152,7 +1146,7 @@ body:has(.card-grid) {
 }
 
 .record-search-suggestions li {
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.9375em;
     line-height: 1.5em;
     list-style: none;
@@ -1231,16 +1225,21 @@ body:has(.card-grid) {
     border-top: 1px solid var(--card-border);
 }
 
-.record-search-sort {
+/* The labels beside the pills: "Sort by" and "Columns". */
+.record-search-sort,
+.record-grid-control {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin: 0;
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.9375em;
-    font-weight: 400;
     color: var(--muted);
     white-space: nowrap;
+}
+
+.record-search-sort {
+    margin: 0;
+    font-weight: 400;
 }
 
 .record-search-select {
@@ -1263,14 +1262,10 @@ body:has(.card-grid) {
 
 .record-search-select select {
     padding: 11px 44px 11px 18px;
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 1em;
     line-height: 1.5em;
     color: var(--ink);
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    box-shadow: var(--card-shadow);
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
@@ -1284,23 +1279,9 @@ body:has(.card-grid) {
 
 /* How many columns the cards take (see src/ts/grid.ts): a row of radio
    buttons drawn as one pill, like the sort's select beside it. */
-.record-grid-control {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: "Lato", Arial, sans-serif;
-    font-size: 0.9375em;
-    color: var(--muted);
-    white-space: nowrap;
-}
-
 .record-grid-choices {
     display: inline-flex;
     padding: 4px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    box-shadow: var(--card-shadow);
 }
 
 .record-grid-choices label {
@@ -1364,15 +1345,11 @@ body:has(.card-grid) {
 .skills .skill-group {
     margin: 0 0 26px;
     padding: 22px 26px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    box-shadow: var(--card-shadow);
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 .skills .skill-group h5 {
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.85em;
     font-weight: 700;
     text-transform: uppercase;
@@ -1402,7 +1379,7 @@ body:has(.card-grid) {
     flex: 0 0 175px;
     max-width: 175px;
     padding-top: 5px;
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.85em;
     font-weight: 700;
     color: var(--body-text);
@@ -1423,7 +1400,7 @@ body:has(.card-grid) {
     display: inline-block;
     margin: 3px 6px 3px 0;
     padding: 4px 13px;
-    font-family: "Lato", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.85em;
     line-height: 1.6em;
     color: var(--accent-dark);
@@ -1520,10 +1497,6 @@ footer .social li a {
     color: var(--muted);
 }
 
-footer .social li a:hover {
-    color: var(--accent) !important;
-}
-
 footer .footer-version {
     text-align: left;
     padding: 0 0 20px;
@@ -1535,10 +1508,6 @@ footer .version-link {
     font-size: 0.85em;
     font-weight: 700;
     text-decoration: underline;
-}
-
-footer .version-link:hover {
-    color: var(--accent);
 }
 
 .scroll-offset {
@@ -1572,13 +1541,14 @@ footer .version-link:hover {
     font-size: 15px;
     line-height: 1;
     cursor: pointer;
+    /* kube.min.css underlines a:visited, which outranks .icon-btn on a visited link. */
     text-decoration: none !important;
     box-shadow: var(--card-shadow);
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .icon-btn:hover {
-    color: var(--accent) !important;
+    color: var(--accent);
     border-color: var(--accent-border);
 }
 
