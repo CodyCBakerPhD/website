@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Songbird electrophysiology and head-mounted microscopy (Fee Lab)",
+  "group": "Fee Lab",
+  "institution": "Massachusetts Institute of Technology",
+  "modality": "Electrophysiology and Microscopy",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41592-023-01806-1",
+    "dataset": "https://dandiarchive.org/dandiset/000691/0.260827.1358",
+    "code": "https://github.com/catalystneuro/fee-lab-to-nwb"
+  },
+  "description": [
+    "Supervised two conversions: Neuropixels recordings from the caudomedial nidopallium of zebra finches presented with song, with the sorted units and the audio and timing of each song motif and its syllables, and calcium imaging through a lightweight, large field-of-view head-mounted microscope in freely exploring mice, with its segmentation and behavior video.",
+    "Resulted in the publication of a total **15 GB** of mouse microscopy and behavioral data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Mouse",
+    "organisms:Zebra Finch",
+    "methods:Extracellular Electrophysiology",
+    "methods:Calcium Imaging",
+    "methods:Video"
+  ]
+}

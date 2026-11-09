@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Imaging during virtual navigation (Pinto Lab)",
+  "group": "Pinto Lab",
+  "institution": "Northwestern University",
+  "modality": "Microscopy",
+  "role": "Supervisor",
+  "links": {
+    "code": "https://github.com/catalystneuro/pinto-lab-to-nwb"
+  },
+  "description": [
+    "Supervised two conversions of mice navigating in virtual reality: two-photon imaging with Suite2p segmentation and holographic optogenetic stimulation, and widefield imaging in two excitation channels with its processing, cortical area segmentation and eye tracking, each alongside the trials, position and view angle from the task's ViRMEn logs."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "organisms:Mouse",
+    "methods:Optogenetics",
+    "methods:Behavior",
+    "methods:Virtual Reality"
+  ]
+}

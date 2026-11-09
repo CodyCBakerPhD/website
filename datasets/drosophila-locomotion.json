@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Mapping the Neural Dynamics of Locomotion across the Drosophila Brain",
+  "group": "Clandinin Lab",
+  "institution": "Stanford University",
+  "modality": "Microscopy",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.1101/2022.03.20.485047",
+    "dataset": "https://dandiarchive.org/dandiset/000727/0.240106.0043",
+    "notebook": "https://github.com/dandi/example-notebooks/tree/master/000727/clandinin",
+    "code": "https://github.com/catalystneuro/clandinin-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of volumetric two-photon imaging across the whole brain of walking fruit flies, combining the functional and anatomical scans in both of their color channels with ball tracking of each fly's walking, its camera video, and the processed functional data registered to a common brain atlas.",
+    "Resulted in the publication of a total **610 GB** of fruit fly microscopy and behavioral data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Drosophila",
+    "methods:Calcium Imaging",
+    "methods:Volumetric Imaging",
+    "methods:Behavior"
+  ]
+}
