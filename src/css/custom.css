@@ -87,9 +87,15 @@ a:hover {
 }
 
 /* Pages of cards in a grid run wider, so wide screens fit more columns. The
-   navigation and footer widen with them, so their edges stay in line. */
+   footer widens with them, so its edges stay in line. */
 body:has(.card-grid) {
     --page-max-width: 1800px;
+}
+
+/* The navigation keeps the home page's width on every page, so it does not
+   shift when moving between pages. */
+.main-nav {
+    --page-max-width: 1170px;
 }
 
 @media only screen and (max-width: 767px) {
