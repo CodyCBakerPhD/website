@@ -7,7 +7,7 @@ import { initCardLinks } from "./cards";
 import { initGridControls } from "./grid";
 import { initRecordSearch } from "./search";
 
-/** Fallback when the nav bar has not rendered yet (matches its CSS height). */
+/** Fallback when the nav bar has not rendered yet, the same as --nav-offset in custom.css. */
 const DEFAULT_NAV_OFFSET_PX = 80;
 
 /** Sections that moved off the home page onto pages of their own, by their old anchors. */
@@ -42,10 +42,6 @@ function initTypedHeadline(): void {
     contentType: "html",
     loop: true,
   });
-
-  $(".reset").click(function () {
-    $("#typed").typed("reset");
-  });
 }
 
 function scrollToTarget(targetElement: HTMLElement, navOffset: number): void {
@@ -56,7 +52,7 @@ function scrollToTarget(targetElement: HTMLElement, navOffset: number): void {
   targetElement.classList.add("scroll-offset");
 
   const targetPosition =
-    targetElement.getBoundingClientRect().top + window.pageYOffset - navOffset;
+    targetElement.getBoundingClientRect().top + window.scrollY - navOffset;
   window.scrollTo({ top: targetPosition, behavior: "smooth" });
 }
 
@@ -72,7 +68,7 @@ function initSmoothNavigation(): void {
       event.preventDefault();
 
       // "About" scrolls back to the top and clears any hash from the URL.
-      if (link.hasAttribute("data-scroll-top")) {
+      if ("scrollTop" in link.dataset) {
         window.scrollTo({ top: 0, behavior: "smooth" });
         history.pushState(null, "", window.location.pathname);
         return;
@@ -94,7 +90,7 @@ function initSmoothNavigation(): void {
 }
 
 function applyTheme(theme: Theme): void {
-  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.dataset.theme = theme;
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
@@ -116,12 +112,11 @@ function initThemeToggle(): void {
     return;
   }
 
-  const currentTheme =
-    document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const currentTheme = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
   updateThemeToggleLabel(toggle, currentTheme);
 
   toggle.addEventListener("click", () => {
-    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const isDark = document.documentElement.dataset.theme === "dark";
     const nextTheme: Theme = isDark ? "light" : "dark";
     applyTheme(nextTheme);
     updateThemeToggleLabel(toggle, nextTheme);
@@ -132,10 +127,8 @@ redirectMovedSection();
 // An old link opened from the home page itself only changes the hash, without reloading.
 window.addEventListener("hashchange", redirectMovedSection);
 
-$(() => {
-  initTypedHeadline();
-});
-
+// A listener of its own, so an error in the vendored plugin does not stop the rest.
+document.addEventListener("DOMContentLoaded", initTypedHeadline);
 document.addEventListener("DOMContentLoaded", () => {
   initSmoothNavigation();
   initThemeToggle();

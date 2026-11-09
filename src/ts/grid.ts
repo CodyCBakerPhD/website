@@ -4,6 +4,8 @@
 // window is too narrow for are disabled, and the control is hidden where only
 // one column fits, as on a phone.
 
+import { replaceQuery } from "./url";
+
 /** Columns of `minWidth` pixels, `gap` apart, that fit in `width` pixels; at least one. */
 function columnsThatFit(width: number, minWidth: number, gap: number): number {
   return Math.max(1, Math.floor((width + gap) / (minWidth + gap)));
@@ -17,6 +19,7 @@ function initGridControl(control: HTMLElement): void {
     return;
   }
   const choices = inputs.map((input) => Number(input.value));
+  const smallest = Math.min(...choices);
   const fallback = Number(control.dataset.gridDefault);
   const requested = Number(new URLSearchParams(window.location.search).get("columns"));
   // What the visitor asked for, which the grids show whenever the window is wide enough.
@@ -31,33 +34,23 @@ function initGridControl(control: HTMLElement): void {
       parseFloat(style.getPropertyValue("--grid-min-card-width")) || 1,
       parseFloat(style.columnGap) || 0,
     );
-    const shown = Math.max(...choices.filter((count) => count <= Math.min(preferred, fit)), Math.min(...choices));
+    const shown = Math.max(...choices.filter((count) => count <= Math.min(preferred, fit)), smallest);
     for (const target of grids) {
       target.style.setProperty("--grid-columns", String(preferred));
     }
     for (const input of inputs) {
       const count = Number(input.value);
-      input.disabled = count > fit && count !== Math.min(...choices);
+      input.disabled = count > fit && count !== smallest;
       input.checked = count === shown;
       input.parentElement!.title = input.disabled ? "Needs a wider window" : "";
     }
     control.hidden = fit < 2;
   }
 
-  function writeUrl(): void {
-    const next = new URLSearchParams(window.location.search);
-    next.delete("columns");
-    if (preferred !== fallback) {
-      next.set("columns", String(preferred));
-    }
-    const search = next.toString();
-    history.replaceState(history.state, "", `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`);
-  }
-
   control.addEventListener("change", (event) => {
     preferred = Number((event.target as HTMLInputElement).value);
     update();
-    writeUrl();
+    replaceQuery({ columns: preferred === fallback ? null : String(preferred) });
   });
   new ResizeObserver(update).observe(scope);
   update();

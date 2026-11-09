@@ -11,11 +11,14 @@ import {
   compareSortValues,
   formatTerm,
   isTagActive,
+  matchesTag,
   matchesYear,
   normalize,
   parseTerms,
+  splitTag,
   type Term,
 } from "./search-terms";
+import { replaceQuery } from "./url";
 
 interface Item {
   element: HTMLElement;
@@ -35,6 +38,8 @@ interface Suggestion {
   value: string;
   /** Description of a filter, or how many records have a value. */
   hint: string;
+  /** How many records have the value, for a value. */
+  count?: number;
   /** Whether the term is complete, rather than a filter's key awaiting its value. */
   complete: boolean;
   theme?: string;
@@ -67,15 +72,9 @@ function readSettings(form: HTMLElement): Settings | null {
 
 function readItem(element: HTMLElement, index: number): Item {
   const data = JSON.parse(element.dataset.searchRecord ?? "{}") as Partial<RecordData>;
-  const values = new Map<string, readonly string[]>();
-  for (const [key, fieldValues] of Object.entries(data.fields ?? {})) {
-    values.set(key, fieldValues);
-  }
+  const values = new Map<string, readonly string[]>(Object.entries(data.fields ?? {}));
   for (const button of element.querySelectorAll<HTMLElement>("[data-tag]")) {
-    const tag = button.dataset.tag ?? "";
-    const separator = tag.indexOf(":");
-    const theme = tag.slice(0, separator);
-    const name = tag.slice(separator + 1);
+    const { theme, name } = splitTag(button.dataset.tag ?? "");
     values.set(theme, [...(values.get(theme) ?? []), name]);
     values.set("tag", [...(values.get("tag") ?? []), name]);
   }
@@ -154,22 +153,15 @@ function initSearch(scope: HTMLElement): void {
   const params = new URLSearchParams(window.location.search);
   input.value = params.get("q") ?? "";
   const requestedSort = params.get("sort");
-  sortSelect.value = sorts.some((sort) => sort.id === requestedSort) ? requestedSort! : "featured";
+  sortSelect.value = sorts.find((sort) => sort.id === requestedSort)?.id ?? "featured";
 
   function writeUrl(): void {
     window.clearTimeout(urlTimer);
     urlTimer = window.setTimeout(() => {
-      const next = new URLSearchParams(window.location.search);
-      next.delete("q");
-      next.delete("sort");
-      if (input.value.trim()) {
-        next.set("q", input.value.trim());
-      }
-      if (sortSelect.value !== "featured") {
-        next.set("sort", sortSelect.value);
-      }
-      const search = next.toString();
-      history.replaceState(history.state, "", `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`);
+      replaceQuery({
+        q: input.value.trim() || null,
+        sort: sortSelect.value === "featured" ? null : sortSelect.value,
+      });
     }, URL_UPDATE_DELAY_MS);
   }
 
@@ -239,9 +231,8 @@ function initSearch(scope: HTMLElement): void {
       group.hidden = !group.querySelector("[data-search-item]:not([hidden])");
     }
     for (const button of tagButtons) {
-      const tag = button.dataset.tag ?? "";
-      const separator = tag.indexOf(":");
-      button.setAttribute("aria-pressed", String(isTagActive(terms, tag.slice(0, separator), tag.slice(separator + 1))));
+      const { theme, name } = splitTag(button.dataset.tag ?? "");
+      button.setAttribute("aria-pressed", String(isTagActive(terms, theme, name)));
     }
 
     const summary =
@@ -277,6 +268,7 @@ function initSearch(scope: HTMLElement): void {
         key: filter.key,
         value,
         hint: String(count),
+        count,
         complete: true,
         theme: filter.kind === "theme" ? filter.key : undefined,
       }));
@@ -302,7 +294,7 @@ function initSearch(scope: HTMLElement): void {
       const values = [...filters.values()]
         .filter((filter) => filter.kind !== "tag")
         .flatMap((filter) => valueSuggestions(filter, typed))
-        .sort((a, b) => Number(b.hint) - Number(a.hint))
+        .sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
         .slice(0, MAX_VALUE_SUGGESTIONS);
       groupsToShow.unshift({ label: "Matching values", suggestions: values });
     }
@@ -342,6 +334,7 @@ function initSearch(scope: HTMLElement): void {
     }
 
     const rows: HTMLLIElement[] = [];
+    let optionCount = 0;
     for (const group of shownGroups) {
       const label = document.createElement("li");
       label.className = "record-search-group-label";
@@ -349,7 +342,7 @@ function initSearch(scope: HTMLElement): void {
       label.textContent = group.label;
       rows.push(label);
       for (const suggestion of group.suggestions) {
-        const index = rows.filter((row) => row.getAttribute("role") === "option").length;
+        const index = optionCount++;
         const option = document.createElement("li");
         option.className = suggestion.complete ? "record-search-option" : "record-search-option record-search-option-filter";
         option.id = `${list.id}-${index}`;
@@ -425,11 +418,9 @@ function initSearch(scope: HTMLElement): void {
   }
 
   function toggleTag(tag: string): void {
-    const separator = tag.indexOf(":");
-    const theme = tag.slice(0, separator);
-    const name = tag.slice(separator + 1);
+    const { theme, name } = splitTag(tag);
     const terms = parseTerms(input.value);
-    const kept = terms.filter((term) => !(term.key === theme && normalize(term.value) === normalize(name)));
+    const kept = terms.filter((term) => !matchesTag(term, theme, name));
     const parts = kept.map((term) => input.value.slice(term.start, term.end));
     if (kept.length === terms.length) {
       parts.push(formatTerm(theme, name));

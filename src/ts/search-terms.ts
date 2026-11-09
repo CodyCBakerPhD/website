@@ -85,7 +85,18 @@ export function compareSortValues(a: string, b: string): number {
   return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
 }
 
+/** Splits "standards:NWB" into its theme and name, as src/build/tags.ts does. */
+export function splitTag(tag: string): { theme: string; name: string } {
+  const separator = tag.indexOf(":");
+  return { theme: tag.slice(0, separator), name: tag.slice(separator + 1) };
+}
+
+/** Whether a term is the filter for the tag `theme:name`. */
+export function matchesTag(term: Term, theme: string, name: string): boolean {
+  return term.key === theme && normalize(term.value) === normalize(name);
+}
+
 /** Whether the search's terms include the filter for the tag `theme:name`. */
 export function isTagActive(terms: readonly Term[], theme: string, name: string): boolean {
-  return terms.some((term) => term.key === theme && normalize(term.value) === normalize(name));
+  return terms.some((term) => matchesTag(term, theme, name));
 }
