@@ -15,13 +15,13 @@
 			</ul>
 		</nav>
 		<div class="units-row">
-		    <div class="unit-50">
+			<div class="unit-50">
 				<ul class="social list-flat right">
 					<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
 					<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
 					<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
 				</ul>
-		    </div>
+			</div>
 		</div>
 		<div class="footer-version">
 			<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
@@ -30,8 +30,9 @@
 	</div>
 </footer>
 
-<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
-<script src="js/jquery.min.js"></script>
-<script src="js/typed.min.js"></script>
-<script src="js/kube.min.js"></script>
+<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js as they
+     are, so vite-ignore keeps Vite from processing their tags and warning that it cannot bundle them) -->
+<script src="js/jquery.min.js" vite-ignore></script>
+<script src="js/typed.min.js" vite-ignore></script>
+<script src="js/kube.min.js" vite-ignore></script>
 <script type="module" src="./ts/main.ts"></script>

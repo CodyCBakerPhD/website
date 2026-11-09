@@ -7,18 +7,21 @@
     --accent-soft: #e7f3f2;
     --accent-border: #cfe6e5;
     --page-bg: #fafbfc;
-    --card-bg: #ffffff;
+    --card-bg: #fff;
     --card-border: #e5eaef;
     --card-shadow: 0 1px 3px rgba(16, 42, 67, 0.06), 0 1px 2px rgba(16, 42, 67, 0.04);
     --card-shadow-hover: 0 8px 24px rgba(16, 42, 67, 0.1);
     --nav-bg: rgba(255, 255, 255, 0.88);
     --watermark: #eef4f4;
-    --avatar-ring: #ffffff;
+    --avatar-ring: #fff;
     /* Resolved here, so links keep the site's colors on the HEARTH card, whose
        own accent is orange in the dark theme. */
     --link: var(--accent-dark);
     --link-hover: var(--accent);
     --link-underline: var(--accent-border);
+    /* The sticky navigation bar's height, which anchors scroll clear of. Its
+       rules set no height, so check this after changing its padding or font. */
+    --nav-offset: 80px;
 }
 
 :root[data-theme="dark"] {
@@ -40,13 +43,11 @@
 }
 
 html {
-    scroll-behavior: auto;
-    scroll-padding-top: 80px;
+    scroll-padding-top: var(--nav-offset);
 }
 
 body {
     background: var(--page-bg);
-    -webkit-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -76,7 +77,6 @@ a {
 a:hover {
     text-decoration: none !important;
     color: var(--link-hover) !important;
-    -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
 
@@ -113,14 +113,7 @@ body:has(.card-grid) {
 .typed-cursor {
     opacity: 1;
     font-weight: 100;
-    -webkit-animation: blink 0.7s infinite;
     animation: blink 0.7s infinite;
-}
-
-@-webkit-keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
 }
 
 @keyframes blink {
@@ -141,14 +134,12 @@ body:has(.card-grid) {
     border-bottom: 1px solid var(--card-border);
     box-shadow: 0 1px 2px rgba(16, 42, 67, 0.04);
     padding-top: 23px;
-    -webkit-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
 }
 
 .navigation-toggle {
     background-color: var(--card-bg);
     color: var(--ink);
-    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
@@ -170,7 +161,6 @@ body:has(.card-grid) {
     bottom: 0;
     height: 2px;
     background: var(--accent);
-    -webkit-transition: right 0.25s ease;
     transition: right 0.25s ease;
 }
 
@@ -202,7 +192,6 @@ body:has(.card-grid) {
     text-transform: uppercase;
     margin-bottom: 34px;
     padding-bottom: 14px;
-    position: relative;
     letter-spacing: 0.02em;
 }
 
@@ -214,7 +203,6 @@ body:has(.card-grid) {
     width: 56px;
     height: 4px;
     border-radius: 2px;
-    background: -webkit-linear-gradient(left, var(--accent), #3aa9a0);
     background: linear-gradient(90deg, var(--accent), #3aa9a0);
 }
 
@@ -223,16 +211,11 @@ body:has(.card-grid) {
     letter-spacing: 0.02em;
 }
 
-/* Hide legacy spacer <br> tags that used to separate list blocks */
-.section .container > br {
-    display: none;
-}
-
 /* ---------- Hero / intro ---------- */
 
 .hero-name {
     text-align: center;
-    padding: 70px 20px 0 20px;
+    padding: 70px 20px 0;
 }
 
 .hero-name h1 {
@@ -247,20 +230,19 @@ body:has(.card-grid) {
     width: 72px;
     height: 4px;
     border-radius: 2px;
-    margin: 18px auto 0 auto;
-    background: -webkit-linear-gradient(left, var(--accent), #3aa9a0);
+    margin: 18px auto 0;
     background: linear-gradient(90deg, var(--accent), #3aa9a0);
 }
 
 .intro {
-    padding: 40px 0px 40px 0px;
+    padding: 40px 0;
     overflow-x: hidden;
 }
 
 /* The summary, under the contact block. A bare paragraph has no card edge to
    close the section, so it keeps no margin below and gets its room above. */
 .intro p {
-    margin: 32px 0 0 0;
+    margin: 32px 0 0;
 }
 
 .intro img {
@@ -272,17 +254,17 @@ body:has(.card-grid) {
 }
 
 .intro .wrap {
-    margin: 30px 0px 0px 0px;
+    margin: 30px 0 0;
 }
 
 .intro h1:before {
+    content: "DATA";
     position: absolute;
     left: -220px;
     top: -150px;
     font-size: 270px;
     z-index: -1;
     color: var(--watermark);
-    -webkit-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out;
 }
 
@@ -305,7 +287,7 @@ body:has(.card-grid) {
     justify-content: space-between;
     align-items: center;
     gap: 26px;
-    margin: 26px 0 6px 0;
+    margin: 26px 0 6px;
     clear: both;
 }
 
@@ -317,7 +299,6 @@ body:has(.card-grid) {
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     display: inline-block;
-    -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
@@ -355,7 +336,6 @@ body:has(.card-grid) {
     text-align: center;
     text-decoration: none;
     line-height: normal;
-    background: -webkit-linear-gradient(left, var(--accent), #12928f);
     background: linear-gradient(90deg, var(--accent), #12928f);
     color: #fff;
     border: none;
@@ -369,14 +349,12 @@ body:has(.card-grid) {
     cursor: pointer;
     white-space: nowrap;
     box-shadow: 0 4px 12px rgba(14, 124, 123, 0.32);
-    -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
     outline: none;
 }
 
 .download-btn:hover {
     color: #fff !important; /* the global a:hover color is !important too */
-    background: -webkit-linear-gradient(left, var(--accent-dark), var(--accent));
     background: linear-gradient(90deg, var(--accent-dark), var(--accent));
     box-shadow: 0 6px 18px rgba(14, 124, 123, 0.42);
     transform: translateY(-1px);
@@ -389,13 +367,12 @@ body:has(.card-grid) {
 /* ---------- Cards (experience, projects, curation, publications) ---------- */
 
 .work .work-list {
-    margin: 0 0 22px 0;
+    margin: 0 0 22px;
     padding: 26px 30px;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
-    -webkit-transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
@@ -520,7 +497,6 @@ body:has(.card-grid) {
 
 .work .work-list li.card-permalink a {
     opacity: 0;
-    -webkit-transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
@@ -692,7 +668,6 @@ body:has(.card-grid) {
     background: var(--page-bg);
     border: 1px solid var(--card-border);
     border-radius: 10px;
-    -webkit-transition: border-color 0.2s ease;
     transition: border-color 0.2s ease;
 }
 
@@ -756,11 +731,10 @@ body:has(.card-grid) {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 9px 14px 11px 14px;
+    padding: 9px 14px 11px;
     background: var(--page-bg);
     border: 1px solid var(--card-border);
     border-radius: 10px;
-    -webkit-transition: border-color 0.2s ease;
     transition: border-color 0.2s ease;
 }
 
@@ -865,7 +839,6 @@ body:has(.card-grid) {
     background: var(--page-bg);
     border: 1px solid var(--card-border);
     border-radius: 10px;
-    -webkit-transition: border-color 0.2s ease;
     transition: border-color 0.2s ease;
 }
 
@@ -966,7 +939,6 @@ body:has(.card-grid) {
     font-weight: 700;
     color: var(--ink);
     background: color-mix(in srgb, var(--tag-color) 16%, var(--card-bg));
-    -webkit-transition: background-color 0.15s ease;
     transition: background-color 0.15s ease;
 }
 
@@ -976,7 +948,7 @@ body:has(.card-grid) {
 
 /* The darkest viridis steps barely stand out from a dark card, so the outline is lightened. */
 :root[data-theme="dark"] .work .tag {
-    border-color: color-mix(in srgb, var(--tag-color) 70%, #ffffff);
+    border-color: color-mix(in srgb, var(--tag-color) 70%, #fff);
 }
 
 :root[data-theme="dark"] .work .tag-name {
@@ -996,11 +968,11 @@ body:has(.card-grid) {
 /* One step of the viridis palette per theme, in display order, so it stays
    distinguishable with color vision deficiencies. Text on the darker half is
    white and on the lighter half near-black, each at 4.5:1 contrast or more. */
-.tag-standards { --tag-color: #440154; --tag-on-color: #ffffff; }
-.tag-format { --tag-color: #482475; --tag-on-color: #ffffff; }
-.tag-archives { --tag-color: #414487; --tag-on-color: #ffffff; }
-.tag-data { --tag-color: #355f8d; --tag-on-color: #ffffff; }
-.tag-organisms { --tag-color: #2a788e; --tag-on-color: #ffffff; }
+.tag-standards { --tag-color: #440154; --tag-on-color: #fff; }
+.tag-format { --tag-color: #482475; --tag-on-color: #fff; }
+.tag-archives { --tag-color: #414487; --tag-on-color: #fff; }
+.tag-data { --tag-color: #355f8d; --tag-on-color: #fff; }
+.tag-organisms { --tag-color: #2a788e; --tag-on-color: #fff; }
 .tag-methods { --tag-color: #21918c; --tag-on-color: #0b0f14; }
 .tag-neuroscience { --tag-color: #22a884; --tag-on-color: #0b0f14; }
 .tag-analysis { --tag-color: #44bf70; --tag-on-color: #0b0f14; }
@@ -1070,7 +1042,7 @@ body:has(.card-grid) {
 }
 
 .record-search {
-    margin: 0 0 28px 0;
+    margin: 0 0 28px;
 }
 
 .record-search-controls {
@@ -1108,7 +1080,6 @@ body:has(.card-grid) {
     border: 1px solid var(--card-border);
     border-radius: 999px;
     box-shadow: var(--card-shadow);
-    -webkit-transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
@@ -1148,7 +1119,7 @@ body:has(.card-grid) {
 }
 
 .record-search-suggestions .record-search-group-label {
-    padding: 8px 12px 4px 12px;
+    padding: 8px 12px 4px;
     font-size: 0.72em;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -1214,7 +1185,7 @@ body:has(.card-grid) {
 
 .record-search-suggestions .record-search-tip {
     margin-top: 6px;
-    padding: 8px 12px 4px 12px;
+    padding: 8px 12px 4px;
     font-size: 0.82em;
     color: var(--muted);
     border-top: 1px solid var(--card-border);
@@ -1314,7 +1285,6 @@ body:has(.card-grid) {
     color: var(--ink);
     border-radius: 999px;
     cursor: pointer;
-    -webkit-transition: background-color 0.15s ease, color 0.15s ease;
     transition: background-color 0.15s ease, color 0.15s ease;
 }
 
@@ -1352,13 +1322,12 @@ body:has(.card-grid) {
 /* ---------- Skills ---------- */
 
 .skills .skill-group {
-    margin: 0 0 26px 0;
+    margin: 0 0 26px;
     padding: 22px 26px;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     box-shadow: var(--card-shadow);
-    -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
@@ -1369,7 +1338,7 @@ body:has(.card-grid) {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--muted);
-    margin: 0 0 12px 0;
+    margin: 0 0 12px;
 }
 
 .skills .skill-group h5 span {
@@ -1422,7 +1391,6 @@ body:has(.card-grid) {
     border: 1px solid var(--accent-border);
     border-radius: 999px;
     white-space: nowrap;
-    -webkit-transition: all 0.15s ease;
     transition: all 0.15s ease;
 }
 
@@ -1460,12 +1428,12 @@ body:has(.card-grid) {
    to the banner's edges at any size (see scripts/generate_banner.py). */
 .quote {
     background: #0a4450 url(/img/banner.svg) center / 100% 100% no-repeat;
-    padding: 20px 0px;
+    padding: 20px 0;
     margin-top: 120px;
 }
 
 .quote h1 {
-    margin: 50px 0px;
+    margin: 50px 0;
     padding: 40px 20px;
     border: 3px solid rgba(255, 255, 255, 0.85);
     border-radius: 4px;
@@ -1477,7 +1445,7 @@ body:has(.card-grid) {
 /* ---------- Footer ---------- */
 
 footer {
-    padding: 50px 0px 0px 0px;
+    padding: 50px 0 0;
 }
 
 /* Styled like the navigation bar, whose links it repeats. */
@@ -1486,7 +1454,7 @@ footer .footer-nav ul {
     flex-wrap: wrap;
     justify-content: center;
     gap: 4px 26px;
-    margin: 0 0 26px 0;
+    margin: 0 0 26px;
 }
 
 footer .footer-nav a {
@@ -1518,7 +1486,7 @@ footer .social li a:hover {
 
 footer .footer-version {
     text-align: left;
-    padding: 0px 0px 20px 0px;
+    padding: 0 0 20px;
 }
 
 /* Muted rather than accent-colored: the version is a provenance marker, not a call to action. */
@@ -1535,7 +1503,7 @@ footer .version-link:hover {
 
 .scroll-offset {
     position: relative;
-    top: 80px;
+    top: var(--nav-offset);
 }
 
 /* ---------- Fixed nav actions (GitHub link, theme toggle) ---------- */
@@ -1566,7 +1534,6 @@ footer .version-link:hover {
     cursor: pointer;
     text-decoration: none !important;
     box-shadow: var(--card-shadow);
-    -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 

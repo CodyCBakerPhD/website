@@ -9,13 +9,10 @@ interface TypedOptions {
   backDelay?: number;
   contentType?: "html" | "text";
   loop?: boolean;
-  resetCallback?: () => void;
 }
 
 interface VendorJQuery {
-  typed(options: TypedOptions | "reset"): VendorJQuery;
-  click(handler: (this: HTMLElement) => void): VendorJQuery;
+  typed(options: TypedOptions): VendorJQuery;
 }
 
-declare function $(ready: () => void): VendorJQuery;
 declare function $(selector: string): VendorJQuery;
