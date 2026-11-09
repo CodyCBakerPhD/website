@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<meta charset="utf-8" />
+	<script>
+	    (function () {
+	        try {
+	            var stored = localStorage.getItem("theme");
+	            var theme = stored === "light" || stored === "dark"
+	                ? stored
+	                : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+	            document.documentElement.setAttribute("data-theme", theme);
+	        } catch (e) {}
+	    })();
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="">
+	<meta name="color-scheme" content="light dark">
+	<link rel="stylesheet" href="css/kube.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="shortcut icon" href="img/como_favicon.ico" />
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<title>Highlighted Projects | Cody C. Baker, Ph.D.</title>
+	<meta name="description" content="Highlighted projects of Cody C. Baker, Ph.D.">
+  <script type="module" crossorigin src="./assets/main-CG99n9T_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-DbK3-jnq.css">
+</head>
+
+<body>
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<!-- Fixed top-right controls -->
+	<div class="nav-actions">
+		<button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+			<i class="fa fa-moon-o theme-toggle-icon theme-toggle-icon-dark" aria-hidden="true"></i>
+			<i class="fa fa-sun-o theme-toggle-icon theme-toggle-icon-light" aria-hidden="true"></i>
+		</button>
+		<a class="icon-btn" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+			<i class="fa fa-github" aria-hidden="true"></i>
+		</a>
+	</div>
+
+	<!-- Navigation -->
+	<div class="main-nav">
+		<div class="container">
+			<header class="group top-nav">
+				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+				    <span class="logo">Cody C. Baker</span>
+				</div>
+			    <nav id="navbar-1" class="navbar item-nav">
+				    <ul>
+						<li><a href="./">About</a></li>
+						<li><a href="./#education">Education</a></li>
+						<li><a href="./#skills">Skills</a></li>
+						<li><a href="./#experience">Experience</a></li>
+						<li class="active"><a href="projects" aria-current="page">Projects</a></li>
+						<li><a href="publications">Publications</a></li>
+						<li><a href="data-curation">Data Curation</a></li>
+				    </ul>
+				</nav>
+			</header>
+		</div>
+	</div>
+
+	<!-- Projects (rendered at build time from projects/*.json; see src/build/sections.ts) -->
+	<div class="work section second page" id="highlighted-projects">
+		<div class="container">
+			<h1>Highlighted Projects</h1>
+			<div class="record-search-scope" data-search>
+				<form class="record-search" role="search" data-search-form data-search-config="{&quot;noun&quot;:&quot;projects&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;name&quot;,&quot;description&quot;:&quot;Name of the project&quot;,&quot;kind&quot;:&quot;field&quot;},{&quot;key&quot;:&quot;role&quot;,&quot;description&quot;:&quot;Role on the project&quot;,&quot;kind&quot;:&quot;field&quot;},{&quot;key&quot;:&quot;distributed&quot;,&quot;description&quot;:&quot;Where the project is distributed&quot;,&quot;kind&quot;:&quot;field&quot;},{&quot;key&quot;:&quot;year&quot;,&quot;description&quot;:&quot;Year of the work, or a range such as year:&gt;=2023&quot;,&quot;kind&quot;:&quot;year&quot;},{&quot;key&quot;:&quot;tag&quot;,&quot;description&quot;:&quot;Any tag, whatever its theme&quot;,&quot;kind&quot;:&quot;tag&quot;},{&quot;key&quot;:&quot;standards&quot;,&quot;description&quot;:&quot;Data standards&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;format&quot;,&quot;description&quot;:&quot;File formats&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;archives&quot;,&quot;description&quot;:&quot;Archives and initiatives&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;data&quot;,&quot;description&quot;:&quot;Data management&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;organisms&quot;,&quot;description&quot;:&quot;Organisms&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;methods&quot;,&quot;description&quot;:&quot;Experimental methods&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;neuroscience&quot;,&quot;description&quot;:&quot;Neuroscience&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;analysis&quot;,&quot;description&quot;:&quot;Analysis&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;engineering&quot;,&quot;description&quot;:&quot;Software engineering&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;computing&quot;,&quot;description&quot;:&quot;Computing infrastructure&quot;,&quot;kind&quot;:&quot;theme&quot;},{&quot;key&quot;:&quot;languages&quot;,&quot;description&quot;:&quot;Programming languages&quot;,&quot;kind&quot;:&quot;theme&quot;}],&quot;sorts&quot;:[{&quot;id&quot;:&quot;featured&quot;,&quot;label&quot;:&quot;Featured&quot;},{&quot;id&quot;:&quot;recent&quot;,&quot;label&quot;:&quot;Most recent&quot;,&quot;descending&quot;:true},{&quot;id&quot;:&quot;oldest&quot;,&quot;label&quot;:&quot;Oldest&quot;},{&quot;id&quot;:&quot;name&quot;,&quot;label&quot;:&quot;Name (A–Z)&quot;}]}">
+					<div class="record-search-controls">
+						<div class="record-search-field">
+							<i class="fa fa-search" aria-hidden="true"></i>
+							<input type="search" name="q" placeholder="Search projects" aria-label="Search projects" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="projects-suggestions" data-search-input>
+							<ul class="record-search-suggestions" id="projects-suggestions" role="listbox" aria-label="Suggestions" tabindex="-1" hidden data-search-suggestions></ul>
+						</div>
+						<label class="record-search-sort">
+							<span>Sort by</span>
+							<span class="record-search-select">
+								<select name="sort" data-search-sort>
+									<option value="featured">Featured</option>
+									<option value="recent">Most recent</option>
+									<option value="oldest">Oldest</option>
+									<option value="name">Name (A–Z)</option>
+								</select>
+							</span>
+						</label>
+						<div class="record-grid-control" role="radiogroup" aria-labelledby="projects-columns-label" data-grid-control data-grid-default="3" hidden>
+							<span id="projects-columns-label">Columns</span>
+							<span class="record-grid-choices">
+								<label><input type="radio" name="columns" value="1"><span>1</span></label>
+								<label><input type="radio" name="columns" value="2"><span>2</span></label>
+								<label><input type="radio" name="columns" value="3"><span>3</span></label>
+								<label><input type="radio" name="columns" value="4"><span>4</span></label>
+							</span>
+						</div>
+					</div>
+					<p class="visually-hidden" role="status" data-search-status></p>
+				</form>
+				<p class="record-search-empty" data-search-empty hidden></p>
+				<div class="card-grid" style="--grid-columns: 3; --grid-min-card-width: 420px;" data-card-grid>
+					<ul class="work-list" id="hearth" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;HEARTH&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;npm&quot;]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-07&quot;,&quot;oldest&quot;:&quot;2026-07&quot;,&quot;name&quot;:&quot;HEARTH&quot;}}">
+						<li class="card-permalink"><a href="#hearth" aria-label="Link to HEARTH" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/hearth_logo.svg" alt="HEARTH logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://hearth.emberarchive.org">HEARTH</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
+						<br>
+						<p>
+							Built the Hub for Exploratory Analysis, Resource-sharing, Testing, and Hypothesis-generation (HEARTH), a suite of web apps for the Brain Behavior Quantification and Synchronization (BBQS) consortium and its data on the EMBER Archive.
+							<br><br>
+							Includes an uploader for adding files to a Dandiset on the EMBER Archive through a simple drag-and-drop interface, a clip extractor for saving a snippet or single frame of a video, and an encoding helper for the education and comparison of video encodings. The latter two grew from prototypes created in collaboration with the Talmo Lab.
+							<br><br>
+							Generalized the shell the apps share into a template for new single-page, backend-free apps and a set of common component packages, each covered by unit, integration, and visual snapshot tests.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z"></path></svg> <span><a href="https://www.npmjs.com/org/brain-bbqs" title="https://www.npmjs.com/org/brain-bbqs">npm</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Websites</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 2; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<img class="repository-logo" src="img/hearth_logo.svg" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://hearth.emberarchive.org" title="hearth.emberarchive.org">HEARTH Apps</a>
+													<span class="repository-description">The main landing page for the HEARTH data ecosystem.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<img class="repository-logo" src="img/bbqs_uploader_logo.svg" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://upload.brain-bbqs.org" title="upload.brain-bbqs.org">BBQS Uploader</a>
+													<span class="repository-description">A web app for BBQS teams to easily upload files to an existing Dandiset on the EMBER Archive through a simple drag-and-drop interface.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<img class="repository-logo" src="img/clip_extractor_logo.svg" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://clip-extractor.brain-bbqs.org" title="clip-extractor.brain-bbqs.org">Clip Extractor</a>
+													<span class="repository-description">A web app for selecting a clip (a snippet range or a single frame) from a video and saving it locally or uploading directly to the EMBER Archive.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<img class="repository-logo" src="img/encoding_helper_logo.svg" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://encoding-helper.brain-bbqs.org" title="encoding-helper.brain-bbqs.org">Encoding Helper</a>
+													<span class="repository-description">A web app for education and comparison of video encodings.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Repositories</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 3; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<img class="repository-logo" src="img/bbqs_web_app_template_logo.svg" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/brain-bbqs/bbqs-web-app-template" title="brain-bbqs/bbqs-web-app-template">bbqs-web-app-template</a>
+													<span class="repository-description">A generic template for recommend static web apps.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/brain-bbqs/bbqs-web-components" title="brain-bbqs/bbqs-web-components">bbqs-web-components</a>
+													<span class="repository-description">Common components shared across web apps for this organization.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=%28repo%3Abrain-bbqs%2Fhearth-landing-page+OR+repo%3Abrain-bbqs%2Fbbqs-uploader+OR+repo%3Abrain-bbqs%2Fclip-extractor+OR+repo%3Abrain-bbqs%2Fencoding-helper+OR+repo%3Abrain-bbqs%2Fbbqs-web-app-template+OR+repo%3Abrain-bbqs%2Fbbqs-web-components%29+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>307</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=%28repo%3Abrain-bbqs%2Fhearth-landing-page+OR+repo%3Abrain-bbqs%2Fbbqs-uploader+OR+repo%3Abrain-bbqs%2Fclip-extractor+OR+repo%3Abrain-bbqs%2Fencoding-helper+OR+repo%3Abrain-bbqs%2Fbbqs-web-app-template+OR+repo%3Abrain-bbqs%2Fbbqs-web-components%29+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>2</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=%28repo%3Abrain-bbqs%2Fhearth-landing-page+OR+repo%3Abrain-bbqs%2Fbbqs-uploader+OR+repo%3Abrain-bbqs%2Fclip-extractor+OR+repo%3Abrain-bbqs%2Fencoding-helper+OR+repo%3Abrain-bbqs%2Fbbqs-web-app-template+OR+repo%3Abrain-bbqs%2Fbbqs-web-components%29+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>4</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-archives" data-tag="archives:EMBER" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">EMBER</span></button>
+							<button type="button" class="tag tag-archives" data-tag="archives:BBQS" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">BBQS</span></button>
+							<button type="button" class="tag tag-methods" data-tag="methods:Video" aria-pressed="false"><span class="tag-theme">methods</span> <span class="tag-name">Video</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Web Apps" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Web Apps</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Testing" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Testing</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:TypeScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">TypeScript</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="ember-archive" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;EMBER Archive&quot;],&quot;role&quot;:[&quot;Maintainer&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025-11&quot;,&quot;oldest&quot;:&quot;2025-11&quot;,&quot;name&quot;:&quot;EMBER Archive&quot;}}">
+						<li class="card-permalink"><a href="#ember-archive" aria-label="Link to EMBER Archive" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/ember_logo.png" alt="EMBER Archive logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://emberarchive.org">EMBER Archive</a> &nbsp; | &nbsp; Maintainer &nbsp; | &nbsp; 2025-Present</li>
+						<br>
+						<p>
+							The BRAIN Initiative-funded Ecosystem for Multi-modal Brain-behavior Experimentation and Research (EMBER), the data archive of the Brain Behavior Quantification and Synchronization (BBQS) consortium.
+							<br><br>
+							Established OAuth 2.0 protocols and managed CORS permissions for external web applications.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Repositories</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 3; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/aplbrain/BBQS-EMBER-web" title="aplbrain/BBQS-EMBER-web">BBQS-EMBER-web</a>
+													<span class="repository-description">BBQS EMBER Archive web app</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/aplbrain/BBQS-EMBER-docs" title="aplbrain/BBQS-EMBER-docs">BBQS-EMBER-docs</a>
+													<span class="repository-description">EMBER Documentation</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/aplbrain/dandi-infrastructure" title="aplbrain/dandi-infrastructure">dandi-infrastructure</a>
+													<span class="repository-description">A repository to collect docs/issues on DANDI project infrastructure for Ember</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/aplbrain/ember-dandi-access-summaries" title="aplbrain/ember-dandi-access-summaries">ember-dandi-access-summaries</a>
+													<span class="repository-description">Summaries of access stats (full downloads &amp; streaming) for each EMBER-Dandiset on the EMBER archive.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=%28repo%3Aaplbrain%2FBBQS-EMBER-web+OR+repo%3Aaplbrain%2FBBQS-EMBER-docs+OR+repo%3Aaplbrain%2Fdandi-infrastructure+OR+repo%3Aaplbrain%2Fember-dandi-access-summaries%29+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>10</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=%28repo%3Aaplbrain%2FBBQS-EMBER-web+OR+repo%3Aaplbrain%2FBBQS-EMBER-docs+OR+repo%3Aaplbrain%2Fdandi-infrastructure+OR+repo%3Aaplbrain%2Fember-dandi-access-summaries%29+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>3</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=%28repo%3Aaplbrain%2FBBQS-EMBER-web+OR+repo%3Aaplbrain%2FBBQS-EMBER-docs+OR+repo%3Aaplbrain%2Fdandi-infrastructure+OR+repo%3Aaplbrain%2Fember-dandi-access-summaries%29+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>5</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#s3-log-extraction">S3 Log Analytics</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-archives" data-tag="archives:EMBER" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">EMBER</span></button>
+							<button type="button" class="tag tag-archives" data-tag="archives:BBQS" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">BBQS</span></button>
+							<button type="button" class="tag tag-analysis" data-tag="analysis:Analytics" aria-pressed="false"><span class="tag-theme">analysis</span> <span class="tag-name">Analytics</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Web Apps" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Web Apps</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:GitHub Actions" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">GitHub Actions</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:AWS" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">AWS</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="dandi-archive" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;DANDI Archive&quot;],&quot;role&quot;:[&quot;Contributor&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2022,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2022-03&quot;,&quot;oldest&quot;:&quot;2022-03&quot;,&quot;name&quot;:&quot;DANDI Archive&quot;}}">
+						<li class="card-permalink"><a href="#dandi-archive" aria-label="Link to DANDI Archive" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/dandi_logo.svg" alt="DANDI Archive logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://dandiarchive.org">DANDI Archive</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2022-Present</li>
+						<li>Contribution: Integrated the NWB Inspector into the validation of every upload, designed the options for backing up the archive&#39;s petabyte-scale storage along with their cost estimates, and improved navigation of user interface.</li>
+						<br>
+						<p>
+							The Distributed Archives for Neurophysiology Data Integration (DANDI), a platform funded by the BRAIN Initiative for publishing, sharing, and processing neurophysiology data, such as electrophysiology, optophysiology, and behavioral time series.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Repositories</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 3; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi/dandi-archive" title="dandi/dandi-archive">dandi-archive</a>
+													<span class="repository-description">DANDI API server and Web app</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi/dandi-cli" title="dandi/dandi-cli">dandi-cli</a>
+													<span class="repository-description">DANDI command line client to facilitate common operations</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi/dandi-docs" title="dandi/dandi-docs">dandi-docs</a>
+													<span class="repository-description">DANDI Documentation</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi/simple-s3-backup" title="dandi/simple-s3-backup">simple-s3-backup</a>
+													<span class="repository-description">Simple scripts for running backup on MIT cluster.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi/backup-status" title="dandi/backup-status">backup-status</a>
+													<span class="repository-description">Current status of S3 bucket backup of the DANDI Archive.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=%28repo%3Adandi%2Fdandi-archive+OR+repo%3Adandi%2Fdandi-cli+OR+repo%3Adandi%2Fdandi-docs+OR+repo%3Adandi%2Fsimple-s3-backup+OR+repo%3Adandi%2Fbackup-status%29+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>101</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=%28repo%3Adandi%2Fdandi-archive+OR+repo%3Adandi%2Fdandi-cli+OR+repo%3Adandi%2Fdandi-docs+OR+repo%3Adandi%2Fsimple-s3-backup+OR+repo%3Adandi%2Fbackup-status%29+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>60</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=%28repo%3Adandi%2Fdandi-archive+OR+repo%3Adandi%2Fdandi-cli+OR+repo%3Adandi%2Fdandi-docs+OR+repo%3Adandi%2Fsimple-s3-backup+OR+repo%3Adandi%2Fbackup-status%29+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>27</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Presented in</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#dandi-2025">DANDI: Shaping the future of neurophysiology and neuroimage data publishing and exploration through collaboration with the community, standards, and analytic platforms (2025)</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-inspector">NWB Inspector</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Validation" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Validation</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Command Line" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Command Line</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Web Apps" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Web Apps</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:AWS" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">AWS</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="s3-log-extraction" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;S3 Log Analytics&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;conda-forge&quot;]},&quot;years&quot;:[2024,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2024-07&quot;,&quot;oldest&quot;:&quot;2024-07&quot;,&quot;name&quot;:&quot;S3 Log Analytics&quot;}}">
+						<li class="card-permalink"><a href="#s3-log-extraction" aria-label="Link to S3 Log Analytics" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/s3_log_extraction_logo.svg" alt="S3 Log Analytics logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/dandi/s3-log-extraction">S3 Log Analytics</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2024-Present</li>
+						<br>
+						<p>
+							Created a Python package for the fast extraction of access summary data from Amazon S3 server logs, originally developed for the DANDI Archive and steadily being rolled out to others. Has been applied to tens of billions of records across <strong>20+ TB</strong> of logs.
+							<br><br>
+							Anonymizes each requester, maps it to a geographic region, and aggregates the requests into per-dataset summaries and archive-wide totals that are shared through a public data repository.
+							<br><br>
+							Extended it for the DANDI Archive&#39;s own logs and built the DANDI usage page (usage.dandiarchive.org), which visualizes data usage across the archive, including monitoring of security threats.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/s3-log-extraction/" title="https://pypi.org/project/s3-log-extraction/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.206 5.866l.005.396H6.754l.006.655v.005l-6.758.002v.211L0 7.973l.02.041c.212.467.663.901 1.257 1.313.594.411 1.335.796 2.145 1.13 1.62.664 3.502 1.12 5.006 1.1.746-.01 1.265.228 1.62.672.341.426.51 1.092.524 1.92L7.94 16.239l.008 1.896H20.29l-.004-1.76-2.63-2.22c.055-2.013.708-3.443 1.777-4.405 1.087-.979 2.61-1.49 4.37-1.616l.195-.015L24 5.872zm.425.422l14.946.006-.004 1.457c-1.737.155-3.29.666-4.424 1.685-.912.822-1.433 2.062-1.691 3.534l-1.617.004.002.422 1.535-.004c-.027.226-.113.4-.123.64l-.893-.003-.002.422.995.004 2.138 1.802-2.941.002c-.724-.675-1.552-1.116-2.416-1.158-.817-.04-1.638.324-2.387 1.04l-2.978-.024 2.248-1.781v-.102c.002-.943-.2-1.72-.64-2.269-.396-.496-1.007-.749-1.741-.79l-.008-4.49h.008zm-1.45.396h1.026l.008 4.404c-1.387-.02-3.125-.404-4.631-1.023-.787-.324-1.507-.698-2.066-1.086C.968 8.6.587 8.203.424 7.86v-.514l6.336-.002v2.16h.422v-2.16h.004l-.004-.435v-.226zm6.935 8.839c.75.037 1.503.436 2.18 1.078l-.002 1.112h-4.345l-.006-1.2c.706-.717 1.443-1.026 2.173-.99zM8.36 16.537l3.16.023.006 1.153h-3.16zm11.5.142l.002 1.034h-3.148V16.68z"></path></svg> <span><a href="https://anaconda.org/conda-forge/s3-log-extraction" title="https://anaconda.org/conda-forge/s3-log-extraction">conda-forge</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Websites</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 2; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<img class="repository-logo" src="img/dandi_usage_logo.svg" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://usage.dandiarchive.org" title="usage.dandiarchive.org">Dandiset Usage Summaries</a>
+													<span class="repository-description">Visualizations of data usage across the archive.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=%28repo%3Adandi%2Fs3-log-extraction+OR+repo%3Adandi%2Fusage-page%29+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>391</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=%28repo%3Adandi%2Fs3-log-extraction+OR+repo%3Adandi%2Fusage-page%29+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>16</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=%28repo%3Adandi%2Fs3-log-extraction+OR+repo%3Adandi%2Fusage-page%29+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>170</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Used by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#ember-archive">EMBER Archive</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+							<button type="button" class="tag tag-analysis" data-tag="analysis:Data Visualization" aria-pressed="false"><span class="tag-theme">analysis</span> <span class="tag-name">Data Visualization</span></button>
+							<button type="button" class="tag tag-analysis" data-tag="analysis:Analytics" aria-pressed="false"><span class="tag-theme">analysis</span> <span class="tag-name">Analytics</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:AWS" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">AWS</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="nwb-guide" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB GUIDE&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;GitHub Releases&quot;]},&quot;years&quot;:[2023,2024],&quot;sort&quot;:{&quot;recent&quot;:&quot;2024 2023-03&quot;,&quot;oldest&quot;:&quot;2023-03&quot;,&quot;name&quot;:&quot;NWB GUIDE&quot;}}">
+						<li class="card-permalink"><a href="#nwb-guide" aria-label="Link to NWB GUIDE" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/guide_logo.png" alt="NWB GUIDE logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/NeurodataWithoutBorders/nwb-guide">NWB GUIDE</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2023-2024</li>
+						<br>
+						<p>
+							Developed an intuitive user interface for file management using interactive validation and real-time suggestions, streamlining the process for data submission to NIH archives.
+							<br><br>
+							Ensured a robust testing suite involving multiple levels of integration and user interactions emulated using Puppeteer to enhance reliability and long-term maintainability.
+							<br><br>
+							Tracked and documented dozens of hands-on user tests to refine the user experience.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg> <span><a href="https://github.com/NeurodataWithoutBorders/nwb-guide/releases" title="https://github.com/NeurodataWithoutBorders/nwb-guide/releases">GitHub Releases</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwb-guide+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>105</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwb-guide+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>443</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwb-guide+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>136</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Presented in</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#nwb-guide-sfn-2024">NWB GUIDE: Simplifying the conversion of neurophysiology data to NWB format (2024)</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#neuroconv-nwb-guide-tutorial-janelia-2023">Neuroconv and NWB GUIDE tutorial (2023)</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#neuroconv">NeuroConv</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-inspector">NWB Inspector</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Data Conversion" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Data Conversion</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Validation" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Validation</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:User Interface" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">User Interface</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:User Experience" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">User Experience</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Testing" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Testing</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:JavaScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">JavaScript</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="neuroconv" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NeuroConv&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;GitHub Container Registry&quot;]},&quot;years&quot;:[2020,2024],&quot;sort&quot;:{&quot;recent&quot;:&quot;2024-10 2020-06&quot;,&quot;oldest&quot;:&quot;2020-06&quot;,&quot;name&quot;:&quot;NeuroConv&quot;}}">
+						<li class="card-permalink"><a href="#neuroconv" aria-label="Link to NeuroConv" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/neuroconv_logo.png" alt="NeuroConv logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/catalystneuro/neuroconv">NeuroConv</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2020-2024</li>
+						<br>
+						<p>
+							Established an automated data conversion tool capable of reading more than 40 distinct data formats used by neurophysiology acquisition devices in order to automatically write to the NeurodataWithoutBorders (NWB) standard.
+							<br><br>
+							Designed universal APIs which transparently handled each layer of complexity to simplify the tasks of tagging, grouping, metadata transcription, temporal alignment, asset linking, buffering, chunking, and compression.
+							<br><br>
+							Implemented a distributed cloud deployment system to run large-scale, off-site, batched conversions through Amazon Web Services (AWS).
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/neuroconv/" title="https://pypi.org/project/neuroconv/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="m10.41.24 4.711 2.774c.544.316.878.897.879 1.526v5.01a1.77 1.77 0 0 1-.88 1.53l-7.753 4.521-.002.001a1.769 1.769 0 0 1-1.774 0H5.59L.873 12.85A1.761 1.761 0 0 1 0 11.327V6.292c0-.304.078-.598.22-.855l.004-.005.01-.019c.15-.262.369-.486.64-.643L8.641.239a1.752 1.752 0 0 1 1.765 0l.002.001ZM9.397 1.534l-7.17 4.182 4.116 2.388a.27.27 0 0 0 .269 0l7.152-4.148-4.115-2.422a.252.252 0 0 0-.252 0Zm-7.768 10.02 4.1 2.393V9.474a1.807 1.807 0 0 1-.138-.072L1.5 7.029v4.298c0 .095.05.181.129.227Zm8.6.642 1.521-.887v-4.45l-1.521.882ZM7.365 9.402h.001c-.044.026-.09.049-.136.071v4.472l1.5-.875V8.61Zm5.885 1.032 1.115-.65h.002a.267.267 0 0 0 .133-.232V5.264l-1.25.725Z"></path></svg> <span><a href="https://ghcr.io/catalystneuro/neuroconv" title="https://ghcr.io/catalystneuro/neuroconv">GitHub Container Registry</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3Acatalystneuro%2Fneuroconv+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>243</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3Acatalystneuro%2Fneuroconv+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>414</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3Acatalystneuro%2Fneuroconv+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>57</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Presented in</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#neuroconv-2025">NeuroConv: Streamlining neurophysiology data conversion to the NWB standard (2025)</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#neuroconv-sfn-2023">NeuroConv: Automated conversion of neurophysiology data to NWB format (2023)</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#neuroconv-nwb-guide-tutorial-janelia-2023">Neuroconv and NWB GUIDE tutorial (2023)</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#neuroconv-tutorial-janelia-2022">NeuroConv tutorial (2022)</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#hdmf">Hierarchical Data Modeling Framework (HDMF)</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Used by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-guide">NWB GUIDE</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#visual-coding-ophys">Visual Coding (2-Photon Calcium Imaging)</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#ibl-brain-wide-map">Brain Wide Map</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#c-elegans-signal-propagation">Neural signal propagation atlas of Caenorhabditis elegans</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#glia-futility">Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#multi-object-working-memory">Multi-object working memory in macaque frontal cortex</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#reaching-population-dynamics">Neural population dynamics during reaching</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#buzsaki-lab">Miscellaneous (Buzsaki Lab)</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Data Conversion" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Data Conversion</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:API Design" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">API Design</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:Cloud Computing" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">Cloud Computing</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:AWS" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">AWS</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="neurosift" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;Neurosift&quot;],&quot;role&quot;:[&quot;UX Design and Contributor&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;]},&quot;years&quot;:[2023,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2023-07&quot;,&quot;oldest&quot;:&quot;2023-07&quot;,&quot;name&quot;:&quot;Neurosift&quot;}}">
+						<li class="card-permalink"><a href="#neurosift" aria-label="Link to Neurosift" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/neurosift_logo.png" alt="Neurosift logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://neurosift.app">Neurosift</a> &nbsp; | &nbsp; UX Design and Contributor &nbsp; | &nbsp; 2023-Present</li>
+						<li>Contribution: Added on-the-fly analyses computed in the browser: spectrograms of LFP streams with adjustable hyperparameters, and event-related signals that align any time series to a table of intervals.</li>
+						<br>
+						<p>
+							Aided in the design of a browser-based application for visualizing the contents of terabyte-scale neurophysiology datasets. Supports time series, images, videos, pose, tabular, annotated events, and all associated metadata through an intuitive exploration interface. Utilizes a specialized HDF5 web assembly implementation for increased efficiency when streaming data from the S3-backed archives.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/neurosift/" title="https://pypi.org/project/neurosift/">PyPI</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Websites</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 2; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<img class="repository-logo" src="img/neurosift_logo.png" alt="" />
+												<span class="repository-text">
+													<a class="repository-name" href="https://neurosift.app" title="neurosift.app">Neurosift</a>
+													<span class="repository-description">Browser-based NWB visualization and DANDI exploration</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3Aflatironinstitute%2Fneurosift+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>17</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3Aflatironinstitute%2Fneurosift+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>2</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3Aflatironinstitute%2Fneurosift+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>21</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Featured contributions</dt>
+									<dd class="record-contributions">
+										<div class="contributions">
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="flatironinstitute/neurosift">flatironinstitute/neurosift</span><span class="contribution-number">#521</span></span>
+												<a class="contribution-title" href="https://github.com/flatironinstitute/neurosift/pull/521">On the fly spectrogram</a>
+												<span class="contribution-diff" title="4677 lines added, 20 deleted"><span class="diff-added-count">+4,677</span> <span class="diff-deleted-count">−20</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="flatironinstitute/neurosift">flatironinstitute/neurosift</span><span class="contribution-number">#518</span></span>
+												<a class="contribution-title" href="https://github.com/flatironinstitute/neurosift/pull/518">Event Related Signals</a>
+												<span class="contribution-diff" title="1979 lines added, 102 deleted"><span class="diff-added-count">+1,979</span> <span class="diff-deleted-count">−102</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Presented in</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#neurosift-2024">Neurosift: DANDI exploration and NWB visualization in the browser (2024)</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Replaces</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-widgets">NWB Widgets (Legacy)</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-format" data-tag="format:HDF5" aria-pressed="false"><span class="tag-theme">format</span> <span class="tag-name">HDF5</span></button>
+							<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+							<button type="button" class="tag tag-analysis" data-tag="analysis:Data Visualization" aria-pressed="false"><span class="tag-theme">analysis</span> <span class="tag-name">Data Visualization</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Web Apps" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Web Apps</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:User Experience" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">User Experience</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:TypeScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">TypeScript</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="nwb-benchmarks" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB Benchmarks&quot;],&quot;role&quot;:[&quot;Core Developer&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2024,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2024-01&quot;,&quot;oldest&quot;:&quot;2024-01&quot;,&quot;name&quot;:&quot;NWB Benchmarks&quot;}}">
+						<li class="card-permalink"><a href="#nwb-benchmarks" aria-label="Link to NWB Benchmarks" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/nwb_benchmarks_logo.png" alt="NWB Benchmarks logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/NeurodataWithoutBorders/nwb-benchmarks">NWB Benchmarks</a> &nbsp; | &nbsp; Core Developer &nbsp; | &nbsp; 2024-Present</li>
+						<br>
+						<p>
+							Managed a collection of unit and integration tests whose performance metrics (time, memory, and web packets) are sampled against a range of environmental run configurations, machine specifications, and bandwidth limits with the results used to assess the performance of HDF5 and Zarr file packaging parameterization against cloud streaming methods.
+							<br><br>
+							Run outputs are aggregated into a common public database and built-in visualization tools generate reports of summary findings. A manuscript discussing interpretations and recommendations is in preparation.
+							<br><br>
+							Built as an extension on top of the popular Airspeed Velocity (ASV) benchmarking framework.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwb-benchmarks+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>59</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwb-benchmarks+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>51</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwb-benchmarks+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>26</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#hdmf">Hierarchical Data Modeling Framework (HDMF)</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-format" data-tag="format:HDF5" aria-pressed="false"><span class="tag-theme">format</span> <span class="tag-name">HDF5</span></button>
+							<button type="button" class="tag tag-format" data-tag="format:Zarr" aria-pressed="false"><span class="tag-theme">format</span> <span class="tag-name">Zarr</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Benchmarking" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Benchmarking</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="dandi-compute" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;DANDI Compute&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;GitHub&quot;,&quot;GitHub Container Registry&quot;]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025-11&quot;,&quot;oldest&quot;:&quot;2025-11&quot;,&quot;name&quot;:&quot;DANDI Compute&quot;}}">
+						<li class="card-permalink"><a href="#dandi-compute" aria-label="Link to DANDI Compute" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/dandi_compute_logo.png" alt="DANDI Compute logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://github.com/dandi-compute">DANDI Compute</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2025-Present</li>
+						<br>
+						<p>
+							Built an orchestration system that runs processing pipelines over assets already published on the DANDI Archive and uploads the results back to the archive, such as spike sorting through the AIND ephys pipeline and LFP extraction from raw electrophysiology.
+							<br><br>
+							Packages each unit of work as a self-describing job capsule carrying its own submission script, parameters, and provenance, runs it as part of a SLURM array job on the MIT Engaging cluster, and tracks every capsule through its lifecycle using nothing but the archive&#39;s own metadata.
+							<br><br>
+							Automated job submission through a self-hosted runner on the cluster, and published a results page for reviewing, comparing, and curating the pipeline runs.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg> <span><a href="https://github.com/dandi-compute" title="https://github.com/dandi-compute">GitHub</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="m10.41.24 4.711 2.774c.544.316.878.897.879 1.526v5.01a1.77 1.77 0 0 1-.88 1.53l-7.753 4.521-.002.001a1.769 1.769 0 0 1-1.774 0H5.59L.873 12.85A1.761 1.761 0 0 1 0 11.327V6.292c0-.304.078-.598.22-.855l.004-.005.01-.019c.15-.262.369-.486.64-.643L8.641.239a1.752 1.752 0 0 1 1.765 0l.002.001ZM9.397 1.534l-7.17 4.182 4.116 2.388a.27.27 0 0 0 .269 0l7.152-4.148-4.115-2.422a.252.252 0 0 0-.252 0Zm-7.768 10.02 4.1 2.393V9.474a1.807 1.807 0 0 1-.138-.072L1.5 7.029v4.298c0 .095.05.181.129.227Zm8.6.642 1.521-.887v-4.45l-1.521.882ZM7.365 9.402h.001c-.044.026-.09.049-.136.071v4.472l1.5-.875V8.61Zm5.885 1.032 1.115-.65h.002a.267.267 0 0 0 .133-.232V5.264l-1.25.725Z"></path></svg> <span><a href="https://ghcr.io/dandi-compute/dandi-compute-lfp" title="https://ghcr.io/dandi-compute/dandi-compute-lfp">GitHub Container Registry</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Websites</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 2; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://dandi-compute.github.io/dandi-compute-page/" title="dandi-compute.github.io/dandi-compute-page">DANDI Compute: AIND Pipeline Results</a>
+													<span class="repository-description">Simple webpage rendering the basic aspects of the DANDI Compute: AIND Ephys project.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Repositories</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 3; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-compute/dandi-compute-core" title="dandi-compute/dandi-compute-core">dandi-compute-core</a>
+													<span class="repository-description">Contains essential code for orchestrating computation submission and queue management for processing pipelines acting on DANDI assets.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-compute/dandi-compute-global-logs" title="dandi-compute/dandi-compute-global-logs">dandi-compute-global-logs</a>
+													<span class="repository-description">Global logs of runtime activity for DANDI Compute.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=org%3Adandi-compute+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>399</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=org%3Adandi-compute+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>1</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=org%3Adandi-compute+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>240</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#dandi-cache">DANDI Cache</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#duct">duct</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Provenance" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Provenance</span></button>
+							<button type="button" class="tag tag-analysis" data-tag="analysis:Spike Sorting" aria-pressed="false"><span class="tag-theme">analysis</span> <span class="tag-name">Spike Sorting</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:HPC" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">HPC</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:Data Pipelines" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">Data Pipelines</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="dandi-cache" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;DANDI Cache&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;GitHub&quot;,&quot;GitHub Container Registry&quot;]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-02&quot;,&quot;oldest&quot;:&quot;2026-02&quot;,&quot;name&quot;:&quot;DANDI Cache&quot;}}">
+						<li class="card-permalink"><a href="#dandi-cache" aria-label="Link to DANDI Cache" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo" src="img/dandi_cache_logo.svg" alt="DANDI Cache logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://github.com/dandi-cache">DANDI Cache</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
+						<br>
+						<p>
+							Created a living collection of up-to-date, pre-computed mappings commonly used by developers working with the DANDI Archive, such as which assets are NWB files, which of those are valid according to the NWB Inspector, and measures of their internal structure.
+							<br><br>
+							Each cache is the same pipeline around a different operation: read one or more upstream caches, work out what is not yet recorded, process each new item, and publish JSON Lines with full DataLad provenance.
+							<br><br>
+							Every cache shares a central library, container images, GitHub Actions, and a template, gathered into one DataLad superdataset with a dashboard of the current state of each.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg> <span><a href="https://github.com/dandi-cache" title="https://github.com/dandi-cache">GitHub</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="m10.41.24 4.711 2.774c.544.316.878.897.879 1.526v5.01a1.77 1.77 0 0 1-.88 1.53l-7.753 4.521-.002.001a1.769 1.769 0 0 1-1.774 0H5.59L.873 12.85A1.761 1.761 0 0 1 0 11.327V6.292c0-.304.078-.598.22-.855l.004-.005.01-.019c.15-.262.369-.486.64-.643L8.641.239a1.752 1.752 0 0 1 1.765 0l.002.001ZM9.397 1.534l-7.17 4.182 4.116 2.388a.27.27 0 0 0 .269 0l7.152-4.148-4.115-2.422a.252.252 0 0 0-.252 0Zm-7.768 10.02 4.1 2.393V9.474a1.807 1.807 0 0 1-.138-.072L1.5 7.029v4.298c0 .095.05.181.129.227Zm8.6.642 1.521-.887v-4.45l-1.521.882ZM7.365 9.402h.001c-.044.026-.09.049-.136.071v4.472l1.5-.875V8.61Zm5.885 1.032 1.115-.65h.002a.267.267 0 0 0 .133-.232V5.264l-1.25.725Z"></path></svg> <span><a href="https://ghcr.io/dandi-cache/dandi-cache-utils" title="https://ghcr.io/dandi-cache/dandi-cache-utils">GitHub Container Registry</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Repositories</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 3; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-cache/dandi-cache-utils" title="dandi-cache/dandi-cache-utils">dandi-cache-utils</a>
+													<span class="repository-description">A centralized codebase of operations used across the DANDI Cache.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-cache/cache-template" title="dandi-cache/cache-template">cache-template</a>
+													<span class="repository-description">A common template with suggested structure, layout, and mechanisms for a typical DANDI Cache.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-cache/dandi-cache-action" title="dandi-cache/dandi-cache-action">dandi-cache-action</a>
+													<span class="repository-description">Vendored GitHub actions for DANDI Cache.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-cache/dandi-cache-dashboard" title="dandi-cache/dandi-cache-dashboard">dandi-cache-dashboard</a>
+													<span class="repository-description">A quick reference for the current state of all cache repositories.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/dandi-cache/superset" title="dandi-cache/superset">superset</a>
+													<span class="repository-description">DataLad superset of all the DANDI caches.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=org%3Adandi-cache+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>469</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=org%3Adandi-cache+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>26</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Related software</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-inspector">NWB Inspector</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Used by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#dandi-compute">DANDI Compute</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Provenance" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Provenance</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:GitHub Actions" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">GitHub Actions</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Automation" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Automation</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:Data Pipelines" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">Data Pipelines</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="stamped" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;STAMPED Principles&quot;],&quot;role&quot;:[&quot;Core Developer&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-02&quot;,&quot;oldest&quot;:&quot;2026-02&quot;,&quot;name&quot;:&quot;STAMPED Principles&quot;}}">
+						<li class="card-permalink"><a href="#stamped" aria-label="Link to STAMPED Principles" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/stamped_logo.svg" alt="STAMPED Principles logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/stamped-principles">STAMPED Principles</a> &nbsp; | &nbsp; Core Developer &nbsp; | &nbsp; 2026-Present</li>
+						<br>
+						<p>
+							Co-developed seven principles for structuring and managing research objects (the data, code and computational environments behind a result, kept together as one unit) so that others can trust, rerun and build upon them: <strong>S</strong>elf-containment, <strong>T</strong>racking, <strong>A</strong>ctionability, <strong>M</strong>odularity, <strong>P</strong>ortability, <strong>E</strong>phemerality and <strong>D</strong>istributability.
+							<br><br>
+							Created the interactive compliance checklist, a web app for assessing a research object against the requirements of each principle with a yes or no and a reason for each, which keeps its answers in the page&#39;s URL for sharing and prints as a report.
+							<br><br>
+							Formalized the principles and the checklist as LinkML schemas, each released with its own DOI, from which the checklist loads the version it shows, and designed the project&#39;s logos and website.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Websites</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 2; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://checklist.stamped-principles.org" title="checklist.stamped-principles.org">STAMPED Compliance Checklist</a>
+													<span class="repository-description">An interactive checklist for compliance to STAMPED principles.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://stamped-principles.org" title="stamped-principles.org">STAMPED Principles</a>
+													<span class="repository-description">GitHub landing page for STAMPED organization.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Repositories</dt>
+									<dd class="record-repositories">
+										<div class="subcard-grid" style="--grid-columns: 3; --grid-min-card-width: 160px;">
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/stamped-principles/stamped-principles-schema" title="stamped-principles/stamped-principles-schema">stamped-principles-schema</a>
+													<span class="repository-description">The formal LinkML schema and instance for the STAMPED principles.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/stamped-principles/stamped-checklist-schema" title="stamped-principles/stamped-checklist-schema">stamped-checklist-schema</a>
+													<span class="repository-description">The formal LinkML schema and instance for the STAMPED checklist.</span>
+												</span>
+											</div>
+											<div class="repository">
+												<span class="repository-logo"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg></span>
+												<span class="repository-text">
+													<a class="repository-name" href="https://github.com/stamped-principles/stamped-branding" title="stamped-principles/stamped-branding">stamped-branding</a>
+													<span class="repository-description">Collection of formal logos for the STAMPED principles.</span>
+												</span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=org%3Astamped-principles+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>137</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=org%3Astamped-principles+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>65</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=org%3Astamped-principles+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>88</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Presented in</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i> <span><a href="publications#stamped-2026">STAMPED principles for reproducible research objects (2026)</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-data" data-tag="data:Data Standards" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Data Standards</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Provenance" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Provenance</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Reproducibility" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Reproducibility</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Web Apps" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Web Apps</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Testing" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Testing</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:JavaScript" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">JavaScript</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="nwb-inspector" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB Inspector&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;conda-forge&quot;]},&quot;years&quot;:[2022,2024],&quot;sort&quot;:{&quot;recent&quot;:&quot;2024 2022-01&quot;,&quot;oldest&quot;:&quot;2022-01&quot;,&quot;name&quot;:&quot;NWB Inspector&quot;}}">
+						<li class="card-permalink"><a href="#nwb-inspector" aria-label="Link to NWB Inspector" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/inspector_logo.png" alt="NWB Inspector logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/NeurodataWithoutBorders/nwbinspector">NWB Inspector</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2022-2024</li>
+						<br>
+						<p>
+							Built a command line tool used by the NIH data archive to validate all data uploads, which ensures all submissions are provided automated suggestions for metadata improvements that enhance data findability and reuse.
+							<br><br>
+							Mirrored the design, style, and functionality of linting tools such as flake8, pydocstyle, and ruff.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/nwbinspector/" title="https://pypi.org/project/nwbinspector/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.206 5.866l.005.396H6.754l.006.655v.005l-6.758.002v.211L0 7.973l.02.041c.212.467.663.901 1.257 1.313.594.411 1.335.796 2.145 1.13 1.62.664 3.502 1.12 5.006 1.1.746-.01 1.265.228 1.62.672.341.426.51 1.092.524 1.92L7.94 16.239l.008 1.896H20.29l-.004-1.76-2.63-2.22c.055-2.013.708-3.443 1.777-4.405 1.087-.979 2.61-1.49 4.37-1.616l.195-.015L24 5.872zm.425.422l14.946.006-.004 1.457c-1.737.155-3.29.666-4.424 1.685-.912.822-1.433 2.062-1.691 3.534l-1.617.004.002.422 1.535-.004c-.027.226-.113.4-.123.64l-.893-.003-.002.422.995.004 2.138 1.802-2.941.002c-.724-.675-1.552-1.116-2.416-1.158-.817-.04-1.638.324-2.387 1.04l-2.978-.024 2.248-1.781v-.102c.002-.943-.2-1.72-.64-2.269-.396-.496-1.007-.749-1.741-.79l-.008-4.49h.008zm-1.45.396h1.026l.008 4.404c-1.387-.02-3.125-.404-4.631-1.023-.787-.324-1.507-.698-2.066-1.086C.968 8.6.587 8.203.424 7.86v-.514l6.336-.002v2.16h.422v-2.16h.004l-.004-.435v-.226zm6.935 8.839c.75.037 1.503.436 2.18 1.078l-.002 1.112h-4.345l-.006-1.2c.706-.717 1.443-1.026 2.173-.99zM8.36 16.537l3.16.023.006 1.153h-3.16zm11.5.142l.002 1.034h-3.148V16.68z"></path></svg> <span><a href="https://anaconda.org/conda-forge/nwbinspector" title="https://anaconda.org/conda-forge/nwbinspector">conda-forge</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwbinspector+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>180</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwbinspector+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>131</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwbinspector+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>60</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Used by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#dandi-archive">DANDI Archive</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-guide">NWB GUIDE</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#dandi-cache">DANDI Cache</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-database" aria-hidden="true"></i> <span><a href="data-curation#microns">MICrONS</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Sources</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-external-link" aria-hidden="true"></i> <span><a href="https://github.com/dandi/dandi-cli/blob/master/dandi/files/bases.py">github.com/dandi/dandi-cli/blob/master/dandi/files/bases.py</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-archives" data-tag="archives:DANDI" aria-pressed="false"><span class="tag-theme">archives</span> <span class="tag-name">DANDI</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Metadata" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Metadata</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Validation" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Validation</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Command Line" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Command Line</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="historia" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;Historia&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;conda-forge&quot;]},&quot;years&quot;:[2026,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2026-04&quot;,&quot;oldest&quot;:&quot;2026-04&quot;,&quot;name&quot;:&quot;Historia&quot;}}">
+						<li class="card-permalink"><a href="#historia" aria-label="Link to Historia" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-light" src="img/historia_logo.svg" alt="Historia logo" style="width: 25%;" />
+						<img class="project-logo logo-dark" src="img/historia_logo_dark.svg" alt="Historia logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://github.com/CodyCBakerPhD/historia">Historia</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2026-Present</li>
+						<br>
+						<p>
+							Created a command line tool for backing up records of GitHub activity (the pull requests and issues a person opened, was assigned, or reviewed) for use in creating dashboard reports of work history.
+							<br><br>
+							Paired with a GitHub Action that runs the whole scheduled update of a work history data repository: fetching recent activity, committing it, populating a GitHub Projects board, and publishing a compressed archive of the data.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/historia/" title="https://pypi.org/project/historia/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.206 5.866l.005.396H6.754l.006.655v.005l-6.758.002v.211L0 7.973l.02.041c.212.467.663.901 1.257 1.313.594.411 1.335.796 2.145 1.13 1.62.664 3.502 1.12 5.006 1.1.746-.01 1.265.228 1.62.672.341.426.51 1.092.524 1.92L7.94 16.239l.008 1.896H20.29l-.004-1.76-2.63-2.22c.055-2.013.708-3.443 1.777-4.405 1.087-.979 2.61-1.49 4.37-1.616l.195-.015L24 5.872zm.425.422l14.946.006-.004 1.457c-1.737.155-3.29.666-4.424 1.685-.912.822-1.433 2.062-1.691 3.534l-1.617.004.002.422 1.535-.004c-.027.226-.113.4-.123.64l-.893-.003-.002.422.995.004 2.138 1.802-2.941.002c-.724-.675-1.552-1.116-2.416-1.158-.817-.04-1.638.324-2.387 1.04l-2.978-.024 2.248-1.781v-.102c.002-.943-.2-1.72-.64-2.269-.396-.496-1.007-.749-1.741-.79l-.008-4.49h.008zm-1.45.396h1.026l.008 4.404c-1.387-.02-3.125-.404-4.631-1.023-.787-.324-1.507-.698-2.066-1.086C.968 8.6.587 8.203.424 7.86v-.514l6.336-.002v2.16h.422v-2.16h.004l-.004-.435v-.226zm6.935 8.839c.75.037 1.503.436 2.18 1.078l-.002 1.112h-4.345l-.006-1.2c.706-.717 1.443-1.026 2.173-.99zM8.36 16.537l3.16.023.006 1.153h-3.16zm11.5.142l.002 1.034h-3.148V16.68z"></path></svg> <span><a href="https://anaconda.org/conda-forge/historia" title="https://anaconda.org/conda-forge/historia">conda-forge</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3ACodyCBakerPhD%2Fhistoria+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>134</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3ACodyCBakerPhD%2Fhistoria+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>2</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3ACodyCBakerPhD%2Fhistoria+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>74</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Command Line" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Command Line</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:GitHub Actions" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">GitHub Actions</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Automation" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Automation</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="nwb2bids" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;nwb2bids&quot;],&quot;role&quot;:[&quot;Lead Developer&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;conda-forge&quot;,&quot;GitHub Container Registry&quot;]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025&quot;,&quot;oldest&quot;:&quot;2025&quot;,&quot;name&quot;:&quot;nwb2bids&quot;}}">
+						<li class="card-permalink"><a href="#nwb2bids" aria-label="Link to nwb2bids" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-light" src="img/nwb2bids_logo.svg" alt="nwb2bids logo" style="width: 50%;" />
+						<img class="project-logo logo-dark" src="img/nwb2bids_logo_dark.svg" alt="nwb2bids logo" style="width: 50%;" />
+						<br>
+						<li><a href="https://github.com/con/nwb2bids">nwb2bids</a> &nbsp; | &nbsp; Lead Developer &nbsp; | &nbsp; 2025-Present</li>
+						<br>
+						<p>
+							Created a metadata extraction tool for organizing datasets of NeurodataWithoutBorders (NWB) files following the Brain Imaging Data Structure (BIDS) structure. Encourages best practices in data curation, such as self-describing entities, FAIR principles, and rich Hierarchical Event Descriptor (HED) annotations.
+							<br><br>
+							Developed in conjunction with the BIDS Enhancement Proposal (BEP) 032 for micro-electrode neurophysiology data.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/nwb2bids/" title="https://pypi.org/project/nwb2bids/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.206 5.866l.005.396H6.754l.006.655v.005l-6.758.002v.211L0 7.973l.02.041c.212.467.663.901 1.257 1.313.594.411 1.335.796 2.145 1.13 1.62.664 3.502 1.12 5.006 1.1.746-.01 1.265.228 1.62.672.341.426.51 1.092.524 1.92L7.94 16.239l.008 1.896H20.29l-.004-1.76-2.63-2.22c.055-2.013.708-3.443 1.777-4.405 1.087-.979 2.61-1.49 4.37-1.616l.195-.015L24 5.872zm.425.422l14.946.006-.004 1.457c-1.737.155-3.29.666-4.424 1.685-.912.822-1.433 2.062-1.691 3.534l-1.617.004.002.422 1.535-.004c-.027.226-.113.4-.123.64l-.893-.003-.002.422.995.004 2.138 1.802-2.941.002c-.724-.675-1.552-1.116-2.416-1.158-.817-.04-1.638.324-2.387 1.04l-2.978-.024 2.248-1.781v-.102c.002-.943-.2-1.72-.64-2.269-.396-.496-1.007-.749-1.741-.79l-.008-4.49h.008zm-1.45.396h1.026l.008 4.404c-1.387-.02-3.125-.404-4.631-1.023-.787-.324-1.507-.698-2.066-1.086C.968 8.6.587 8.203.424 7.86v-.514l6.336-.002v2.16h.422v-2.16h.004l-.004-.435v-.226zm6.935 8.839c.75.037 1.503.436 2.18 1.078l-.002 1.112h-4.345l-.006-1.2c.706-.717 1.443-1.026 2.173-.99zM8.36 16.537l3.16.023.006 1.153h-3.16zm11.5.142l.002 1.034h-3.148V16.68z"></path></svg> <span><a href="https://anaconda.org/conda-forge/nwb2bids" title="https://anaconda.org/conda-forge/nwb2bids">conda-forge</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="m10.41.24 4.711 2.774c.544.316.878.897.879 1.526v5.01a1.77 1.77 0 0 1-.88 1.53l-7.753 4.521-.002.001a1.769 1.769 0 0 1-1.774 0H5.59L.873 12.85A1.761 1.761 0 0 1 0 11.327V6.292c0-.304.078-.598.22-.855l.004-.005.01-.019c.15-.262.369-.486.64-.643L8.641.239a1.752 1.752 0 0 1 1.765 0l.002.001ZM9.397 1.534l-7.17 4.182 4.116 2.388a.27.27 0 0 0 .269 0l7.152-4.148-4.115-2.422a.252.252 0 0 0-.252 0Zm-7.768 10.02 4.1 2.393V9.474a1.807 1.807 0 0 1-.138-.072L1.5 7.029v4.298c0 .095.05.181.129.227Zm8.6.642 1.521-.887v-4.45l-1.521.882ZM7.365 9.402h.001c-.044.026-.09.049-.136.071v4.472l1.5-.875V8.61Zm5.885 1.032 1.115-.65h.002a.267.267 0 0 0 .133-.232V5.264l-1.25.725Z"></path></svg> <span><a href="https://ghcr.io/con/nwb2bids" title="https://ghcr.io/con/nwb2bids">GitHub Container Registry</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3Acon%2Fnwb2bids+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>182</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3Acon%2Fnwb2bids+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>83</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3Acon%2Fnwb2bids+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>69</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Related contributions</dt>
+									<dd class="record-contributions">
+										<div class="contributions">
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="bids-standard/bids-specification">bids-standard/bids-specification</span><span class="contribution-number">#2307</span></span>
+												<a class="contribution-title" href="https://github.com/bids-standard/bids-specification/pull/2307">[ENH]: BEP032 formal review</a>
+												<span class="contribution-diff" title="2481 lines added, 21 deleted"><span class="diff-added-count">+2,481</span> <span class="diff-deleted-count">−21</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+										</div>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-standards" data-tag="standards:BIDS" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">BIDS</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Data Standards" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Data Standards</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Metadata" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Metadata</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:FAIR Data" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">FAIR Data</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="hdmf" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;Hierarchical Data Modeling Framework (HDMF)&quot;],&quot;role&quot;:[&quot;Contributor&quot;],&quot;distributed&quot;:[]},&quot;years&quot;:[2021,2025],&quot;sort&quot;:{&quot;recent&quot;:&quot;2025-09 2021-04&quot;,&quot;oldest&quot;:&quot;2021-04&quot;,&quot;name&quot;:&quot;Hierarchical Data Modeling Framework (HDMF)&quot;}}">
+						<li class="card-permalink"><a href="#hdmf" aria-label="Link to Hierarchical Data Modeling Framework (HDMF)" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/hdmf_logo.png" alt="Hierarchical Data Modeling Framework (HDMF) logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://github.com/hdmf-dev/hdmf">Hierarchical Data Modeling Framework (HDMF)</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2021-2025</li>
+						<li>Contribution: Created the GenericDataChunkIterator for more efficient lazy, buffered writing of terabyte-scale datasets (existing defaults overlapped chunks and had poor default chunking heuristics), later extending it with serialization, parallel orchestration, and progress bar control.</li>
+						<br>
+						<p>
+							Enhanced a generic schema language for defining structured data standards intended to be written to group-like backend file types (such as HDF5 and Zarr) by generalizing, parallelizing, and optimizing lazy data buffering for terabyte-scale datasets.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3Ahdmf-dev%2Fhdmf+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>10</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3Ahdmf-dev%2Fhdmf+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>4</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3Ahdmf-dev%2Fhdmf+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>8</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Featured contributions</dt>
+									<dd class="record-contributions">
+										<div class="contributions">
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="hdmf-dev/hdmf">hdmf-dev/hdmf</span><span class="contribution-number">#672</span></span>
+												<a class="contribution-title" href="https://github.com/hdmf-dev/hdmf/pull/672">GenericDataChunkIterator</a>
+												<span class="contribution-diff" title="842 lines added, 23 deleted"><span class="diff-added-count">+842</span> <span class="diff-deleted-count">−23</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="hdmf-dev/hdmf">hdmf-dev/hdmf</span><span class="contribution-number">#924</span></span>
+												<a class="contribution-title" href="https://github.com/hdmf-dev/hdmf/pull/924">Add base methods for iterator serialization</a>
+												<span class="contribution-diff" title="96 lines added, 22 deleted"><span class="diff-added-count">+96</span> <span class="diff-deleted-count">−22</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="hdmf-dev/hdmf">hdmf-dev/hdmf</span><span class="contribution-number">#1110</span></span>
+												<a class="contribution-title" href="https://github.com/hdmf-dev/hdmf/pull/1110">Expose progress bar class control</a>
+												<span class="contribution-diff" title="58 lines added, 7 deleted"><span class="diff-added-count">+58</span> <span class="diff-deleted-count">−7</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Used by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#neuroconv">NeuroConv</a></span></span>
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#nwb-benchmarks">NWB Benchmarks</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-format" data-tag="format:HDF5" aria-pressed="false"><span class="tag-theme">format</span> <span class="tag-name">HDF5</span></button>
+							<button type="button" class="tag tag-format" data-tag="format:Zarr" aria-pressed="false"><span class="tag-theme">format</span> <span class="tag-name">Zarr</span></button>
+							<button type="button" class="tag tag-data" data-tag="data:Data Standards" aria-pressed="false"><span class="tag-theme">data</span> <span class="tag-name">Data Standards</span></button>
+							<button type="button" class="tag tag-computing" data-tag="computing:Parallel Computing" aria-pressed="false"><span class="tag-theme">computing</span> <span class="tag-name">Parallel Computing</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="nwb-widgets" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;NWB Widgets (Legacy)&quot;],&quot;role&quot;:[&quot;Developer&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;GitHub Container Registry&quot;]},&quot;years&quot;:[2021,2023],&quot;sort&quot;:{&quot;recent&quot;:&quot;2023-06 2021-05&quot;,&quot;oldest&quot;:&quot;2021-05&quot;,&quot;name&quot;:&quot;NWB Widgets (Legacy)&quot;}}">
+						<li class="card-permalink"><a href="#nwb-widgets" aria-label="Link to NWB Widgets (Legacy)" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<img class="project-logo logo-on-tile" src="img/nwbwidgets_logo.png" alt="NWB Widgets (Legacy) logo" style="width: 25%;" />
+						<br>
+						<li><a href="https://github.com/NeurodataWithoutBorders/nwbwidgets">NWB Widgets (Legacy)</a> &nbsp; | &nbsp; Developer &nbsp; | &nbsp; 2021-2023</li>
+						<br>
+						<p>
+							Drafted Jupyter widgets-based tools for visualizing the contents of terabyte-scale neurophysiology datasets. Supports many custom plugins for specific neural data types. Has some remote streaming capability, but is more intended for reading from local disks.
+							<br><br>
+							Largely replaced by the Neurosift browser-based application.
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/nwbwidgets/" title="https://pypi.org/project/nwbwidgets/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="m10.41.24 4.711 2.774c.544.316.878.897.879 1.526v5.01a1.77 1.77 0 0 1-.88 1.53l-7.753 4.521-.002.001a1.769 1.769 0 0 1-1.774 0H5.59L.873 12.85A1.761 1.761 0 0 1 0 11.327V6.292c0-.304.078-.598.22-.855l.004-.005.01-.019c.15-.262.369-.486.64-.643L8.641.239a1.752 1.752 0 0 1 1.765 0l.002.001ZM9.397 1.534l-7.17 4.182 4.116 2.388a.27.27 0 0 0 .269 0l7.152-4.148-4.115-2.422a.252.252 0 0 0-.252 0Zm-7.768 10.02 4.1 2.393V9.474a1.807 1.807 0 0 1-.138-.072L1.5 7.029v4.298c0 .095.05.181.129.227Zm8.6.642 1.521-.887v-4.45l-1.521.882ZM7.365 9.402h.001c-.044.026-.09.049-.136.071v4.472l1.5-.875V8.61Zm5.885 1.032 1.115-.65h.002a.267.267 0 0 0 .133-.232V5.264l-1.25.725Z"></path></svg> <span><a href="https://ghcr.io/neurodatawithoutborders/nwbwidgets-panel" title="https://ghcr.io/neurodatawithoutborders/nwbwidgets-panel">GitHub Container Registry</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Contributions</dt>
+									<dd class="record-activity">
+										<div class="activity">
+											<a class="activity-stat activity-merged" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwbwidgets+is%3Apr+is%3Amerged+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"></path></svg></span>12</span><span class="activity-label">Pull requests merged</span></a>
+											<a class="activity-stat activity-reviewed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwbwidgets+is%3Apr+reviewed-by%3ACodyCBakerPhD+-author%3ACodyCBakerPhD+-assignee%3ACodyCBakerPhD&amp;type=pullrequests"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1.75 1h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 13H8.061l-2.574 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25v-8.5C0 1.784.784 1 1.75 1ZM1.5 2.75v8.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25Zm5.28 1.72a.75.75 0 0 1 0 1.06L5.31 7l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.75.75 0 0 1 1.06 0Zm2.44 0a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.69 7 9.22 5.53a.75.75 0 0 1 0-1.06Z"></path></svg></span>16</span><span class="activity-label">Pull requests reviewed</span></a>
+											<a class="activity-stat activity-closed" href="https://github.com/search?q=repo%3ANeurodataWithoutBorders%2Fnwbwidgets+is%3Aissue+is%3Aclosed+%28author%3ACodyCBakerPhD+OR+assignee%3ACodyCBakerPhD%29&amp;type=issues"><span class="activity-value"><span class="activity-icon"><svg class="icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"></path><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path></svg></span>20</span><span class="activity-label">Issues closed</span></a>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Replaced by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#neurosift">Neurosift</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-standards" data-tag="standards:NWB" aria-pressed="false"><span class="tag-theme">standards</span> <span class="tag-name">NWB</span></button>
+							<button type="button" class="tag tag-analysis" data-tag="analysis:Data Visualization" aria-pressed="false"><span class="tag-theme">analysis</span> <span class="tag-name">Data Visualization</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+					<ul class="work-list" id="duct" data-card data-search-item data-search-record="{&quot;fields&quot;:{&quot;name&quot;:[&quot;duct&quot;],&quot;role&quot;:[&quot;Contributor&quot;],&quot;distributed&quot;:[&quot;PyPI&quot;,&quot;conda-forge&quot;]},&quot;years&quot;:[2025,null],&quot;sort&quot;:{&quot;recent&quot;:&quot;9999 2025-10&quot;,&quot;oldest&quot;:&quot;2025-10&quot;,&quot;name&quot;:&quot;duct&quot;}}">
+						<li class="card-permalink"><a href="#duct" aria-label="Link to duct" title="Link to this card"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+						<li><a href="https://github.com/con/duct">duct</a> &nbsp; | &nbsp; Contributor &nbsp; | &nbsp; 2025-Present</li>
+						<li>Contribution: Added macOS support and CI runners, a basic structure for using duct as a library, demonstrated self-contained executable binary builds, and clearer errors on unsupported systems.</li>
+						<br>
+						<p>
+							Maintained a simple command line tool for monitoring and maintaining records of process-specific system resource utilization of any other command line invocation.
+							<br><br>
+							Tracks wall clock time, CPU time, RAM consumption, and more!
+						</p>
+						<li class="record-references">
+							<dl>
+								<div>
+									<dt>Distributed by</dt>
+									<dd class="record-links">
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.922 13.58v3.912L20.55 18.72l-.078.055.052.037 3.45-1.256.026-.036v-3.997l-.053-.036-.025.092z M23.621 5.618l-3.04 1.107v3.912l3.339-1.215V5.509zM23.92 13.457V9.544l-3.336 1.215v3.913zM20.47 14.71V10.8L17.17 12v3.913zM17.034 19.996v-3.912l-3.313 1.206v3.912zM17.17 16.057v3.868l3.314-1.206V14.85l-3.314 1.206zm2.093 1.882c-.367.134-.663-.074-.663-.463s.296-.814.663-.947c.365-.133.662.075.662.464s-.297.814-.662.946z M13.225 9.315l.365-.132-3.285-1.197-3.323 1.21.102.037 3.184 1.16zM20.507 10.664V6.751L17.17 7.965v3.913zM17.058 11.918V8.005l-3.302 1.202v3.912zM13.643 9.246l-3.336 1.215v3.913l3.336-1.215zM6.907 13.165l3.322 1.209v-3.913L6.907 9.252z M10.34 7.873l3.281 1.193V5.198l-3.28-1.193zM20.507 2.715L17.19 3.922v3.913l3.317-1.207zM16.95 3.903L13.724 2.73l-3.269 1.19 3.225 1.174zM15.365 4.606l-1.624.592v3.868l3.317-1.207V3.991l-1.693.615zm-.391 2.778c-.367.134-.662-.074-.662-.464s.295-.813.662-.946c.366-.133.663.074.663.464s-.297.813-.663.946z M10.229 18.41v-3.914l-3.322-1.209V17.2zM13.678 17.182v-3.913l-3.371 1.227v3.913z M13.756 17.154l3.3-1.2V12.04l-3.3 1.2zM13.678 21.217l-3.371 1.227v-3.912h-.078v3.912l-3.322-1.209v-3.913l-.053-.058-.025-.06-3.336-1.21v-3.948l.034.013 3.287 1.196.015-.078-3.261-1.187 3.26-1.187v-.109L3.876 9.62l-.307-.112 3.26-1.188v.877l.079-.055V6.769l3.257 1.185.058-.061L7.084 6.75l-.102-.037 3.24-1.179v-.083L6.854 6.677v.018l-.025.018v1.523L3.44 9.47v.02l-.025.017v4.007l-3.39 1.233v.019L0 14.784v3.995l.025.037 3.4 1.237.008-.006.007.01 3.4 1.238.008-.006.006.01 3.4 1.237.014-.009.012.01 3.45-1.256.026-.037-.078-.027zM3.493 9.563l3.257 1.185-3.257 1.187V9.562zM3.4 19.96L.078 18.752v-3.913l2.361.86.96.349v3.913zm.015-3.99L.335 14.85l-.182-.066 3.262-1.187v2.374zm3.399 5.231l-3.321-1.209v-3.912l3.321 1.209v3.912zM23.791 5.434l-3.21-1.17v2.338zM20.387 2.643l-3.24-1.18-3.27 1.19 3.247 1.182z"></path></svg> <span><a href="https://pypi.org/project/con-duct/" title="https://pypi.org/project/con-duct/">PyPI</a></span></span>
+										<span class="record-link"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8.206 5.866l.005.396H6.754l.006.655v.005l-6.758.002v.211L0 7.973l.02.041c.212.467.663.901 1.257 1.313.594.411 1.335.796 2.145 1.13 1.62.664 3.502 1.12 5.006 1.1.746-.01 1.265.228 1.62.672.341.426.51 1.092.524 1.92L7.94 16.239l.008 1.896H20.29l-.004-1.76-2.63-2.22c.055-2.013.708-3.443 1.777-4.405 1.087-.979 2.61-1.49 4.37-1.616l.195-.015L24 5.872zm.425.422l14.946.006-.004 1.457c-1.737.155-3.29.666-4.424 1.685-.912.822-1.433 2.062-1.691 3.534l-1.617.004.002.422 1.535-.004c-.027.226-.113.4-.123.64l-.893-.003-.002.422.995.004 2.138 1.802-2.941.002c-.724-.675-1.552-1.116-2.416-1.158-.817-.04-1.638.324-2.387 1.04l-2.978-.024 2.248-1.781v-.102c.002-.943-.2-1.72-.64-2.269-.396-.496-1.007-.749-1.741-.79l-.008-4.49h.008zm-1.45.396h1.026l.008 4.404c-1.387-.02-3.125-.404-4.631-1.023-.787-.324-1.507-.698-2.066-1.086C.968 8.6.587 8.203.424 7.86v-.514l6.336-.002v2.16h.422v-2.16h.004l-.004-.435v-.226zm6.935 8.839c.75.037 1.503.436 2.18 1.078l-.002 1.112h-4.345l-.006-1.2c.706-.717 1.443-1.026 2.173-.99zM8.36 16.537l3.16.023.006 1.153h-3.16zm11.5.142l.002 1.034h-3.148V16.68z"></path></svg> <span><a href="https://anaconda.org/conda-forge/con-duct" title="https://anaconda.org/conda-forge/con-duct">conda-forge</a></span></span>
+									</dd>
+								</div>
+								<div>
+									<dt>Featured contributions</dt>
+									<dd class="record-contributions">
+										<div class="contributions">
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="con/duct">con/duct</span><span class="contribution-number">#351</span></span>
+												<a class="contribution-title" href="https://github.com/con/duct/pull/351">Added Mac (M-series) support</a>
+												<span class="contribution-diff" title="175 lines added, 38 deleted"><span class="diff-added-count">+175</span> <span class="diff-deleted-count">−38</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-neutral"></span></span></span>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="con/duct">con/duct</span><span class="contribution-number">#364</span></span>
+												<a class="contribution-title" href="https://github.com/con/duct/pull/364">Activate intel runner for mac CI</a>
+												<span class="contribution-diff" title="1 lines added, 29 deleted"><span class="diff-added-count">+1</span> <span class="diff-deleted-count">−29</span><span class="diff-blocks" aria-hidden="true"><span class="diff-deleted"></span><span class="diff-deleted"></span><span class="diff-deleted"></span><span class="diff-deleted"></span><span class="diff-neutral"></span></span></span>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="con/duct">con/duct</span><span class="contribution-number">#390</span></span>
+												<a class="contribution-title" href="https://github.com/con/duct/pull/390">Added basic import structure for library usage</a>
+												<span class="contribution-diff" title="50 lines added, 44 deleted"><span class="diff-added-count">+50</span> <span class="diff-deleted-count">−44</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-deleted"></span><span class="diff-deleted"></span><span class="diff-neutral"></span></span></span>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Issue </span><span class="contribution-repository" title="con/duct">con/duct</span><span class="contribution-number">#326</span></span>
+												<a class="contribution-title" href="https://github.com/con/duct/issues/326">Try making standalone executable</a>
+											</div>
+											<div class="contribution">
+												<span class="contribution-meta"><span class="visually-hidden">Pull request </span><span class="contribution-repository" title="con/duct">con/duct</span><span class="contribution-number">#392</span></span>
+												<a class="contribution-title" href="https://github.com/con/duct/pull/392">Better error rendering on unsupported systems</a>
+												<span class="contribution-diff" title="39 lines added, 0 deleted"><span class="diff-added-count">+39</span> <span class="diff-deleted-count">−0</span><span class="diff-blocks" aria-hidden="true"><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span><span class="diff-added"></span></span></span>
+											</div>
+										</div>
+									</dd>
+								</div>
+								<div>
+									<dt>Used by</dt>
+									<dd class="record-links">
+										<span class="record-link"><i class="fa fa-fw fa-cube" aria-hidden="true"></i> <span><a href="projects#dandi-compute">DANDI Compute</a></span></span>
+									</dd>
+								</div>
+							</dl>
+						</li>
+						<li class="tag-list">
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Command Line" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Command Line</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Continuous Integration" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Continuous Integration</span></button>
+							<button type="button" class="tag tag-engineering" data-tag="engineering:Resource Monitoring" aria-pressed="false"><span class="tag-theme">engineering</span> <span class="tag-name">Resource Monitoring</span></button>
+							<button type="button" class="tag tag-languages" data-tag="languages:Python" aria-pressed="false"><span class="tag-theme">languages</span> <span class="tag-name">Python</span></button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Shared by every page (see src/build/layout.ts), so relative URLs resolve against each page in src/. -->
+	<!-- Quote -->
+	<div class="quote">
+		<div class="container text-centered">
+			<h1>never stop learning</h1>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<!-- The same links as the navigation bar, for readers who reach the bottom of a page. -->
+			<nav class="footer-nav" aria-label="Footer">
+				<ul class="list-flat">
+					<li><a href="./">About</a></li>
+					<li><a href="./#education">Education</a></li>
+					<li><a href="./#skills">Skills</a></li>
+					<li><a href="./#experience">Experience</a></li>
+					<li class="active"><a href="projects" aria-current="page">Projects</a></li>
+					<li><a href="publications">Publications</a></li>
+					<li><a href="data-curation">Data Curation</a></li>
+				</ul>
+			</nav>
+			<div class="units-row">
+			    <div class="unit-50">
+					<ul class="social list-flat right">
+						<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
+						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
+					</ul>
+			    </div>
+			</div>
+			<div class="footer-version">
+				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.16.0</a>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/typed.min.js"></script>
+	<script src="js/kube.min.js"></script>
+</body>
+
+</html>
