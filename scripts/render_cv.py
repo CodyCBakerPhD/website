@@ -165,11 +165,13 @@ def render_project(record_id: str, project: dict, compact: bool) -> str:
 def render_projects(records: list[tuple[str, dict]], compact: bool) -> str:
     return rubric(
         title=rubric_title(r"\faFlask", "Selected Projects" if compact else "Highlighted Projects"),
-        intro=None
-        if compact
-        else (
-            "Below are the most recent highlights of my major work. "
-            f"You can find the full listing at {website_link('projects')}"
+        intro=(
+            None
+            if compact
+            else (
+                "Below are the most recent highlights of my major work. "
+                f"You can find the full listing at {website_link('projects')}"
+            )
         ),
         entries=[render_project(record_id, record, compact) for record_id, record in records],
     )
@@ -206,11 +208,13 @@ def render_dataset(record_id: str, dataset: dict, compact: bool) -> str:
 def render_datasets(records: list[tuple[str, dict]], compact: bool) -> str:
     return rubric(
         title=rubric_title(r"\faDatabase", "Selected Data Curation" if compact else "Data Curation"),
-        intro=None
-        if compact
-        else (
-            "Below are among the more notable of the dozens of datasets I have helped manage, curate, and publish. "
-            f"You can find the full listing at {website_link('data-curation')}"
+        intro=(
+            None
+            if compact
+            else (
+                "Below are among the more notable of the dozens of datasets I have helped manage, curate, and publish. "
+                f"You can find the full listing at {website_link('data-curation')}"
+            )
         ),
         entries=[render_dataset(record_id, record, compact) for record_id, record in records],
     )
@@ -306,18 +310,21 @@ def render_summaries(records: list[tuple[str, dict]], compact: bool) -> str:
     else:
         paragraphs = [latex_text(paragraph) for paragraph in summary["description"]]
     title = rubric_title(r"\faInfoCircle", "Summary")
-    return "\n".join(
-        [
-            f"% {record_id}.json, record_version {summary['record_version']}",
-            rf"\begin{{rubric}}{{{title}}}",
-            "",
-            r"\text{",
-            "\n\n    \\vspace*{2.5mm}\n\n".join(f"    {paragraph}" for paragraph in paragraphs),
-            "}",
-            "",
-            r"\end{rubric}",
-        ]
-    ) + "\n"
+    return (
+        "\n".join(
+            [
+                f"% {record_id}.json, record_version {summary['record_version']}",
+                rf"\begin{{rubric}}{{{title}}}",
+                "",
+                r"\text{",
+                "\n\n    \\vspace*{2.5mm}\n\n".join(f"    {paragraph}" for paragraph in paragraphs),
+                "}",
+                "",
+                r"\end{rubric}",
+            ]
+        )
+        + "\n"
+    )
 
 
 @dataclass(frozen=True)
@@ -369,7 +376,11 @@ def load_sections(config_file: Path) -> list[Section]:
         if not isinstance(entry.get("output"), str) or not isinstance(entry.get("show"), list):
             problems.append(f"{where}: 'output' (a path under cv/) and 'show' (a list of record IDs) are required")
             continue
-        if entry.get("records") in RECORD_TYPES and RECORD_TYPES[entry["records"]].shows_one and len(entry["show"]) != 1:
+        if (
+            entry.get("records") in RECORD_TYPES
+            and RECORD_TYPES[entry["records"]].shows_one
+            and len(entry["show"]) != 1
+        ):
             problems.append(f"{where}: a section of {entry['records']} shows exactly one, so 'show' must list one ID")
         sections.append(
             Section(
@@ -411,19 +422,22 @@ def load_records(records_dir: str) -> dict[str, dict]:
 def select_records(section: Section, records: dict[str, dict]) -> list[tuple[str, dict]]:
     """Orders the shown records, failing unless every record is shown or omitted exactly once."""
     name = section.output.relative_to(CV_DIR).as_posix()
-    problems = []
     placed = section.show + section.omit
-    for record_id in sorted({record_id for record_id in placed if placed.count(record_id) > 1}):
-        problems.append(f"{name}: '{record_id}' is listed more than once in 'show' and 'omit'")
-    for record_id in placed:
-        if record_id not in records:
-            problems.append(f"{name}: '{record_id}' is listed, but {section.records}/{record_id}.json does not exist")
-    for record_id in records:
-        if record_id not in placed:
-            problems.append(
-                f"{name}: {section.records}/{record_id}.json is not placed; "
-                f"add '{record_id}' to this section's 'show' or 'omit' in cv/{CONFIG_FILE.name}"
-            )
+    problems = [
+        f"{name}: '{record_id}' is listed more than once in 'show' and 'omit'"
+        for record_id in sorted({record_id for record_id in placed if placed.count(record_id) > 1})
+    ]
+    problems.extend(
+        f"{name}: '{record_id}' is listed, but {section.records}/{record_id}.json does not exist"
+        for record_id in placed
+        if record_id not in records
+    )
+    problems.extend(
+        f"{name}: {section.records}/{record_id}.json is not placed; "
+        f"add '{record_id}' to this section's 'show' or 'omit' in cv/{CONFIG_FILE.name}"
+        for record_id in records
+        if record_id not in placed
+    )
     if problems:
         raise SyncError("\n".join(problems))
     return [(record_id, records[record_id]) for record_id in section.show]

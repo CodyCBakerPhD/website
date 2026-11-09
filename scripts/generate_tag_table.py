@@ -32,7 +32,9 @@ def rows() -> list[tuple[str, str, str]]:
     # Collapsing runs of the same key must give TagTheme's order exactly once each.
     runs = [key for index, key in enumerate(keys) if index == 0 or keys[index - 1] != key]
     if runs != list(themes):
-        sys.exit(f"{VOCABULARY}: Tag must list its tags theme by theme, in the order of TagTheme, with every theme used")
+        sys.exit(
+            f"{VOCABULARY}: Tag must list its tags theme by theme, in the order of TagTheme, with every theme used"
+        )
 
     table = []
     for index, (tag, value) in enumerate(tags.items()):
@@ -45,7 +47,10 @@ def rows() -> list[tuple[str, str, str]]:
 def markdown(table: list[tuple[str, str, str]]) -> str:
     header = ("Theme", "Tag", "Meaning")
     widths = [max(len(row[i]) for row in [header, *table]) for i in range(3)]
-    line = lambda cells: "| " + " | ".join(cell.ljust(width) for cell, width in zip(cells, widths)) + " |"
+
+    def line(cells: tuple[str, str, str]) -> str:
+        return "| " + " | ".join(cell.ljust(width) for cell, width in zip(cells, widths, strict=True)) + " |"
+
     return "\n".join([line(header), "|" + "|".join("-" * (width + 2) for width in widths) + "|", *map(line, table)])
 
 
