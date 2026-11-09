@@ -74,9 +74,32 @@ interface Group {
   kind: "record-links" | "record-activity" | "record-contributions" | "record-repositories";
 }
 
-/** Links laid side by side in one <dd>, wrapping when the row is full. */
+/**
+ * How many of a group's links a card shows before folding the rest behind a toggle, so a record
+ * that many others link to, such as NeuroConv, keeps a short card. A toggle takes a line of its
+ * own, so a group only one link longer shows them all.
+ */
+const SHOWN_LINKS = 5;
+
+/** Links laid side by side in one <dd>, wrapping when the row is full, any past the first few folded away. */
 function linkGroup(label: string, links: readonly string[]): Group {
-  return { label, kind: "record-links", body: links.map((link) => `<span class="record-link">${link}</span>`).join("\n") };
+  const spans = links.map((link) => `<span class="record-link">${link}</span>`);
+  const shown = spans.length > SHOWN_LINKS + 1 ? SHOWN_LINKS : spans.length;
+  const folded = spans.slice(shown);
+  const toggle =
+    folded.length > 0
+      ? [
+          '<details class="record-links-more">',
+          ...indent([
+            `<summary class="record-link"><i class="fa fa-fw fa-angle-down" aria-hidden="true"></i> <span>${folded.length} more</span></summary>`,
+            '<div class="record-links">',
+            ...indent(folded),
+            "</div>",
+          ]),
+          "</details>",
+        ]
+      : [];
+  return { label, kind: "record-links", body: [...spans.slice(0, shown), ...toggle].join("\n") };
 }
 
 // Each link is wrapped, so it stays inline and is underlined line by line when it wraps.
