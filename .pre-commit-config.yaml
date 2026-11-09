@@ -4,8 +4,8 @@ ci:
 default_install_hook_types:
   - pre-commit
 
-# The vendored template and libraries under src/public/ and the files that
-# scripts/generate-schemas.sh writes are not edited by hand (see AGENTS.md).
+# The generated files (see AGENTS.md) and the assets under src/public/, which
+# are copied into the site as they are, are not edited by hand.
 exclude: ^(src/public/|src/build/generated/|schemas/jsonschema/)
 
 repos:
