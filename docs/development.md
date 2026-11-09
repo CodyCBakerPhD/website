@@ -369,7 +369,7 @@ The one-page resume shows only the first sentence of each description, and its b
 
 The `Build the CV and resume` action ([`.github/actions/build-cv/`](../.github/actions/build-cv/action.yml)) renders the rubrics, compiles both with TeX Live, and places the PDFs under `src/public/assets/resume/` (also not committed) for the site build to publish.
 The deploy, every pull request preview and the daily link check run it before building the site, so a record that breaks either document fails its pull request.
-They share those steps through the `Build the site` action ([`.github/actions/build-site/`](../.github/actions/build-site/action.yml)), and every workflow that needs Node takes its version from `.node-version`.
+They share those steps through the `Build the site` action ([`.github/actions/build-site/`](../.github/actions/build-site/action.yml)), and every workflow that needs Node takes its version from [`configs/.node-version`](../configs/.node-version).
 To build them locally, with Python 3.11 or later and TeX Live with `latexmk`:
 
 ```bash
