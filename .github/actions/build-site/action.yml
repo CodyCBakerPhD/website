@@ -1,0 +1,16 @@
+name: Build the site
+description: >-
+  Sets up the site's toolchain, builds the CV and resume, and builds the site
+  into dist/, as the deploy, the PR preview and the link checker all need.
+runs:
+  using: composite
+  steps:
+    - name: Set up the site's toolchain
+      uses: ./.github/actions/setup-site
+
+    - name: Build the CV and resume
+      uses: ./.github/actions/build-cv
+
+    - name: Build site
+      shell: bash
+      run: npm run build

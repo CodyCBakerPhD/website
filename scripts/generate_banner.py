@@ -185,5 +185,5 @@ def render() -> str:
 
 if __name__ == "__main__":
     svg = render()
-    OUT.write_text(svg)
+    OUT.write_text(svg, encoding="utf-8")
     print(f"Wrote {OUT} ({len(svg) / 1000:.1f} kB)")

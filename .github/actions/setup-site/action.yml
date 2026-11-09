@@ -1,0 +1,16 @@
+name: Set up the site's toolchain
+description: >-
+  Installs the Node version named in configs/.node-version, with npm's
+  download cache, and the site's dependencies from package-lock.json.
+runs:
+  using: composite
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: configs/.node-version
+        cache: npm
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci

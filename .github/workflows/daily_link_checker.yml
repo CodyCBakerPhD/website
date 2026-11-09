@@ -7,6 +7,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/daily_link_checker.yml"
+      - ".github/actions/**"
 
 jobs:
   check_links:
@@ -18,23 +19,11 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
       # The pages are checked as built, so the links the build assembles from
       # records, and those between pages, are covered as well. The CV and
-      # resume are built first, since the home page links to their PDFs.
-      - name: Build the CV and resume
-        uses: ./.github/actions/build-cv
-
-      - name: Build site
-        run: npm run build
+      # resume are built too, since the home page links to their PDFs.
+      - name: Build the site
+        uses: ./.github/actions/build-site
 
       # dist/ is gitignored, which lychee would otherwise skip. The site links
       # to its pages without '.html', which the fallback extension resolves.

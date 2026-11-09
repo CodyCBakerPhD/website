@@ -10,7 +10,7 @@ description: >-
   Records can cite evidence from outside the site and name one another, such
   as a publication naming the project it is about. The vocabulary of tags is
   in tags.yaml, which this schema imports.
-version: 0.8.0
+version: 0.8.1
 
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -29,10 +29,12 @@ imports:
 types:
   SemanticVersion:
     typeof: string
+    base: str
     description: A semantic version (MAJOR.MINOR.PATCH), e.g. "0.1.0".
     pattern: "^\\d+\\.\\d+\\.\\d+$"
   PartialDate:
     typeof: string
+    base: str
     description: >-
       An ISO 8601 calendar date at year (YYYY), month (YYYY-MM) or day
       (YYYY-MM-DD) precision.
@@ -43,6 +45,7 @@ types:
     pattern: "^https?://"
   RecordReference:
     typeof: string
+    base: str
     description: >-
       Another record, named by the path of its file from the repository root
       without ".json", e.g. "projects/neuroconv". The site build checks that
