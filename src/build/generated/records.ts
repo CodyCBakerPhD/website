@@ -73,6 +73,8 @@ export enum Tag {
     organismsCOLONZebrafish = "organisms:Zebrafish",
     /** The nematode Caenorhabditis elegans. */
     organismsCOLONCFULL_STOP_elegans = "organisms:C. elegans",
+    /** The rhesus macaque, Macaca mulatta. */
+    organismsCOLONRhesus_Macaque = "organisms:Rhesus Macaque",
     /** Recording neural activity with electrodes outside the cells. */
     methodsCOLONExtracellular_Electrophysiology = "methods:Extracellular Electrophysiology",
     /** Optical recording of neural activity through calcium indicators. */

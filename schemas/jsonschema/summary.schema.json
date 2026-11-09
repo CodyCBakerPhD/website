@@ -611,6 +611,7 @@
                 "organisms:Mouse",
                 "organisms:Zebrafish",
                 "organisms:C. elegans",
+                "organisms:Rhesus Macaque",
                 "methods:Extracellular Electrophysiology",
                 "methods:Calcium Imaging",
                 "methods:Volumetric Imaging",
@@ -707,6 +708,6 @@
     ],
     "title": "records",
     "type": "object",
-    "version": "0.7.0"
+    "version": "0.8.0"
 }
 

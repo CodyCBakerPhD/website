@@ -177,6 +177,7 @@ The build fails on a cited pull request or issue, a listed repository, or a proj
 
 The sizes of published data that Data Curation records give are counted by [`scripts/count_published_data.py`](../scripts/count_published_data.py), from the dandisets the owner has published on the DANDI Archive.
 The build does not read its output, so when a total changes, update the record by hand.
+A record of data that others published, such as a curation the owner supervised, gives instead the size DANDI reports for the version it links to.
 A run reads every NWB file, so it takes a while, and needs a DANDI API key in `DANDI_API_KEY`:
 
 ```bash
@@ -251,6 +252,7 @@ The table is generated from `schemas/tags.yaml`, so edit that file rather than t
 | Organisms                | `organisms:Mouse`                         | The house mouse, Mus musculus.                                                        |
 |                          | `organisms:Zebrafish`                     | The zebrafish, Danio rerio.                                                           |
 |                          | `organisms:C. elegans`                    | The nematode Caenorhabditis elegans.                                                  |
+|                          | `organisms:Rhesus Macaque`                | The rhesus macaque, Macaca mulatta.                                                   |
 | Experimental methods     | `methods:Extracellular Electrophysiology` | Recording neural activity with electrodes outside the cells.                          |
 |                          | `methods:Calcium Imaging`                 | Optical recording of neural activity through calcium indicators.                      |
 |                          | `methods:Volumetric Imaging`              | Imaging at many depths to capture a volume of tissue.                                 |

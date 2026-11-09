@@ -127,6 +127,8 @@ enums:
         description: The zebrafish, Danio rerio.
       organisms:C. elegans:
         description: The nematode Caenorhabditis elegans.
+      organisms:Rhesus Macaque:
+        description: The rhesus macaque, Macaca mulatta.
 
       methods:Extracellular Electrophysiology:
         description: Recording neural activity with electrodes outside the cells.

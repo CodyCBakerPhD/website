@@ -78,6 +78,8 @@ export const sections = [
       "c-elegans-signal-propagation",
       "glia-futility",
       "microns",
+      "multi-object-working-memory",
+      "reaching-population-dynamics",
       "buzsaki-lab",
     ],
   }),
