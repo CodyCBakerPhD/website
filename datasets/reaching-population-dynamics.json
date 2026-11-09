@@ -5,14 +5,14 @@
   "group": "Shenoy Lab",
   "institution": "Stanford University",
   "modality": "Electrophysiology",
-  "role": "Supervisor",
+  "role": "Advisor",
   "links": {
     "manuscript": "https://doi.org/10.1038/nature11129",
     "dataset": "https://dandiarchive.org/dandiset/000070/0.260528.0919",
     "code": "https://github.com/catalystneuro/shenoy-lab-to-nwb"
   },
   "description": [
-    "Supervised the conversion of recordings from two 96-channel Utah arrays in the motor and premotor cortex of rhesus monkeys reaching through a maze, combining the raw Blackrock recordings with each session's sorted units, hand, cursor and eye positions, and trial and maze conditions.",
+    "Advised on the conversion of recordings from two 96-channel Utah arrays in the motor and premotor cortex of rhesus monkeys reaching through a maze, combining the raw Blackrock recordings with each session's sorted units, hand, cursor and eye positions, and trial and maze conditions.",
     "Resulted in the publication of a total **53 GB** of electrophysiology and behavioral data on the NIH data archive."
   ],
   "built_with": [
