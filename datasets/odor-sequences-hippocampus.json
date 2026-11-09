@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Representation of predictable and unpredictable odor sequences in the mouse hippocampus",
+  "group": "van der Meer Lab",
+  "institution": "Dartmouth College",
+  "modality": "Electrophysiology",
+  "role": "Primary Engineer",
+  "links": {
+    "manuscript": "https://digitalcommons.dartmouth.edu/dissertations/436/",
+    "dataset": "https://dandiarchive.org/dandiset/001470/draft",
+    "code": "https://github.com/con/vandermeerlab-to-bids"
+  },
+  "description": [
+    "Wrote conversion code for Neuropixels recordings from the hippocampus of head-fixed mice presented with sequences of odors, combining the raw SpikeGLX data with each session's sorted units and odor presentation times, and organizing the result as a BIDS dataset.",
+    "Ran the conversion of every session through DataLad's containerized runs, which record the command and container behind each output, and fixed the problems that individual sessions turned up.",
+    "Uploaded a total of **6.9 TB** of mouse electrophysiology data to the NIH data archive, where it awaits publication."
+  ],
+  "built_with": [
+    "projects/neuroconv",
+    "projects/nwb2bids"
+  ],
+  "tags": [
+    "standards:NWB",
+    "standards:BIDS",
+    "archives:DANDI",
+    "data:Reproducibility",
+    "organisms:Mouse",
+    "methods:Extracellular Electrophysiology",
+    "analysis:Spike Sorting"
+  ]
+}

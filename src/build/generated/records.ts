@@ -69,6 +69,8 @@ export enum Tag {
     dataCOLONData_Sharing = "data:Data Sharing",
     /** The house mouse, Mus musculus. */
     organismsCOLONMouse = "organisms:Mouse",
+    /** The brown rat, Rattus norvegicus. */
+    organismsCOLONRat = "organisms:Rat",
     /** The zebrafish, Danio rerio. */
     organismsCOLONZebrafish = "organisms:Zebrafish",
     /** The nematode Caenorhabditis elegans. */

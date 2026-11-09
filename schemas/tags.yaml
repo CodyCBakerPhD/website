@@ -123,6 +123,8 @@ enums:
 
       organisms:Mouse:
         description: The house mouse, Mus musculus.
+      organisms:Rat:
+        description: The brown rat, Rattus norvegicus.
       organisms:Zebrafish:
         description: The zebrafish, Danio rerio.
       organisms:C. elegans:

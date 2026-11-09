@@ -77,10 +77,12 @@ export const sections = [
       "ibl-brain-wide-map",
       "c-elegans-signal-propagation",
       "glia-futility",
+      "odor-sequences-hippocampus",
       "microns",
       "multi-object-working-memory",
       "reaching-population-dynamics",
       "buzsaki-lab",
+      "polymer-probe-recordings",
     ],
   }),
   defineSection<Publication>({
