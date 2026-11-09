@@ -65,6 +65,8 @@ A publication's `about` links are headed by the type of record they name: "Featu
 
 Write each link once, on the record that makes it.
 The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Presented in" without its record saying so.
+A card shows the first five links under a heading and folds any more behind a toggle, as it does for the records NeuroConv is "Used by".
+Links from other records follow the display order in `sections.ts`, so it is the first of those that show.
 The build fails on a link to a record that does not exist, to the record itself, or listed twice.
 [`src/build/references.ts`](../src/build/references.ts) checks and renders the links, and each section in `sections.ts` sets the icon and text of links to its records.
 
