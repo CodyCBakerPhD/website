@@ -1,0 +1,58 @@
+ci:
+  autoupdate_schedule: quarterly
+
+default_install_hook_types:
+  - pre-commit
+
+# The vendored template and libraries under src/public/ and the files that
+# scripts/generate-schemas.sh writes are not edited by hand (see AGENTS.md).
+exclude: ^(src/public/|src/build/generated/|schemas/jsonschema/)
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: check-json
+    - id: check-toml
+    - id: check-added-large-files
+    - id: check-case-conflict
+
+- repo: https://github.com/python-jsonschema/check-jsonschema
+  rev: 0.38.2
+  hooks:
+    - id: check-dependabot
+    - id: check-github-actions
+    - id: check-github-workflows
+      args: ["--verbose"]
+
+- repo: https://github.com/psf/black-pre-commit-mirror
+  rev: 26.10.0
+  hooks:
+  - id: black
+
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.16.10
+  hooks:
+  - id: ruff-check
+    args: [ --fix ]
+
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.4.3
+  hooks:
+  - id: codespell
+    additional_dependencies:
+    - tomli
+    # The code quality reviews quote the repository's text as they found it,
+    # misspellings included.
+    exclude: ^(package-lock\.json|docs/code-reviews/)
+
+# shellcheck-py ships the ShellCheck binary as a Python package, which
+# pre-commit.ci can install; the docker-based koalaman/shellcheck-precommit
+# hook cannot run there.
+- repo: https://github.com/shellcheck-py/shellcheck-py
+  rev: v0.11.0.1
+  hooks:
+  - id: shellcheck
