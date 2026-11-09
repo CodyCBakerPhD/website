@@ -563,7 +563,7 @@ body:has(.card-grid) {
 }
 
 /* A relation's links side by side, wrapping only when the row is full. */
-.work .record-references dd.record-links {
+.work .record-references .record-links {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -581,6 +581,46 @@ body:has(.card-grid) {
 .work .record-link span {
     min-width: 0;
     overflow-wrap: anywhere;
+}
+
+/* The links past a group's first few, folded behind a toggle that reads like
+   one more link. Open, they take rows of their own under it. */
+.work .record-links-more[open] {
+    flex-basis: 100%;
+}
+
+.work .record-links-more > .record-links {
+    margin-top: 2px;
+}
+
+.work .record-links-more summary {
+    list-style: none;
+    font-weight: 700;
+    color: var(--link);
+    cursor: pointer;
+}
+
+.work .record-links-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.work .record-links-more summary span {
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--link-underline);
+}
+
+.work .record-links-more summary:hover span {
+    color: var(--link-hover);
+    border-bottom-color: var(--link-hover);
+}
+
+.work .record-links-more summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.work .record-links-more[open] summary .fa {
+    transform: rotate(180deg);
 }
 
 /* Space between groups: on a label and the first link beside it, so they stay level. */
