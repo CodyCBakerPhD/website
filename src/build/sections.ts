@@ -82,6 +82,8 @@ export const sections = [
       "microns",
       "multi-object-working-memory",
       "drosophila-locomotion",
+      "neurotensin-valence",
+      "fly-courtship-visual-neurons",
       "fee-lab",
       "reaching-population-dynamics",
       "entorhinal-cortex-navigation",
