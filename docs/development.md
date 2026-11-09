@@ -39,6 +39,7 @@ Cards in a row share its height, and pages of cards in a grid run wider than the
 A section with `choices` also gets a Columns control beside its search bar, for choosing between those column counts ([`src/ts/grid.ts`](../src/ts/grid.ts)).
 It disables the counts the window is too narrow for, hides itself where only one column fits, and keeps a choice other than `columns` in the page's URL, such as `projects?columns=4`.
 A record's file name is its ID, and its card on the page takes the same ID, so `projects#neuroconv` opens the NeuroConv card.
+IDs are lowercase kebab-case, words of letters and digits joined by hyphens such as `visual-coding-ophys`, the form other records name them by, and the build fails on a file named any other way.
 Selecting a card, anywhere but on its links and tags, or the link icon in its top right corner, puts its ID in the page's URL and highlights it, without scrolling, so the address bar holds a link to that card ([`src/ts/cards.ts`](../src/ts/cards.ts)).
 The Publications section groups its records under a heading per `kind` (article, presentation or workshop), keeping the display order within each group, which has a grid of its own.
 

@@ -23,7 +23,7 @@ Three versions are bumped independently, each once per PR and following semantic
 ## Records and schemas
 
 - [`docs/development.md`](docs/development.md) explains how the records, schemas and build fit together. Keep `README.md` to the short project description.
-- Site content beyond the page structure lives in JSON records, one file per record, under `summaries/`, `projects/`, `datasets/` and `publications/`. A record's file name is its ID: keep it when the record's wording changes.
+- Site content beyond the page structure lives in JSON records, one file per record, under `summaries/`, `projects/`, `datasets/` and `publications/`. A record's file name is its ID, in lowercase kebab-case such as `visual-coding-ophys.json` (the build fails otherwise): keep it when the record's wording changes.
 - The full CV and the one-page resume under `cv/` are rendered from the same records and built into PDFs when the site deploys; nothing they generate is committed. Every record must be shown or left out in each of their sections in `cv/records.toml`, so a new record is placed there too. The tailored and ATS resumes stay in CodyCBakerPhD/job-applications.
 - The LinkML schema `schemas/records.yaml` is the source of truth for every record's shape. Never edit the files generated from it (`schemas/jsonschema/`, `src/build/generated/records.ts` and the tag table in `docs/development.md`); change the schema, then run `sh scripts/generate-schemas.sh`.
 - Never edit `src/build/generated/github.json` by hand either. After citing a GitHub pull request or issue as evidence, or adding a project, run `python scripts/fetch_github_activity.py` (with `GITHUB_TOKEN` set) to fetch its activity.

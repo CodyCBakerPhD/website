@@ -120,6 +120,14 @@ function describeError(error: ErrorObject): string {
   return `${error.instancePath || "(root)"} ${error.message}${detail}`;
 }
 
+/**
+ * A record's file name without .json, which is its ID: lowercase words of
+ * letters and digits joined by hyphens (kebab-case). It is the ID part of the
+ * RecordReference pattern in schemas/records.yaml, the only way one record
+ * names another, so a record named any other way could never be linked to.
+ */
+const RECORD_ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
 function problemList(heading: string, problems: readonly string[]): string {
   return `${heading}:\n${problems.map((problem) => `  - ${problem}`).join("\n")}`;
 }
@@ -158,6 +166,12 @@ export function readRecords<T>(
   const problems: string[] = [];
 
   for (const file of files) {
+    if (!RECORD_ID.test(basename(file, ".json"))) {
+      problems.push(
+        `${file}: the file name is the record's ID, so it must be lowercase words of letters and digits joined by hyphens, such as visual-coding-ophys.json`,
+      );
+      continue;
+    }
     let record: unknown;
     try {
       record = JSON.parse(readFileSync(resolve(recordsDir, file), "utf8"));
