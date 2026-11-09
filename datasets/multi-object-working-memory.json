@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Multi-object working memory in macaque frontal cortex",
+  "group": "Jazayeri Lab",
+  "institution": "Massachusetts Institute of Technology",
+  "modality": "Electrophysiology",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.64898/2026.01.27.702062",
+    "dataset": "https://dandiarchive.org/dandiset/000620/0.261019.2000",
+    "code": "https://github.com/catalystneuro/jazayeri-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of a working memory study in rhesus monkeys that paired Neuropixels and V-probe recordings of frontal cortex with eye position, pupil size, reward and audio signals, aligning every stream to a common clock through recorded sync pulses.",
+    "Added automatic upload to the conversion, so the lab could convert and publish each session to the archive from their own computing cluster.",
+    "Resulted in the publication of a total **5.5 TB** of electrophysiology and behavioral data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Rhesus Macaque",
+    "methods:Extracellular Electrophysiology",
+    "methods:Behavior",
+    "analysis:Spike Sorting"
+  ]
+}

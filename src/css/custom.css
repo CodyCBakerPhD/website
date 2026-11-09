@@ -87,9 +87,15 @@ a:hover {
 }
 
 /* Pages of cards in a grid run wider, so wide screens fit more columns. The
-   navigation and footer widen with them, so their edges stay in line. */
+   footer widens with them, so its edges stay in line. */
 body:has(.card-grid) {
     --page-max-width: 1800px;
+}
+
+/* The navigation keeps the home page's width on every page, so it does not
+   shift when moving between pages. */
+.main-nav {
+    --page-max-width: 1170px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -411,6 +417,17 @@ body:has(.card-grid) {
 
 .work .work-list p {
     margin-bottom: 0;
+}
+
+/* An item on a card's line of details or links (joinItems in src/build/html.ts)
+   moves to the next line whole; one wider than the card still wraps inside itself. */
+.line-item {
+    display: inline-block;
+}
+
+/* A paragraph leading straight into the list it introduces. */
+.lead-in {
+    margin-bottom: 0.4em;
 }
 
 .work .work-list li a {

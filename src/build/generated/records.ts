@@ -69,14 +69,28 @@ export enum Tag {
     dataCOLONData_Sharing = "data:Data Sharing",
     /** The house mouse, Mus musculus. */
     organismsCOLONMouse = "organisms:Mouse",
+    /** The brown rat, Rattus norvegicus. */
+    organismsCOLONRat = "organisms:Rat",
     /** The zebrafish, Danio rerio. */
     organismsCOLONZebrafish = "organisms:Zebrafish",
     /** The nematode Caenorhabditis elegans. */
     organismsCOLONCFULL_STOP_elegans = "organisms:C. elegans",
+    /** The rhesus macaque, Macaca mulatta. */
+    organismsCOLONRhesus_Macaque = "organisms:Rhesus Macaque",
+    /** The zebra finch, Taeniopygia guttata, a songbird. */
+    organismsCOLONZebra_Finch = "organisms:Zebra Finch",
+    /** The fruit fly, Drosophila melanogaster. */
+    organismsCOLONDrosophila = "organisms:Drosophila",
+    /** Humans, Homo sapiens. */
+    organismsCOLONHuman = "organisms:Human",
     /** Recording neural activity with electrodes outside the cells. */
     methodsCOLONExtracellular_Electrophysiology = "methods:Extracellular Electrophysiology",
     /** Optical recording of neural activity through calcium indicators. */
     methodsCOLONCalcium_Imaging = "methods:Calcium Imaging",
+    /** Recording fluorescence from a population of cells through an implanted optical fiber. */
+    methodsCOLONFiber_Photometry = "methods:Fiber Photometry",
+    /** Patch-clamp recording of a cell combined with sequencing its RNA. */
+    methodsCOLONPatch_seq = "methods:Patch-seq",
     /** Imaging at many depths to capture a volume of tissue. */
     methodsCOLONVolumetric_Imaging = "methods:Volumetric Imaging",
     /** Imaging of tissue structure at nanometer resolution. */
