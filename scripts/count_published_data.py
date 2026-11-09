@@ -101,9 +101,7 @@ def main() -> None:
         sys.exit("Set DANDI_API_KEY to your DANDI API key (see this script's docstring).")
     client = dandi.dandiapi.DandiAPIClient(token=token)
 
-    datasets_published_by_me = {
-        dataset.api_path: dataset for dataset in client.get_dandisets(draft=False, mine=True)
-    }
+    datasets_published_by_me = {dataset.api_path: dataset for dataset in client.get_dandisets(draft=False, mine=True)}
     for dandiset_id in EXTRA_DANDISET_IDS:
         datasets_published_by_me[f"/dandisets/{dandiset_id}/"] = client.get_dandiset(dandiset_id=dandiset_id)
 
@@ -121,7 +119,9 @@ def main() -> None:
     print(f"Total size of all published datasets: {total_size_in_bytes / 1e12:,.2f} TB")
 
     for record, dandiset_ids in RECORD_DANDISET_IDS.items():
-        size_in_bytes = sum(total_size_in_bytes_per_dataset[f"/dandisets/{dandiset_id}/"] for dandiset_id in dandiset_ids)
+        size_in_bytes = sum(
+            total_size_in_bytes_per_dataset[f"/dandisets/{dandiset_id}/"] for dandiset_id in dandiset_ids
+        )
         print(f"Total size for {record}: {size_in_bytes / 1e12:,.1f} TB")
 
 

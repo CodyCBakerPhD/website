@@ -1,0 +1,13 @@
+# Dependabot keeps the site's npm dependencies current with a weekly pull
+# request; GitHub's security updates for them are a repository setting
+# (Settings, Code security), not configured here.
+#
+# Every one of its pull requests changes package-lock.json, which the Check
+# version bumps workflow counts as a change to the built site, so bump the
+# version in package.json on each before merging (see AGENTS.md).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly

@@ -41,7 +41,10 @@ Three versions are bumped independently, each once per PR and following semantic
 npm ci
 npm run typecheck
 npm run build
+pre-commit run --all-files
 ```
+
+The last command runs the hooks in `.pre-commit-config.yaml` (install them once with `pip install pre-commit`), which pre-commit.ci also runs on every pull request. black, ruff and the whitespace hooks rewrite files, so rerun after they do; codespell, ShellCheck and the check hooks only report, so fix what they flag.
 
 After changing the schema or any record, also run LinkML (`pip install -r schemas/requirements.txt`):
 
