@@ -16,17 +16,17 @@
 	    })();
 	</script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="">
 	<meta name="color-scheme" content="light dark">
-	<link rel="stylesheet" href="css/kube.min.css" />
-	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<!-- Vendored, served from src/public/css as they are; vite-ignore keeps Vite from processing them. -->
+	<link rel="stylesheet" href="css/kube.min.css"  />
+	<link rel="stylesheet" href="css/font-awesome.min.css"  />
 	<link rel="shortcut icon" href="img/como_favicon.ico" />
-	<link href='https://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
 	<title>Highlighted Projects | Cody C. Baker, Ph.D.</title>
 	<meta name="description" content="Highlighted projects of Cody C. Baker, Ph.D.">
-  <script type="module" crossorigin src="./assets/main-CpCVgN1a.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/main-D0_pxyd_.css">
+  <script type="module" crossorigin src="./assets/main-NYlt-EKa.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-CrtgrZz7.css">
 </head>
 
 <body>
@@ -47,10 +47,10 @@
 		<div class="container">
 			<header class="group top-nav">
 				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
-				    <span class="logo">Cody C. Baker</span>
+					<span class="logo">Cody C. Baker</span>
 				</div>
-			    <nav id="navbar-1" class="navbar item-nav">
-				    <ul>
+				<nav id="navbar-1" class="navbar item-nav">
+					<ul>
 						<li><a href="./">About</a></li>
 						<li><a href="./#education">Education</a></li>
 						<li><a href="./#skills">Skills</a></li>
@@ -58,7 +58,7 @@
 						<li class="active"><a href="projects" aria-current="page">Projects</a></li>
 						<li><a href="publications">Publications</a></li>
 						<li><a href="data-curation">Data Curation</a></li>
-				    </ul>
+					</ul>
 				</nav>
 			</header>
 		</div>
@@ -1319,25 +1319,26 @@
 				</ul>
 			</nav>
 			<div class="units-row">
-			    <div class="unit-50">
+				<div class="unit-50">
 					<ul class="social list-flat right">
 						<li><a href="mailto:cody.c.baker.phd@gmail.com"><i class="fa fa-envelope"></i></a></li>
 						<li><a href="https://www.linkedin.com/in/cody-c-baker/"><i class="fa fa-linkedin"></i></a></li>
 						<li><a href="https://github.com/CodyCBakerPhD/"><i class="fa fa-github"></i></a></li>
 					</ul>
-			    </div>
+				</div>
 			</div>
 			<div class="footer-version">
 				<!-- The site's package.json version, stamped in at build time by src/build/version.ts. -->
-				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.16.2</a>
+				<a id="version" class="version-link" href="https://github.com/CodyCBakerPhD/website" target="_blank" rel="noopener noreferrer" title="View source on GitHub">v1.16.3</a>
 			</div>
 		</div>
 	</footer>
 
-	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js) -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/typed.min.js"></script>
-	<script src="js/kube.min.js"></script>
+	<!-- Javascript (main.ts is compiled by Vite; the rest are vendored scripts served from src/public/js as they
+	     are, so vite-ignore keeps Vite from processing their tags and warning that it cannot bundle them) -->
+	<script src="js/jquery.min.js" ></script>
+	<script src="js/typed.min.js" ></script>
+	<script src="js/kube.min.js" ></script>
 </body>
 
 </html>
