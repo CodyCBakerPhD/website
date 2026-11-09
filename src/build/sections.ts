@@ -3,17 +3,19 @@
 // own page under src/ with a search bar above its records.
 //
 // Each section names the JSON Schema its records are validated against
-// (generated from schemas/records.yaml). A section of cards lists its records
+// (generated from schemas/records.yaml). A section of cards shows its records
 // in display order, and lays its cards out in a grid of up to `columns`
 // columns, dropping columns where a card would get narrower than
 // `minCardWidth` pixels, with a control on the page for choosing between the
 // column counts in `choices` (see grid.ts). Order and layout are the site's
-// choice rather than properties of the records, so they live here instead of
-// in them. Adding a record file means adding its ID to the matching list
-// below. Its page, icon and label are how cards on any page link to its
-// records (see references.ts).
+// choice rather than properties of the records, so they live in src/build/
+// instead of in them. The display order is in display-order.json, which the
+// full CV follows too (cv/records.toml), so adding a record file means adding
+// its ID to the matching list there. A section's page, icon and label are how
+// cards on any page link to its records (see references.ts).
 
 import { datasetSearch, renderDataset } from "./datasets.ts";
+import displayOrder from "./display-order.json" with { type: "json" };
 import type { Dataset, Project, Publication } from "./generated/records.ts";
 import { renderGrid, renderGridControl } from "./grid.ts";
 import { checkProject, projectSearch, renderProject } from "./projects.ts";
@@ -42,25 +44,7 @@ export const sections = [
     render: (projects, grid) =>
       renderSearchable(projectSearch, renderGrid(grid, projects.flatMap(renderProject)), renderGridControl(grid, searchId(projectSearch))),
     check: checkProject,
-    order: [
-      "hearth",
-      "ember-archive",
-      "dandi-archive",
-      "s3-log-extraction",
-      "nwb-guide",
-      "neuroconv",
-      "neurosift",
-      "nwb-benchmarks",
-      "dandi-compute",
-      "dandi-cache",
-      "stamped",
-      "nwb-inspector",
-      "historia",
-      "nwb2bids",
-      "hdmf",
-      "nwb-widgets",
-      "duct",
-    ],
+    order: displayOrder.projects,
   }),
   defineSection<Dataset>({
     name: "datasets",
@@ -72,33 +56,7 @@ export const sections = [
     grid: { columns: 3, minCardWidth: 420, choices: [1, 2, 3, 4] },
     render: (datasets, grid) =>
       renderSearchable(datasetSearch, renderGrid(grid, datasets.flatMap(renderDataset)), renderGridControl(grid, searchId(datasetSearch))),
-    order: [
-      "visual-coding-ophys",
-      "ibl-brain-wide-map",
-      "c-elegans-signal-propagation",
-      "glia-futility",
-      "odor-sequences-hippocampus",
-      "spontaneous-behavior-reinforcement",
-      "microns",
-      "multi-object-working-memory",
-      "drosophila-locomotion",
-      "neurotensin-valence",
-      "fly-courtship-visual-neurons",
-      "fee-lab",
-      "reaching-population-dynamics",
-      "locus-coeruleus-patch-seq",
-      "entorhinal-cortex-navigation",
-      "buzsaki-lab",
-      "ajile12",
-      "polymer-probe-recordings",
-      "brody-lab",
-      "feldman-lab",
-      "mease-lab",
-      "tank-lab",
-      "stavisky-lab",
-      "pinto-lab",
-      "seidemann-lab",
-    ],
+    order: displayOrder.datasets,
   }),
   defineSection<Publication>({
     name: "publications",
@@ -113,27 +71,6 @@ export const sections = [
     // Grouped by kind under a heading each, with a grid each; this order applies within a group.
     render: (publications, grid) =>
       renderSearchable(publicationSearch, renderPublications(publications, grid), renderGridControl(grid, searchId(publicationSearch))),
-    order: [
-      "stamped-2026",
-      "open-data-in-neurophysiology-2025",
-      "dandi-2025",
-      "remote-access-methods-2025",
-      "neuroconv-2025",
-      "neurosift-2024",
-      "biccn-data-ecosystem-2023",
-      "synaptic-connectivity-inference-2020",
-      "nonlinear-stimulus-representations-2020",
-      "correlated-states-2019",
-      "nwb-guide-sfn-2024",
-      "neuroconv-sfn-2023",
-      "semi-balanced-networks-cosyne-2020",
-      "connectivity-inference-cosyne-2018",
-      "nwb-dandi-tutorial-baylor-2024",
-      "neuroconv-nwb-guide-tutorial-janelia-2023",
-      "nwb-dandi-tutorial-cosyne-2023",
-      "nwb-dandi-hackathon-swc-2023",
-      "neuroinformatics-odin-2023",
-      "neuroconv-tutorial-janelia-2022",
-    ],
+    order: displayOrder.publications,
   }),
 ];
