@@ -382,10 +382,14 @@ def load_sections(config_file: Path) -> list[Section]:
         follows_site = entry.get("show") == "site"
         if follows_site:
             if entry.get("records") not in display_order:
-                problems.append(f"{where}: the website has no display order for {entry.get('records')!r}, so 'show' must list IDs")
+                problems.append(
+                    f"{where}: the website has no display order for {entry.get('records')!r}, so 'show' must list IDs"
+                )
                 continue
             if entry.get("omit"):
-                problems.append(f"{where}: a section that follows the website's order shows every record, so 'omit' must be empty")
+                problems.append(
+                    f"{where}: a section that follows the website's order shows every record, so 'omit' must be empty"
+                )
                 continue
             entry = {**entry, "show": display_order[entry["records"]]}
         if not isinstance(entry.get("output"), str) or not isinstance(entry.get("show"), list):
