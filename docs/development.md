@@ -260,6 +260,7 @@ The table is generated from `schemas/tags.yaml`, so edit that file rather than t
 | Experimental methods     | `methods:Extracellular Electrophysiology` | Recording neural activity with electrodes outside the cells.                          |
 |                          | `methods:Calcium Imaging`                 | Optical recording of neural activity through calcium indicators.                      |
 |                          | `methods:Fiber Photometry`                | Recording fluorescence from a population of cells through an implanted optical fiber. |
+|                          | `methods:Patch-seq`                       | Patch-clamp recording of a cell combined with sequencing its RNA.                     |
 |                          | `methods:Volumetric Imaging`              | Imaging at many depths to capture a volume of tissue.                                 |
 |                          | `methods:Electron Microscopy`             | Imaging of tissue structure at nanometer resolution.                                  |
 |                          | `methods:Optogenetics`                    | Controlling neural activity with light.                                               |

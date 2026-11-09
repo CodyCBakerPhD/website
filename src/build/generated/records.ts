@@ -89,6 +89,8 @@ export enum Tag {
     methodsCOLONCalcium_Imaging = "methods:Calcium Imaging",
     /** Recording fluorescence from a population of cells through an implanted optical fiber. */
     methodsCOLONFiber_Photometry = "methods:Fiber Photometry",
+    /** Patch-clamp recording of a cell combined with sequencing its RNA. */
+    methodsCOLONPatch_seq = "methods:Patch-seq",
     /** Imaging at many depths to capture a volume of tissue. */
     methodsCOLONVolumetric_Imaging = "methods:Volumetric Imaging",
     /** Imaging of tissue structure at nanometer resolution. */

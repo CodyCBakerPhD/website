@@ -144,6 +144,8 @@ enums:
         description: Optical recording of neural activity through calcium indicators.
       methods:Fiber Photometry:
         description: Recording fluorescence from a population of cells through an implanted optical fiber.
+      methods:Patch-seq:
+        description: Patch-clamp recording of a cell combined with sequencing its RNA.
       methods:Volumetric Imaging:
         description: Imaging at many depths to capture a volume of tissue.
       methods:Electron Microscopy:

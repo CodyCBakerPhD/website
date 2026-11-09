@@ -619,6 +619,7 @@
                 "methods:Extracellular Electrophysiology",
                 "methods:Calcium Imaging",
                 "methods:Fiber Photometry",
+                "methods:Patch-seq",
                 "methods:Volumetric Imaging",
                 "methods:Electron Microscopy",
                 "methods:Optogenetics",
