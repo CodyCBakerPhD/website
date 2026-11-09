@@ -1,0 +1,23 @@
+# Settings for the Python tools that .pre-commit-config.yaml runs over scripts/.
+# The repository is not a Python package; the scripts are written to 120 columns
+# and need Python 3.11 or later (see scripts/render_cv.py and docs/development.md).
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+# The rule families the 2026-11-08 code quality review swept the scripts with
+# (docs/code-reviews/2026-11-08-code-quality-review.md, CL-12).
+select = ["E4", "E7", "E9", "F", "W", "I", "B", "A", "UP", "C4", "SIM", "PERF", "RUF", "EXE", "PIE", "RET"]
+
+[tool.codespell]
+# Words inside URLs are not spell-checked: the home page links to University of
+# Notre Dame pages, whose domain codespell reads as a misspelling.
+uri-ignore-words-list = "*"
+# Proper names codespell reads as misspellings, such as the Tye Lab.
+ignore-words-list = "tye"

@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Patch-seq profiling of mouse locus coeruleus norepinephrine neurons",
+  "group": "BICAN Neuromodulation",
+  "institution": "Allen Institute",
+  "modality": "Electrophysiology",
+  "role": "Advisor",
+  "links": {
+    "manuscript": "https://doi.org/10.64898/2026.04.10.717727",
+    "dataset": "https://dandiarchive.org/dandiset/001893/0.260817.1647",
+    "code": "https://github.com/CodyCBakerPhD/bican-bids-study"
+  },
+  "description": [
+    "Advised on publishing Patch-seq data from the BICAN consortium, including a Dandiset for a study of mouse locus coeruleus norepinephrine neurons that gathers its cells from the consortium's earlier uploads into a BIDS layout, with tables mapping each cell to its records on another archive.",
+    "Prototyped a BIDS-Study organization of the consortium's Patch-seq collections on DANDI, and added a viewer for tables and a recommendation for cross-archive links to DANDI along the way.",
+    "Resulted in the publication of **5.7 GB** of mouse Patch-seq electrophysiology on the NIH data archive."
+  ],
+  "tags": [
+    "standards:NWB",
+    "standards:BIDS",
+    "archives:DANDI",
+    "archives:BRAIN Initiative",
+    "organisms:Mouse",
+    "methods:Patch-seq"
+  ]
+}

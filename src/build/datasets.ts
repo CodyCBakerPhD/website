@@ -1,7 +1,7 @@
 // Rendering of datasets/*.json for the "Data Curation" section.
 
 import type { Dataset } from "./generated/records.ts";
-import { escapeHtml, renderCard, renderLinks, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, joinItems, renderCard, renderLinks, renderParagraphs } from "./html.ts";
 import type { RecordEntry } from "./records.ts";
 import { searchAttribute, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
@@ -37,7 +37,7 @@ export function renderDataset({ id, record: dataset, references }: RecordEntry<D
     `Modality: ${dataset.modality}`,
     `Role: ${dataset.role}`,
   ];
-  const lines = [`<h3>${escapeHtml(dataset.name)}</h3>`, `<li>${details.map(escapeHtml).join(SEPARATOR)}</li>`];
+  const lines = [`<h3>${escapeHtml(dataset.name)}</h3>`, `<li>${joinItems(details.map(escapeHtml))}</li>`];
 
   const links = renderLinks(dataset.links, LINK_LABELS);
   if (links.length > 0) {

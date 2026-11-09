@@ -609,10 +609,17 @@
                 "data:Open Data",
                 "data:Data Sharing",
                 "organisms:Mouse",
+                "organisms:Rat",
                 "organisms:Zebrafish",
                 "organisms:C. elegans",
+                "organisms:Rhesus Macaque",
+                "organisms:Zebra Finch",
+                "organisms:Drosophila",
+                "organisms:Human",
                 "methods:Extracellular Electrophysiology",
                 "methods:Calcium Imaging",
+                "methods:Fiber Photometry",
+                "methods:Patch-seq",
                 "methods:Volumetric Imaging",
                 "methods:Electron Microscopy",
                 "methods:Optogenetics",
@@ -800,6 +807,6 @@
     ],
     "title": "records",
     "type": "object",
-    "version": "0.7.0"
+    "version": "0.8.0"
 }
 

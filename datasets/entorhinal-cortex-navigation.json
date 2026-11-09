@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Recordings from medial entorhinal cortex during linear track and open exploration",
+  "group": "Giocomo Lab",
+  "institution": "Stanford University",
+  "modality": "Electrophysiology",
+  "role": "Engineer",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41467-021-20936-8",
+    "dataset": "https://dandiarchive.org/dandiset/000053/0.210819.0345",
+    "code": "https://github.com/catalystneuro/giocomo-lab-to-nwb"
+  },
+  "description": [
+    "Contributed to the conversion of recordings from the medial entorhinal cortex of mice, from Neuropixels probes during a virtual linear track task and from tetrodes during open field exploration, writing the SpikeGLX recording and LFP interfaces it used for the Neuropixels data.",
+    "Resulted in the publication of a total **1.4 TB** of mouse electrophysiology and behavioral data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Mouse",
+    "methods:Extracellular Electrophysiology",
+    "methods:Virtual Reality",
+    "methods:Behavior"
+  ]
+}
