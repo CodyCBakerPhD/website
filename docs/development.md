@@ -254,8 +254,12 @@ The table is generated from `schemas/tags.yaml`, so edit that file rather than t
 |                          | `organisms:Zebrafish`                     | The zebrafish, Danio rerio.                                                           |
 |                          | `organisms:C. elegans`                    | The nematode Caenorhabditis elegans.                                                  |
 |                          | `organisms:Rhesus Macaque`                | The rhesus macaque, Macaca mulatta.                                                   |
+|                          | `organisms:Zebra Finch`                   | The zebra finch, Taeniopygia guttata, a songbird.                                     |
+|                          | `organisms:Drosophila`                    | The fruit fly, Drosophila melanogaster.                                               |
+|                          | `organisms:Human`                         | Humans, Homo sapiens.                                                                 |
 | Experimental methods     | `methods:Extracellular Electrophysiology` | Recording neural activity with electrodes outside the cells.                          |
 |                          | `methods:Calcium Imaging`                 | Optical recording of neural activity through calcium indicators.                      |
+|                          | `methods:Fiber Photometry`                | Recording fluorescence from a population of cells through an implanted optical fiber. |
 |                          | `methods:Volumetric Imaging`              | Imaging at many depths to capture a volume of tissue.                                 |
 |                          | `methods:Electron Microscopy`             | Imaging of tissue structure at nanometer resolution.                                  |
 |                          | `methods:Optogenetics`                    | Controlling neural activity with light.                                               |

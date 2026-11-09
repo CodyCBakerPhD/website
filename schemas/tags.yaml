@@ -131,11 +131,19 @@ enums:
         description: The nematode Caenorhabditis elegans.
       organisms:Rhesus Macaque:
         description: The rhesus macaque, Macaca mulatta.
+      organisms:Zebra Finch:
+        description: The zebra finch, Taeniopygia guttata, a songbird.
+      organisms:Drosophila:
+        description: The fruit fly, Drosophila melanogaster.
+      organisms:Human:
+        description: Humans, Homo sapiens.
 
       methods:Extracellular Electrophysiology:
         description: Recording neural activity with electrodes outside the cells.
       methods:Calcium Imaging:
         description: Optical recording of neural activity through calcium indicators.
+      methods:Fiber Photometry:
+        description: Recording fluorescence from a population of cells through an implanted optical fiber.
       methods:Volumetric Imaging:
         description: Imaging at many depths to capture a volume of tissue.
       methods:Electron Microscopy:

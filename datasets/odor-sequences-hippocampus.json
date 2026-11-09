@@ -26,7 +26,6 @@
     "archives:DANDI",
     "data:Reproducibility",
     "organisms:Mouse",
-    "methods:Extracellular Electrophysiology",
-    "analysis:Spike Sorting"
+    "methods:Extracellular Electrophysiology"
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Electrophysiology during auditory tasks in rats (Brody Lab)",
+  "group": "Brody Lab",
+  "institution": "Princeton University",
+  "modality": "Electrophysiology",
+  "role": "Primary Engineer",
+  "links": {
+    "code": "https://github.com/catalystneuro/brody-lab-to-nwb"
+  },
+  "description": [
+    "Wrote conversion code for three of the lab's recording systems in rats: Neuropixels recordings during the Poisson Clicks task, Neuralynx tetrode recordings, and wireless SpikeGadgets tetrode recordings, each with the trials of its task and the latter two with their sorted units.",
+    "Built SpikeInterface pipelines to sort each kind of recording, including a grid search over the sorter's parameters."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "organisms:Rat",
+    "methods:Extracellular Electrophysiology",
+    "methods:Behavior",
+    "analysis:Spike Sorting"
+  ]
+}
