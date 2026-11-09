@@ -21,11 +21,8 @@ import {
 } from "./github.ts";
 import type { CardGrid } from "./grid.ts";
 import { displayUrl, escapeHtml, indent } from "./html.ts";
+import { duplicates } from "./lists.ts";
 
-/**
- * The relation slots of schemas/records.yaml, in the order cards list them. A
- * null label heads each named record by its type instead, e.g. "Featured software".
- */
 /**
  * The mini grids a card lays out its websites and its repositories in (see grid.ts): up to
  * `columns` side by side, each subcard at least `minCardWidth` pixels wide, so that even a card
@@ -34,6 +31,10 @@ import { displayUrl, escapeHtml, indent } from "./html.ts";
 const WEBSITE_GRID: CardGrid = { columns: 2, minCardWidth: 160 };
 const REPOSITORY_GRID: CardGrid = { columns: 3, minCardWidth: 160 };
 
+/**
+ * The relation slots of schemas/records.yaml, in the order cards list them. A
+ * null label heads each named record by its type instead, e.g. "Featured software".
+ */
 const RELATIONS = [
   { slot: "about", label: null, reverse: "Presented in" },
   { slot: "built_with", label: "Related software", reverse: "Used by" },
@@ -126,8 +127,7 @@ function checkNode(node: RecordNode, nodes: ReadonlyMap<string, RecordNode>): st
       }
     });
   }
-  const urls = node.record.evidence ?? [];
-  for (const url of new Set(urls.filter((url, index) => urls.indexOf(url) !== index))) {
+  for (const url of duplicates(node.record.evidence ?? [])) {
     problems.push(`/evidence cites ${url} more than once`);
   }
   return problems;

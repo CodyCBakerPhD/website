@@ -1,7 +1,6 @@
 // Rendering of publications/*.json for the "Publications" section.
 
-import type { Publication } from "./generated/records.ts";
-import { PublicationKind } from "./generated/records.ts";
+import { PublicationKind, type Publication } from "./generated/records.ts";
 import { renderGrid, type CardGrid } from "./grid.ts";
 import { escapeHtml, indent, renderCard, renderParagraphs } from "./html.ts";
 import type { RecordEntry } from "./records.ts";

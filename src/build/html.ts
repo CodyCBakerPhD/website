@@ -26,7 +26,7 @@ export function escapeHtml(text: string): string {
 }
 
 /** Escapes `text`, then renders each **double-asterisk** span as <strong>. */
-export function renderInline(text: string): string {
+function renderInline(text: string): string {
   return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 }
 

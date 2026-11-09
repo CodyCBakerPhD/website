@@ -7,11 +7,11 @@
 // in display order, and lays its cards out in a grid of up to `columns`
 // columns, dropping columns where a card would get narrower than
 // `minCardWidth` pixels, with a control on the page for choosing between the
-// column counts in `choices` (see grid.ts). Order and layout are the site's choice
-// rather than properties of the records, so they live here instead of in
-// them. Adding a record file means
-// adding its ID to the matching list below. Its page, icon and label are how
-// cards on any page link to its records (see references.ts).
+// column counts in `choices` (see grid.ts). Order and layout are the site's
+// choice rather than properties of the records, so they live here instead of
+// in them. Adding a record file means adding its ID to the matching list
+// below. Its page, icon and label are how cards on any page link to its
+// records (see references.ts).
 
 import { datasetSearch, renderDataset } from "./datasets.ts";
 import type { Dataset, Project, Publication } from "./generated/records.ts";
@@ -23,7 +23,7 @@ import { renderSearchable, searchId } from "./search.ts";
 import { defineSummarySection } from "./summary.ts";
 
 export const sections = [
-  // The CVs choose their own summaries from summaries/ (see the job-applications repository).
+  // The CVs choose their own summaries from summaries/ in cv/records.toml (see docs/development.md, "CV and resume").
   defineSummarySection({
     name: "summary",
     page: "index.html",

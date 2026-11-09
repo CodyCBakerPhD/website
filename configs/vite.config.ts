@@ -30,6 +30,7 @@ export default defineConfig({
   base: "./",
   build: {
     outDir: resolve(repoRoot, "dist"),
+    // dist/ is outside root (src/), which Vite only empties when told to.
     emptyOutDir: true,
     rolldownOptions: {
       input: pages,

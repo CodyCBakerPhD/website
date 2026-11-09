@@ -4,6 +4,7 @@
 
 import { Tag } from "./generated/records.ts";
 import { escapeHtml } from "./html.ts";
+import { duplicates } from "./lists.ts";
 
 const RANK: ReadonlyMap<string, number> = new Map(Object.values(Tag).map((tag, index) => [tag, index]));
 
@@ -15,11 +16,7 @@ function splitTag(tag: string): { key: string; name: string } {
 
 /** Problems with a record's tags that its schema cannot catch. */
 export function checkTags(tags: readonly string[]): string[] {
-  // The schema marks tags list_elements_unique, but LinkML's JSON Schema
-  // generator does not carry that over as uniqueItems.
-  return [...new Set(tags.filter((tag, index) => tags.indexOf(tag) !== index))].map(
-    (tag) => `/tags lists "${tag}" more than once`,
-  );
+  return duplicates(tags).map((tag) => `/tags lists "${tag}" more than once`);
 }
 
 /**

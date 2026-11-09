@@ -12,6 +12,7 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
         with:
+          # The script diffs against origin/<base>, which a shallow checkout does not have.
           fetch-depth: 0
 
       - name: Set up Node
