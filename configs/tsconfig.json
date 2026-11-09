@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    // Only for npm run typecheck: Vite compiles src/ts for its own build.target,
+    // which supports ES2022, so these follow it rather than set what browsers get.
+    "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    // Keeps the installed @types/node out of the browser code, so a stray process or Buffer is a type error.
     "types": [],
     "strict": true,
     "noUnusedLocals": true,

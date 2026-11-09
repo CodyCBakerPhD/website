@@ -101,7 +101,7 @@ A logo drawn in dark blues for light backgrounds, with no dark version, sits on 
 
 ## Distribution
 
-A project that others install or use lists where it is `distributed`, by the URL of each place, and a project that is not distributed (such as one run only from its source) omits it:
+A project that others install or use lists where it is distributed in `distributions`, by the URL of each place, and a project that is not distributed (such as one run only from its source) omits it:
 
 ```json
 "distributions": [
@@ -210,6 +210,8 @@ The search and the order are kept in the page's URL, such as `publications?q=kin
 
 Each record type's filters and orders are set beside its renderer, such as `projectSearch` in [`src/build/projects.ts`](../src/build/projects.ts).
 The search bar's markup is rendered by [`src/build/search.ts`](../src/build/search.ts), and the searching runs in the browser, in [`src/ts/search.ts`](../src/ts/search.ts).
+The settings and record data the build hands the browser are typed once, in [`src/ts/search-protocol.ts`](../src/ts/search-protocol.ts), which both sides import, so `npm run typecheck` fails if one side changes them without the other.
+How a search splits into terms and compares them is in [`src/ts/search-terms.ts`](../src/ts/search-terms.ts), apart from the page.
 
 ## Tags
 

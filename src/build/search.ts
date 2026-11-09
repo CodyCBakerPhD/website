@@ -7,18 +7,19 @@
 // tag theme is a filter key (standards:NWB), and so are the fields each
 // section lists below.
 
+import type { Filter, RecordData, Settings } from "../ts/search-protocol.ts";
 import { TagTheme } from "./generated/records.ts";
 import { escapeHtml, indent } from "./html.ts";
 
 /** A filter on one of a record's fields, matching any of its values by substring. */
-export interface FieldFilter<T> {
+interface FieldFilter<T> {
   key: string;
   description: string;
   values: (record: T) => readonly string[];
 }
 
 /** An order the records can be shown in, besides the order sections.ts lists them in. */
-export interface SortOrder<T> {
+interface SortOrder<T> {
   id: string;
   label: string;
   /** Compared as text (numbers in it by value), so ISO dates sort by date. */
@@ -48,7 +49,7 @@ export function yearOf(date: string): number {
 
 /** The data the browser searches and sorts a record's card by, as a data attribute. */
 export function searchAttribute<T>(config: SearchConfig<T>, record: T): string {
-  const data = {
+  const data: RecordData = {
     fields: Object.fromEntries(config.filters.map((filter) => [filter.key, filter.values(record)])),
     years: config.years?.(record) ?? null,
     sort: Object.fromEntries(config.sorts.map((sort) => [sort.id, sort.value(record)])),
@@ -73,13 +74,13 @@ export function renderSearchable<T>(config: SearchConfig<T>, records: readonly s
 
   const id = searchId(config);
   const label = escapeHtml(`Search ${config.noun}`);
-  const settings = {
+  const settings: Settings = {
     noun: config.noun,
     filters: [
-      ...config.filters.map(({ key, description }) => ({ key, description, kind: "field" })),
-      ...(config.years ? [{ key: "year", description: "Year of the work, or a range such as year:>=2023", kind: "year" }] : []),
+      ...config.filters.map(({ key, description }): Filter => ({ key, description, kind: "field" })),
+      ...(config.years ? [{ key: "year", description: "Year of the work, or a range such as year:>=2023", kind: "year" as const }] : []),
       { key: "tag", description: "Any tag, whatever its theme", kind: "tag" },
-      ...THEMES.map(({ key, description }) => ({ key, description, kind: "theme" })),
+      ...THEMES.map(({ key, description }): Filter => ({ key, description, kind: "theme" })),
     ],
     sorts: [{ id: "featured", label: "Featured" }, ...config.sorts.map(({ id, label, descending }) => ({ id, label, descending }))],
   };

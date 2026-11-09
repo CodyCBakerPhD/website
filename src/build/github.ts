@@ -1,14 +1,16 @@
 // GitHub activity shown on record cards: each pull request or issue a record
 // cites as evidence, with its title and a pull request's added and deleted
-// lines (each taken to have landed, as nearly all have); the repositories a project is made of, with their
-// descriptions; and, in each project's code, how many of the site owner's pull
-// requests were merged and issues closed (those they opened or were assigned),
-// and how many other pull requests they reviewed. Records cite only the URL;
-// scripts/fetch_github_activity.py fetches the rest into generated/github.json,
-// so building the site needs no network.
+// lines (each taken to have landed, as nearly all have); the repositories a
+// project is made of, with their descriptions; and, in each project's code,
+// how many of the site owner's pull requests were merged and issues closed
+// (those they opened or were assigned), and how many other pull requests they
+// reviewed. Records cite only the URL; scripts/fetch_github_activity.py
+// fetches the rest into generated/github.json, so building the site needs no
+// network.
 
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import type { Repository } from "./generated/records.ts";
 import { renderGrid, type CardGrid } from "./grid.ts";
 import { displayUrl, escapeHtml, indent } from "./html.ts";
 import { renderIcon } from "./icons.ts";
@@ -29,7 +31,7 @@ interface Contribution {
   deletions?: number;
 }
 
-interface Repository {
+interface RepositoryActivity {
   description: string | null;
 }
 
@@ -56,7 +58,7 @@ export interface GitHubActivity {
   /** Keyed by record path, e.g. "projects/neuroconv". */
   projects: Record<string, ProjectActivity>;
   /** Keyed by the URL of the repository, e.g. "https://github.com/con/duct". */
-  repositories: Record<string, Repository>;
+  repositories: Record<string, RepositoryActivity>;
   /** Keyed by the URL of the pull request or issue. */
   contributions: Record<string, Contribution>;
 }
@@ -65,7 +67,7 @@ export interface GitHubActivity {
 interface GitHubSlots {
   evidence?: readonly string[];
   url?: string;
-  repositories?: readonly { url: string; logo?: string; homepage?: string; title?: string }[];
+  repositories?: readonly Repository[];
 }
 
 // Keep these in step with scripts/fetch_github_activity.py.
@@ -208,12 +210,13 @@ export function renderContributions(urls: readonly string[], activity: GitHubAct
 
 /**
  * Subcards for repositories a project is made of, each with its logo and
- * description, laid out in the mini grid `grid`, or null if there are none. A repository is named by its own
- * name and links to its code, unless it has a homepage, such as the web app it
- * serves: then it is named by that website's title and links there.
+ * description, laid out in the mini grid `grid`, or null if there are none. A
+ * repository is named by its own name and links to its code, unless it has a
+ * homepage, such as the web app it serves: then it is named by that website's
+ * title and links there.
  */
 export function renderRepositories(
-  repositories: NonNullable<GitHubSlots["repositories"]>,
+  repositories: readonly Repository[],
   activity: GitHubActivity,
   grid: CardGrid,
 ): string | null {

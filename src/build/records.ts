@@ -21,6 +21,7 @@ import { GITHUB_ACTIVITY_FILE, loadGitHubActivity } from "./github.ts";
 import type { CardGrid } from "./grid.ts";
 import { fillPlaceholder, hasPlaceholder } from "./html.ts";
 import { pageRoute } from "./layout.ts";
+import { duplicates } from "./lists.ts";
 import { linkRecords, type RecordNode } from "./references.ts";
 import { checkTags } from "./tags.ts";
 
@@ -33,7 +34,8 @@ export interface RecordEntry<T> {
   references: readonly string[];
 }
 
-export interface SectionOptions<T extends BaseRecord> {
+/** Where a section's records are, and where it shows them. */
+export interface RecordSource {
   /** Names the section's <!-- build:NAME --> placeholder. */
   name: string;
   /** The page under src/ holding the placeholder, where links to the section's records point. */
@@ -42,6 +44,9 @@ export interface SectionOptions<T extends BaseRecord> {
   recordsDir: string;
   /** JSON Schema that every record must satisfy, relative to the repository root. */
   schemaFile: string;
+}
+
+interface SectionOptions<T extends BaseRecord> extends RecordSource {
   /** Record IDs (file names without .json) in display order. Every record must be listed once. */
   order: readonly string[];
   /** Font Awesome icon marking links to the section's records from other cards. */
@@ -115,12 +120,27 @@ function describeError(error: ErrorObject): string {
   return `${error.instancePath || "(root)"} ${error.message}${detail}`;
 }
 
+function problemList(heading: string, problems: readonly string[]): string {
+  return `${heading}:\n${problems.map((problem) => `  - ${problem}`).join("\n")}`;
+}
+
+/** The error a section throws when its records have problems. */
+export function invalidRecords(source: RecordSource, problems: readonly string[]): Error {
+  return new Error(
+    problemList(`Invalid records for the "${source.name}" section (${source.recordsDir}/, schema ${source.schemaFile})`, problems),
+  );
+}
+
 /**
- * Reads every record in `recordsDir` and validates it against the JSON Schema
- * in `schemaFile`. Returns the valid records by ID, and a description of each
- * problem found in the others.
+ * Reads every record in the source's `recordsDir` and validates it against
+ * the JSON Schema in its `schemaFile`. Returns the valid records by ID, and a
+ * description of each problem found in the others.
  */
-export function readRecords<T>(recordsDir: string, schemaFile: string): { files: string[]; records: Map<string, T>; problems: string[] } {
+export function readRecords<T>(
+  source: RecordSource,
+  root: string,
+): { files: string[]; records: Map<string, T>; problems: string[] } {
+  const recordsDir = resolve(root, source.recordsDir);
   // A fresh Ajv per load: the dev server reloads on every request, and Ajv
   // refuses to compile a second schema with the same $id.
   // LinkML's JSON Schema generator targets draft 2019-09 and adds its own
@@ -129,7 +149,7 @@ export function readRecords<T>(recordsDir: string, schemaFile: string): { files:
   const ajv = new Ajv2019({ allErrors: true, verbose: true });
   ajv.addVocabulary(["version", "metamodel_version"]);
   addFormats(ajv);
-  const validate = ajv.compile<T>(JSON.parse(readFileSync(schemaFile, "utf8")));
+  const validate = ajv.compile<T>(JSON.parse(readFileSync(resolve(root, source.schemaFile), "utf8")));
 
   const files = readdirSync(recordsDir)
     .filter((file) => file.endsWith(".json"))
@@ -165,7 +185,7 @@ export function readRecords<T>(recordsDir: string, schemaFile: string): { files:
 
 /** Reads, validates and orders a section's records, or throws listing every problem. */
 function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: string, publicDir: string): { id: string; record: T }[] {
-  const { files, records: valid, problems } = readRecords<T>(resolve(root, options.recordsDir), resolve(root, options.schemaFile));
+  const { files, records: valid, problems } = readRecords<T>(options, root);
   const records = new Map<string, T>();
 
   for (const [id, record] of valid) {
@@ -192,10 +212,7 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
   }
 
   if (problems.length > 0) {
-    throw new Error(
-      `Invalid records for the "${options.name}" section (${options.recordsDir}/, schema ${options.schemaFile}):\n` +
-        problems.map((problem) => `  - ${problem}`).join("\n"),
-    );
+    throw invalidRecords(options, problems);
   }
 
   // Every listed ID now names a file that passed validation.
@@ -221,8 +238,7 @@ function loadSections(sections: readonly Section[], root: string, publicDir: str
 
 /** IDs given to more than one element of a page, which would break links to its cards. */
 function duplicateIds(html: string): string[] {
-  const ids = Array.from(html.matchAll(/\sid="([^"]*)"/g), (match) => match[1]);
-  return [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
+  return duplicates(Array.from(html.matchAll(/\sid="([^"]*)"/g), (match) => match[1]));
 }
 
 /**
@@ -284,7 +300,7 @@ export function recordSections(sections: readonly Section[], { root }: { root: s
           loadGitHubActivity(root),
         );
         if (problems.length > 0) {
-          throw new Error(`Invalid links between records, or GitHub activity missing for them:\n${problems.map((problem) => `  - ${problem}`).join("\n")}`);
+          throw new Error(problemList("Invalid links between records, or GitHub activity missing for them", problems));
         }
 
         let page = html;

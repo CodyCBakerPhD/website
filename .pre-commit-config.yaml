@@ -16,6 +16,8 @@ repos:
     - id: end-of-file-fixer
     - id: trailing-whitespace
     - id: check-json
+      # tsc reads its configs as JSON with comments, and fails on a malformed one.
+      exclude: ^configs/tsconfig.*\.json$
     - id: check-toml
     - id: check-added-large-files
     - id: check-case-conflict

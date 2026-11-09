@@ -5,50 +5,27 @@
 // The markup and data come from src/build/search.ts. The search and the order
 // are kept in the page's URL (?q=...&sort=...), so a view can be linked to.
 
-type FilterKind = "field" | "year" | "tag" | "theme";
-
-interface Filter {
-  key: string;
-  description: string;
-  kind: FilterKind;
-}
-
-interface SortOrder {
-  id: string;
-  label: string;
-  descending?: boolean;
-}
-
-interface Settings {
-  noun: string;
-  filters: Filter[];
-  sorts: SortOrder[];
-}
-
-interface RecordData {
-  fields: Record<string, string[]>;
-  years: [number, number | null] | null;
-  sort: Record<string, string>;
-}
+import type { Filter, RecordData, Settings } from "./search-protocol";
+import {
+  closestKey,
+  compareSortValues,
+  formatTerm,
+  isTagActive,
+  matchesYear,
+  normalize,
+  parseTerms,
+  type Term,
+} from "./search-terms";
 
 interface Item {
   element: HTMLElement;
   /** Position in the featured order. */
   index: number;
   text: string;
-  /** Each filter's values for this record, normalized. */
-  values: Map<string, string[]>;
+  /** Each filter's values for this record, as written; normalize() is applied when matching and suggesting. */
+  values: Map<string, readonly string[]>;
   years: [number, number] | null;
   sort: Record<string, string>;
-}
-
-/** One term of a search, and where it sits in the search's text. */
-interface Term {
-  start: number;
-  end: number;
-  /** The filter's key, lowercased, or null for free text. */
-  key: string | null;
-  value: string;
 }
 
 interface Suggestion {
@@ -75,81 +52,6 @@ const MAX_VALUE_SUGGESTIONS = 8;
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-/** Lowercases, strips accents (so "rubel" finds "Rübel") and collapses whitespace. */
-function normalize(text: string): string {
-  return text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/\s+/g, " ").trim();
-}
-
-/** Splits a search into terms at whitespace outside double quotes. Quotes keep a phrase or value together. */
-function parseTerms(query: string): Term[] {
-  const terms: Term[] = [];
-  let position = 0;
-  while (position < query.length) {
-    if (/\s/.test(query[position])) {
-      position++;
-      continue;
-    }
-    const start = position;
-    let quoted = false;
-    while (position < query.length && (quoted || !/\s/.test(query[position]))) {
-      quoted = query[position] === '"' ? !quoted : quoted;
-      position++;
-    }
-    const raw = query.slice(start, position);
-    // A term opening with a quote is literal text, even if it holds a colon.
-    const filter = /^([a-z][\w-]*):(.*)$/is.exec(raw);
-    terms.push({
-      start,
-      end: position,
-      key: filter ? filter[1].toLowerCase() : null,
-      value: (filter ? filter[2] : raw).replace(/"/g, ""),
-    });
-  }
-  return terms;
-}
-
-function formatTerm(key: string, value: string): string {
-  return `${key}:${/[\s"]/.test(value) ? `"${value.replace(/"/g, "")}"` : value}`;
-}
-
-function editDistance(a: string, b: string): number {
-  let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
-  for (let i = 1; i <= a.length; i++) {
-    const current = [i];
-    for (let j = 1; j <= b.length; j++) {
-      current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
-    }
-    previous = current;
-  }
-  return previous[b.length];
-}
-
-/** The known key a mistyped one most likely meant, if any is close. */
-function closestKey(key: string, keys: readonly string[]): string | undefined {
-  const ranked = keys.map((known) => ({ known, distance: editDistance(key, known) })).sort((a, b) => a.distance - b.distance);
-  return ranked.length > 0 && ranked[0].distance <= 2 ? ranked[0].known : undefined;
-}
-
-/** Whether the years of a record satisfy a year: value such as 2024, >=2023 or <2020. */
-function matchesYear([from, to]: [number, number], comparison: string, year: number): boolean {
-  switch (comparison) {
-    case ">":
-      return to > year;
-    case ">=":
-      return to >= year;
-    case "<":
-      return from < year;
-    case "<=":
-      return from <= year;
-    default:
-      return from <= year && year <= to;
-  }
-}
-
-function compareSortValues(a: string, b: string): number {
-  return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
-}
-
 /** Where the sticky navigation bar ends, so content above it counts as out of view. */
 function navBottom(): number {
   return document.querySelector(".main-nav")?.getBoundingClientRect().bottom ?? 0;
@@ -165,7 +67,7 @@ function readSettings(form: HTMLElement): Settings | null {
 
 function readItem(element: HTMLElement, index: number): Item {
   const data = JSON.parse(element.dataset.searchRecord ?? "{}") as Partial<RecordData>;
-  const values = new Map<string, string[]>();
+  const values = new Map<string, readonly string[]>();
   for (const [key, fieldValues] of Object.entries(data.fields ?? {})) {
     values.set(key, fieldValues);
   }
@@ -303,10 +205,6 @@ function initSearch(scope: HTMLElement): void {
       }
     }
     return { tests, problems: [...problems] };
-  }
-
-  function isTagActive(terms: readonly Term[], theme: string, name: string): boolean {
-    return terms.some((term) => term.key === theme && normalize(term.value) === normalize(name));
   }
 
   function applySort(): void {
