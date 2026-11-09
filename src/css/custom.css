@@ -413,6 +413,17 @@ body:has(.card-grid) {
     margin-bottom: 0;
 }
 
+/* An item on a card's line of details or links (joinItems in src/build/html.ts)
+   moves to the next line whole; one wider than the card still wraps inside itself. */
+.line-item {
+    display: inline-block;
+}
+
+/* A paragraph leading straight into the list it introduces. */
+.lead-in {
+    margin-bottom: 0.4em;
+}
+
 .work .work-list li a {
     padding-bottom: 2px;
     font-size: 1em;

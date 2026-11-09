@@ -5,6 +5,14 @@
 /** Separator between items on one line, matching the hand-written parts of the pages. */
 export const SEPARATOR = " &nbsp; | &nbsp; ";
 
+/**
+ * Joins items (already HTML) into one line with SEPARATOR. Each item is kept whole, so the line wraps
+ * between items rather than inside one, such as between "Modality:" and its value.
+ */
+export function joinItems(items: readonly string[], separator: string = SEPARATOR): string {
+  return items.map((item) => `<span class="line-item">${item}</span>`).join(separator);
+}
+
 const HTML_ESCAPES: Record<string, string> = {
   "&": "&amp;",
   "<": "&lt;",
@@ -42,7 +50,7 @@ export function renderLinks<K extends string>(
     const url = links?.[key];
     return url ? [`<a href="${escapeHtml(url)}">${labels[key]}</a>`] : [];
   });
-  return anchors.length > 0 ? [anchors.join(`${SEPARATOR.trimEnd()}\n`)] : [];
+  return anchors.length > 0 ? [joinItems(anchors, `${SEPARATOR.trimEnd()}\n`)] : [];
 }
 
 /** Indents every line (including lines inside multi-line strings) by one tab. */
