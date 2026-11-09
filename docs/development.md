@@ -361,6 +361,7 @@ Their LaTeX sources live under [`cv/`](../cv):
 | [`cv/full_styled/`](../cv/full_styled)                        | The full CV (A4): its document, and its hand-written education, experience, achievements and skills |
 | [`cv/one_page/`](../cv/one_page)                              | The one-page resume (Letter), condensed from the full CV                                |
 | [`cv/resume_settings.sty`](../cv/resume_settings.sty)         | The macros both use (`\cvtitle`, `cvitems` and the like), which set how they look       |
+| [`cv/contact.tex`](../cv/contact.tex)                         | The contact details both headers show, each laid out as its own header arranges them    |
 | [`cv/records.toml`](../cv/records.toml)                       | Which records each rubric shows, in what order, and which it leaves out                 |
 
 Their Summary, Highlighted Projects, Data Curation and Publications rubrics are rendered from the records by [`scripts/render_cv.py`](../scripts/render_cv.py), next to the hand-written ones, and are not committed.
