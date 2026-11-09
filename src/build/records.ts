@@ -221,7 +221,7 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
   }
   for (const file of files) {
     if (!listed.has(basename(file, ".json"))) {
-      problems.push(`${file}: missing from the "${options.name}" display order in src/build/sections.ts`);
+      problems.push(`${file}: missing from the "${options.recordsDir}" list in src/build/display-order.json`);
     }
   }
 

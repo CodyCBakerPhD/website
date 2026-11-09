@@ -33,7 +33,8 @@ Parts of the site are generated from machine-readable JSON records, one file per
 | [`publications/`](../publications) | `Publication` | Publications (`publications.html`)     |
 
 Records hold only facts about the work.
-How the site presents them, such as the page each section is on and the order it lists its records in, is set in [`src/build/sections.ts`](../src/build/sections.ts), so a new record must also be added to its section's list there.
+How the site presents them, such as the page each section is on, is set in [`src/build/sections.ts`](../src/build/sections.ts).
+The order each section lists its records in is in [`src/build/display-order.json`](../src/build/display-order.json), which the full CV follows too, so a new record must also be added to its section's list there.
 Each section's `grid` lays its cards out in up to `columns` equal columns, in display order, row by row, dropping columns where a card would get narrower than `minCardWidth` pixels, so a phone shows one ([`src/build/grid.ts`](../src/build/grid.ts)).
 Cards in a row share its height, and pages of cards in a grid run wider than the home page.
 A section with `choices` also gets a Columns control beside its search bar, for choosing between those column counts ([`src/ts/grid.ts`](../src/ts/grid.ts)).
@@ -68,7 +69,7 @@ A publication's `about` links are headed by the type of record they name: "Featu
 Write each link once, on the record that makes it.
 The build lists it on both cards, linking each to the other, so the NeuroConv card lists the article under "Presented in" without its record saying so.
 A card shows the first five links under a heading and folds any more behind a toggle, as it does for the records NeuroConv is "Used by".
-Links from other records follow the display order in `sections.ts`, so it is the first of those that show.
+Links from other records follow the display order in `display-order.json`, so it is the first of those that show.
 The build fails on a link to a record that does not exist, to the record itself, or listed twice.
 [`src/build/references.ts`](../src/build/references.ts) checks and renders the links, and each section in `sections.ts` sets the icon and text of links to its records.
 
@@ -366,7 +367,8 @@ Their LaTeX sources live under [`cv/`](../cv):
 | [`cv/records.toml`](../cv/records.toml)                       | Which records each rubric shows, in what order, and which it leaves out                 |
 
 Their Summary, Highlighted Projects, Data Curation and Publications rubrics are rendered from the records by [`scripts/render_cv.py`](../scripts/render_cv.py), next to the hand-written ones, and are not committed.
-Every record must be shown or left out in each section of `cv/records.toml`, so adding a record means placing it there too; until then, rendering fails and names it.
+The full CV's Highlighted Projects, Data Curation and Publications say `show = "site"`, so they show every record in the website's display order.
+In every other section of `cv/records.toml`, each record must be shown or left out, so adding a record means placing it there too; until then, rendering fails and names it.
 The one-page resume shows only the first sentence of each description, and its build fails if it runs onto a second page.
 
 The `Build the CV and resume` action ([`.github/actions/build-cv/`](../.github/actions/build-cv/action.yml)) renders the rubrics, compiles both with TeX Live, and places the PDFs under `src/public/assets/resume/` (also not committed) for the site build to publish.

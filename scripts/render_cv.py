@@ -26,6 +26,9 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CV_DIR = REPO_ROOT / "cv"
 CONFIG_FILE = CV_DIR / "records.toml"
+# The order the website shows each directory's records in, which a section
+# follows with show = "site".
+DISPLAY_ORDER_FILE = REPO_ROOT / "src" / "build" / "display-order.json"
 WEBSITE_URL = "https://www.codycbakerphd.com"
 
 
@@ -358,10 +361,13 @@ class Section:
     show: list[str]
     omit: list[str] = field(default_factory=list)
     compact: bool = False
+    # Whether `show` is the website's display order rather than a list of its own.
+    follows_site: bool = False
 
 
 def load_sections(config_file: Path) -> list[Section]:
     config = tomllib.loads(config_file.read_text(encoding="utf-8"))
+    display_order = json.loads(DISPLAY_ORDER_FILE.read_text(encoding="utf-8"))
     sections = []
     problems = []
     for index, entry in enumerate(config.get("section", [])):
@@ -373,8 +379,19 @@ def load_sections(config_file: Path) -> list[Section]:
             problems.append(f"{where}: 'records' must be one of {sorted(RECORD_TYPES)}")
         if not isinstance(entry.get("compact", False), bool):
             problems.append(f"{where}: 'compact' must be true or false")
+        follows_site = entry.get("show") == "site"
+        if follows_site:
+            if entry.get("records") not in display_order:
+                problems.append(f"{where}: the website has no display order for {entry.get('records')!r}, so 'show' must list IDs")
+                continue
+            if entry.get("omit"):
+                problems.append(f"{where}: a section that follows the website's order shows every record, so 'omit' must be empty")
+                continue
+            entry = {**entry, "show": display_order[entry["records"]]}
         if not isinstance(entry.get("output"), str) or not isinstance(entry.get("show"), list):
-            problems.append(f"{where}: 'output' (a path under cv/) and 'show' (a list of record IDs) are required")
+            problems.append(
+                f"{where}: 'output' (a path under cv/) and 'show' (a list of record IDs, or \"site\") are required"
+            )
             continue
         if (
             entry.get("records") in RECORD_TYPES
@@ -389,6 +406,7 @@ def load_sections(config_file: Path) -> list[Section]:
                 show=entry["show"],
                 omit=entry.get("omit", []),
                 compact=entry.get("compact", False),
+                follows_site=follows_site,
             )
         )
     if not sections and not problems:
@@ -423,6 +441,11 @@ def select_records(section: Section, records: dict[str, dict]) -> list[tuple[str
     """Orders the shown records, failing unless every record is shown or omitted exactly once."""
     name = section.output.relative_to(CV_DIR).as_posix()
     placed = section.show + section.omit
+    where = (
+        f"the {section.records} list in {DISPLAY_ORDER_FILE.relative_to(REPO_ROOT).as_posix()}"
+        if section.follows_site
+        else f"this section's 'show' or 'omit' in cv/{CONFIG_FILE.name}"
+    )
     problems = [
         f"{name}: '{record_id}' is listed more than once in 'show' and 'omit'"
         for record_id in sorted({record_id for record_id in placed if placed.count(record_id) > 1})
@@ -433,8 +456,7 @@ def select_records(section: Section, records: dict[str, dict]) -> list[tuple[str
         if record_id not in records
     )
     problems.extend(
-        f"{name}: {section.records}/{record_id}.json is not placed; "
-        f"add '{record_id}' to this section's 'show' or 'omit' in cv/{CONFIG_FILE.name}"
+        f"{name}: {section.records}/{record_id}.json is not placed; add '{record_id}' to {where}"
         for record_id in records
         if record_id not in placed
     )
