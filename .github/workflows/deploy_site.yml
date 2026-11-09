@@ -19,20 +19,8 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build the CV and resume
-        uses: ./.github/actions/build-cv
-
-      - name: Build site
-        run: npm run build
+      - name: Build the site
+        uses: ./.github/actions/build-site
 
       - name: Deploy to gh-pages branch
         uses: JamesIves/github-pages-deploy-action@v4

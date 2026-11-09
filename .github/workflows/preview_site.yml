@@ -24,24 +24,9 @@ jobs:
       - name: Set up Git repository
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Build the site
         if: github.event.action != 'closed'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        if: github.event.action != 'closed'
-        run: npm ci
-
-      - name: Build the CV and resume
-        if: github.event.action != 'closed'
-        uses: ./.github/actions/build-cv
-
-      - name: Build site
-        if: github.event.action != 'closed'
-        run: npm run build
+        uses: ./.github/actions/build-site
 
       - name: Deploy preview to gh-pages branch
         uses: rossjrw/pr-preview-action@v1

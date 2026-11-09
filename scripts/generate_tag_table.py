@@ -19,7 +19,7 @@ END = "<!-- tags:end -->"
 
 
 def rows() -> list[tuple[str, str, str]]:
-    enums = yaml.safe_load(VOCABULARY.read_text())["enums"]
+    enums = yaml.safe_load(VOCABULARY.read_text(encoding="utf-8"))["enums"]
     themes = enums["TagTheme"]["permissible_values"]
     tags = enums["Tag"]["permissible_values"]
 
@@ -55,12 +55,12 @@ def markdown(table: list[tuple[str, str, str]]) -> str:
 
 
 def main() -> None:
-    text = DOC.read_text()
+    text = DOC.read_text(encoding="utf-8")
     block = re.compile(re.escape(START) + ".*?" + re.escape(END), re.DOTALL)
     if not block.search(text):
         sys.exit(f"{DOC} is missing the {START} ... {END} markers")
     generated = f"{START}\n{markdown(rows())}\n{END}"
-    DOC.write_text(block.sub(lambda _: generated, text, count=1))
+    DOC.write_text(block.sub(lambda _: generated, text, count=1), encoding="utf-8")
 
 
 if __name__ == "__main__":
