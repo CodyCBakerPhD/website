@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Mapping model units to visual neurons reveals population code for social behavior",
+  "group": "Murthy Lab",
+  "institution": "Princeton University",
+  "modality": "Microscopy and Behavior",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.1101/2022.07.18.500505",
+    "dataset": "https://dandiarchive.org/dandiset/000951/0.240418.2218",
+    "code": "https://github.com/catalystneuro/murthy-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of courtship sessions of male fruit flies with different LC neuron types silenced, combining their video, SLEAP pose tracking, song and behavior, and of two-photon calcium imaging of those neuron types' responses to visual stimuli.",
+    "Resulted in the publication of **331 GB** of fruit fly calcium imaging data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Drosophila",
+    "methods:Calcium Imaging",
+    "methods:Behavior",
+    "methods:Video"
+  ]
+}

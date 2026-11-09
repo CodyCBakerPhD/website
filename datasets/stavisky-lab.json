@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Brain-to-text speech decoding (Stavisky Lab)",
+  "group": "Stavisky Lab",
+  "institution": "University of California, Davis",
+  "modality": "Electrophysiology",
+  "role": "Supervisor",
+  "links": {
+    "code": "https://github.com/catalystneuro/stavisky-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of the data that a real-time brain-to-text speech decoder streams through Redis: the intracortical recordings, threshold crossings, spiking band power, audio, sentence cues, phoneme probabilities and decoded text, with the decoder's clock aligned to the recording system's.",
+    "Included widgets for the decoder's word and phoneme error rates and its trial-aligned activity."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "organisms:Human",
+    "methods:Extracellular Electrophysiology",
+    "analysis:Data Visualization"
+  ]
+}

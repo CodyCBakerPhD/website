@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Neuropixels recordings during whisker stimulation (Feldman Lab)",
+  "group": "Feldman Lab",
+  "institution": "University of California, Berkeley",
+  "modality": "Electrophysiology",
+  "role": "Primary Engineer",
+  "links": {
+    "code": "https://github.com/catalystneuro/feldman-lab-to-nwb"
+  },
+  "description": [
+    "Wrote conversion code for Neuropixels recordings during piezo whisker stimulation in eight stimulus layouts, decoding each trial's timing and stimuli from messages that the task encoded on the acquisition system's analog inputs.",
+    "Also built a pipeline for quickly detecting spikes during experiments, an NWB widget mapping each electrode's responses and tuning across the probe, and an export back to the lab's own data format."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "methods:Extracellular Electrophysiology",
+    "methods:Behavior",
+    "analysis:Data Visualization"
+  ]
+}

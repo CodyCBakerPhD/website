@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "AJILE12: Long-term naturalistic human intracranial neural recordings and pose",
+  "group": "Brunton Lab",
+  "institution": "University of Washington",
+  "modality": "Electrophysiology",
+  "role": "Fixer",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41597-022-01280-y",
+    "dataset": "https://dandiarchive.org/dandiset/000055/0.220127.0436",
+    "code": "https://github.com/catalystneuro/brunton-lab-to-nwb"
+  },
+  "description": [
+    "Fixed a bug in the conversion of long-term naturalistic human intracranial recordings and pose tracking that had filled every eye and heart monitoring channel with the data of the first electrode.",
+    "Also made the conversion easier to rerun, adding missing electrode groups and fixing how it read channel labels and listed files.",
+    "Resulted in the publication of a total **846 GB** of human electrophysiology and pose data on the NIH data archive."
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Human",
+    "methods:Extracellular Electrophysiology",
+    "methods:Behavior"
+  ]
+}

@@ -4,7 +4,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { distributionName } from "./distributions.ts";
 import type { Project } from "./generated/records.ts";
-import { escapeHtml, renderCard, renderParagraphs, SEPARATOR } from "./html.ts";
+import { escapeHtml, joinItems, renderCard, renderParagraphs } from "./html.ts";
 import type { RecordEntry } from "./records.ts";
 import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
@@ -80,7 +80,7 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
   }
 
   const details = [project.role, formatYears(project.start_date, project.end_date)].map(escapeHtml);
-  lines.push(`<li><a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>${SEPARATOR}${details.join(SEPARATOR)}</li>`);
+  lines.push(`<li>${joinItems([`<a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>`, ...details])}</li>`);
   if (project.contribution) {
     lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
   }

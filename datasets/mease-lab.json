@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Electrophysiology from CED and Syntalos rigs (Mease Lab)",
+  "group": "Mease Lab",
+  "institution": "EMBL Heidelberg",
+  "modality": "Electrophysiology",
+  "role": "Primary Engineer",
+  "links": {
+    "code": "https://github.com/catalystneuro/mease-lab-to-nwb"
+  },
+  "description": [
+    "Wrote conversion code for two of the lab's recording setups: CED Spike2 recordings with mechanical and optogenetic stimulation, and Syntalos recordings that synchronize several Intan amplifiers with accelerometers, task events and camera video."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "methods:Extracellular Electrophysiology",
+    "methods:Optogenetics",
+    "methods:Video"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Two-photon imaging of macaque visual cortex during fixation (Seidemann Lab)",
+  "group": "Seidemann Lab",
+  "institution": "University of Texas",
+  "modality": "Microscopy",
+  "role": "Supervisor",
+  "links": {
+    "code": "https://github.com/catalystneuro/seidemann-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of two-photon imaging of the primary visual cortex of a rhesus macaque fixating while gratings and Gabor targets flashed, with its Suite2p segmentation, the conditions and outcomes of its trials, eye tracking and photodiode signals."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "organisms:Rhesus Macaque",
+    "methods:Behavior",
+    "neuroscience:Visual Cortex"
+  ]
+}

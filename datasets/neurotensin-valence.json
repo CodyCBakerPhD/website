@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Neurotensin orchestrates valence assignment in the amygdala",
+  "group": "Tye Lab",
+  "institution": "Salk Institute for Biological Studies",
+  "modality": "Electrophysiology",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41586-022-04964-y",
+    "dataset": "https://dandiarchive.org/dandiset/000689/0.240530.1923",
+    "code": "https://github.com/catalystneuro/tye-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of a study of valence assignment in the mouse amygdala, combining OpenEphys recordings and their Plexon spike sorting with the trials of a Pavlovian discrimination task, behavior video, DeepLabCut pose estimates and confocal histology, alongside fiber photometry from a second cohort.",
+    "Resulted in the publication of a total **575 GB** of mouse electrophysiology, photometry, behavioral and histology data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Mouse",
+    "methods:Extracellular Electrophysiology",
+    "methods:Fiber Photometry",
+    "methods:Behavior",
+    "methods:Video",
+    "analysis:Spike Sorting"
+  ]
+}

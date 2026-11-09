@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.8.0",
+  "record_version": "0.1.0",
+  "name": "Spontaneous behaviour is structured by reinforcement without explicit reward",
+  "group": "Datta Lab",
+  "institution": "Harvard Medical School",
+  "modality": "Behavior",
+  "role": "Supervisor",
+  "links": {
+    "manuscript": "https://doi.org/10.1038/s41586-022-05611-2",
+    "dataset": "https://dandiarchive.org/dandiset/000559/0.260528.0858",
+    "notebook": "https://github.com/dandi/example-notebooks/tree/master/000559/dattalab/markowitz_gillis_nature_2023",
+    "code": "https://github.com/catalystneuro/datta-lab-to-nwb"
+  },
+  "description": [
+    "Supervised the conversion of a study of dopamine and spontaneous behavior in mice, combining depth and infrared video of the open field, the behavioral syllables, position and heading that MoSeq extracted from it, keypoint pose estimates, and dopamine fiber photometry with closed-loop optogenetic stimulation.",
+    "Resulted in the publication of a total **14.8 TB** of mouse behavioral, video, photometry and optogenetics data on the NIH data archive."
+  ],
+  "built_with": [
+    "projects/neuroconv"
+  ],
+  "tags": [
+    "standards:NWB",
+    "archives:DANDI",
+    "organisms:Mouse",
+    "methods:Fiber Photometry",
+    "methods:Optogenetics",
+    "methods:Behavior",
+    "methods:Video"
+  ]
+}
