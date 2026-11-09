@@ -19,6 +19,7 @@ The site links to each page by its address without `.html` (`projects` for `proj
 The site's own styles are in [`src/css/custom.css`](../src/css/custom.css), which the shared `<head>` links, so Vite bundles and minifies it at build time.
 Edit it directly; there is no minified copy to keep in step.
 Everything under [`src/public/`](../src/public), such as images and the vendored Kube and Font Awesome stylesheets, is copied into the site as it is.
+The vendored files are kept as downloaded, with one exception: `font-awesome.min.css` names only the WOFF copy of its icon font, the format every browser the site supports loads, so the older formats are not shipped.
 
 ## Records
 
