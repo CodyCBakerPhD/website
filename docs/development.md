@@ -329,6 +329,8 @@ Three kinds of files are generated from it and committed, so building the site n
 - The [tag table](#tags) in this file.
 
 Never edit them by hand.
+LinkML writes every class into every JSON Schema, so each file under `schemas/jsonschema/` is long and a new class grows all of them.
+[`.gitattributes`](../.gitattributes) marks them and `src/build/generated/` as generated, so GitHub collapses them in pull request diffs.
 After changing the schema, regenerate them with LinkML installed:
 
 ```bash

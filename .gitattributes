@@ -1,0 +1,5 @@
+# Files that scripts generate and that are committed, never edited by hand (see
+# docs/development.md). GitHub collapses them in pull request diffs and leaves
+# them out of the repository's language statistics.
+schemas/jsonschema/*.json linguist-generated=true
+src/build/generated/** linguist-generated=true
