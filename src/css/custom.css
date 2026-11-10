@@ -78,6 +78,14 @@ a {
     color: var(--link);
 }
 
+/* kube.min.css resets every link to outline: 0, which hid the browser's focus
+   ring, so keyboard users could not see which link they were on. Links with a
+   focus style of their own, such as .icon-btn, still use it. */
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
 a:hover {
     text-decoration: none !important;
     color: var(--link-hover) !important;
@@ -217,6 +225,7 @@ body:has(.card-grid) {
 }
 
 .main-nav nav ul li a:hover:after,
+.main-nav nav ul li a:focus-visible:after,
 .main-nav nav ul li.active a:after {
     right: 0;
 }
