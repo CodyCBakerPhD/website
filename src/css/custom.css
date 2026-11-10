@@ -286,6 +286,19 @@ body:has(.card-grid) {
     color: var(--accent);
 }
 
+/* The typed headline and hidden copies of its words, stacked in one cell (see main.ts). */
+.typed-line {
+    display: inline-grid;
+}
+
+.typed-line > * {
+    grid-area: 1 / 1;
+}
+
+.typed-reserve {
+    visibility: hidden;
+}
+
 /* Contact block */
 
 /* The contact list at the left edge and the download buttons at the right, in

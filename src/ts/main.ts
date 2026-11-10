@@ -28,12 +28,36 @@ function redirectMovedSection(): void {
   }
 }
 
+const HEADLINE_WORDS = ["data science", "informatics", "software"];
+
 function initTypedHeadline(): void {
-  if (!document.getElementById("typed")) {
+  const typed = document.getElementById("typed");
+  if (!typed) {
     return;
   }
+  // The typed text shares a grid cell with hidden copies of every word (with the
+  // cursor), so the headline keeps the height of the longest and the page under it
+  // does not jump when a word wraps on narrow screens.
+  const line = document.createElement("span");
+  line.className = "typed-line";
+  const text = document.createElement("span");
+  typed.replaceWith(line);
+  text.append(typed);
+  line.append(
+    text,
+    ...HEADLINE_WORDS.map((word) => {
+      const copy = document.createElement("span");
+      copy.className = "typed-reserve";
+      const cursor = document.createElement("span");
+      cursor.className = "typed-cursor";
+      cursor.textContent = "|";
+      copy.append(word, cursor);
+      return copy;
+    }),
+  );
+
   $("#typed").typed({
-    strings: ["data science", "informatics", "software"],
+    strings: HEADLINE_WORDS,
     typeSpeed: 90,
     backDelay: 700,
     contentType: "html",
