@@ -171,6 +171,18 @@ export enum Tag {
     languagesCOLONTypeScript = "languages:TypeScript",
 };
 /**
+* Where work was done from.
+*/
+export enum WorkArrangement {
+    
+    /** At the organization's site. */
+    on_site = "on_site",
+    /** Partly on site and partly remotely. */
+    hybrid = "hybrid",
+    /** Remotely. */
+    remote = "remote",
+};
+/**
 * The kinds of scholarly work a Publication can be.
 */
 export enum PublicationKind {
@@ -318,6 +330,133 @@ export interface Summary {
     record_version: string,
     /** Paragraphs of plain text in implied first person, in which **double asterisks** mark emphasis. A one-page resume shows only the first sentence of each paragraph, so each should lead with its main point. */
     description: string[],
+}
+
+
+/**
+ * A degree earned. Each record is one JSON file under education/.
+ */
+export interface Education {
+    /** Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written. */
+    schema_version: string,
+    /** Version of the record's own content, bumped whenever the record changes. */
+    record_version: string,
+    /** The degree, abbreviated, e.g. "Ph.D." or "B.S.". */
+    degree: string,
+    /** What the degree is in, each with its program's or department's abbreviation and website where it has them. */
+    majors: LinkedName[],
+    /** Minors earned alongside the degree, e.g. "Computer Science". */
+    minors?: string[],
+    /** The university that awarded the degree, e.g. "University of Notre Dame". */
+    institution: string,
+    /** When study toward the degree began. */
+    start_date: string,
+    /** When the degree was awarded. */
+    end_date: string,
+    /** The research done toward the degree, and the group it was done with. */
+    research?: Research,
+    /** Theses written for the degree. */
+    theses?: Thesis[],
+    /** Courses taken toward the degree that bear on later work, as lowercase topics, e.g. "machine learning". */
+    coursework?: string[],
+}
+
+
+/**
+ * Research done toward a degree.
+ */
+export interface Research {
+    /** What kind of research it was, e.g. "Doctoral". */
+    kind?: string,
+    /** The research group it was done with. */
+    group: LinkedName,
+}
+
+
+/**
+ * A thesis written for a degree.
+ */
+export interface Thesis {
+    /** What kind of thesis it is, e.g. "Doctoral", "Senior" or "Honors". */
+    kind: string,
+    /** Its title, without quotation marks. */
+    title: string,
+    /** Where it is published. */
+    url?: string,
+}
+
+
+/**
+ * A job or appointment held. Each record is one JSON file under experience/.
+ */
+export interface Position {
+    /** Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written. */
+    schema_version: string,
+    /** Version of the record's own content, bumped whenever the record changes. */
+    record_version: string,
+    /** Paragraphs of plain text, each one responsibility or accomplishment, in which **double asterisks** mark emphasis. A CV shows each as a bullet. */
+    description: string[],
+    /** The position's title, e.g. "Research Software Engineer". */
+    title: string,
+    /** The company, group or department worked for. */
+    organization: LinkedName,
+    /** Departments the organization belongs to or works with, e.g. a university's, in the order they are listed. */
+    departments?: LinkedName[],
+    /** The university or other institution the organization belongs to, e.g. "Dartmouth College". */
+    institution?: string,
+    /** The course taught, for a teaching position, e.g. "Applied Mathematical Methods". */
+    course?: string,
+    /** Where the work was done from, when a source says. */
+    arrangement?: string,
+    /** When the position began. */
+    start_date: string,
+    /** When the position ended. Omitted while it is held. */
+    end_date?: string,
+}
+
+
+/**
+ * Something a record names, such as an organization, department or program of study, with the abbreviation it goes by and its website where it has them.
+ */
+export interface LinkedName {
+    /** Its full name, e.g. "Center for Open Neuroscience". */
+    name: string,
+    /** The abbreviation it goes by, e.g. "CON". */
+    abbreviation?: string,
+    /** Its website. */
+    url?: string,
+}
+
+
+/**
+ * A group of related skills, listed either directly or in labeled subgroups. Each record is one JSON file under skills/.
+ */
+export interface SkillGroup {
+    /** Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written. */
+    schema_version: string,
+    /** Version of the record's own content, bumped whenever the record changes. */
+    record_version: string,
+    /** Name of the group, e.g. "Mathematical / Statistical / Machine Learning Techniques". */
+    name: string,
+    /** A shorter name, where space is tight, such as a CV's left column, e.g. "Math, stats, & ML". Omitted when the name is short enough. */
+    short_name?: string,
+    /** A remark on how the skills are listed, without parentheses, e.g. "in order of experience". */
+    note?: string,
+    /** The skills, in the order they are listed, each by its own spelling, e.g. "TypeScript" or "pandas". */
+    skills?: string[],
+    /** The group's skills in labeled subgroups, in place of skills. */
+    subgroups?: SkillSubgroup[],
+}
+
+
+/**
+ * A labeled part of a skill group, e.g. "Linting" among frameworks.
+ */
+export interface SkillSubgroup {
+    /** Label of the subgroup, e.g. "Linting". */
+    name: string,
+    /** The subgroup's skills, in the order they are listed. */
+    skills: string[],
 }
 
 

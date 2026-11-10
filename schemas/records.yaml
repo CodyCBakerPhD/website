@@ -4,13 +4,14 @@ title: Records Schema
 description: >-
   LinkML schema for the machine-readable records that the personal website of
   Cody C. Baker is built from: software projects, curated datasets,
-  publications and professional summaries. Each record is one JSON file under
-  projects/, datasets/, publications/ or summaries/, and carries its own
-  version as well as the version of this schema it was written against.
-  Records can cite evidence from outside the site and name one another, such
-  as a publication naming the project it is about. The vocabulary of tags is
-  in tags.yaml, which this schema imports.
-version: 0.8.1
+  publications, professional summaries, education, experience and skills.
+  Each record is one JSON file under projects/, datasets/, publications/,
+  summaries/, education/, experience/ or skills/, and carries its own version
+  as well as the version of this schema it was written against. Records can
+  cite evidence from outside the site and name one another, such as a
+  publication naming the project it is about. The vocabulary of tags is in
+  tags.yaml, which this schema imports.
+version: 0.9.0
 
 prefixes:
   linkml: https://w3id.org/linkml/
@@ -385,7 +386,232 @@ classes:
           sentence of each paragraph, so each should lead with its main point.
         required: true
 
+  Education:
+    description: >-
+      A degree earned. Each record is one JSON file under education/.
+    class_uri: schema:EducationalOccupationalCredential
+    slots:
+      - schema_version
+      - record_version
+    attributes:
+      degree:
+        description: The degree, abbreviated, e.g. "Ph.D." or "B.S.".
+        slot_uri: schema:credentialCategory
+        required: true
+      majors:
+        description: >-
+          What the degree is in, each with its program's or department's
+          abbreviation and website where it has them.
+        slot_uri: schema:educationalProgramMode
+        range: LinkedName
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        minimum_cardinality: 1
+      minors:
+        description: Minors earned alongside the degree, e.g. "Computer Science".
+        multivalued: true
+        minimum_cardinality: 1
+      institution:
+        description: The university that awarded the degree, e.g. "University of Notre Dame".
+        slot_uri: schema:recognizedBy
+        required: true
+      start_date:
+        description: When study toward the degree began.
+        slot_uri: schema:startDate
+        range: PartialDate
+        required: true
+      end_date:
+        description: When the degree was awarded.
+        slot_uri: schema:endDate
+        range: PartialDate
+        required: true
+      research:
+        description: The research done toward the degree, and the group it was done with.
+        range: Research
+        inlined: true
+      theses:
+        description: Theses written for the degree.
+        range: Thesis
+        multivalued: true
+        inlined_as_list: true
+        minimum_cardinality: 1
+      coursework:
+        description: >-
+          Courses taken toward the degree that bear on later work, as lowercase
+          topics, e.g. "machine learning".
+        multivalued: true
+        minimum_cardinality: 1
+
+  Research:
+    description: Research done toward a degree.
+    attributes:
+      kind:
+        description: What kind of research it was, e.g. "Doctoral".
+      group:
+        description: The research group it was done with.
+        range: LinkedName
+        inlined: true
+        required: true
+
+  Thesis:
+    description: A thesis written for a degree.
+    class_uri: schema:Thesis
+    attributes:
+      kind:
+        description: What kind of thesis it is, e.g. "Doctoral", "Senior" or "Honors".
+        required: true
+      title:
+        description: Its title, without quotation marks.
+        slot_uri: schema:name
+        required: true
+      url:
+        description: Where it is published.
+        slot_uri: schema:url
+        range: HttpUrl
+
+  Position:
+    description: >-
+      A job or appointment held. Each record is one JSON file under
+      experience/.
+    class_uri: schema:EmployeeRole
+    slots:
+      - schema_version
+      - record_version
+      - description
+    slot_usage:
+      description:
+        description: >-
+          Paragraphs of plain text, each one responsibility or accomplishment,
+          in which **double asterisks** mark emphasis. A CV shows each as a
+          bullet.
+        required: true
+    attributes:
+      title:
+        description: The position's title, e.g. "Research Software Engineer".
+        slot_uri: schema:roleName
+        required: true
+      organization:
+        description: The company, group or department worked for.
+        slot_uri: schema:memberOf
+        range: LinkedName
+        inlined: true
+        required: true
+      departments:
+        description: >-
+          Departments the organization belongs to or works with, e.g. a
+          university's, in the order they are listed.
+        range: LinkedName
+        multivalued: true
+        inlined_as_list: true
+        minimum_cardinality: 1
+      institution:
+        description: >-
+          The university or other institution the organization belongs to,
+          e.g. "Dartmouth College".
+        slot_uri: schema:parentOrganization
+      course:
+        description: The course taught, for a teaching position, e.g. "Applied Mathematical Methods".
+      arrangement:
+        description: Where the work was done from, when a source says.
+        range: WorkArrangement
+      start_date:
+        description: When the position began.
+        slot_uri: schema:startDate
+        range: PartialDate
+        required: true
+      end_date:
+        description: When the position ended. Omitted while it is held.
+        slot_uri: schema:endDate
+        range: PartialDate
+
+  LinkedName:
+    description: >-
+      Something a record names, such as an organization, department or
+      program of study, with the abbreviation it goes by and its website where
+      it has them.
+    slots:
+      - name
+    slot_usage:
+      name:
+        description: Its full name, e.g. "Center for Open Neuroscience".
+    attributes:
+      abbreviation:
+        description: The abbreviation it goes by, e.g. "CON".
+        slot_uri: schema:alternateName
+      url:
+        description: Its website.
+        slot_uri: schema:url
+        range: HttpUrl
+
+  SkillGroup:
+    description: >-
+      A group of related skills, listed either directly or in labeled
+      subgroups. Each record is one JSON file under skills/.
+    class_uri: schema:DefinedTermSet
+    slots:
+      - schema_version
+      - record_version
+      - name
+    slot_usage:
+      name:
+        description: Name of the group, e.g. "Mathematical / Statistical / Machine Learning Techniques".
+    attributes:
+      short_name:
+        description: >-
+          A shorter name, where space is tight, such as a CV's left column,
+          e.g. "Math, stats, & ML". Omitted when the name is short enough.
+      note:
+        description: >-
+          A remark on how the skills are listed, without parentheses, e.g. "in
+          order of experience".
+      skills:
+        description: >-
+          The skills, in the order they are listed, each by its own spelling,
+          e.g. "TypeScript" or "pandas".
+        multivalued: true
+        list_elements_unique: true
+        minimum_cardinality: 1
+      subgroups:
+        description: The group's skills in labeled subgroups, in place of skills.
+        range: SkillSubgroup
+        multivalued: true
+        inlined_as_list: true
+        minimum_cardinality: 1
+    exactly_one_of:
+      - slot_conditions:
+          skills:
+            required: true
+      - slot_conditions:
+          subgroups:
+            required: true
+
+  SkillSubgroup:
+    description: A labeled part of a skill group, e.g. "Linting" among frameworks.
+    slots:
+      - name
+    slot_usage:
+      name:
+        description: Label of the subgroup, e.g. "Linting".
+    attributes:
+      skills:
+        description: The subgroup's skills, in the order they are listed.
+        multivalued: true
+        list_elements_unique: true
+        required: true
+        minimum_cardinality: 1
+
 enums:
+  WorkArrangement:
+    description: Where work was done from.
+    permissible_values:
+      on_site:
+        description: At the organization's site.
+      hybrid:
+        description: Partly on site and partly remotely.
+      remote:
+        description: Remotely.
+
   PublicationKind:
     description: The kinds of scholarly work a Publication can be.
     permissible_values:

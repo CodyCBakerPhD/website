@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "title": "Technical Editor",
+  "organization": {
+    "name": "Penguin Random House",
+    "url": "https://www.penguinrandomhouse.com/books/361139/algebra-ii-by-carolyn-wheater/"
+  },
+  "arrangement": "remote",
+  "start_date": "2015-04",
+  "end_date": "2015-08",
+  "description": [
+    "Reviewed and corrected over 300 pages of \"An Idiot's Guide to Algebra II\"."
+  ]
+}

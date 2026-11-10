@@ -58,7 +58,7 @@ function renderPublication({ id, record: publication, references }: RecordEntry<
     escapeHtml(sentence(publication.venue)) + (publication.note ? ` ${escapeHtml(sentence(publication.note))}` : ""),
     ...(publication.doi ? [`<a href="${escapeHtml(publication.doi)}">DOI</a>`] : []),
   ];
-  const lines = ["<li>", ...indent(citation), "</li>"];
+  const lines = ['<div class="card-line">', ...indent(citation), "</div>"];
   if (publication.description) {
     lines.push("<br>", ...renderParagraphs(publication.description));
   }

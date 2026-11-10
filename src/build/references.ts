@@ -132,7 +132,7 @@ function renderGroups(groups: readonly Group[]): string[] {
     ...indent([`<dt>${escapeHtml(label)}</dt>`, `<dd class="${kind}">`, ...indent([body]), "</dd>"]),
     "</div>",
   ]);
-  return ['<li class="record-references">', ...indent(["<dl>", ...indent(rows), "</dl>"]), "</li>"];
+  return ['<div class="card-line record-references">', ...indent(["<dl>", ...indent(rows), "</dl>"]), "</div>"];
 }
 
 /** Problems with the record's links and evidence that its schema cannot catch, each naming the slot. */

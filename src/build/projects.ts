@@ -4,7 +4,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { distributionName } from "./distributions.ts";
 import type { Project } from "./generated/records.ts";
-import { escapeHtml, joinItems, renderCard, renderParagraphs } from "./html.ts";
+import { escapeHtml, formatYears, joinItems, renderCard, renderParagraphs } from "./html.ts";
 import type { RecordEntry } from "./records.ts";
 import { searchAttribute, yearOf, type SearchConfig } from "./search.ts";
 import { renderTags } from "./tags.ts";
@@ -38,13 +38,6 @@ const LOGOS_ON_LIGHT_TILE: ReadonlySet<string> = new Set([
   "img/nwbwidgets_logo.png",
   "img/stamped_logo.svg",
 ]);
-
-/** Years of involvement in the style of the Experience section: "2020-2024", "2025-Present" or "2015". */
-function formatYears(startDate: string, endDate?: string): string {
-  const start = startDate.slice(0, 4);
-  const end = endDate ? endDate.slice(0, 4) : "Present";
-  return start === end ? start : `${start}-${end}`;
-}
 
 export const projectSearch: SearchConfig<Project> = {
   noun: "projects",
@@ -81,9 +74,9 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
   }
 
   const details = [project.role, formatYears(project.start_date, project.end_date)].map(escapeHtml);
-  lines.push(`<li>${joinItems([`<a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>`, ...details])}</li>`);
+  lines.push(`<div class="card-line">${joinItems([`<a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>`, ...details])}</div>`);
   if (project.contribution) {
-    lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
+    lines.push(`<div class="card-line">Contribution: ${escapeHtml(project.contribution)}</div>`);
   }
   lines.push("<br>", ...renderParagraphs(project.description), ...references, ...renderTags(project.tags));
 

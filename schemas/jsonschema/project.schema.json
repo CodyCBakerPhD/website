@@ -204,6 +204,225 @@
             "title": "DatasetLinks",
             "type": "object"
         },
+        "Education": {
+            "additionalProperties": false,
+            "description": "A degree earned. Each record is one JSON file under education/.",
+            "properties": {
+                "coursework": {
+                    "description": "Courses taken toward the degree that bear on later work, as lowercase topics, e.g. \"machine learning\".",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "degree": {
+                    "description": "The degree, abbreviated, e.g. \"Ph.D.\" or \"B.S.\".",
+                    "type": "string"
+                },
+                "end_date": {
+                    "description": "When the degree was awarded.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": "string"
+                },
+                "institution": {
+                    "description": "The university that awarded the degree, e.g. \"University of Notre Dame\".",
+                    "type": "string"
+                },
+                "majors": {
+                    "description": "What the degree is in, each with its program's or department's abbreviation and website where it has them.",
+                    "items": {
+                        "$ref": "#/$defs/LinkedName"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "minors": {
+                    "description": "Minors earned alongside the degree, e.g. \"Computer Science\".",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "research": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Research"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The research done toward the degree, and the group it was done with."
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "When study toward the degree began.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": "string"
+                },
+                "theses": {
+                    "description": "Theses written for the degree.",
+                    "items": {
+                        "$ref": "#/$defs/Thesis"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "schema_version",
+                "record_version",
+                "degree",
+                "majors",
+                "institution",
+                "start_date",
+                "end_date"
+            ],
+            "title": "Education",
+            "type": "object"
+        },
+        "LinkedName": {
+            "additionalProperties": false,
+            "description": "Something a record names, such as an organization, department or program of study, with the abbreviation it goes by and its website where it has them.",
+            "properties": {
+                "abbreviation": {
+                    "description": "The abbreviation it goes by, e.g. \"CON\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Its full name, e.g. \"Center for Open Neuroscience\".",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Its website.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "LinkedName",
+            "type": "object"
+        },
+        "Position": {
+            "additionalProperties": false,
+            "description": "A job or appointment held. Each record is one JSON file under experience/.",
+            "properties": {
+                "arrangement": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/WorkArrangement"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Where the work was done from, when a source says."
+                },
+                "course": {
+                    "description": "The course taught, for a teaching position, e.g. \"Applied Mathematical Methods\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "departments": {
+                    "description": "Departments the organization belongs to or works with, e.g. a university's, in the order they are listed.",
+                    "items": {
+                        "$ref": "#/$defs/LinkedName"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Paragraphs of plain text, each one responsibility or accomplishment, in which **double asterisks** mark emphasis. A CV shows each as a bullet.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "end_date": {
+                    "description": "When the position ended. Omitted while it is held.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "institution": {
+                    "description": "The university or other institution the organization belongs to, e.g. \"Dartmouth College\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "organization": {
+                    "$ref": "#/$defs/LinkedName",
+                    "description": "The company, group or department worked for."
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "start_date": {
+                    "description": "When the position began.",
+                    "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The position's title, e.g. \"Research Software Engineer\".",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "schema_version",
+                "record_version",
+                "description",
+                "title",
+                "organization",
+                "start_date"
+            ],
+            "title": "Position",
+            "type": "object"
+        },
         "Project": {
             "additionalProperties": false,
             "description": "A software project and the role held on it. Each record is one JSON file under projects/.",
@@ -556,6 +775,136 @@
             "title": "Repository",
             "type": "object"
         },
+        "Research": {
+            "additionalProperties": false,
+            "description": "Research done toward a degree.",
+            "properties": {
+                "group": {
+                    "$ref": "#/$defs/LinkedName",
+                    "description": "The research group it was done with."
+                },
+                "kind": {
+                    "description": "What kind of research it was, e.g. \"Doctoral\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "group"
+            ],
+            "title": "Research",
+            "type": "object"
+        },
+        "SkillGroup": {
+            "additionalProperties": false,
+            "description": "A group of related skills, listed either directly or in labeled subgroups. Each record is one JSON file under skills/.",
+            "oneOf": [
+                {
+                    "properties": {
+                        "skills": {}
+                    },
+                    "required": [
+                        "skills"
+                    ]
+                },
+                {
+                    "properties": {
+                        "subgroups": {
+                            "items": {},
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "subgroups"
+                    ]
+                }
+            ],
+            "properties": {
+                "name": {
+                    "description": "Name of the group, e.g. \"Mathematical / Statistical / Machine Learning Techniques\".",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "A remark on how the skills are listed, without parentheses, e.g. \"in order of experience\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "record_version": {
+                    "description": "Version of the record's own content, bumped whenever the record changes.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+$",
+                    "type": "string"
+                },
+                "short_name": {
+                    "description": "A shorter name, where space is tight, such as a CV's left column, e.g. \"Math, stats, & ML\". Omitted when the name is short enough.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "skills": {
+                    "description": "The skills, in the order they are listed, each by its own spelling, e.g. \"TypeScript\" or \"pandas\".",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "subgroups": {
+                    "description": "The group's skills in labeled subgroups, in place of skills.",
+                    "items": {
+                        "$ref": "#/$defs/SkillSubgroup"
+                    },
+                    "minItems": 1,
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "schema_version",
+                "record_version",
+                "name"
+            ],
+            "title": "SkillGroup",
+            "type": "object"
+        },
+        "SkillSubgroup": {
+            "additionalProperties": false,
+            "description": "A labeled part of a skill group, e.g. \"Linting\" among frameworks.",
+            "properties": {
+                "name": {
+                    "description": "Label of the subgroup, e.g. \"Linting\".",
+                    "type": "string"
+                },
+                "skills": {
+                    "description": "The subgroup's skills, in the order they are listed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name",
+                "skills"
+            ],
+            "title": "SkillSubgroup",
+            "type": "object"
+        },
         "Summary": {
             "additionalProperties": false,
             "description": "A professional summary: the few paragraphs that introduce Cody C. Baker as a whole, such as the About section of the website or the Summary of a CV. Each record is one JSON file under summaries/.",
@@ -679,6 +1028,45 @@
                 "languages"
             ],
             "title": "TagTheme",
+            "type": "string"
+        },
+        "Thesis": {
+            "additionalProperties": false,
+            "description": "A thesis written for a degree.",
+            "properties": {
+                "kind": {
+                    "description": "What kind of thesis it is, e.g. \"Doctoral\", \"Senior\" or \"Honors\".",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Its title, without quotation marks.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Where it is published.",
+                    "format": "uri",
+                    "pattern": "^https?://",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "kind",
+                "title"
+            ],
+            "title": "Thesis",
+            "type": "object"
+        },
+        "WorkArrangement": {
+            "description": "Where work was done from.",
+            "enum": [
+                "on_site",
+                "hybrid",
+                "remote"
+            ],
+            "title": "WorkArrangement",
             "type": "string"
         }
     },
@@ -860,6 +1248,6 @@
     },
     "title": "records",
     "type": "object",
-    "version": "0.8.1"
+    "version": "0.9.0"
 }
 

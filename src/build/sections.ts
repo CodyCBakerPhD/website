@@ -16,12 +16,15 @@
 
 import { datasetSearch, renderDataset } from "./datasets.ts";
 import displayOrder from "./display-order.json" with { type: "json" };
-import type { Dataset, Project, Publication } from "./generated/records.ts";
+import { renderEducation } from "./education.ts";
+import { renderPosition } from "./experience.ts";
+import type { Dataset, Education, Position, Project, Publication, SkillGroup } from "./generated/records.ts";
 import { renderGrid, renderGridControl } from "./grid.ts";
 import { checkProject, projectSearch, renderProject } from "./projects.ts";
 import { publicationSearch, renderPublications } from "./publications.ts";
-import { defineSection } from "./records.ts";
+import { defineListSection, defineSection } from "./records.ts";
 import { renderSearchable, searchId } from "./search.ts";
+import { renderSkillGroup } from "./skills.ts";
 import { defineSummarySection } from "./summary.ts";
 
 export const sections = [
@@ -32,6 +35,30 @@ export const sections = [
     recordsDir: "summaries",
     schemaFile: "schemas/jsonschema/summary.schema.json",
     show: "general",
+  }),
+  defineListSection<Education>({
+    name: "education",
+    page: "index.html",
+    recordsDir: "education",
+    schemaFile: "schemas/jsonschema/education.schema.json",
+    order: displayOrder.education,
+    render: (degrees) => degrees.flatMap(renderEducation),
+  }),
+  defineListSection<SkillGroup>({
+    name: "skills",
+    page: "index.html",
+    recordsDir: "skills",
+    schemaFile: "schemas/jsonschema/skill_group.schema.json",
+    order: displayOrder.skills,
+    render: (groups) => groups.flatMap(renderSkillGroup),
+  }),
+  defineListSection<Position>({
+    name: "experience",
+    page: "index.html",
+    recordsDir: "experience",
+    schemaFile: "schemas/jsonschema/position.schema.json",
+    order: displayOrder.experience,
+    render: (positions) => positions.flatMap(renderPosition),
   }),
   defineSection<Project>({
     name: "projects",

@@ -346,6 +346,96 @@ def render_summaries(records: list[tuple[str, dict]], compact: bool) -> str:
     )
 
 
+def prose_list(items: list[str]) -> str:
+    """Items as a sentence would list them: 'A', 'A and B', or 'A, B, and C'."""
+    return " and ".join(items) if len(items) <= 2 else ", ".join(items[:-1]) + ", and " + items[-1]
+
+
+def linked(entity: dict) -> str:
+    """A record's LinkedName by its full name, linked to its website where it has one."""
+    name = latex_text(entity["name"])
+    return rf"\href{{{latex_url(entity['url'])}}}{{{name}}}" if "url" in entity else name
+
+
+def render_education_entry(record_id: str, education: dict, compact: bool) -> str:
+    majors = " and ".join(latex_text(major["name"]) for major in education["majors"])
+    lines = [
+        f"% {record_id}.json, record_version {education['record_version']}",
+        rf"\entry*[{year_range(education['start_date'], education['end_date'])}]",
+        rf"    \textbf{{{latex_text(education['degree'])}}}\cvbar {majors}\cvbar \emph{{{latex_text(education['institution'])}}}",
+    ]
+    if "research" in education:
+        research = education["research"]
+        kind = f"{research['kind']} research" if "kind" in research else "Research"
+        lines.append(rf"    \par {latex_text(kind)} with the {linked(research['group'])}")
+    # A compact entry names the degree and where its research was done, and no more.
+    if not compact:
+        if "minors" in education:
+            lines.append(rf"    \par Minors: {latex_text(prose_list(education['minors']))}")
+        lines.extend(
+            rf"    \par {latex_text(thesis['kind'])} thesis: ``{latex_text(thesis['title'])}''"
+            for thesis in education.get("theses", [])
+        )
+        if "coursework" in education:
+            coursework = latex_text(", ".join(education["coursework"]))
+            lines.extend(["", r"    \vspace*{2mm}", "", rf"    \par Relevant coursework: {coursework}"])
+    return "\n".join(lines)
+
+
+def render_education(records: list[tuple[str, dict]], compact: bool) -> str:
+    return rubric(
+        title=rubric_title(r"\faGraduationCap", "Education"),
+        entries=[render_education_entry(record_id, record, compact) for record_id, record in records],
+    )
+
+
+# How a position's arrangement is written.
+ARRANGEMENTS = {"on_site": "On site", "hybrid": "Hybrid", "remote": "Remote"}
+
+
+def render_position(record_id: str, position: dict) -> str:
+    # The CV names the course a teaching position taught, rather than its department.
+    where = [position.get("course") or position["organization"]["name"], position.get("institution")]
+    title = [rf"\textbf{{{latex_text(position['title'])}}}"] + [
+        rf"\emph{{{latex_text(part)}}}" for part in where if part
+    ]
+    if "arrangement" in position:
+        title.append(ARRANGEMENTS[position["arrangement"]])
+    lines = [
+        f"% {record_id}.json, record_version {position['record_version']}",
+        rf"\entry*[{year_range(position['start_date'], position.get('end_date'))}]",
+        "    " + r"\cvbar ".join(title),
+    ]
+    # Each paragraph of the description is one bullet.
+    if position["description"]:
+        lines.append(bullet_list(latex_text(paragraph) for paragraph in position["description"]))
+    return "\n".join(lines)
+
+
+def render_experience(records: list[tuple[str, dict]], compact: bool) -> str:
+    return rubric(
+        title=rubric_title(r"\faBriefcase", "Experience"),
+        entries=[render_position(record_id, record) for record_id, record in records],
+    )
+
+
+def render_skills(records: list[tuple[str, dict]], compact: bool) -> str:
+    entries = []
+    for record_id, group in records:
+        # A group in subgroups runs them together, in order.
+        skills = group.get("skills") or [skill for subgroup in group["subgroups"] for skill in subgroup["skills"]]
+        entries.append(
+            "\n".join(
+                [
+                    f"% {record_id}.json, record_version {group['record_version']}",
+                    rf"\entry*[{latex_text(group.get('short_name', group['name']))}]",
+                    f"    {latex_text(', '.join(skills))}",
+                ]
+            )
+        )
+    return rubric(title=rubric_title(r"\faCogs", "Skills"), entries=entries)
+
+
 @dataclass(frozen=True)
 class RecordType:
     # Renders the selected records; the flag asks for the compact form of a one-page resume.
@@ -353,6 +443,8 @@ class RecordType:
     required: tuple[str, ...]
     # Whether a section of these records shows exactly one of them.
     shows_one: bool = False
+    # The list field of a record that a section's `parts` selects from, for record types that allow it.
+    parts: str | None = None
 
 
 # Required fields are those of the website's LinkML schema (schemas/records.yaml)
@@ -362,6 +454,15 @@ RECORD_TYPES = {
     "projects": RecordType(render_projects, ("record_version", "name", "role", "description", "url", "start_date")),
     "datasets": RecordType(render_datasets, ("record_version", "name", "role", "description", "group", "modality")),
     "publications": RecordType(render_publications, ("record_version", "name", "kind", "authors", "date", "venue")),
+    "education": RecordType(
+        render_education, ("record_version", "degree", "majors", "institution", "start_date", "end_date")
+    ),
+    "experience": RecordType(
+        render_experience,
+        ("record_version", "title", "organization", "start_date", "description"),
+        parts="description",
+    ),
+    "skills": RecordType(render_skills, ("record_version", "name"), parts="skills"),
 }
 
 
@@ -379,6 +480,8 @@ class Section:
     compact: bool = False
     # Whether `show` is the website's display order rather than a list of its own.
     follows_site: bool = False
+    # The positions (from 1) of the parts each listed record shows (see cv/records.toml).
+    parts: dict[str, list[int]] = field(default_factory=dict)
 
 
 def load_sections(config_file: Path) -> list[Section]:
@@ -388,13 +491,22 @@ def load_sections(config_file: Path) -> list[Section]:
     problems = []
     for index, entry in enumerate(config.get("section", [])):
         where = f"{config_file.name}, section {index + 1}"
-        unknown = set(entry) - {"output", "records", "show", "omit", "compact"}
+        unknown = set(entry) - {"output", "records", "show", "omit", "compact", "parts"}
         if unknown:
             problems.append(f"{where}: unknown keys {sorted(unknown)}")
         if entry.get("records") not in RECORD_TYPES:
             problems.append(f"{where}: 'records' must be one of {sorted(RECORD_TYPES)}")
         if not isinstance(entry.get("compact", False), bool):
             problems.append(f"{where}: 'compact' must be true or false")
+        parts = entry.get("parts", {})
+        if parts and entry.get("records") in RECORD_TYPES and not RECORD_TYPES[entry["records"]].parts:
+            problems.append(f"{where}: a section of {entry['records']} cannot choose 'parts'")
+        if not isinstance(parts, dict) or not all(
+            isinstance(positions, list) and all(isinstance(n, int) and n >= 1 for n in positions)
+            for positions in parts.values()
+        ):
+            problems.append(f"{where}: 'parts' must map record IDs to lists of positions, counting from 1")
+            parts = {}
         follows_site = entry.get("show") == "site"
         if follows_site:
             if entry.get("records") not in display_order:
@@ -427,6 +539,7 @@ def load_sections(config_file: Path) -> list[Section]:
                 omit=entry.get("omit", []),
                 compact=entry.get("compact", False),
                 follows_site=follows_site,
+                parts=parts,
             )
         )
     if not sections and not problems:
@@ -485,6 +598,41 @@ def select_records(section: Section, records: dict[str, dict]) -> list[tuple[str
     return [(record_id, records[record_id]) for record_id in section.show]
 
 
+def select_parts(section: Section, selected: list[tuple[str, dict]]) -> list[tuple[str, dict]]:
+    """Keeps, of each record the section's `parts` names, only the parts at the positions it lists."""
+    name = section.output.relative_to(CV_DIR).as_posix()
+    field_name = RECORD_TYPES[section.records].parts
+    shown = dict(selected)
+    problems = [
+        f"{name}: 'parts' names '{record_id}', which this section does not show"
+        for record_id in section.parts
+        if record_id not in shown
+    ]
+    result = []
+    for record_id, record in selected:
+        positions = section.parts.get(record_id)
+        if positions is None:
+            result.append((record_id, record))
+            continue
+        items = record.get(field_name)
+        if items is None:
+            problems.append(
+                f"{name}: {section.records}/{record_id}.json has no {field_name} for 'parts' to choose from"
+            )
+            continue
+        out_of_range = [n for n in positions if n > len(items)]
+        if out_of_range:
+            problems.append(
+                f"{name}: 'parts' asks for {field_name} {out_of_range} of {section.records}/{record_id}.json, "
+                f"which has {len(items)}"
+            )
+            continue
+        result.append((record_id, {**record, field_name: [items[n - 1] for n in positions]}))
+    if problems:
+        raise SyncError("\n".join(problems))
+    return result
+
+
 def render_all() -> dict[Path, str]:
     outputs = {}
     problems = []
@@ -493,7 +641,7 @@ def render_all() -> dict[Path, str]:
         try:
             if section.records not in records_by_type:
                 records_by_type[section.records] = load_records(section.records)
-            selected = select_records(section, records_by_type[section.records])
+            selected = select_parts(section, select_records(section, records_by_type[section.records]))
         except SyncError as error:
             problems.append(str(error))
             continue

@@ -28,6 +28,9 @@ Parts of the site are generated from machine-readable JSON records, one file per
 | Records                            | LinkML class  | Section (page)                         |
 |------------------------------------|---------------|----------------------------------------|
 | [`summaries/`](../summaries)       | `Summary`     | About (`index.html`)                   |
+| [`education/`](../education)       | `Education`   | Education (`index.html`)               |
+| [`skills/`](../skills)             | `SkillGroup`  | Technical Skills (`index.html`)        |
+| [`experience/`](../experience)     | `Position`    | Experience (`index.html`)              |
 | [`projects/`](../projects)         | `Project`     | Highlighted Projects (`projects.html`) |
 | [`datasets/`](../datasets)         | `Dataset`     | Data Curation (`data-curation.html`)   |
 | [`publications/`](../publications) | `Publication` | Publications (`publications.html`)     |
@@ -47,6 +50,10 @@ The Publications section groups its records under a heading per `kind` (article,
 A summary is the few paragraphs that introduce the site's owner, written in implied first person.
 The About section shows one of them, named by `show` in `sections.ts`, rather than a card for each.
 The full CV and the one-page resume render their Summary from these records too, each choosing its own in `cv/records.toml`, and the one-page resume shows only the first sentence of each paragraph (see [CV and resume](#cv-and-resume)).
+
+Education, skills and experience are listed in display order on the home page, without the cards, search and links of the other sections.
+A degree, a group of skills or a position is one record each, so the full CV and the one-page resume show the same facts, worded the same way, as the home page.
+Each skill is written the way its makers spell it, such as `TypeScript`, `scikit-learn` or `pandas`.
 
 ## Links between records
 
@@ -313,7 +320,7 @@ The table is generated from `schemas/tags.yaml`, so edit that file rather than t
 
 The [LinkML](https://linkml.io/) schema [`schemas/records.yaml`](../schemas/records.yaml) is the source of truth for the shape of every record.
 It imports the tag vocabulary, [`schemas/tags.yaml`](../schemas/tags.yaml), which is part of the same schema and shares its version.
-Its classes map onto [schema.org](https://schema.org/) terms (`Project` is a `schema:SoftwareSourceCode`, `Dataset` a `schema:Dataset`, `Publication` a `schema:CreativeWork`, and tags are `schema:keywords`).
+Its classes map onto [schema.org](https://schema.org/) terms (`Project` is a `schema:SoftwareSourceCode`, `Dataset` a `schema:Dataset`, `Publication` a `schema:CreativeWork`, `Education` a `schema:EducationalOccupationalCredential`, `Position` a `schema:EmployeeRole`, `SkillGroup` a `schema:DefinedTermSet`, and tags are `schema:keywords`).
 
 Three kinds of files are generated from it and committed, so building the site needs no Python:
 
@@ -322,6 +329,8 @@ Three kinds of files are generated from it and committed, so building the site n
 - The [tag table](#tags) in this file.
 
 Never edit them by hand.
+LinkML writes every class into every JSON Schema, so each file under `schemas/jsonschema/` is long and a new class grows all of them.
+[`.gitattributes`](../.gitattributes) marks them and `src/build/generated/` as generated, so GitHub collapses them in pull request diffs.
 After changing the schema, regenerate them with LinkML installed:
 
 ```bash
@@ -350,6 +359,18 @@ linkml-validate --schema schemas/records.yaml --target-class Publication publica
 linkml-validate --schema schemas/records.yaml --target-class Summary summaries/*.json
 ```
 
+```bash
+linkml-validate --schema schemas/records.yaml --target-class Education education/*.json
+```
+
+```bash
+linkml-validate --schema schemas/records.yaml --target-class Position experience/*.json
+```
+
+```bash
+linkml-validate --schema schemas/records.yaml --target-class SkillGroup skills/*.json
+```
+
 `npm run build` (and `npm run dev`) also validates every record and renders each section into its page as static HTML.
 An invalid record fails the build with a message naming the file and the problem.
 
@@ -360,16 +381,16 @@ Their LaTeX sources live under [`cv/`](../cv):
 
 | Path                                                          | What                                                                                    |
 |---------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| [`cv/full_styled/`](../cv/full_styled)                        | The full CV (A4): its document, and its hand-written education, experience, achievements and skills |
+| [`cv/full_styled/`](../cv/full_styled)                        | The full CV (A4): its document, and its hand-written achievements                      |
 | [`cv/one_page/`](../cv/one_page)                              | The one-page resume (Letter), condensed from the full CV                                |
 | [`cv/resume_settings.sty`](../cv/resume_settings.sty)         | The macros both use (`\cvtitle`, `cvitems` and the like), which set how they look       |
 | [`cv/contact.tex`](../cv/contact.tex)                         | The contact details both headers show, each laid out as its own header arranges them    |
 | [`cv/records.toml`](../cv/records.toml)                       | Which records each rubric shows, in what order, and which it leaves out                 |
 
-Their Summary, Highlighted Projects, Data Curation and Publications rubrics are rendered from the records by [`scripts/render_cv.py`](../scripts/render_cv.py), next to the hand-written ones, and are not committed.
-The full CV's Highlighted Projects, Data Curation and Publications say `show = "site"`, so they show every record in the website's display order.
+Every rubric but the full CV's Achievements is rendered from the records by [`scripts/render_cv.py`](../scripts/render_cv.py), and none of them is committed.
+The full CV's sections, other than its Summary, say `show = "site"`, so they show every record in the website's display order.
 In every other section of `cv/records.toml`, each record must be shown or left out, so adding a record means placing it there too; until then, rendering fails and names it.
-The one-page resume shows only the first sentence of each description, and its build fails if it runs onto a second page.
+The one-page resume shows only the first sentence of each project, dataset and summary description, chooses which bullets of each position and which skills of each group to show with `parts`, and its build fails if it runs onto a second page.
 
 The `Build the CV and resume` action ([`.github/actions/build-cv/`](../.github/actions/build-cv/action.yml)) renders the rubrics, compiles both with TeX Live, and places the PDFs under `src/public/assets/resume/` (also not committed) for the site build to publish.
 The deploy, every pull request preview and the daily link check run it before building the site, so a record that breaks either document fails its pull request.

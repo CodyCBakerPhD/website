@@ -37,7 +37,7 @@ export function renderDataset({ id, record: dataset, references }: RecordEntry<D
     `Modality: ${dataset.modality}`,
     `Role: ${dataset.role}`,
   ];
-  const lines = [`<h3>${escapeHtml(dataset.name)}</h3>`, `<li>${joinItems(details.map(escapeHtml))}</li>`];
+  const lines = [`<h3>${escapeHtml(dataset.name)}</h3>`, `<div class="card-line">${joinItems(details.map(escapeHtml))}</div>`];
 
   const links = renderLinks(dataset.links, LINK_LABELS);
   if (links.length > 0) {

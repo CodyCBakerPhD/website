@@ -2,6 +2,8 @@
 // the pages. Record text is plain text, so everything taken from a record goes
 // through escapeHtml (or renderInline, which escapes first).
 
+import type { LinkedName } from "./generated/records.ts";
+
 /** Separator between items on one line, matching the hand-written parts of the pages. */
 export const SEPARATOR = " &nbsp; | &nbsp; ";
 
@@ -28,6 +30,24 @@ export function escapeHtml(text: string): string {
 /** Escapes `text`, then renders each **double-asterisk** span as <strong>. */
 function renderInline(text: string): string {
   return escapeHtml(text).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+}
+
+/** Years in the style of the home page: "2020-2024", "2025-Present" while ongoing, or "2015" within one year. */
+export function formatYears(startDate: string, endDate?: string): string {
+  const start = startDate.slice(0, 4);
+  const end = endDate ? endDate.slice(0, 4) : "Present";
+  return start === end ? start : `${start}-${end}`;
+}
+
+/** Items as a sentence would list them: "A", "A and B", or "A, B, and C". */
+export function proseList(items: readonly string[]): string {
+  return items.length <= 2 ? items.join(" and ") : `${items.slice(0, -1).join(", ")}, and ${items.at(-1)}`;
+}
+
+/** "Name (ABBR)", linked to its website where it has one. */
+export function renderLinkedName({ name, abbreviation, url }: LinkedName): string {
+  const text = escapeHtml(abbreviation ? `${name} (${abbreviation})` : name);
+  return url ? `<a href="${escapeHtml(url)}">${text}</a>` : text;
 }
 
 /** "pypi.org/project/historia" for https://pypi.org/project/historia/. */
@@ -62,12 +82,13 @@ export function indent(lines: readonly string[]): string[] {
  * Renders a record as one card, which its page's search filters by `searchAttribute` (see search.ts).
  * The card's `id` is the record's, so other cards, and links shared from elsewhere, can open it.
  * Its corner links to that ID, as does selecting the card itself (see src/ts/cards.ts).
+ * A card is an <article>, and each line of its details a <div class="card-line">, which custom.css styles.
  */
 export function renderCard(lines: readonly string[], searchAttribute: string, id: string, name: string): string[] {
   const permalink =
-    `<li class="card-permalink"><a href="#${escapeHtml(id)}" aria-label="Link to ${escapeHtml(name)}" title="Link to this card">` +
-    '<i class="fa fa-link" aria-hidden="true"></i></a></li>';
-  return [`<ul class="work-list" id="${escapeHtml(id)}" data-card data-search-item ${searchAttribute}>`, ...indent([permalink, ...lines]), "</ul>"];
+    `<div class="card-line card-permalink"><a href="#${escapeHtml(id)}" aria-label="Link to ${escapeHtml(name)}" title="Link to this card">` +
+    '<i class="fa fa-link" aria-hidden="true"></i></a></div>';
+  return [`<article class="work-list" id="${escapeHtml(id)}" data-card data-search-item ${searchAttribute}>`, ...indent([permalink, ...lines]), "</article>"];
 }
 
 /** Matches a line holding only the <!-- build:NAME --> placeholder, capturing its indentation. */

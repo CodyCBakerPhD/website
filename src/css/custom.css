@@ -66,7 +66,8 @@ h6 {
 
 a,
 p,
-li {
+li,
+.card-line {
     font-family: var(--font-body);
     color: var(--body-text);
     font-size: 1em;
@@ -407,6 +408,8 @@ body:has(.card-grid) {
 .work .work-list {
     margin: 0 0 22px;
     padding: 26px 30px;
+    /* Kube gave a list this line height, which a card's <br> spacers still take. */
+    line-height: 1.65em;
     transition: box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
@@ -420,8 +423,7 @@ body:has(.card-grid) {
     margin-bottom: 8px;
 }
 
-.work .work-list li {
-    list-style: none;
+.work .work-list .card-line {
     font-size: 0.9375em;
     color: var(--muted);
 }
@@ -441,7 +443,7 @@ body:has(.card-grid) {
     margin-bottom: 0.4em;
 }
 
-.work .work-list li a {
+.work .work-list .card-line a {
     padding-bottom: 2px;
     font-size: 1em;
     font-weight: 700;
@@ -450,7 +452,7 @@ body:has(.card-grid) {
     border-bottom: 1px solid var(--link-underline);
 }
 
-.work .work-list li a:hover {
+.work .work-list .card-line a:hover {
     border-bottom: 1px solid var(--link-hover);
 }
 
@@ -510,15 +512,15 @@ body:has(.card-grid) {
 }
 
 /* The link to a record's card, in its top right corner, inside its padding. */
-.work .work-list li.card-permalink {
+.work .work-list .card-line.card-permalink {
     position: absolute;
     top: 8px;
     right: 8px;
     line-height: 1;
 }
 
-.work .work-list li.card-permalink a,
-.work .work-list li.card-permalink a:hover {
+.work .work-list .card-line.card-permalink a,
+.work .work-list .card-line.card-permalink a:hover {
     display: block;
     padding: 6px;
     border-bottom: none;
@@ -529,25 +531,25 @@ body:has(.card-grid) {
     color: var(--muted);
 }
 
-.work .work-list li.card-permalink a {
+.work .work-list .card-line.card-permalink a {
     opacity: 0;
     transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.work .work-list[data-card]:hover li.card-permalink a,
-.work .work-list[data-card]:target li.card-permalink a,
-.work .work-list li.card-permalink a:focus-visible {
+.work .work-list[data-card]:hover .card-line.card-permalink a,
+.work .work-list[data-card]:target .card-line.card-permalink a,
+.work .work-list .card-line.card-permalink a:focus-visible {
     opacity: 1;
 }
 
-.work .work-list li.card-permalink a:focus-visible {
+.work .work-list .card-line.card-permalink a:focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px var(--accent-border);
 }
 
 /* Touch screens have no hover to reveal it. */
 @media (hover: none) {
-    .work .work-list li.card-permalink a {
+    .work .work-list .card-line.card-permalink a {
         opacity: 1;
     }
 }
@@ -556,7 +558,7 @@ body:has(.card-grid) {
 
 /* A card's links to and from other records, and its evidence, under a label
    per relation (see src/build/references.ts). */
-.work .work-list li.record-references {
+.work .work-list .card-line.record-references {
     margin-top: 18px;
     padding-top: 14px;
     border-top: 1px solid var(--card-border);
@@ -731,7 +733,7 @@ body:has(.card-grid) {
 }
 
 /* The subcards within a card (activity tiles, contributions, repositories) share one tile look. */
-.work .work-list li a.activity-stat,
+.work .work-list .card-line a.activity-stat,
 .work .contribution,
 .work .repository {
     background: var(--page-bg);
@@ -741,7 +743,7 @@ body:has(.card-grid) {
 }
 
 /* Equal tiles that share one row even on a phone, their labels wrapping there. */
-.work .work-list li a.activity-stat {
+.work .work-list .card-line a.activity-stat {
     display: flex;
     flex: 1 1 0;
     flex-direction: column;
@@ -751,7 +753,7 @@ body:has(.card-grid) {
     font-weight: 400;
 }
 
-.work .work-list li a.activity-stat:hover {
+.work .work-list .card-line a.activity-stat:hover {
     border-color: var(--activity-color);
 }
 
@@ -839,8 +841,8 @@ body:has(.card-grid) {
     flex: none;
 }
 
-.work .work-list li a.contribution-title,
-.work .work-list li a.repository-name {
+.work .work-list .card-line a.contribution-title,
+.work .work-list .card-line a.repository-name {
     padding: 0;
     line-height: 1.45em;
     border: none;
@@ -944,7 +946,7 @@ body:has(.card-grid) {
     min-width: 0;
 }
 
-.work .work-list li a.repository-name {
+.work .work-list .card-line a.repository-name {
     overflow-wrap: anywhere;
 }
 
@@ -956,7 +958,7 @@ body:has(.card-grid) {
 
 /* ---------- Tags ---------- */
 
-.work .work-list li.tag-list {
+.work .work-list .card-line.tag-list {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;

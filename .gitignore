@@ -6,6 +6,9 @@ dist/
 # The CV and resume are built from the records rather than committed (see
 # docs/development.md): their rendered rubrics, LaTeX build files and PDFs.
 cv/*/summary.tex
+cv/*/education.tex
+cv/*/experience.tex
+cv/*/skills.tex
 cv/*/projects.tex
 cv/*/datasets.tex
 cv/*/publications.tex
