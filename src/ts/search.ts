@@ -171,13 +171,14 @@ function initSearch(scope: HTMLElement): void {
     const problems = new Set<string>();
     for (const term of terms) {
       const filter = term.key === null ? undefined : filters.get(term.key);
+      const value = normalize(term.value);
       if (term.key !== null && !filter) {
         const suggestion = closestKey(term.key, [...filters.keys()]);
+        // A key typed with no value yet searches nothing (see below).
         problems.add(
-          `There is no ${term.key}: filter, so it was searched as text.${suggestion ? ` Did you mean ${suggestion}:?` : ""}`,
+          `There is no ${term.key}: filter${value ? ", so it was searched as text" : ""}.${suggestion ? ` Did you mean ${suggestion}:?` : ""}`,
         );
       }
-      const value = normalize(term.value);
       if (!value) {
         continue;
       }
