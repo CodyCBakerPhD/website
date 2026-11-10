@@ -68,20 +68,36 @@ def latex_url(url: str) -> str:
 
 
 # Words ending in a period that do not end a sentence.
-_ABBREVIATIONS = {"e.g.", "i.e.", "etc.", "vs.", "al.", "approx.", "Dr.", "Ph.D.", "U.S."}
-_SENTENCE_BREAK = re.compile(r"""[.!?]["')\]]*\s+(?=(?:\*\*)?["(\[]?[A-Z0-9])""")
+# fmt: off
+_ABBREVIATIONS = {
+    "e.g.", "i.e.", "etc.", "vs.", "cf.", "ca.", "approx.", "al.", "Ph.D.",
+    "Fig.", "Figs.", "Eq.", "Ref.", "Refs.", "No.", "Vol.", "pp.",
+    "Dr.", "Prof.", "Mr.", "Ms.", "Mrs.", "Jr.", "Sr.", "Inc.", "Ltd.", "Corp.", "Co.",
+}
+# fmt: on
+_SENTENCE_BREAK = re.compile(r"""[.!?]["')\]]*\s+(?=(?:\*\*)?["(\[]?[A-Za-z0-9])""")
 
 
 def split_sentences(paragraph: str) -> list[str]:
-    """Splits a paragraph into sentences: the resume gives each claim its own bullet, as it did before the sync."""
+    """
+    Splits a paragraph into sentences: the resume gives each claim its own bullet, as it did before the sync.
+
+    A sentence may start with a lowercase letter, as a product name such as neuroconv does. A period does not end
+    one after an abbreviation, an initial ("J. Smith") or letters between periods ("U.S.", "a.k.a."), even inside
+    brackets or quotes, nor does an ellipsis.
+    """
     sentences = []
     start = 0
     for match in _SENTENCE_BREAK.finditer(paragraph):
         candidate = paragraph[start : match.end()].strip()
-        last_word = candidate.split()[-1]
-        # A lone capital ("J. Smith") is an initial, and a break inside a
-        # **bold** span would split the span across bullets.
-        if last_word in _ABBREVIATIONS or re.fullmatch(r"[A-Z]\.", last_word) or candidate.count("**") % 2:
+        last_word = candidate.split()[-1].strip("\"'()[]*")
+        # A break inside a **bold** span would split the span across bullets.
+        if (
+            last_word in _ABBREVIATIONS
+            or re.fullmatch(r"(?:[A-Za-z]\.)+", last_word)
+            or last_word.endswith("..")
+            or candidate.count("**") % 2
+        ):
             continue
         sentences.append(candidate)
         start = match.end()
