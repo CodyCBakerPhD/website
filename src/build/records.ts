@@ -111,6 +111,11 @@ function describeError(error: ErrorObject): string {
   if (error.keyword === "anyOf" && /^\/tags\/\d+$/.test(error.instancePath)) {
     return `${error.instancePath} ${JSON.stringify(error.data)} is not one of the theme:tag pairs listed in schemas/tags.yaml`;
   }
+  // LinkML's exactly_one_of, such as a skill group's skills or subgroups, is a oneOf of required fields.
+  const choices = error.keyword === "oneOf" && Array.isArray(error.schema) ? error.schema.flatMap((option: { required?: string[] }) => option.required ?? []) : [];
+  if (choices.length > 0) {
+    return `${error.instancePath || "(root)"} must have exactly one of ${choices.join(", ")}`;
+  }
   const detail =
     error.keyword === "additionalProperties"
       ? ` ("${error.params.additionalProperty}")`
@@ -182,12 +187,13 @@ export function readRecords<T>(
 
     if (!validate(record)) {
       // An unmet if/then also reports a generic "must match then schema"; the
-      // specific error beside it is the useful one. An unmet anyOf is the
-      // reverse: it also reports why its alternative failed, and the anyOf
+      // specific error beside it is the useful one. An unmet anyOf or oneOf is
+      // the reverse: it also reports why each alternative failed, and its own
       // error alone is the useful one.
       const errors = (validate.errors ?? []).filter((error) => error.keyword !== "if");
-      const anyOfPaths = new Set(errors.filter((error) => error.keyword === "anyOf").map((error) => error.instancePath));
-      for (const error of errors.filter((error) => error.keyword === "anyOf" || !anyOfPaths.has(error.instancePath))) {
+      const isChoice = (error: ErrorObject) => error.keyword === "anyOf" || error.keyword === "oneOf";
+      const choicePaths = new Set(errors.filter(isChoice).map((error) => error.instancePath));
+      for (const error of errors.filter((error) => isChoice(error) || !choicePaths.has(error.instancePath))) {
         problems.push(`${file}: ${describeError(error)}`);
       }
       continue;
@@ -195,6 +201,26 @@ export function readRecords<T>(
     records.set(basename(file, ".json"), record);
   }
   return { files, records, problems };
+}
+
+/** Describes each mismatch between the record files and a section's display order, which lists every record once. */
+function orderProblems(recordsDir: string, order: readonly string[], files: readonly string[]): string[] {
+  const problems: string[] = [];
+  const listed = new Set<string>();
+  for (const id of order) {
+    if (listed.has(id)) {
+      problems.push(`"${id}" appears more than once in the display order`);
+    } else if (!files.includes(`${id}.json`)) {
+      problems.push(`"${id}" is in the display order, but ${id}.json does not exist`);
+    }
+    listed.add(id);
+  }
+  for (const file of files) {
+    if (!listed.has(basename(file, ".json"))) {
+      problems.push(`${file}: missing from the "${recordsDir}" list in src/build/display-order.json`);
+    }
+  }
+  return problems;
 }
 
 /** Reads, validates and orders a section's records, or throws listing every problem. */
@@ -209,21 +235,7 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
       records.set(id, record);
     }
   }
-
-  const listed = new Set<string>();
-  for (const id of options.order) {
-    if (listed.has(id)) {
-      problems.push(`"${id}" appears more than once in the display order`);
-    } else if (!files.includes(`${id}.json`)) {
-      problems.push(`"${id}" is in the display order, but ${id}.json does not exist`);
-    }
-    listed.add(id);
-  }
-  for (const file of files) {
-    if (!listed.has(basename(file, ".json"))) {
-      problems.push(`${file}: missing from the "${options.recordsDir}" list in src/build/display-order.json`);
-    }
-  }
+  problems.push(...orderProblems(options.recordsDir, options.order, files));
 
   if (problems.length > 0) {
     throw invalidRecords(options, problems);
@@ -231,6 +243,34 @@ function loadRecords<T extends BaseRecord>(options: SectionOptions<T>, root: str
 
   // Every listed ID now names a file that passed validation.
   return options.order.map((id) => ({ id, record: records.get(id) as T }));
+}
+
+interface ListSectionOptions<T> extends RecordSource {
+  /** Record IDs (file names without .json) in display order. Every record must be listed once. */
+  order: readonly string[];
+  /** Renders the section's records, in display order, as lines of HTML. */
+  render: (records: readonly T[]) => string[];
+}
+
+/**
+ * A section of records listed in display order, without the cards, search and links of a
+ * section from defineSection, such as the Experience section of the home page.
+ */
+export function defineListSection<T>(options: ListSectionOptions<T>): Section {
+  return {
+    name: options.name,
+    page: options.page,
+    watchPaths: [options.recordsDir, options.schemaFile],
+    load(root) {
+      const { files, records, problems } = readRecords<T>(options, root);
+      problems.push(...orderProblems(options.recordsDir, options.order, files));
+      if (problems.length > 0) {
+        throw invalidRecords(options, problems);
+      }
+      // No other record names these, and they name none.
+      return { nodes: [], render: () => options.render(options.order.map((id) => records.get(id)!)) };
+    },
+  };
 }
 
 /** Loads every section, since cards link to records of other sections, or throws listing every problem. */

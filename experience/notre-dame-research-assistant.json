@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "title": "Research Assistant",
+  "organization": {
+    "name": "Neural Dynamics and Computing Group",
+    "url": "https://robertrosenbaum.github.io/robertrosenbaum/ndcnd.html"
+  },
+  "institution": "University of Notre Dame",
+  "start_date": "2016",
+  "end_date": "2020",
+  "description": [
+    "Reconciled the computational properties of biologically realistic neural networks with artificial machine learning models (such as those used across computer vision) through complex mathematical theory and stochastic biophysical simulations, with results communicated through 3 journal publications and a presentation at the high-impact COSYNE conference (top 4% of abstracts accepted).",
+    "Collaborated with several top experimentalists in neuroscience as a trainee in the NeuroNex program, which focused on understanding how neural function emerges from underlying structure."
+  ]
+}

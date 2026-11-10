@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "title": "Research Software Engineer",
+  "organization": {
+    "name": "CatalystNeuro",
+    "url": "https://catalystneuro.com/"
+  },
+  "arrangement": "remote",
+  "start_date": "2020-06",
+  "end_date": "2024-10",
+  "description": [
+    "Developed and maintained 5 repositories of open-source software by ensuring proper functionality of automated testing suites, documentation, tutorials, and demos.",
+    "Created and maintained 12+ data processing pipelines for neuroscience labs, allowing their data to flow from acquisition to sharing in a seamless fashion.",
+    "Curated a total of 256 TB of high-value datasets to NIH data archives on behalf of various research groups.",
+    "Managed the company's cloud resources (Amazon Web Services; AWS), including storage, compute resources, and identity access management (IAM).",
+    "Handled user interactions within the research community by offering technical support and resolving issues or feature requests in a timely manner.",
+    "Facilitated user education across various platforms by running sessions at multiple conferences and workshops, increasing user adoption and effective system utilization.",
+    "All software related in some way to the facilitation of terabyte-scale data management, analysis, and visualization for the field of neurophysiology."
+  ]
+}

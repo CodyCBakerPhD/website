@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "degree": "B.S.",
+  "majors": [
+    {
+      "name": "Applied Mathematics",
+      "url": "https://www.evansville.edu/majors/mathematics/degrees-applied-mathematics.cfm"
+    },
+    {
+      "name": "Cognitive Science",
+      "url": "https://www.evansville.edu/majors/cognitivescience/index.cfm"
+    }
+  ],
+  "minors": [
+    "Computer Science",
+    "Philosophy",
+    "Psychology",
+    "Neuroscience"
+  ],
+  "institution": "University of Evansville",
+  "start_date": "2011",
+  "end_date": "2015",
+  "theses": [
+    {
+      "kind": "Senior",
+      "title": "Crime prediction models applied to the city of Evansville"
+    },
+    {
+      "kind": "Honors",
+      "title": "Goodness of fit metrics for joint probability distributions"
+    }
+  ],
+  "coursework": [
+    "calculus",
+    "linear algebra",
+    "probability",
+    "statistics",
+    "discrete & combinatorics",
+    "numerical analysis",
+    "real analysis",
+    "mathematical physics",
+    "algorithms & data structures",
+    "cryptography",
+    "machine learning",
+    "symbolic logic",
+    "cognitive psychology",
+    "neurophysiology",
+    "advanced neuroscience",
+    "philosophy of mind",
+    "philosophy of science"
+  ]
+}

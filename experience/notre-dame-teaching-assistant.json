@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "title": "Teaching Assistant",
+  "organization": {
+    "name": "Applied and Computational Mathematics and Statistics",
+    "abbreviation": "ACMS",
+    "url": "https://acms.nd.edu/"
+  },
+  "institution": "University of Notre Dame",
+  "course": "Applied Mathematical Methods",
+  "start_date": "2016-08",
+  "end_date": "2018-01",
+  "description": [
+    "Ran 4 tutorial sections for 112 students, aiding their study of course concepts to achieve a 96% satisfaction rate.",
+    "Graded homework assignments and exams. Filled in main lectures for the professor as needed."
+  ]
+}

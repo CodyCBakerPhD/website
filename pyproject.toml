@@ -19,5 +19,6 @@ select = ["E4", "E7", "E9", "F", "W", "I", "B", "A", "UP", "C4", "SIM", "PERF", 
 # Words inside URLs are not spell-checked: the home page links to University of
 # Notre Dame pages, whose domain codespell reads as a misspelling.
 uri-ignore-words-list = "*"
-# Proper names codespell reads as misspellings, such as the Tye Lab.
-ignore-words-list = "tye"
+# Words codespell reads as misspellings: proper names, such as the Tye Lab, and
+# the plural of "thesis" (a degree's theses in schemas/records.yaml).
+ignore-words-list = "tye,theses"

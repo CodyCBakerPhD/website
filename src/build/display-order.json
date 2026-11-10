@@ -66,5 +66,30 @@
     "nwb-dandi-hackathon-swc-2023",
     "neuroinformatics-odin-2023",
     "neuroconv-tutorial-janelia-2022"
+  ],
+  "education": [
+    "notre-dame-phd",
+    "evansville-bs"
+  ],
+  "experience": [
+    "center-for-open-neuroscience",
+    "catalystneuro",
+    "notre-dame-research-assistant",
+    "notre-dame-teaching-assistant",
+    "jrm-environmental",
+    "penguin-random-house",
+    "michigan-state-bitlab",
+    "kansas-bioinformatics"
+  ],
+  "skills": [
+    "coding",
+    "techniques",
+    "devops",
+    "libraries",
+    "frameworks",
+    "databases",
+    "data-formats",
+    "administration",
+    "business"
   ]
 }

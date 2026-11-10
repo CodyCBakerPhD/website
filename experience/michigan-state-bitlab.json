@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "title": "Research Intern",
+  "organization": {
+    "name": "BITLab"
+  },
+  "institution": "Michigan State University",
+  "start_date": "2014-04",
+  "end_date": "2014-08",
+  "description": [
+    "Explored statistical effects of algorithmic curation (the use of automated filtering mechanisms in the delivery and display of information) by measuring properties of simulated models of social networks, with results presented at the MIDSURE conference."
+  ]
+}

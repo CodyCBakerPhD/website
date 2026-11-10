@@ -7,6 +7,9 @@ on:
       - "datasets/**"
       - "publications/**"
       - "summaries/**"
+      - "education/**"
+      - "experience/**"
+      - "skills/**"
       - "src/build/generated/**"
       - "scripts/generate-schemas.sh"
       - "scripts/generate_tag_table.py"
@@ -48,6 +51,15 @@ jobs:
 
       - name: Validate summaries
         run: linkml-validate --schema schemas/records.yaml --target-class Summary summaries/*.json
+
+      - name: Validate education
+        run: linkml-validate --schema schemas/records.yaml --target-class Education education/*.json
+
+      - name: Validate experience
+        run: linkml-validate --schema schemas/records.yaml --target-class Position experience/*.json
+
+      - name: Validate skills
+        run: linkml-validate --schema schemas/records.yaml --target-class SkillGroup skills/*.json
 
       - name: Check that the generated files are up to date
         run: |

@@ -12,7 +12,13 @@
 #
 # `compact = true` renders the short form of a one-page resume: no intro, only
 # the first sentence of each description (of each paragraph, for a summary),
-# and publications without the headings for their kinds.
+# publications without the headings for their kinds, and degrees with only
+# where their research was done.
+#
+# `parts` (experience and skills only) chooses, for some of the shown records,
+# which of their parts to show, by position counting from 1: the paragraphs of
+# a position's description, each one bullet, or the skills of a group. A
+# record it does not name shows all of them.
 #
 # The full CV shows every record, in the order the website lists them, and
 # the summary its About section shows.
@@ -31,6 +37,21 @@ show = ["general"]
 omit = []
 
 [[section]]
+output = "full_styled/education.tex"
+records = "education"
+show = "site"
+
+[[section]]
+output = "full_styled/experience.tex"
+records = "experience"
+show = "site"
+
+[[section]]
+output = "full_styled/skills.tex"
+records = "skills"
+show = "site"
+
+[[section]]
 output = "full_styled/projects.tex"
 records = "projects"
 show = "site"
@@ -47,9 +68,43 @@ records = "publications"
 # applies within each group.
 show = "site"
 
-# The one-page resume: a few lead-developer projects from the top of the
-# website's order, and three published articles. Its build fails if it no
-# longer fits on one page, e.g. after a description grows.
+# The one-page resume: both degrees, the three latest positions with their
+# lead bullets, three groups of skills, a few lead-developer projects from the
+# top of the website's order, and three published articles. Its build fails if
+# it no longer fits on one page, e.g. after a description grows.
+[[section]]
+output = "one_page/education.tex"
+records = "education"
+compact = true
+show = ["notre-dame-phd", "evansville-bs"]
+omit = []
+
+[[section]]
+output = "one_page/experience.tex"
+records = "experience"
+compact = true
+show = [
+    "center-for-open-neuroscience",
+    "catalystneuro",
+    "notre-dame-research-assistant",
+]
+omit = [
+    "notre-dame-teaching-assistant",
+    "jrm-environmental",
+    "penguin-random-house",
+    "michigan-state-bitlab",
+    "kansas-bioinformatics",
+]
+parts = { center-for-open-neuroscience = [1], catalystneuro = [2, 3, 4], notre-dame-research-assistant = [] }
+
+[[section]]
+output = "one_page/skills.tex"
+records = "skills"
+compact = true
+show = ["coding", "techniques", "devops"]
+omit = ["libraries", "frameworks", "databases", "data-formats", "administration", "business"]
+parts = { techniques = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], devops = [1, 2, 3, 5, 6, 7, 8, 9, 10] }
+
 [[section]]
 output = "one_page/projects.tex"
 records = "projects"

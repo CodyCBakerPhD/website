@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "title": "Research Software Engineer",
+  "organization": {
+    "name": "Center for Open Neuroscience",
+    "abbreviation": "CON",
+    "url": "https://centerforopenneuroscience.org/"
+  },
+  "departments": [
+    {
+      "name": "Center for Cognitive Neurosciences",
+      "abbreviation": "CCN",
+      "url": "https://www.dartmouth.edu/ccn/"
+    },
+    {
+      "name": "Psychological and Brain Sciences",
+      "abbreviation": "PBS",
+      "url": "https://pbs.dartmouth.edu/"
+    }
+  ],
+  "institution": "Dartmouth College",
+  "arrangement": "hybrid",
+  "start_date": "2025",
+  "description": [
+    "Maintaining and enhancing several NIH data archives that store neuroscientific data by standardizing dataset organization across multiple modalities and providing usage analytics, including geolocation, through parsing terabytes of raw S3 log files.",
+    "Assisting with user support tickets and feature requests to ensure smooth operation of data submission and retrieval processes.",
+    "Developing open source software for use in neurophysiology research with an emphasis on achieving reproducibility of scientific findings.",
+    "Researching options for stable, cost-effective, long-term backup of petabyte-scale data storage. Working with a range of institutions and services to provide solutions and cost estimates to that effect.",
+    "Providing software, consultation, and computing support for the Brain Behavior Quantification and Synchronization consortium (BBQS)."
+  ]
+}

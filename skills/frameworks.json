@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "name": "Frameworks",
+  "short_name": "Frameworks & APIs",
+  "subgroups": [
+    {
+      "name": "Cloud & services",
+      "skills": [
+        "AWS (IAM, S3, EC2, Batch, ECR, Route 53)",
+        "Terraform",
+        "IPinfo",
+        "OpenCage"
+      ]
+    },
+    {
+      "name": "Streaming",
+      "skills": [
+        "fsspec",
+        "HDF5 ROS3",
+        "remfile",
+        "h5wasm",
+        "obstore"
+      ]
+    },
+    {
+      "name": "UI",
+      "skills": [
+        "Electron",
+        "Tk",
+        "Qt",
+        "React"
+      ]
+    },
+    {
+      "name": "Linting",
+      "skills": [
+        "pre-commit",
+        "Ruff",
+        "Black",
+        "flake8",
+        "pydocstyle",
+        "mypy",
+        "Prettier"
+      ]
+    },
+    {
+      "name": "Parallelization",
+      "skills": [
+        "multiprocessing",
+        "threading",
+        "high-performance computing (HPC)"
+      ]
+    },
+    {
+      "name": "Packaging & distribution",
+      "skills": [
+        "setuptools",
+        "Hatch",
+        "Twine",
+        "conda-forge",
+        "Vite",
+        "Node.js",
+        "Yarn"
+      ]
+    }
+  ]
+}

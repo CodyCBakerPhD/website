@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.9.0",
+  "record_version": "0.1.0",
+  "name": "Mathematical / Statistical / Machine Learning Techniques",
+  "short_name": "Math, stats, & ML",
+  "skills": [
+    "multivariate regression",
+    "classification",
+    "cross-validation",
+    "clustering",
+    "mixture models",
+    "dimensionality reduction",
+    "ensemble methods",
+    "deep learning",
+    "reinforcement learning",
+    "time series analysis",
+    "anomaly detection",
+    "computer vision",
+    "pose estimation",
+    "spike sorting",
+    "ROI segmentation"
+  ]
+}

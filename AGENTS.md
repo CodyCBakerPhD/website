@@ -10,7 +10,7 @@
 
 Three versions are bumped independently, each once per PR and following semantic versioning. The `Check version bumps` workflow enforces all three. Follow-up commits on the same unmerged PR do not bump again.
 
-- The site: `version` in `package.json`, stamped at the bottom left of the page. Bump it when the PR changes the built site: anything under `src/`, `configs/`, `cv/`, `projects/`, `datasets/`, `publications/`, `summaries/` or `schemas/`, `scripts/render_cv.py`, or `package.json`/`package-lock.json` themselves. Do NOT bump it for changes that are purely documentation or CI, such as `docs/`, `README.md`, `AGENTS.md` or `.github/`.
+- The site: `version` in `package.json`, stamped at the bottom left of the page. Bump it when the PR changes the built site: anything under `src/`, `configs/`, `cv/`, `projects/`, `datasets/`, `publications/`, `summaries/`, `education/`, `experience/`, `skills/` or `schemas/`, `scripts/render_cv.py`, or `package.json`/`package-lock.json` themselves. Do NOT bump it for changes that are purely documentation or CI, such as `docs/`, `README.md`, `AGENTS.md` or `.github/`.
 - The schema: `version` in `schemas/records.yaml`. Bump it when the schema changes, including the tag vocabulary in `schemas/tags.yaml`.
 - Each record: its `record_version`. Bump it when the record changes.
 
@@ -23,7 +23,7 @@ Three versions are bumped independently, each once per PR and following semantic
 ## Records and schemas
 
 - [`docs/development.md`](docs/development.md) explains how the records, schemas and build fit together. Keep `README.md` to the short project description.
-- Site content beyond the page structure lives in JSON records, one file per record, under `summaries/`, `projects/`, `datasets/` and `publications/`. A record's file name is its ID, in lowercase kebab-case such as `visual-coding-ophys.json` (the build fails otherwise): keep it when the record's wording changes.
+- Site content beyond the page structure lives in JSON records, one file per record, under `summaries/`, `education/`, `experience/`, `skills/`, `projects/`, `datasets/` and `publications/`. A record's file name is its ID, in lowercase kebab-case such as `visual-coding-ophys.json` (the build fails otherwise): keep it when the record's wording changes.
 - The full CV and the one-page resume under `cv/` are rendered from the same records and built into PDFs when the site deploys; nothing they generate is committed. Every record must be shown or left out in each of their sections in `cv/records.toml` that lists its own, so a new record is placed there too. The tailored and ATS resumes stay in CodyCBakerPhD/job-applications.
 - The LinkML schema `schemas/records.yaml` is the source of truth for every record's shape. Never edit the files generated from it (`schemas/jsonschema/`, `src/build/generated/records.ts` and the tag table in `docs/development.md`); change the schema, then run `sh scripts/generate-schemas.sh`.
 - Never edit `src/build/generated/github.json` by hand either. After citing a GitHub pull request or issue as evidence, or adding a project, run `python scripts/fetch_github_activity.py` (with `GITHUB_TOKEN` set) to fetch its activity.
@@ -54,6 +54,9 @@ linkml-validate --schema schemas/records.yaml --target-class Project projects/*.
 linkml-validate --schema schemas/records.yaml --target-class Dataset datasets/*.json
 linkml-validate --schema schemas/records.yaml --target-class Publication publications/*.json
 linkml-validate --schema schemas/records.yaml --target-class Summary summaries/*.json
+linkml-validate --schema schemas/records.yaml --target-class Education education/*.json
+linkml-validate --schema schemas/records.yaml --target-class Position experience/*.json
+linkml-validate --schema schemas/records.yaml --target-class SkillGroup skills/*.json
 sh scripts/generate-schemas.sh
 ```
 
