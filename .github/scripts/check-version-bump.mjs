@@ -5,7 +5,9 @@
 //   - each record under projects/, datasets/, publications/ or summaries/ (its `record_version`),
 //   - the site itself, package.json (its `version`), whenever any file that
 //     shapes the built site changed.
-// Files that are new in the pull request only need a valid version.
+// Files that are new in the pull request only need a valid version. Deleting a
+// file counts as changing it, so the version that covers it must still go up
+// (a deleted record has no record_version of its own left to check).
 //
 // Usage: BASE_REF=main node .github/scripts/check-version-bump.mjs
 
@@ -49,13 +51,13 @@ const jsonField = (field) => (text) => JSON.parse(text)[field];
 
 const changed = git("diff", "--name-only", `${base}...HEAD`)
   .split("\n")
-  .filter((path) => path && existsSync(path));
+  .filter(Boolean);
 
 const checks = [];
 if (SCHEMA_PARTS.some((path) => changed.includes(path))) {
   checks.push({ file: SCHEMA_FILE, label: "version", extract: yamlVersion });
 }
-for (const file of changed.filter((path) => RECORD_FILE.test(path))) {
+for (const file of changed.filter((path) => RECORD_FILE.test(path) && existsSync(path))) {
   checks.push({ file, label: "record_version", extract: jsonField("record_version") });
 }
 if (changed.some((path) => SITE_PATHS.some((prefix) => path === prefix || path.startsWith(prefix)))) {
