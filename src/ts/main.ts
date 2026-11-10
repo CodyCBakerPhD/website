@@ -1,7 +1,7 @@
 // Site behavior shared by every page: the animated "typed" headline and
-// smooth scrolling on the home page, the light/dark theme toggle, and the
-// search, column choice and links to single cards on the pages listing
-// records. Bundled by Vite into dist/assets/.
+// smooth scrolling on the home page, the nav's menu on narrow screens, the
+// light/dark theme toggle, and the search, column choice and links to single
+// cards on the pages listing records. Bundled by Vite into dist/assets/.
 
 import { initCardLinks } from "./cards";
 import { initGridControls } from "./grid";
@@ -30,6 +30,41 @@ function redirectMovedSection(): void {
 
 const HEADLINE_WORDS = ["data science", "informatics", "software"];
 
+// The headline's timing, as typed.js 1.x gave it before this replaced it.
+const TYPE_PAUSE_MS = 90;
+const WORD_HOLD_MS = 700;
+const PAUSE_JITTER_MS = 70;
+
+/** Open on narrow screens, where custom.css folds the nav's links into a menu under the bar's toggle. */
+const MENU_OPEN_CLASS = "navigation-open";
+
+const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+const jitter = () => Math.round(PAUSE_JITTER_MS * Math.random());
+
+/** Types each word, holds it, deletes it and moves on to the next, forever. */
+async function typeWords(element: HTMLElement, words: readonly string[]): Promise<void> {
+  for (let index = 0; ; index = (index + 1) % words.length) {
+    const word = words[index];
+    // typed.js paused before each character, and once more after the last before holding the word.
+    for (let length = 1; length <= word.length + 1; length++) {
+      await sleep(TYPE_PAUSE_MS + jitter());
+      element.textContent = word.slice(0, length);
+    }
+    await sleep(WORD_HOLD_MS);
+    for (let length = word.length; length >= 0; length--) {
+      await sleep(jitter());
+      element.textContent = word.slice(0, length);
+    }
+  }
+}
+
+function typingCursor(): HTMLElement {
+  const cursor = document.createElement("span");
+  cursor.className = "typed-cursor";
+  cursor.textContent = "|";
+  return cursor;
+}
+
 function initTypedHeadline(): void {
   const typed = document.getElementById("typed");
   if (!typed) {
@@ -42,26 +77,23 @@ function initTypedHeadline(): void {
   line.className = "typed-line";
   const text = document.createElement("span");
   typed.replaceWith(line);
-  text.append(typed);
+  text.append(typed, typingCursor());
   line.append(
     text,
     ...HEADLINE_WORDS.map((word) => {
       const copy = document.createElement("span");
       copy.className = "typed-reserve";
-      const cursor = document.createElement("span");
-      cursor.className = "typed-cursor";
-      cursor.textContent = "|";
-      copy.append(word, cursor);
+      copy.append(word, typingCursor());
       return copy;
     }),
   );
+  void typeWords(typed, HEADLINE_WORDS);
+}
 
-  $("#typed").typed({
-    strings: HEADLINE_WORDS,
-    typeSpeed: 90,
-    backDelay: 700,
-    contentType: "html",
-    loop: true,
+function initNavigationMenu(): void {
+  const menu = document.getElementById("navbar-1");
+  document.querySelector(".navigation-toggle span")?.addEventListener("click", () => {
+    menu?.classList.toggle(MENU_OPEN_CLASS);
   });
 }
 
@@ -73,14 +105,8 @@ function initSmoothNavigation(): void {
     link.addEventListener("click", (event) => {
       event.preventDefault();
 
-      // On narrow screens the nav's links are in Kube's drop-down menu, which stays
-      // open after a click and would cover the section. Hidden as it is on load (not
-      // through the toggle, which also drops a margin and shortens the nav), it opens
-      // again on the toggle's next tap.
-      const menu = link.closest<HTMLElement>(".navigation-target-show");
-      if (menu) {
-        menu.style.display = "none";
-      }
+      // An open menu would otherwise stay open over the section.
+      document.getElementById("navbar-1")?.classList.remove(MENU_OPEN_CLASS);
 
       // "About" scrolls back to the top and clears any hash from the URL.
       if ("scrollTop" in link.dataset) {
@@ -143,9 +169,9 @@ redirectMovedSection();
 // An old link opened from the home page itself only changes the hash, without reloading.
 window.addEventListener("hashchange", redirectMovedSection);
 
-// A listener of its own, so an error in the vendored plugin does not stop the rest.
-document.addEventListener("DOMContentLoaded", initTypedHeadline);
 document.addEventListener("DOMContentLoaded", () => {
+  initTypedHeadline();
+  initNavigationMenu();
   initSmoothNavigation();
   initThemeToggle();
   initRecordSearch();

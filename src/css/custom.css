@@ -103,8 +103,18 @@ body:has(.card-grid) {
 
 @media only screen and (max-width: 767px) {
     :root {
-        /* Kube swaps the nav's links for its taller menu toggle at this width. */
+        /* The nav's links fold into a menu under its taller toggle at this width. */
         --nav-offset: 96px;
+    }
+
+    /* Kube's stylesheet styles the toggle and hides it; main.ts opens and closes the menu. */
+    .navigation-toggle {
+        display: block;
+        margin-bottom: 1.65em;
+    }
+
+    #navbar-1:not(.navigation-open) {
+        display: none;
     }
 
     .intro img {
