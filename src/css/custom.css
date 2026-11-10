@@ -162,6 +162,39 @@ body:has(.card-grid) {
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+/* The toggle is a <button>, so keyboards reach it; it takes the look kube.min.css
+   gives `.navigation-toggle span`, which it replaced, and none of a button's own. */
+.navigation-toggle button {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 10px 20px 10px 40px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    -webkit-appearance: none;
+    appearance: none;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+}
+
+.navigation-toggle button:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 3px var(--accent-border);
+}
+
+/* Kube draws the toggle's ☰ as generated text, which screen readers would read
+   out; empty alternative text hides it from them, as the button names the menu. */
+.navigation-toggle:after {
+    content: "\2630" / "";
+}
+
 .main-nav nav ul li a {
     position: relative;
     color: var(--muted);

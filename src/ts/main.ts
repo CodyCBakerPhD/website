@@ -90,10 +90,15 @@ function initTypedHeadline(): void {
   void typeWords(typed, HEADLINE_WORDS);
 }
 
+/** Opens or closes the menu, keeping its toggle's aria-expanded in step. */
+function setMenuOpen(open: boolean): void {
+  document.getElementById("navbar-1")?.classList.toggle(MENU_OPEN_CLASS, open);
+  document.querySelector(".navigation-toggle button")?.setAttribute("aria-expanded", String(open));
+}
+
 function initNavigationMenu(): void {
-  const menu = document.getElementById("navbar-1");
-  document.querySelector(".navigation-toggle span")?.addEventListener("click", () => {
-    menu?.classList.toggle(MENU_OPEN_CLASS);
+  document.querySelector(".navigation-toggle button")?.addEventListener("click", () => {
+    setMenuOpen(!document.getElementById("navbar-1")?.classList.contains(MENU_OPEN_CLASS));
   });
 }
 
@@ -106,7 +111,7 @@ function initSmoothNavigation(): void {
       event.preventDefault();
 
       // An open menu would otherwise stay open over the section.
-      document.getElementById("navbar-1")?.classList.remove(MENU_OPEN_CLASS);
+      setMenuOpen(false);
 
       // "About" scrolls back to the top and clears any hash from the URL.
       if ("scrollTop" in link.dataset) {
