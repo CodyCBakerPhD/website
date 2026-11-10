@@ -74,9 +74,9 @@ export function renderProject({ id, record: project, references }: RecordEntry<P
   }
 
   const details = [project.role, formatYears(project.start_date, project.end_date)].map(escapeHtml);
-  lines.push(`<li>${joinItems([`<a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>`, ...details])}</li>`);
+  lines.push(`<div class="card-line">${joinItems([`<a href="${escapeHtml(project.url)}">${escapeHtml(project.name)}</a>`, ...details])}</div>`);
   if (project.contribution) {
-    lines.push(`<li>Contribution: ${escapeHtml(project.contribution)}</li>`);
+    lines.push(`<div class="card-line">Contribution: ${escapeHtml(project.contribution)}</div>`);
   }
   lines.push("<br>", ...renderParagraphs(project.description), ...references, ...renderTags(project.tags));
 

@@ -8,16 +8,16 @@ export function renderEducation(education: Education): string[] {
   const lines = [
     `<h4>${joinItems([escapeHtml(education.degree), education.majors.map(renderLinkedName).join(" &amp; ")])}</h4>`,
     // The year the degree was awarded.
-    `<li>${joinItems([escapeHtml(education.institution), education.end_date.slice(0, 4)])}</li>`,
+    `<div class="card-line">${joinItems([escapeHtml(education.institution), education.end_date.slice(0, 4)])}</div>`,
   ];
   if (education.minors) {
-    lines.push(`<li>Minors: ${escapeHtml(proseList(education.minors))}</li>`);
+    lines.push(`<div class="card-line">Minors: ${escapeHtml(proseList(education.minors))}</div>`);
   }
   const research = [
-    ...(education.research_group ? [`<li>Research with the ${renderLinkedName(education.research_group)}</li>`] : []),
+    ...(education.research_group ? [`<div class="card-line">Research with the ${renderLinkedName(education.research_group)}</div>`] : []),
     ...(education.theses ?? []).map(({ kind, title, url }) => {
       const quoted = `“${escapeHtml(title)}”`;
-      return `<li>${escapeHtml(kind)} thesis: ${url ? `<a href="${escapeHtml(url)}">${quoted}</a>` : quoted}</li>`;
+      return `<div class="card-line">${escapeHtml(kind)} thesis: ${url ? `<a href="${escapeHtml(url)}">${quoted}</a>` : quoted}</div>`;
     }),
   ];
   if (research.length > 0) {
@@ -26,5 +26,5 @@ export function renderEducation(education: Education): string[] {
   if (education.coursework) {
     lines.push("<br>", `<p>Relevant coursework: ${escapeHtml(education.coursework.join(", "))}</p>`);
   }
-  return ['<ul class="work-list">', ...indent(lines), "</ul>"];
+  return ['<article class="work-list">', ...indent(lines), "</article>"];
 }

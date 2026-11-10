@@ -26,7 +26,7 @@ export function checkTags(tags: readonly string[]): string[] {
 export function renderTags(tags: readonly string[]): string[] {
   const sorted = [...tags].sort((a, b) => (RANK.get(a) ?? RANK.size) - (RANK.get(b) ?? RANK.size));
   return [
-    '<li class="tag-list">',
+    '<div class="card-line tag-list">',
     ...sorted.map((tag) => {
       const escaped = escapeHtml(tag);
       const { key, name } = splitTag(escaped);
@@ -37,6 +37,6 @@ export function renderTags(tags: readonly string[]): string[] {
         `<span class="tag-theme">${key}</span> <span class="tag-name">${name}</span></button>`
       );
     }),
-    "</li>",
+    "</div>",
   ];
 }

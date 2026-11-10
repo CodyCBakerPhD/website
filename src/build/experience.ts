@@ -13,8 +13,8 @@ export function renderPosition(position: Position): string[] {
     ...(departments.length > 0 ? [joinItems([...departments, ...institution])] : []),
   ];
   return [
-    '<ul class="work-list">',
-    ...indent([`<h3>${escapeHtml(position.title)}</h3>`, `<li>${where.join("<br>")}</li>`, "<br>", ...renderParagraphs(position.description)]),
-    "</ul>",
+    '<article class="work-list">',
+    ...indent([`<h3>${escapeHtml(position.title)}</h3>`, `<div class="card-line">${where.join("<br>")}</div>`, "<br>", ...renderParagraphs(position.description)]),
+    "</article>",
   ];
 }
