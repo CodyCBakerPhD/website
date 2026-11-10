@@ -20,7 +20,8 @@
     --link-hover: var(--accent);
     --link-underline: var(--accent-border);
     /* The sticky navigation bar's height, which anchors scroll clear of. Its
-       rules set no height, so check this after changing its padding or font. */
+       rules set no height, so check this and the narrow-screen value below
+       after changing its padding or font. */
     --nav-offset: 80px;
     /* Form controls do not inherit the page's font, so each names it. */
     --font-body: "Lato", Arial, sans-serif;
@@ -101,6 +102,11 @@ body:has(.card-grid) {
 }
 
 @media only screen and (max-width: 767px) {
+    :root {
+        /* Kube swaps the nav's links for its taller menu toggle at this width. */
+        --nav-offset: 96px;
+    }
+
     .intro img {
         display: block;
         margin-left: auto;
@@ -1508,11 +1514,6 @@ footer .version-link {
     font-size: 0.85em;
     font-weight: 700;
     text-decoration: underline;
-}
-
-.scroll-offset {
-    position: relative;
-    top: var(--nav-offset);
 }
 
 /* ---------- Fixed nav actions (GitHub link, theme toggle) ---------- */
