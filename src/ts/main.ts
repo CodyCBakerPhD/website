@@ -102,6 +102,19 @@ function initNavigationMenu(): void {
   });
 }
 
+/**
+ * Moves keyboard focus to the section a link scrolled to, as following the link
+ * natively would, so the next Tab continues from there rather than from the link.
+ */
+function focusSection(section: HTMLElement): void {
+  if (!section.hasAttribute("tabindex")) {
+    // Focusable by script only, never a stop of its own when tabbing.
+    section.setAttribute("tabindex", "-1");
+  }
+  // Without preventScroll, focusing would cut the smooth scroll short.
+  section.focus({ preventScroll: true });
+}
+
 function initSmoothNavigation(): void {
   const links = document.querySelectorAll<HTMLAnchorElement>(
     '.navbar a[href^="#"], .footer-nav a[href^="#"]',
@@ -117,6 +130,10 @@ function initSmoothNavigation(): void {
       if ("scrollTop" in link.dataset) {
         window.scrollTo({ top: 0, behavior: "smooth" });
         history.pushState(null, "", window.location.pathname);
+        const firstSection = document.querySelector<HTMLElement>(".section");
+        if (firstSection) {
+          focusSection(firstSection);
+        }
         return;
       }
 
@@ -132,6 +149,7 @@ function initSmoothNavigation(): void {
       history.pushState(null, "", targetId);
       // Clears the sticky nav through scroll-padding-top in custom.css, as every other link to a section does.
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      focusSection(targetElement);
     });
   });
 }
