@@ -364,8 +364,10 @@ def render_education_entry(record_id: str, education: dict, compact: bool) -> st
         rf"\entry*[{year_range(education['start_date'], education['end_date'])}]",
         rf"    \textbf{{{latex_text(education['degree'])}}}\cvbar {majors}\cvbar \emph{{{latex_text(education['institution'])}}}",
     ]
-    if "research_group" in education:
-        lines.append(rf"    \par Research with the {linked(education['research_group'])}")
+    if "research" in education:
+        research = education["research"]
+        kind = f"{research['kind']} research" if "kind" in research else "Research"
+        lines.append(rf"    \par {latex_text(kind)} with the {linked(research['group'])}")
     # A compact entry names the degree and where its research was done, and no more.
     if not compact:
         if "minors" in education:

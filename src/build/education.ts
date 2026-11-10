@@ -4,6 +4,11 @@
 import type { Education } from "./generated/records.ts";
 import { escapeHtml, indent, joinItems, proseList, renderLinkedName } from "./html.ts";
 
+/** "Doctoral research", or "Research" when the record does not say what kind. */
+function researchKind(kind?: string): string {
+  return kind ? `${kind} research` : "Research";
+}
+
 export function renderEducation(education: Education): string[] {
   const lines = [
     `<h4>${joinItems([escapeHtml(education.degree), education.majors.map(renderLinkedName).join(" &amp; ")])}</h4>`,
@@ -14,7 +19,9 @@ export function renderEducation(education: Education): string[] {
     lines.push(`<div class="card-line">Minors: ${escapeHtml(proseList(education.minors))}</div>`);
   }
   const research = [
-    ...(education.research_group ? [`<div class="card-line">Research with the ${renderLinkedName(education.research_group)}</div>`] : []),
+    ...(education.research
+      ? [`<div class="card-line">${escapeHtml(researchKind(education.research.kind))} with the ${renderLinkedName(education.research.group)}</div>`]
+      : []),
     ...(education.theses ?? []).map(({ kind, title, url }) => {
       const quoted = `“${escapeHtml(title)}”`;
       return `<div class="card-line">${escapeHtml(kind)} thesis: ${url ? `<a href="${escapeHtml(url)}">${quoted}</a>` : quoted}</div>`;

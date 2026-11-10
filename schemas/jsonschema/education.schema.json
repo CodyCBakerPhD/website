@@ -256,16 +256,16 @@
                     "pattern": "^\\d+\\.\\d+\\.\\d+$",
                     "type": "string"
                 },
-                "research_group": {
+                "research": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/LinkedName"
+                            "$ref": "#/$defs/Research"
                         },
                         {
                             "type": "null"
                         }
                     ],
-                    "description": "The research group the degree's research was done with."
+                    "description": "The research done toward the degree, and the group it was done with."
                 },
                 "schema_version": {
                     "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",
@@ -775,6 +775,28 @@
             "title": "Repository",
             "type": "object"
         },
+        "Research": {
+            "additionalProperties": false,
+            "description": "Research done toward a degree.",
+            "properties": {
+                "group": {
+                    "$ref": "#/$defs/LinkedName",
+                    "description": "The research group it was done with."
+                },
+                "kind": {
+                    "description": "What kind of research it was, e.g. \"Doctoral\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "group"
+            ],
+            "title": "Research",
+            "type": "object"
+        },
         "SkillGroup": {
             "additionalProperties": false,
             "description": "A group of related skills, listed either directly or in labeled subgroups. Each record is one JSON file under skills/.",
@@ -1102,16 +1124,16 @@
             "pattern": "^\\d+\\.\\d+\\.\\d+$",
             "type": "string"
         },
-        "research_group": {
+        "research": {
             "anyOf": [
                 {
-                    "$ref": "#/$defs/LinkedName"
+                    "$ref": "#/$defs/Research"
                 },
                 {
                     "type": "null"
                 }
             ],
-            "description": "The research group the degree's research was done with."
+            "description": "The research done toward the degree, and the group it was done with."
         },
         "schema_version": {
             "description": "Version of this schema the record was written against. The record may still be valid under other schema versions; this names the version at the time it was written.",

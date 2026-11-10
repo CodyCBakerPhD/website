@@ -353,12 +353,23 @@ export interface Education {
     start_date: string,
     /** When the degree was awarded. */
     end_date: string,
-    /** The research group the degree's research was done with. */
-    research_group?: LinkedName,
+    /** The research done toward the degree, and the group it was done with. */
+    research?: Research,
     /** Theses written for the degree. */
     theses?: Thesis[],
     /** Courses taken toward the degree that bear on later work, as lowercase topics, e.g. "machine learning". */
     coursework?: string[],
+}
+
+
+/**
+ * Research done toward a degree.
+ */
+export interface Research {
+    /** What kind of research it was, e.g. "Doctoral". */
+    kind?: string,
+    /** The research group it was done with. */
+    group: LinkedName,
 }
 
 

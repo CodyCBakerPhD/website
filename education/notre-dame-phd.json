@@ -12,9 +12,12 @@
   "institution": "University of Notre Dame",
   "start_date": "2015",
   "end_date": "2020",
-  "research_group": {
-    "name": "Neural Dynamics and Computing Group",
-    "url": "https://robertrosenbaum.github.io/robertrosenbaum/ndcnd.html"
+  "research": {
+    "kind": "Doctoral",
+    "group": {
+      "name": "Neural Dynamics and Computing Group",
+      "url": "https://robertrosenbaum.github.io/robertrosenbaum/ndcnd.html"
+    }
   },
   "theses": [
     {

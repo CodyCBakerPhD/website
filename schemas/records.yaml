@@ -426,9 +426,9 @@ classes:
         slot_uri: schema:endDate
         range: PartialDate
         required: true
-      research_group:
-        description: The research group the degree's research was done with.
-        range: LinkedName
+      research:
+        description: The research done toward the degree, and the group it was done with.
+        range: Research
         inlined: true
       theses:
         description: Theses written for the degree.
@@ -442,6 +442,17 @@ classes:
           topics, e.g. "machine learning".
         multivalued: true
         minimum_cardinality: 1
+
+  Research:
+    description: Research done toward a degree.
+    attributes:
+      kind:
+        description: What kind of research it was, e.g. "Doctoral".
+      group:
+        description: The research group it was done with.
+        range: LinkedName
+        inlined: true
+        required: true
 
   Thesis:
     description: A thesis written for a degree.

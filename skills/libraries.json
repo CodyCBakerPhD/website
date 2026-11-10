@@ -17,7 +17,7 @@
     "Plotly",
     "Pydantic",
     "Boto3",
-    "concurrent.futures",
+    "concurrents",
     "joblib",
     "tqdm",
     "requests",
