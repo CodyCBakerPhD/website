@@ -55,7 +55,8 @@ export const projectSearch: SearchConfig<Project> = {
   ],
   years: (project) => [yearOf(project.start_date), project.end_date ? yearOf(project.end_date) : null],
   sorts: [
-    // Ongoing projects first, then by when they ended, then by when they started.
+    // Ongoing projects first, then by when they ended, then by when they started. An end
+    // given as a year alone sorts below that year's months, as its own month is unknown.
     { id: "recent", label: "Most recent", value: (project) => `${project.end_date ?? "9999"} ${project.start_date}`, descending: true },
     { id: "oldest", label: "Oldest", value: (project) => project.start_date },
     { id: "name", label: "Name (A–Z)", value: (project) => project.name },
@@ -109,9 +110,13 @@ export function checkProject(project: Project, { publicDir }: { publicDir: strin
       problems.push(`/repositories/${index} has a homepage, so it is listed as a website and needs a title`);
     }
   });
-  // ISO 8601 dates compare correctly as strings, even at mixed precision.
-  if (project.end_date && project.end_date < project.start_date) {
-    problems.push(`/end_date ${project.end_date} is before /start_date ${project.start_date}`);
+  if (project.end_date) {
+    // Compared at the coarser of the two precisions: as strings "2024" sorts
+    // before "2024-10", yet a project that ended in 2024 may have started that October.
+    const precision = Math.min(project.start_date.length, project.end_date.length);
+    if (project.end_date.slice(0, precision) < project.start_date.slice(0, precision)) {
+      problems.push(`/end_date ${project.end_date} is before /start_date ${project.start_date}`);
+    }
   }
   return problems;
 }
