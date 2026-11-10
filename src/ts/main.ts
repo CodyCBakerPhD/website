@@ -7,9 +7,6 @@ import { initCardLinks } from "./cards";
 import { initGridControls } from "./grid";
 import { initRecordSearch } from "./search";
 
-/** Fallback when the nav bar has not rendered yet, the same as --nav-offset in custom.css. */
-const DEFAULT_NAV_OFFSET_PX = 80;
-
 /** Sections that moved off the home page onto pages of their own, by their old anchors. */
 const MOVED_SECTIONS: Readonly<Record<string, string>> = {
   "#highlighted-projects": "projects",
@@ -44,28 +41,22 @@ function initTypedHeadline(): void {
   });
 }
 
-function scrollToTarget(targetElement: HTMLElement, navOffset: number): void {
-  // Mark only the active target so CSS can compensate for the fixed nav.
-  document
-    .querySelectorAll(".scroll-offset")
-    .forEach((el) => el.classList.remove("scroll-offset"));
-  targetElement.classList.add("scroll-offset");
-
-  const targetPosition =
-    targetElement.getBoundingClientRect().top + window.scrollY - navOffset;
-  window.scrollTo({ top: targetPosition, behavior: "smooth" });
-}
-
 function initSmoothNavigation(): void {
-  const nav = document.querySelector<HTMLElement>(".main-nav");
-  const navOffset = nav?.offsetHeight || DEFAULT_NAV_OFFSET_PX;
-
   const links = document.querySelectorAll<HTMLAnchorElement>(
     '.navbar a[href^="#"], .footer-nav a[href^="#"]',
   );
   links.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
+
+      // On narrow screens the nav's links are in Kube's drop-down menu, which stays
+      // open after a click and would cover the section. Hidden as it is on load (not
+      // through the toggle, which also drops a margin and shortens the nav), it opens
+      // again on the toggle's next tap.
+      const menu = link.closest<HTMLElement>(".navigation-target-show");
+      if (menu) {
+        menu.style.display = "none";
+      }
 
       // "About" scrolls back to the top and clears any hash from the URL.
       if ("scrollTop" in link.dataset) {
@@ -84,7 +75,8 @@ function initSmoothNavigation(): void {
       }
 
       history.pushState(null, "", targetId);
-      scrollToTarget(targetElement, navOffset);
+      // Clears the sticky nav through scroll-padding-top in custom.css, as every other link to a section does.
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }

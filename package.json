@@ -1,6 +1,6 @@
 {
   "name": "resume-site",
-  "version": "1.17.6",
+  "version": "1.17.7",
   "private": true,
   "description": "Personal website of Cody C. Baker, Ph.D. — static site built with TypeScript (no Jekyll)",
   "type": "module",
