@@ -406,7 +406,8 @@ body:has(.card-grid) {
 }
 
 /* ORCID asks that its iD icon keep its own green, so it is an image rather than an accent-colored
-   glyph; the margins fill the same 36px the glyphs and their gap take up. */
+   glyph. Its letters are cut out, showing the card through them in either theme. The margins fill
+   the same 36px the glyphs and their gap take up. */
 .contact-list li .orcid-icon {
     width: 16px;
     height: 16px;
