@@ -126,7 +126,7 @@ body:has(.card-grid) {
         display: none;
     }
 
-    .intro img {
+    .intro .avatar {
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -307,7 +307,7 @@ body:has(.card-grid) {
     margin: 32px 0 0;
 }
 
-.intro img {
+.intro .avatar {
     width: 96px;
     height: 96px;
     border-radius: 99px;
@@ -383,6 +383,13 @@ body:has(.card-grid) {
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
+/* The ORCID line, the widest, fits the narrowest phones' column only with less padding. */
+@media only screen and (max-width: 359px) {
+    .contact-list {
+        padding: 18px 10px;
+    }
+}
+
 .contact-list li {
     list-style: none;
     margin: 4px 0;
@@ -396,6 +403,16 @@ body:has(.card-grid) {
     margin-right: 10px;
     font-size: 1.05em;
     color: var(--accent);
+}
+
+/* ORCID asks that its iD icon keep its own green, so it is an image rather than an accent-colored
+   glyph. Its letters are cut out, showing the card through them in either theme. The margins fill
+   the same 36px the glyphs and their gap take up. */
+.contact-list li .orcid-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0 15px 0 5px;
+    vertical-align: -2px;
 }
 
 .contact-list li a {
